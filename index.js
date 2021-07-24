@@ -4,14 +4,14 @@ const exphbs = require(`express-handlebars`);
 const bodyParser = require(`body-parser`);
 const fs = require(`fs`);
 const path = require(`path`);
-const helper = require('./helpers/helpers.js')
 const routes = require('./routes/routes.js');
-const db = require('./models/mongoosedb.js');
+const helper = require('./helpers/helpers.js');
+const db = require('./models/db.js');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
-const tales = express();
+const krafts = express();
 
 dotenv.config();
 port = process.env.PORT;
@@ -20,17 +20,17 @@ url = process.env.DB_URL;
 
 db.connect();
 
-tales.set(`view engine`,`hbs`);
-tales.use(express.static(path.join(__dirname, `/public`)));
-tales.use(express.urlencoded({extended:true}));
-tales.use(bodyParser.urlencoded({extended:false}));
-tales.engine(`hbs`,exphbs({
+krafts.set(`view engine`,`hbs`);
+krafts.use(express.static(path.join(__dirname, `/public`)));
+krafts.use(express.urlencoded({extended:true}));
+krafts.use(bodyParser.urlencoded({extended:false}));
+krafts.engine(`hbs`,exphbs({
 	defaultLayout: `main`,
 	extname:`.hbs`,
 	helpers: helper})
 );
 
-tales.use(session({
+krafts.use(session({
 	secret: process.env.session_secret,
 	resave: false,
 	saveUninitialized: true,
@@ -38,9 +38,9 @@ tales.use(session({
 	store: MongoStore.create({mongoUrl: url})
 }));
 
-tales.use(`/`,routes);
+krafts.use(`/`,routes);
 
-tales.listen(port, hostname, () => {
+krafts.listen(port, hostname, () => {
 	console.log(`Server is running at: `);
 	console.log(`http://` + hostname + `:` + port);
 });
