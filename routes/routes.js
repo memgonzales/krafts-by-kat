@@ -1,6 +1,7 @@
 const express = require(`express`);
 
-//Controller Constants
-
 const krafts = express();
 
+krafts.get(`/`,(req,res)=>{
+    res.render(`index`,{style:`index`});
+});
