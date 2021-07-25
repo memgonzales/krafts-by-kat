@@ -11,9 +11,20 @@
     color: var(--black);
 }
 
-.modal-body{
-    width: 300px;
+.modal-content{
+    width: 350px;
+    border-radius: 20px;
     height: 500px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.btn{
+    width: 150px;
+    border-radius: 40px;
+}
+
+span{
+    font-size: 13px;
 }
 
 h1{

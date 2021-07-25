@@ -53,7 +53,7 @@
 
 
 
-/*  Debug classes, will be upon deployment  */
+/*  Debug classes, will be removed upon deployment  */
 .debug1{
     background-color: purple;
 }
