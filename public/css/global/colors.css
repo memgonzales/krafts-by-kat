@@ -1,19 +1,46 @@
-.c1{
+.fc1{
     color: #E7BB2C
 }
 
-.c2{
+.fc2{
     color: #F4F2DD
 }
 
-.c3{
+.fc3{
     color: #C5E1E4
 }
 
-.c4{
+.fc4{
     color: #B7C098
 }
 
-.c5{
+.fc5{
     color: #97B9B5
 }
+
+
+.bgc1{
+    background-color: #E7BB2C
+}
+
+.bgc2{
+    background-color: #F4F2DD
+}
+
+.bgc3{
+    background-color: #C5E1E4
+}
+
+.bgc4{
+    background-color: #B7C098
+}
+
+.bgc5{
+    background-color: #97B9B5
+}
+
+.debug{
+    background-color: purple;
+}
+
+

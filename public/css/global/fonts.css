@@ -1,11 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Raleway:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Raleway&display=swap');
+
 
 .f1{
+    color:black;
+    text-decoration: none;
     font-family: 'Raleway', sans-serif;
 }
 
 .f2{
+    color:black;
+    text-decoration: none;
     font-family: 'Amatic SC', cursive;
 }
 
+.f3{
+    color:black;
+    text-decoration: none;
+    font-family:'Amatica SC'
+}
+
+@font-face {
+    font-family: 'Amatica SC';
+    src: url('/fonts/AmaticaSC-Regular.ttf');
+}
