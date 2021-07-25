@@ -2,19 +2,22 @@
     --black: black;
 }
 
-
 .logo{
     height: 75px;
     width: 55px;
 }
 
-
 .nav-anchor{
     color: var(--black);
 }
 
+.modal-body{
+    width: 300px;
+    height: 500px;
+}
+
 h1{
-    font-size: 85px;
+    font-size: 75px;
 }
 
 nav{

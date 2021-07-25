@@ -1,4 +1,4 @@
-const express = require(`express`);
+const express = require('express');
 
 const krafts = express();
 
@@ -10,11 +10,11 @@ krafts.get(`/`,(req,res)=>{
         style:'index',
         user:''
     }
-    res.render("index", obj);
+    res.render('index', obj);
 });
 
 //<a> || navbar.hbs || line 7
-krafts.get(`/krafts-pool`,(req,res)=>{
+krafts.get('/krafts-pool',(req,res)=>{
     
 });
 

@@ -2,22 +2,33 @@
 
         <div class="container-fluid">
             
-            <div class="col-md-1"><img class = "logo mb-4" src = "/img/kbk-logo.png" alt = "Krafts by Kat Logo"></div>
+            <div class="col-md-1"><a href = "/"><img class = "logo mb-4" src = "/img/kbk-logo.png" alt = "Krafts by Kat Logo"></a></div>
 
-            <div class="col-md-2 nav-anchor pb-4"><a href="/krafts-pool" class = "f1 ms-5" id = "krafts-pool-anchor">KRAFTS POOL</a></div>
+                <div class="col-md-2 nav-anchor pb-3">
+                    {{#if user}}
+                        <a href="/krafts-pool" class = "f1 ms-5" id = "krafts-pool-anchor">KRAFTS POOL</a>
+                    {{else}}
+                        <a class = "f1 ms-5" id = "krafts-pool-anchor" data-bs-toggle = "modal" data-bs-target = "#login-card">KRAFTS POOL</a>
+                    {{/if}}
+                </div>
 
             <div class = "col-md-6 d-flex justify-content-center"><h1 class = "f3">KRAFTS BY KAT</h1></div>
 
-            <div class="col-md-3 nav-anchor ps-5 pb-4">
+            <div class="col-md-3 nav-anchor ps-5 pb-3">
                 {{#if user}}
-                    <a href = "/account/{{user}}"class = "f1 mb-5 mx-5" id = "account-anchor">{{user}}</a>
-                    <a href = "/cart/{{user}}" class="cblack"><i class="fas fa-shopping-cart"></i></a>
+                    <a href = "/account/{{user}}"class = "f1 mb-5 mx-4" id = "account-anchor">{{user}}</a>
+                    <a href = "/cart/{{user}}" class="f1 mb-5 mx-4"><i class="fas fa-shopping-cart"></i></a>
                 {{else}}
-                    <a href = "/login" class="cblack"><i class="fas fa-shopping-cart"></i></a>
-                    <a href = "/login"class = "f1 mb-5 mx-5" id = "account-anchor">SIGN IN</a>
+                    <a class = "f1 mb-5 mx-4" id = "account-anchor" data-bs-toggle = "modal" data-bs-target = "#login-card">LOGIN</a>
+                    <a class = "f1 mb-5 mx-4" id = "account-anchor" data-bs-toggle = "modal" data-bs-target = "#login-card">
+                        <i class = "fas fa-shopping-cart"></i>
+                    </a>
+
                 {{/if}}
             </div>
             
         </div>
    
 </nav>
+
+{{>login-card}}
