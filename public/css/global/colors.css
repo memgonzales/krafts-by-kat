@@ -4,6 +4,7 @@
     --c3: #C5E1E4;
     --c4: #B7C098;
     --c5: #97B9B5;
+    --black: black;
 }
 
 .fc1{
@@ -46,9 +47,23 @@
     background-color: var(--c5);
 }
 
+.cblack{
+    color: var(--black);
+}
+
+
+
 /*  Debug classes, will be upon deployment  */
-.debug{
+.debug1{
     background-color: purple;
+}
+
+.debug2{
+    background-color: black;
+}
+
+.debug3{
+    background-color: blue;
 }
 
 

@@ -1,11 +1,18 @@
+:root{
+    --black: black;
+}
+
+
 .logo{
     height: 75px;
     width: 55px;
 }
 
-.navbar{
-    padding-bottom: 80px;
+
+.nav-anchor{
+    color: var(--black);
 }
+
 h1{
     font-size: 85px;
 }
