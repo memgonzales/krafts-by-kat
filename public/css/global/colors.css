@@ -1,44 +1,52 @@
+:root{
+    --c1: #E7BB2C;
+    --c2: #F4F2DD;
+    --c3: #C5E1E4;
+    --c4: #B7C098;
+    --c5: #97B9B5;
+}
+
 .fc1{
-    color: #E7BB2C
+    color: var(--c1);
 }
 
 .fc2{
-    color: #F4F2DD
+    color: var(--c2);
 }
 
 .fc3{
-    color: #C5E1E4
+    color: var(--c3);
 }
 
 .fc4{
-    color: #B7C098
+    color: var(--c4);
 }
 
 .fc5{
-    color: #97B9B5
+    color: var(--c5);
 }
 
-
 .bgc1{
-    background-color: #E7BB2C
+    background-color: var(--c1);
 }
 
 .bgc2{
-    background-color: #F4F2DD
+    background-color: var(--c2);
 }
 
 .bgc3{
-    background-color: #C5E1E4
+    background-color: var(--c3);
 }
 
 .bgc4{
-    background-color: #B7C098
+    background-color: var(--c4);
 }
 
 .bgc5{
-    background-color: #97B9B5
+    background-color: var(--c5);
 }
 
+/*  Debug classes, will be upon deployment  */
 .debug{
     background-color: purple;
 }
