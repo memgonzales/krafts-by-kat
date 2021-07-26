@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Raleway&display=swap');
+@font-face {
+    font-family: 'Amatica SC';
+    src: url('/fonts/AmaticaSC-Regular.ttf');
+}
 
 .f1{
     color:black;
@@ -18,7 +22,3 @@
     font-family:'Amatica SC'
 }
 
-@font-face {
-    font-family: 'Amatica SC';
-    src: url('/fonts/AmaticaSC-Regular.ttf');
-}
