@@ -2,10 +2,12 @@ const express = require('express');
 
 const krafts = express();
 
+/* All objects tagged with [TEMPORARY] may be removed on developer's choice */
+
 // <div> || navbar.hbs || line 5
 krafts.get(`/`,(req,res)=>{
 
-    //[TEMPORARY] will change depending on back-end implementation
+    //[TEMPORARY]
     var obj = {
         style:'index',
         user:''
@@ -21,8 +23,9 @@ krafts.get('/krafts-pool',(req,res)=>{
 // <a> || navbar.hbs || line 21
 krafts.get('/signup', (req,res)=>{
     
+    //[TEMPORARY]
     var obj = {
-        style: 'signup',
+        style: 'sign-up',
         user: ''
     }
     res.render('sign-up',obj);
