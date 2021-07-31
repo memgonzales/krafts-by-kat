@@ -9,7 +9,12 @@ const helper = require('./helpers/helpers.js');
 const db = require('./models/db.js');
 const mongoose = require('mongoose');
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo')(session);
+
+const crypto = require('crypto');
+const multer = require('multer');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
 
 const krafts = express();
 
@@ -33,9 +38,8 @@ krafts.engine('hbs',exphbs({
 krafts.use(session({
 	secret: process.env.session_secret,
 	resave: false,
-	saveUninitialized: true,
-	cookie: {},
-	store: MongoStore.create({mongoUrl: url})
+	saveUninitialized: false,
+	store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
 
 krafts.use('/',routes);
