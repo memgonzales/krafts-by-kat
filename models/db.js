@@ -1,39 +1,42 @@
+const dotenv = require('dotenv');
+
 const mongoose = require('mongoose');
 
 const path = require('path');
 const bodyParser = require('body-parser');
 const crypto = require('crypto');
 const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage');
-const Grid = require('gridfs-stream');
+const gridFsStorage = require('multer-gridfs-storage');
+const grid = require('gridfs-stream');
 
 const options = {
 	useNewUrlParser: true,
     useUnifiedTopology: true
 };
 
+dotenv.config();
+const url = process.env.DB_URL;
+
 const database = {
-    connect: function () {
-		const url = process.env.DB_URL;
-		
+    connect: function() {
         mongoose.connect(url, options, function(error) {
             if (error) throw error;
             console.log('Connected to: ' + url);
         });
 		
-		let connection = mongoose.createConnection(url);
+		var connection = mongoose.createConnection(url);
 		
 		/* Initialize gfs */
-		let gfs;
+		var gfs;
 		
 		connection.once('open', function() {
 			/* Initialize stream */
-			gfs = Grid(connection.db, mongoose.mongo);
-			gfs.collection('uploads');
+			gfs = grid(connection.db, mongoose.mongo);
+			gfs.collection('uploads');			
 		})
 		
 		/* Create storage engine */
-		const storage = new GridFsStorage({
+		const storage = new gridFsStorage({
 			url: url,
 			file: (req, file) => {
 				return new Promise((resolve, reject) => {
@@ -118,7 +121,6 @@ const database = {
             return callback(true);
         });
     }
-
 }
 
 module.exports = database;
