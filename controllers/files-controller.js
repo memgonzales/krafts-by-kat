@@ -5,8 +5,8 @@ const grid = require('gridfs-stream');
 
 const filesController = {
 	getFile: function(req, res) {
-		var connection = mongoose.connection;
-		var gfs = grid(connection.db, mongoose.mongo);
+		let connection = mongoose.connection;
+		let gfs = grid(connection.db, mongoose.mongo);
 		gfs.collection('uploads');
 		
 		gfs.files.findOne({filename: req.params.filename}, function(err, file) {

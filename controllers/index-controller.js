@@ -3,7 +3,7 @@ const Display = require('../models/display-schema.js');
 
 const indexController = {
 	getDisplay: function(req, res) {
-		let query = {id: 0}
+		let query = {id: 0};
 		
 		db.findOne(Display, query, '', function(result) {
 			if (result) {
