@@ -1,20 +1,18 @@
 const dotenv = require('dotenv');
 const express = require('express');
 const exphbs = require('express-handlebars');
+
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
+
 const routes = require('./routes/routes.js');
 const helper = require('./helpers/helpers.js');
+
 const db = require('./models/db.js');
 const mongoose = require('mongoose');
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
-
-const crypto = require('crypto');
-const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage');
-const Grid = require('gridfs-stream');
+const mongoStore = require('connect-mongo')(session);
 
 const krafts = express();
 
@@ -39,7 +37,7 @@ krafts.use(session({
 	secret: process.env.session_secret,
 	resave: false,
 	saveUninitialized: false,
-	store: new MongoStore({mongooseConnection: mongoose.connection})
+	store: new mongoStore({mongooseConnection: mongoose.connection})
 }));
 
 krafts.use('/',routes);
