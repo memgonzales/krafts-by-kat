@@ -1,0 +1,44 @@
+:root{
+    --white: white;
+    --black: black;
+}
+
+/* Polaroid Card CSS */
+
+.outer{
+    background-color: var(--white);
+    height: 10.63625cm;
+    width: 8.73125cm;
+    border-radius: 10px;
+
+    box-shadow: 3px 4px 9px -2px rgba(0,0,0,0.93);
+    -webkit-box-shadow: 3px 4px 9px -2px rgba(0,0,0,0.93);
+    -moz-box-shadow: 3px 4px 9px -2px rgba(0,0,0,0.93);
+
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#item-img-carousel, .inner{
+    height: 7.9375cm;
+    width: 7.77875cm;
+    background-color: var(--black);
+}
+
+.addl{
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
+#item-info{
+    height: 85px;
+}
+
+#item-name{
+    font-weight: bold;
+}
+
+.thumbnail{
+    height: 400px !important;
+}
+

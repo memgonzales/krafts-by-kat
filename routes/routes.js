@@ -32,6 +32,4 @@ krafts.get('/signup', (req,res)=>{
 });
 
 
-
-
 module.exports = krafts;
