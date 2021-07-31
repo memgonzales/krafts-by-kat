@@ -44,7 +44,7 @@ krafts.use(session({
 
 krafts.use('/',routes);
 
-krafts.listen(port, hostname, () => {
+krafts.listen(port, hostname, function() {
 	console.log('Server is running at: ');
 	console.log('http://' + hostname + ':' + port);
 });
