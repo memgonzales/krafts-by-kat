@@ -6,6 +6,8 @@ const db = require('../models/db.js');
 const filesController = require('../controllers/files-controller.js');
 const indexController = require('../controllers/index-controller.js');
 const displayController = require('../controllers/display-controller.js');
+const signUpController = require('../controllers/sign-up-controller.js');
+const logInController = require('../controllers/log-in-controller.js');
 
 krafts.get('/files/:filename', filesController.getFile);
 
@@ -20,16 +22,12 @@ krafts.get('/krafts-pool', function(req,res) {
 });
 
 // <a> || navbar.hbs || line 21
-krafts.get('/signup', function(req,res) {
-    
-    //[TEMPORARY]
-    var obj = {
-        style: 'sign-up',
-        user: ''
-    }
-    res.render('sign-up', obj);
-});
+/* for sign up page */
+krafts.get('/signup', signUpController.getSignUp);
+krafts.post('/signup', signUpController.postSignUp);
 
+/* for log in page */
+krafts.post('/', logInController.postLogIn);
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
