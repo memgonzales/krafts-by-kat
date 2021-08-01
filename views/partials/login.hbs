@@ -1,3 +1,5 @@
+<script src = "https://code.jquery.com/jquery-3.6.0.js" integrity = "sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin = "anonymous"></script>
+
 <div class = "modal fade" id = "login" tabindex = "-1" aria-hidden = "true">
 
   <div class = "modal-dialog d-flex justify-content-center">
@@ -12,9 +14,11 @@
 
               </div>
 
-              <form class = "d-flex flex-column justify-content-center mb-5" method = "POST"> 
+              <form id = "login-form" class = "d-flex flex-column justify-content-center mb-5" method = "POST"> 
                 
                   <div class = "mb-3">
+				  
+					<div id = "error-text">Error (Style this text, then delete)</div>
 
                     <input type = "input" class = "form-control" id = "username" name = "username">
 
@@ -43,3 +47,5 @@
   </div>
 
 </div>
+
+<script src = "/js/log-in.js"></script>

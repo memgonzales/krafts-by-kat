@@ -26,14 +26,14 @@ const logInController = {
 
                 bcrypt.compare(password, result.password, function (err, equal) {
                     if (equal) {
-                        res.redirect('/');
+                        res.status(200).send();
                     } else {
-                        console.log("ERROR");
+						res.status(403).send();
                     }
                 });
 				
             } else {
-                console.log("ERROR");
+				res.status(403).send();
             }
         });
     }

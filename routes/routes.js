@@ -22,12 +22,12 @@ krafts.get('/krafts-pool', function(req,res) {
 });
 
 // <a> || navbar.hbs || line 21
-/* for sign up page */
+/* For sign up page */
 krafts.get('/signup', signUpController.getSignUp);
 krafts.post('/signup', signUpController.postSignUp);
 
-/* for log in page */
-krafts.post('/', logInController.postLogIn);
+/* For log in page */
+krafts.post('/postLogIn', logInController.postLogIn);
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
