@@ -18,7 +18,7 @@ bcrypt.hash("ASDFGHJKL123;", saltRounds, function (err, hash) {
 		deliveryAddress: "932 Cong. A. Francisco St., Paco, Manila",
 		orderIds: [],
 		threadId: "",
-		pictureFileName: ""
+		picture: ""
 	};
 
 	let client2 = {
@@ -32,7 +32,7 @@ bcrypt.hash("ASDFGHJKL123;", saltRounds, function (err, hash) {
 		deliveryAddress: "937 Cong. A. Francisco St., Binondo, Manila",
 		orderIds: [],
 		threadId: "",
-		pictureFileName: ""
+		picture: ""
 	};
 
 	db.insertMany(Client, [client1, client2], function(flag) {	

@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var clientSchema = new mongoose.Schema({
+const clientSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true
@@ -51,7 +51,7 @@ var clientSchema = new mongoose.Schema({
         required: false
     },
 
-    pictureFileName: {
+    picture: {
         type: String,
         required: false
     }

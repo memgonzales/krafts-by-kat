@@ -13,7 +13,7 @@ const logInController = {
 
         db.findOne(Client, query, '', function (result) {
             if (result) {
-                var client = {
+                let client = {
                     username: result.username,
                     firstName: result.firstName,
                     middleName: result.middleName,
