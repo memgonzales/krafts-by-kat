@@ -76,7 +76,16 @@ const signUpController = {
 			console.log("Error: Passwords do not match");
 			res.redirect('/signup');
 		}	
-    }
+    },
+	
+	getCheckUsername: function(req, res) {
+		let username = req.query.username;
+		let query = {username: username};
+				
+		db.findOne(Client, query, 'username', function(result) {			
+			res.send(result);
+		});
+	}
 }
 
 module.exports = signUpController;

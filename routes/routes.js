@@ -9,11 +9,10 @@ const displayController = require('../controllers/display-controller.js');
 const signUpController = require('../controllers/sign-up-controller.js');
 const logInController = require('../controllers/log-in-controller.js');
 
+/* For file uploads */
 krafts.get('/files/:filename', filesController.getFile);
 
-/* All objects tagged with [TEMPORARY] may be removed on developer's choice */
-
-// <div> || navbar.hbs || line 5
+/* For index page */
 krafts.get('/', indexController.getDisplay);
 
 //<a> || navbar.hbs || line 9
@@ -21,10 +20,10 @@ krafts.get('/krafts-pool', function(req,res) {
     
 });
 
-// <a> || navbar.hbs || line 21
 /* For sign up page */
 krafts.get('/signup', signUpController.getSignUp);
 krafts.post('/signup', signUpController.postSignUp);
+krafts.get('/getCheckUsername', signUpController.getCheckUsername);
 
 /* For log in page */
 krafts.post('/postLogIn', logInController.postLogIn);
