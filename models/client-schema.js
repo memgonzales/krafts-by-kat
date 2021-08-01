@@ -36,7 +36,27 @@ const clientSchema = new mongoose.Schema({
         required: true
     },
 
-    deliveryAddress: {
+    region: {
+        type: String,
+        required: true
+    },
+
+    city: {
+        type: String,
+        required: true
+    },
+
+    barangay: {
+        type: String,
+        required: true
+    },
+
+    zipCode: {
+        type: String,
+        required: true
+    },
+
+    address: {
         type: String,
         required: true
     },

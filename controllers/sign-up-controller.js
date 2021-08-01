@@ -41,7 +41,6 @@ const signUpController = {
 		let confirmPassword = req.body.confirmPass;
 		
 		if (JSON.stringify(password) === JSON.stringify(confirmPassword)) {
-			let deliveryAddress = region + " " + city + " " + barangay + " " + zipCode + " " + address;
 
 			bcrypt.hash(password, saltRounds, function (err, hash) {
 				let client = {
@@ -52,7 +51,11 @@ const signUpController = {
 					lastName: surname,
 					emailAddress: email,
 					contactNumber: contactNumber,
-					deliveryAddress: deliveryAddress,
+					region: region,
+					city: city,
+					barangay: barangay,
+					zipCode: zipCode,
+					address: address,
 					orderIds: [],
 					threadId: "",
 					pictureFileName: ""
@@ -64,6 +67,12 @@ const signUpController = {
 					res.redirect('/');
 				});
 			})
+		} 
+
+		/* TODO handle error message when passwords do not match */
+		else {
+			console.log("Error: Passwords do not match");
+			res.redirect('/signup');
 		}	
     }
 }
