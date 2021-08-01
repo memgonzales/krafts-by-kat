@@ -25,7 +25,7 @@ function loadRegions() {
 					 "I - Ilocos Region",
 					 "II - Cagayan Valley",
 					 "III - Central Luzon",
-					 "IVA - CALABRZON",
+					 "IVA - CALABARZON",
 					 "IVB - MIMAROPA",
 					 "V - Bicol Region",
 					 "VI - Western Visayas",
