@@ -3,6 +3,50 @@ $(document).ready(function() {
 	let isValidUsername = false;
 	let isChangedUsername = true;
 	
+	function isValidContactNumber(field) {
+		let validContactNumber = false;
+		
+		let contactNumber = validator.trim($('#contact-number').val());
+		let isValidLength = validator.isLength(contactNumber, {min: 7, max: 12});
+		let isValidCompose = validator.matches(contactNumber, /^\d+$/);
+		
+		if (isValidLength && isValidCompose) {
+			if (field.is($('#contact-number'))) {
+				$('#contact-number-error').text('');
+			}
+			
+			validContactNumber = true;
+		} else {
+			if (field.is($('#contact-number'))) {
+				$('#contact-number-error').text('Enter a valid contact number');
+			}
+		}
+
+		return validContactNumber;
+	}
+	
+	function isValidZipCode(field) {
+		let validZipCode = false;
+		
+		let zipCode = validator.trim($('#zip-code').val());
+		let isValidLength = validator.isLength(zipCode, {min: 3, max: 4});
+		let isValidCompose = validator.matches(zipCode, /^\d+$/);
+		
+		if (isValidLength && isValidCompose) {
+			if (field.is($('#zip-code'))) {
+				$('#zip-code-error').text('');
+			}
+			
+			validZipCode = true;
+		} else {
+			if (field.is($('#zip-code'))) {
+				$('#zip-code-error').text('Enter a valid ZIP code');
+			}
+		}
+
+		return validZipCode;
+	}
+	
 	function isUniqueUsername(field, callback) {
 		let username = validator.trim($('#create-username').val());
 		let data = {username: username};
@@ -64,6 +108,10 @@ $(document).ready(function() {
 		let password = validator.trim($('#create-password').val());
 		let confirmPassword = validator.trim($('#confirm-pass').val());
 		
+		/* 
+		 * Omit field.is check since client-side error must be detected even if the focus 
+		 * is not on the confirm password field (for example, on the password field instead)
+		 */
 		if (password == confirmPassword) {
 			$('#confirm-password-error').text('');
 			validConfirmPassword = true;
@@ -77,6 +125,9 @@ $(document).ready(function() {
 	function validateField(field, fieldName, error) {
 		let value = validator.trim(field.val());
 		
+		let validContactNumber = isValidContactNumber(field);
+		let validZipCode = isValidZipCode(field);
+		
 		let validPassword = isValidPassword(field);
 		let validConfirmPassword = isValidConfirmPassword(field);
 		
@@ -87,37 +138,41 @@ $(document).ready(function() {
 			/* Check since it is still not a valid username */
 			if (!isValidUsername) {
 				isUniqueUsername(field, function(uniqueUsername) {
-					if (validPassword && validConfirmPassword && uniqueUsername) {
-						alert("a");
+					if (validPassword && validConfirmPassword && uniqueUsername && validContactNumber && validZipCode) {
 						$('#signup-submit').prop('disabled', false);
 					} else {
-						alert("b");
 						$('#signup-submit').prop('disabled', true);
 					}
 				});
 				
 			} else {
 				/* Do not check anymore since it is already a valid username */
-				if (validPassword && validConfirmPassword) {
-					alert("c");
+				if (validPassword && validConfirmPassword && validContactNumber && validZipCode) {
 					$('#signup-submit').prop('disabled', false);
 				} else {
-					alert("d");
 					$('#signup-submit').prop('disabled', true);
 				}
 			}
 			
 		} else {
 			/* There is no change in the username input by the user */
-			if (validPassword && validConfirmPassword && isValidUsername) {
-				alert("e");
+			
+			/* Use the global isValidUsername for efficiency */
+			if (validPassword && validConfirmPassword && isValidUsername && validContactNumber && validZipCode) {
 				$('#signup-submit').prop('disabled', false);
 			} else {
-				alert("f");
 				$('#signup-submit').prop('disabled', true);
 			}
 		}
 	}
+	
+	$('#contact-number').keyup(function() {
+		validateField($('#contact-number'), '', $('#contact-number-error'));
+	});
+	
+	$('#zip-code').keyup(function() {
+		validateField($('#zip-code'), '', $('#zip-code-error'));
+	});
 	
 	$('#create-username').keyup(function() {
 		isValidUsername = false;
