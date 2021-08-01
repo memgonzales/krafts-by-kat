@@ -15,53 +15,43 @@
             <div id = "user-details">
 
                 <label for="firstname" class="form-label">First Name</label>
-
-                <input type = "text" class = "form-control" id = "firstname" name = "firstName">
+                <input type = "text" class = "form-control" id = "firstname" name = "firstName" required>
 
                 <label for="middlename" class="form-label">Middle Name</label>
-
                 <input type = "text" class = "form-control" id = "middlename" name = "middleName"
                 aria-describedby = "middle-name-help">
 
                 <div id = "middle-name-help" class = "form-text">This field is not required</div>
 
                 <label for="surname" class="form-label">Surname</label>
-
-                <input type = "text" class = "form-control" id = "surname" name = "surname">
+                <input type = "text" class = "form-control" id = "surname" name = "surname" required>
 
                 <label for="contact-number" class="form-label">Contact Number</label>
-
-                <input type = "text" class = "form-control" id = "contact-number" name = "contactNumber">
+                <input type = "text" class = "form-control" id = "contact-number" name = "contactNumber" required>
 
                 <div id="address-grp">
                     
                     <label for="region" class="form-label">Region</label>
-
-                    <select name = "region" class = "form-select" id = "region">
+                    <select name = "region" class = "form-select" id = "region" required>
 						<option disabled selected value></option>
 					</select>
 					
 					<label for="province" class="form-label">Province</label>
-
-                    <select name = "province" class = "form-select" id = "province">
+                    <select name = "province" class = "form-select" id = "province" required>
 						<option disabled selected value></option>
 					</select>
 
                     <label for="city" class="form-label">City/Municipality</label>
-
-                    <input type = "text" class = "form-control" id = "city" name = "city">
+                    <input type = "text" class = "form-control" id = "city" name = "city" required>
 
                     <label for="barangay" class="form-label">Barangay</label>
-
-                    <input type = "text" class = "form-control" id = "barangay" name = "barangay">
+                    <input type = "text" class = "form-control" id = "barangay" name = "barangay" required>
 
                     <label for="zip-code" class="form-label">ZIP code</label>
-
-                    <input type = "text" class = "form-control" id = "zip-code" name = "zipCode">
+                    <input type = "text" class = "form-control" id = "zip-code" name = "zipCode" required>
 
                     <label for="address" class="form-label">Address</label>
-
-                    <input type = "text" class = "form-control" id = "address" name = "address" placeholder = "Enter Room/Floor/Unit No. Bldg Name, House Lot/ Block, Street, Subdivision">
+                    <input type = "text" class = "form-control" id = "address" name = "address" placeholder = "Enter Room/Floor/Unit No. Bldg Name, House Lot/ Block, Street, Subdivision" required>
               
                 </div>
                 
@@ -72,8 +62,7 @@
                 <div class = "mb-3">
 
                     <label for = "create-email" class = "form-label">Email address</label>
-
-                    <input type = "email" class = "form-control" id = "create-email" name = "createEmail" aria-describedby = "email-help">
+                    <input type = "email" class = "form-control" id = "create-email" name = "createEmail" aria-describedby = "email-help" required>
 
                     <div id = "email-help" class = "form-text">So we for sure can contact you</div>
 
@@ -82,8 +71,7 @@
                 <div class = "mb-3">
 
                     <label for = "create-username" class = "form-label">Username</label>
-
-                    <input type = "text" class = "form-control" id = "create-username" name = "createUsername" aria-describedby = "username-help">
+                    <input type = "text" class = "form-control" id = "create-username" name = "createUsername" aria-describedby = "username-help" required>
 
                     <div id = "username-help" class = "form-text">Make it snazzy, so you won't forget</div>
 
@@ -92,8 +80,7 @@
                 <div class="mb-3">
 
                     <label for = "create-password" class = "form-label">Password</label>
-
-                    <input type = "password" class = "form-control" id = "create-password"  name = "createPassword" aria-describedby = "password-help">
+                    <input type = "password" class = "form-control" id = "create-password"  name = "createPassword" aria-describedby = "password-help" required>
 
                     <div id = "password-help" class = "form-text">You'll need at least 8 characters</div>
 
@@ -102,8 +89,7 @@
                 <div class = "mb-3">
 
                     <label for = "confirm-pass" class = "form-label">Confirm Password</label>
-
-                    <input type = "password" class = "form-control" id = "confirm-pass" name = "confirmPass">
+                    <input type = "password" class = "form-control" id = "confirm-pass" name = "confirmPass" required>
 
                 </div>
 
