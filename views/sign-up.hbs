@@ -1,5 +1,7 @@
 {{>navbar}}
 
+<script src = "https://code.jquery.com/jquery-3.6.0.js" integrity = "sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin = "anonymous"></script>
+
 <div class="container-fluid d-flex flex-row">
 
     <div class="col-md-6 d-flex justify-content-center">
@@ -35,7 +37,15 @@
                     
                     <label for="region" class="form-label">Region</label>
 
-                    <input type = "text" class = "form-control" id = "region" name = "region">
+                    <select name = "region" class = "form-select" id = "region">
+						<option disabled selected value></option>
+					</select>
+					
+					<label for="province" class="form-label">Province</label>
+
+                    <select name = "province" class = "form-select" id = "province">
+						<option disabled selected value></option>
+					</select>
 
                     <label for="city" class="form-label">City/Municipality</label>
 
@@ -105,3 +115,5 @@
 
     </div>
 </div>
+
+<script src = "/js/sign-up.js"></script>
