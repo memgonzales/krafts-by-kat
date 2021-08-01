@@ -1,7 +1,8 @@
+const db = require('../models/db.js');
+
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-const db = require('../models/db.js');
 const Client = require('../models/client-schema.js');
 const Display = require('../models/display-schema.js');
 
@@ -61,7 +62,7 @@ const signUpController = {
 
 				db.insertOne(Client, client, function(flag) {
 					res.redirect('/');
-				})
+				});
 			})
 		}	
     }

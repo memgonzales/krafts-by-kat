@@ -1,4 +1,5 @@
 const db = require('../models/db.js');
+
 const Display = require('../models/display-schema.js');
 
 const indexController = {

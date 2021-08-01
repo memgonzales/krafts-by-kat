@@ -1,13 +1,17 @@
 const db = require('../models/db.js');
-const Client = require('../models/client-schema.js');
+
 const bcrypt = require('bcrypt');
+
+const Client = require('../models/client-schema.js');
 
 const logInController = {
     postLogIn: function(req, res) {
-        var username = req.body.username;
-        var password = req.body.password;
+        let username = req.body.username;
+        let password = req.body.password;
+		
+		let query = {username: username};
 
-        db.findOne(Client, {username: username}, '', function (result) {
+        db.findOne(Client, query, '', function (result) {
             if (result) {
                 var client = {
                     username: result.username,
@@ -23,15 +27,12 @@ const logInController = {
                 bcrypt.compare(password, result.password, function (err, equal) {
                     if (equal) {
                         res.redirect('/');
-                    }
-
-                    else {
+                    } else {
                         console.log("ERROR");
                     }
                 });
-            }
-
-            else {
+				
+            } else {
                 console.log("ERROR");
             }
         });

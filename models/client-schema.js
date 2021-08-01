@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var ClientSchema = new mongoose.Schema({
+var clientSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true
@@ -57,10 +57,4 @@ var ClientSchema = new mongoose.Schema({
     }
 });
 
-/*
-    exports a mongoose.model object based on `ClientSchema` (defined above)
-    when another script exports from this file
-    This model executes CRUD operations
-    to collection `clients` -> plural of the argument `Client`
-*/
-module.exports = mongoose.model('Client', ClientSchema);
+module.exports = mongoose.model('Client', clientSchema);
