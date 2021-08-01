@@ -31,6 +31,7 @@ const signUpController = {
 		let surname = req.body.surname;
 		let contactNumber = req.body.contactNumber;
 		let region = req.body.region;
+		let province = req.body.province;
 		let city = req.body.city;
 		let barangay = req.body.barangay;
 		let zipCode = req.body.zipCode;
@@ -52,6 +53,7 @@ const signUpController = {
 					emailAddress: email,
 					contactNumber: contactNumber,
 					region: region,
+					province: province,
 					city: city,
 					barangay: barangay,
 					zipCode: zipCode,

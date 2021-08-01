@@ -32,11 +32,16 @@ const clientSchema = new mongoose.Schema({
     },
 
     contactNumber: {
-        type: String,
+        type: Number,
         required: true
     },
 
     region: {
+        type: String,
+        required: true
+    },
+
+    province: {
         type: String,
         required: true
     },
