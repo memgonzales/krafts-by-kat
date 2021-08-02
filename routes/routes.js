@@ -8,6 +8,7 @@ const indexController = require('../controllers/index-controller.js');
 const displayController = require('../controllers/display-controller.js');
 const signUpController = require('../controllers/sign-up-controller.js');
 const logInController = require('../controllers/log-in-controller.js');
+const validation = require('../helpers/validation.js');
 
 /* For file uploads */
 krafts.get('/files/:filename', filesController.getFile);
@@ -22,7 +23,7 @@ krafts.get('/krafts-pool', function(req,res) {
 
 /* For sign up page */
 krafts.get('/signup', signUpController.getSignUp);
-krafts.post('/signup', signUpController.postSignUp);
+krafts.post('/signup', validation.signUpValidation(), signUpController.postSignUp);
 krafts.get('/getCheckUsername', signUpController.getCheckUsername);
 
 /* For log in page */
