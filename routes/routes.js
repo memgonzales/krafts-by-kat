@@ -1,35 +1,38 @@
 const express = require('express');
 
 const krafts = express();
+const db = require('../models/db.js');
 
-/* All objects tagged with [TEMPORARY] may be removed on developer's choice */
+const filesController = require('../controllers/files-controller.js');
+const indexController = require('../controllers/index-controller.js');
+const displayController = require('../controllers/display-controller.js');
+const signUpController = require('../controllers/sign-up-controller.js');
+const logInController = require('../controllers/log-in-controller.js');
+const validation = require('../helpers/validation.js');
 
-// <div> || navbar.hbs || line 5
-krafts.get(`/`,(req,res)=>{
+/* For file uploads */
+krafts.get('/files/:filename', filesController.getFile);
 
-    //[TEMPORARY]
-    var obj = {
-        style:'index',
-        user:''
-    }
-    res.render('index', obj);
-});
+/* For index page */
+krafts.get('/', indexController.getDisplay);
 
 //<a> || navbar.hbs || line 9
-krafts.get('/krafts-pool',(req,res)=>{
+krafts.get('/krafts-pool', function(req,res) {
     
 });
 
-// <a> || navbar.hbs || line 21
-krafts.get('/signup', (req,res)=>{
-    
-    //[TEMPORARY]
-    var obj = {
-        style: 'sign-up',
-        user: ''
-    }
-    res.render('sign-up',obj);
-});
+/* For sign up page */
+krafts.get('/signup', signUpController.getSignUp);
+krafts.post('/signup', validation.signUpValidation(), signUpController.postSignUp);
+krafts.get('/getCheckUsername', signUpController.getCheckUsername);
 
+/* For log in page */
+krafts.post('/postLogIn', logInController.postLogIn);
+
+/* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
+const uploadsTestController = require('../controllers/uploads-test-controller.js');
+krafts.get('/uploadsTest', uploadsTestController.displayPage);
+krafts.post('/uploadLogo', db.connect().single('upload-test'), displayController.postEditLogo);
+/* END -- REMOVE ON DEPLOYMENY */
 
 module.exports = krafts;

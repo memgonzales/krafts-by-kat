@@ -1,15 +1,18 @@
 const dotenv = require('dotenv');
 const express = require('express');
 const exphbs = require('express-handlebars');
+
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
+
 const routes = require('./routes/routes.js');
 const helper = require('./helpers/helpers.js');
+
 const db = require('./models/db.js');
 const mongoose = require('mongoose');
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
+const mongoStore = require('connect-mongo')(session);
 
 const krafts = express();
 
@@ -33,14 +36,13 @@ krafts.engine('hbs',exphbs({
 krafts.use(session({
 	secret: process.env.session_secret,
 	resave: false,
-	saveUninitialized: true,
-	cookie: {},
-	store: MongoStore.create({mongoUrl: url})
+	saveUninitialized: false,
+	store: new mongoStore({mongooseConnection: mongoose.connection})
 }));
 
 krafts.use('/',routes);
 
-krafts.listen(port, hostname, () => {
+krafts.listen(port, hostname, function() {
 	console.log('Server is running at: ');
 	console.log('http://' + hostname + ':' + port);
 });
