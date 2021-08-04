@@ -5,6 +5,9 @@ const bcrypt = require('bcrypt');
 const Client = require('../models/client-schema.js');
 const BusinessOwner = require('../models/business-owner-schema.js');
 
+const adminEmail = "krafts.by.kat.webmaster@gmail.com";
+const adminUsername = "kraftsbykatadmin";
+
 const logInController = {
     postLogIn: function(req, res) {
         let username = req.body.username.trim();
@@ -13,11 +16,11 @@ const logInController = {
 		let queryUsername = {username: username};
         let queryEmail = {emailAddress: username};
 
-        let queryAdmin = {username: "kraftsbykatadmin"};
+        let queryAdmin = {username: adminUsername};
 
         /* Log in for admin account */
-        if (JSON.stringify(username) == JSON.stringify("kraftsbykatadmin") || 
-            JSON.stringify(username) == JSON.stringify("krafts.by.kat.webmaster@gmail.com")) {
+        if (JSON.stringify(username) == JSON.stringify(adminUsername) || 
+            JSON.stringify(username) == JSON.stringify(adminEmail)) {
             db.findOne(BusinessOwner, queryAdmin, '', function (result) {
                 if (result) {
                     let businessOwner = {

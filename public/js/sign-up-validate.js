@@ -1,7 +1,17 @@
 $(document).ready(function() {
-	/* Variables for preventing expensive database queries */
+	/* Variables for preventing repetitive database queries */
 	let isValidUsername = false;
-	let isChangedUsername = true;
+	let isChangedUsername = false;
+	
+	let isValidEmail = false;
+	let isChangedEmail = false;
+	
+	const adminEmail = "krafts.by.kat.webmaster@gmail.com";
+	const adminUsername = "kraftsbykatadmin"
+	
+	function isAdminCredential(value) {
+		return value == adminEmail || value == adminUsername;
+	}
 	
 	function isValidContactNumber(field) {
 		let validContactNumber = false;
@@ -47,12 +57,38 @@ $(document).ready(function() {
 		return validZipCode;
 	}
 	
+	function isUniqueEmail(field, callback) {
+		let emailAddress = validator.trim($('#create-email').val());
+		let data = {emailAddress: emailAddress};
+		
+		$.get('/getCheckEmail', data, function(result) {
+			if (result.emailAddress != emailAddress && !isAdminCredential(emailAddress)) {
+				if (field.is($('#create-email'))) {
+					$('#email-error').text('');
+				}
+				
+				isValidEmail = true;
+				
+				return callback(true);
+				
+			} else {
+				if (field.is($('#create-email'))) {
+					$('#email-error').text('Email is already in use');
+				}
+				
+				isValidEmail = false;
+				
+				return callback(false);
+			}
+		});
+	}
+	
 	function isUniqueUsername(field, callback) {
 		let username = validator.trim($('#create-username').val());
 		let data = {username: username};
 		
 		$.get('/getCheckUsername', data, function(result) {
-			if (result.username != username) {
+			if (result.username != username && !isAdminCredential(username)) {
 				if (field.is($('#create-username'))) {
 					$('#username-error').text('');
 				}
@@ -131,37 +167,125 @@ $(document).ready(function() {
 		let validPassword = isValidPassword(field);
 		let validConfirmPassword = isValidConfirmPassword(field);
 		
-		/* There is a change in the username input by the user */
-		if (isChangedUsername) {
-			isChangedUsername = false;
+		let nonAdmin = !isAdminCredential(field);
+				
+		/* There is a change in the email input by the user */
+		if (isChangedEmail) {
+			isChangedEmail = false;
 			
-			/* Check since it is still not a valid username */
-			if (!isValidUsername) {
-				isUniqueUsername(field, function(uniqueUsername) {
-					if (validPassword && validConfirmPassword && uniqueUsername && validContactNumber && validZipCode) {
-						$('#signup-submit').prop('disabled', false);
+			if (!isValidEmail) {
+				isUniqueEmail(field, function(uniqueEmail) {
+					if (isChangedUsername) {
+						isChangedUsername = false;
+						
+						/* Check since it is still not a valid username */
+						if (!isValidUsername) {
+							isUniqueUsername(field, function(uniqueUsername) {
+								if (validPassword && validConfirmPassword && uniqueUsername && validContactNumber && validZipCode && uniqueEmail && nonAdmin) {
+									$('#signup-submit').prop('disabled', false);
+								} else {
+									$('#signup-submit').prop('disabled', true);
+								}
+							});
+							
+						} else {
+							/* Do not check anymore since it is already a valid username */
+							if (validPassword && validConfirmPassword && validContactNumber && validZipCode && uniqueEmail && nonAdmin) {
+								$('#signup-submit').prop('disabled', false);
+							} else {
+								$('#signup-submit').prop('disabled', true);
+							}
+						}
+						
 					} else {
-						$('#signup-submit').prop('disabled', true);
+						/* There is no change in the username input by the user */
+						
+						/* Use the global isValidUsername for efficiency */
+						if (validPassword && validConfirmPassword && isValidUsername && validContactNumber && validZipCode && uniqueEmail && nonAdmin) {
+							$('#signup-submit').prop('disabled', false);
+						} else {
+							$('#signup-submit').prop('disabled', true);
+						}
 					}
 				});
 				
 			} else {
-				/* Do not check anymore since it is already a valid username */
-				if (validPassword && validConfirmPassword && validContactNumber && validZipCode) {
+				/* Do not check anymore since it is already a valid email */
+				
+				/* There is a change in the username input by the user */
+				if (isChangedUsername) {
+					isChangedUsername = false;
+					
+					/* Check since it is still not a valid username */
+					if (!isValidUsername) {
+						isUniqueUsername(field, function(uniqueUsername) {
+							if (validPassword && validConfirmPassword && uniqueUsername && validContactNumber && validZipCode && nonAdmin) {
+								$('#signup-submit').prop('disabled', false);
+							} else {
+								$('#signup-submit').prop('disabled', true);
+							}
+						});
+						
+					} else {
+						/* Do not check anymore since it is already a valid username */
+						if (validPassword && validConfirmPassword && validContactNumber && validZipCode && nonAdmin) {
+							$('#signup-submit').prop('disabled', false);
+						} else {
+							$('#signup-submit').prop('disabled', true);
+						}
+					}
+					
+				} else {
+					/* There is no change in the username input by the user */
+					
+					/* Use the global isValidUsername for efficiency */
+					if (validPassword && validConfirmPassword && isValidUsername && validContactNumber && validZipCode && nonAdmin) {
+						$('#signup-submit').prop('disabled', false);
+					} else {
+						$('#signup-submit').prop('disabled', true);
+					}
+				}	
+			}
+			
+		} else {
+			/* 
+			 * There is no change in the username input by the user
+			 * Use the global isValidEmail for efficiency 
+			 */
+			
+			/* There is a change in the username input by the user */
+			if (isChangedUsername) {
+				isChangedUsername = false;
+				
+				/* Check since it is still not a valid username */
+				if (!isValidUsername) {
+					isUniqueUsername(field, function(uniqueUsername) {
+						if (validPassword && validConfirmPassword && uniqueUsername && validContactNumber && validZipCode && isValidEmail && nonAdmin) {
+							$('#signup-submit').prop('disabled', false);
+						} else {
+							$('#signup-submit').prop('disabled', true);
+						}
+					});
+					
+				} else {
+					/* Do not check anymore since it is already a valid username */
+					if (validPassword && validConfirmPassword && validContactNumber && validZipCode && isValidEmail && nonAdmin) {
+						$('#signup-submit').prop('disabled', false);
+					} else {
+						$('#signup-submit').prop('disabled', true);
+					}
+				}
+				
+			} else {
+				/* 
+				 * There is no change in the username input by the user
+				 * Use the global isValidUsername for efficiency 
+				 */
+				if (validPassword && validConfirmPassword && isValidUsername && validContactNumber && validZipCode && isValidEmail && nonAdmin) {
 					$('#signup-submit').prop('disabled', false);
 				} else {
 					$('#signup-submit').prop('disabled', true);
 				}
-			}
-			
-		} else {
-			/* There is no change in the username input by the user */
-			
-			/* Use the global isValidUsername for efficiency */
-			if (validPassword && validConfirmPassword && isValidUsername && validContactNumber && validZipCode) {
-				$('#signup-submit').prop('disabled', false);
-			} else {
-				$('#signup-submit').prop('disabled', true);
 			}
 		}
 	}
@@ -180,6 +304,14 @@ $(document).ready(function() {
 		
 		validateField($('#create-username'), '', $('#username-error'));
 	});
+	
+	$('#create-email').keyup(function() {
+		isValidEmail = false;
+		isChangedEmail = true;
+		
+		validateField($('#create-email'), '', $('#email-error'));
+	});
+	
 	
 	$('#create-password').keyup(function() {
 		validateField($('#create-password'), '', $('#password-error'));

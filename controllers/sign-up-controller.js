@@ -85,6 +85,15 @@ const signUpController = {
 		db.findOne(Client, query, 'username', function(result) {			
 			res.send(result);
 		});
+	},
+	
+	getCheckEmail: function(req, res) {
+		let emailAddress = req.query.emailAddress;
+		let query = {emailAddress: emailAddress};
+		
+		db.findOne(Client, query, 'emailAddress', function(result) {			
+			res.send(result);
+		});
 	}
 }
 
