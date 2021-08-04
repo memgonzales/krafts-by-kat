@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');
 @font-face {
     font-family: 'Amatica SC';
     src: url('/fonts/AmaticaSC-Regular.ttf');
@@ -22,6 +23,16 @@
     font-family:'Amatica SC'
 }
 
+.f4{
+    color:balck;
+    text-decoration: none;
+    font-family: 'Arvo', serif;
+}
+
 .item{
     font-size: 12pt;
+}
+
+#error-text{
+    
 }

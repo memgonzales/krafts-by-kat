@@ -1,4 +1,15 @@
 {{>navbar}}
 
+{{>landing}}
 
-{{!-- {{>polaroid-card}} --}}
+
+{{!-- HBS Conditions for index --}}
+{{!-- {{#if user-flag}}
+    {{>home}}
+    {{#if admin-flag}}
+        {{>admin-home}}
+    {{/if}}
+
+    {{else}}
+        {{>landing}}
+{{/if}} --}}

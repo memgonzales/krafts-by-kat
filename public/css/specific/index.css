@@ -3,6 +3,30 @@
     --black: black;
 }
 
+body{
+    background-image:url("/img/bg/geometric-leaves.png");
+}
+
+/* Landing Page CSS */
+
+#banner{
+    height: 500px;
+    background-image: url("/img/sample/banner-img.png");
+    background-size: auto;
+    
+}
+
+#banner-text{
+    width: 300px;
+}
+
+/* Home CSS */
+
+
+
+
+
+
 /* Polaroid Card CSS */
 
 .outer{

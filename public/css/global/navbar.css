@@ -24,6 +24,10 @@
     border-radius: 40px;
 }
 
+.footer{
+    height: 100px;
+}
+
 a{
     text-decoration: none;
     color: var(--black);
@@ -40,4 +44,5 @@ h1{
 nav{
     height: 100px;
     width:100%;
+
 }

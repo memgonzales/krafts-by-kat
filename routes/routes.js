@@ -16,7 +16,7 @@ krafts.get('/files/:filename', filesController.getFile);
 /* For index page */
 krafts.get('/', indexController.getDisplay);
 
-//<a> || navbar.hbs || line 9
+/* <a> || navbar.hbs || line 9 */
 krafts.get('/krafts-pool', function(req,res) {
     
 });
@@ -33,6 +33,6 @@ krafts.post('/postLogIn', logInController.postLogIn);
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
 krafts.get('/uploadsTest', uploadsTestController.displayPage);
 krafts.post('/uploadLogo', db.connect().single('upload-test'), displayController.postEditLogo);
-/* END -- REMOVE ON DEPLOYMENY */
+/* END -- REMOVE ON DEPLOYMENT */
 
 module.exports = krafts;
