@@ -4,6 +4,9 @@ const {check} = require('express-validator');
 
 const Client = require('../models/client-schema.js');
 
+const adminEmail = "krafts.by.kat.webmaster@gmail.com";
+const adminUsername = "kraftsbykatadmin"
+
 const validation = {
 	signUpValidation: function() {
 		let validation = [/* Check the contact number */
@@ -28,6 +31,14 @@ const validation = {
 						
 						  /* Check the username */
 						  check('createUsername').custom(function(value) {
+							  if (value != adminUsername) {
+								  return true;
+							  } else {
+								  throw new Error('Username has already been taken')
+							  }
+						  }),
+						  
+						  check('createUsername').custom(function(value) {
 							  return new Promise(function(resolve, reject) {
 								  let query = {username: value};
 								  
@@ -40,7 +51,30 @@ const validation = {
 								  });
 							  });
 						  }),
-						
+						  
+						  /* Check the email */
+						  check('createEmail').custom(function(value) {
+							  if (value != adminEmail) {
+								  return true;
+							  } else {
+								  throw new Error('Email is already in use');
+							  }
+						  }),
+						  
+						  check('createEmail').custom(function(value) {
+							  return new Promise(function(resolve, reject) {
+								  let query = {emailAddress: value};
+								  
+								  db.findOne(Client, query, 'emailAddress', function(error, result) {
+									  if (error || result) {
+										  reject(new Error('Email is already in use'));
+									  }
+									  
+									  resolve(true);
+								  });
+							  });
+						  }),
+						  
 						  /* Check the password */
 						  check('createPassword', 'Should contain at least 8 characters').trim().isLength({min: 8}),
 						  check('createPassword').custom(function(value) {

@@ -25,6 +25,8 @@ krafts.get('/krafts-pool', function(req,res) {
 krafts.get('/signup', signUpController.getSignUp);
 krafts.post('/signup', validation.signUpValidation(), signUpController.postSignUp);
 krafts.get('/getCheckUsername', signUpController.getCheckUsername);
+krafts.get('/getCheckEmail', signUpController.getCheckEmail);
+
 
 /* For log in page */
 krafts.post('/postLogIn', logInController.postLogIn);

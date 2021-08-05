@@ -3,6 +3,10 @@ const db = require('../models/db.js');
 const bcrypt = require('bcrypt');
 
 const Client = require('../models/client-schema.js');
+const BusinessOwner = require('../models/business-owner-schema.js');
+
+const adminEmail = "krafts.by.kat.webmaster@gmail.com";
+const adminUsername = "kraftsbykatadmin";
 
 const logInController = {
     postLogIn: function(req, res) {
@@ -12,54 +16,84 @@ const logInController = {
 		let queryUsername = {username: username};
         let queryEmail = {emailAddress: username};
 
-        db.findOne(Client, queryUsername, '', function (result) {
-            if (result) {
-                let client = {
-                    username: result.username,
-                    firstName: result.firstName,
-                    middleName: result.middleName,
-                    lastName: result.lastName,
-                    emailAddress: result.emailAddress,
-                    contactNumber: result.contactNumber,
-                    deliveryAddress: result.deliveryAddress,
-                    pictureFileName: result.pictureFileName
-                }
+        let queryAdmin = {username: adminUsername};
 
-                bcrypt.compare(password, result.password, function (err, equal) {
-                    if (equal) {
-                        res.status(200).send();
-                    } else {
-						res.status(403).send();
+        /* Log in for admin account */
+        if (JSON.stringify(username) == JSON.stringify(adminUsername) || 
+            JSON.stringify(username) == JSON.stringify(adminEmail)) {
+            db.findOne(BusinessOwner, queryAdmin, '', function (result) {
+                if (result) {
+                    let businessOwner = {
+                        username: result.username,
+                        emailAddress: result.emailAddress,
+                        contactNumber: result.contactNumber,
+                        deliveryAddress: result.deliveryAddress,
+                        pictureFileName: result.pictureFileName
                     }
-                });
-				
-            } else {
-                db.findOne(Client, queryEmail, '', function (result) {
-                    if (result) {
-                        let client = {
-                            username: result.username,
-                            firstName: result.firstName,
-                            middleName: result.middleName,
-                            lastName: result.lastName,
-                            emailAddress: result.emailAddress,
-                            contactNumber: result.contactNumber,
-                            deliveryAddress: result.deliveryAddress,
-                            pictureFileName: result.pictureFileName
-                        }
 
-                        bcrypt.compare(password, result.password, function (err, equal) {
-                            if (equal) {
-                                res.status(200).send();
-                            } else {
-                                res.status(403).send();
+                    bcrypt.compare(password, result.password, function (err, equal) {
+                        if (equal) {
+                            res.status(200).send();
+                        } else {
+                            res.status(403).send();
+                        }
+                    });
+                } else {
+                    res.status(403).send();
+                }
+            });
+
+        /* Log in for client accounts */
+        } else {
+            db.findOne(Client, queryUsername, '', function (result) {
+                if (result) {
+                    let client = {
+                        username: result.username,
+                        firstName: result.firstName,
+                        middleName: result.middleName,
+                        lastName: result.lastName,
+                        emailAddress: result.emailAddress,
+                        contactNumber: result.contactNumber,
+                        deliveryAddress: result.deliveryAddress,
+                        pictureFileName: result.pictureFileName
+                    }
+
+                    bcrypt.compare(password, result.password, function (err, equal) {
+                        if (equal) {
+                            res.status(200).send();
+                        } else {
+                            res.status(403).send();
+                        }
+                    });
+                    
+                } else {
+                    db.findOne(Client, queryEmail, '', function (result) {
+                        if (result) {
+                            let client = {
+                                username: result.username,
+                                firstName: result.firstName,
+                                middleName: result.middleName,
+                                lastName: result.lastName,
+                                emailAddress: result.emailAddress,
+                                contactNumber: result.contactNumber,
+                                deliveryAddress: result.deliveryAddress,
+                                pictureFileName: result.pictureFileName
                             }
-                        });
-                     } else {
-                        res.status(403).send();
-                     }  
-                });
-            }
-        });
+
+                            bcrypt.compare(password, result.password, function (err, equal) {
+                                if (equal) {
+                                    res.status(200).send();
+                                } else {
+                                    res.status(403).send();
+                                }
+                            });
+                         } else {
+                            res.status(403).send();
+                         }  
+                    });
+                }
+            });
+        }
     }
 }
 
