@@ -3,10 +3,6 @@
     --black: black;
 }
 
-body{
-    background-image:url("/img/bg/geometric-leaves.png");
-}
-
 /* Landing Page CSS */
 
 #banner{
@@ -19,6 +15,52 @@ body{
 #banner-text{
     width: 300px;
 }
+
+#tape{
+    width:200px;
+    height:200px;
+    object-fit: fit;
+}
+
+/* Review Card CSS */
+
+#review-card{
+    width: 240px;
+    height: 310px;
+    border-radius: 20px;
+    font-size: 11pt;
+}
+
+#review-text{
+    height: 180px;
+    overflow:hidden;
+    overflow-y: scroll;
+}
+
+#review-text::-webkit-scrollbar{
+    width: 5px;
+    height: 5px;
+}
+#review-text::-webkit-scrollbar-thumb{
+    background: #DD8E58;
+    border: 10px solid #2B2129;
+    border-radius: 30px;
+}
+#review-text::-webkit-scrollbar-track{
+    background: #DD8E58;
+    border-radius: 0px;
+    box-shadow: inset 0px 0px 0px 0px #F0F0F0;
+}
+
+#review-user-info{
+    overflow:hidden;
+}
+/* END of Review Card CSS */
+
+
+
+
+
 
 /* Home CSS */
 
@@ -65,3 +107,11 @@ body{
 .thumbnail{
     height: 400px !important;
 }
+
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
