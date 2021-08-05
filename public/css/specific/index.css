@@ -19,8 +19,16 @@
 #tape{
     width:200px;
     height:200px;
-    object-fit: fit;
+    background-color: var(--black);
+    overflow: hidden;
 }
+
+.preview{
+    width: 200px !important;
+    height: 200px !important;
+}
+
+/* END of Landing Page CSS */
 
 /* Review Card CSS */
 
@@ -63,6 +71,8 @@
 
 
 /* Home CSS */
+
+/* END of Home CSS */
 
 
 
@@ -108,6 +118,11 @@
     height: 400px !important;
 }
 
+/* END of Polaroid Card CSS */
+
+
+
+/* HTML tag CSS */
 
 hr {
     margin-top: 1rem;
@@ -115,3 +130,5 @@ hr {
     border: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
+
+/* END of HTML tag CSS */
