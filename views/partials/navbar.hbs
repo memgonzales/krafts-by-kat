@@ -4,21 +4,24 @@
             
             <div class="col-md-1 mb-3"><a href = "/"><img class = "logo mb-3 " src = "{{logo}}" alt = "Krafts by Kat Logo"></a></div>
 
-            <div class="col-md-2 nav-anchor pb-3">
+            <div class="col-md-2 nav-anchor d-flex justify-content-left pb-2">
+
+                {{!-- {{#if adminFlag}} <a href = "/add-new-product" class = "f1" > <i class="fas fa-plus-circle"> </i> ADD PRODUCTS</a> {{/if}} --}}
+                <a href = "/add-new-product" class = "f1" > <i class = "fas fa-plus-circle me-3"> </i>ADD PRODUCTS</a>
 
             </div>
 
             <div class = "col-md-6 d-flex justify-content-center"><h1 class = "f3">KRAFTS BY KAT</h1></div>
 
-            <div class="col-md-3 nav-anchor ps-5 pb-3 d-flex-align-items-center">
+            <div class="col-md-3 nav-anchor ps-5 pb-2 d-flex justify-content-center">
                 
                 {{#if user}}
 
                     <div class="btn-grp">
 
-                        <a href = "/account/{{user}}"class = "f1 mb-5 mx-4" id = "account-anchor">{{user}}</a>
+                        <a href = "/account/{{user}}"class = "f1 mx-4" id = "account-anchor">{{user}}</a>
 
-                        <a href = "/cart/{{user}}" class = "f1 mb-5 mx-4"><i class = "fas fa-shopping-cart"></i></a>
+                        <a href = "/cart/{{user}}" class = "f1 mx-4"><i class = "fas fa-shopping-cart"></i></a>
                         
                         <i class="fas fa-bell"></i>
 
