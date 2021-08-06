@@ -2,6 +2,14 @@
     --black: black;
 }
 
+.footer{
+    height: 100px;
+}
+
+.form-text{
+    color: var(--black);
+}
+
 .logo{
     zoom: 11%;
     margin-bottom: 20px;
@@ -12,7 +20,6 @@
 }
 
 .modal-content{
-
     width: 350px;
     border-radius: 20px;
     height: 500px;
@@ -24,9 +31,7 @@
     border-radius: 40px;
 }
 
-.footer{
-    height: 100px;
-}
+
 
 a{
     text-decoration: none;
