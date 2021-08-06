@@ -16,11 +16,6 @@ krafts.get('/files/:filename', filesController.getFile);
 /* For index page */
 krafts.get('/', indexController.getDisplay);
 
-/* <a> || navbar.hbs || line 9 */
-krafts.get('/krafts-pool', function(req,res) {
-    
-});
-
 /* For sign up page */
 krafts.get('/signup', signUpController.getSignUp);
 krafts.post('/signup', validation.signUpValidation(), signUpController.postSignUp);
@@ -36,5 +31,17 @@ const uploadsTestController = require('../controllers/uploads-test-controller.js
 krafts.get('/uploadsTest', uploadsTestController.displayPage);
 krafts.post('/uploadLogo', db.connect().single('upload-test'), displayController.postEditLogo);
 /* END -- REMOVE ON DEPLOYMENT */
+
+
+
+/* TEMPORARY ROUTING FOR FRONT-END EASE */
+krafts.get('/new-product', function(req,res){
+
+    var obj = {
+        style: 'new-product'
+    }
+
+    res.render('new-product', obj);
+});
 
 module.exports = krafts;
