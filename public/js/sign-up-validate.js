@@ -6,8 +6,10 @@ $(document).ready(function() {
 	let isValidEmail = false;
 	let isChangedEmail = false;
 	
+	let isReachedConfirmPassword = false;
+	
 	const adminEmail = "krafts.by.kat.webmaster@gmail.com";
-	const adminUsername = "kraftsbykatadmin"
+	const adminUsername = "kraftsbykatadmin";
 	
 	function isAdminCredential(value) {
 		return value == adminEmail || value == adminUsername;
@@ -152,7 +154,9 @@ $(document).ready(function() {
 			$('#confirm-password-error').text('');
 			validConfirmPassword = true;
 		} else {
-			$('#confirm-password-error').text('Passwords do not match');
+			if (isReachedConfirmPassword) {
+				$('#confirm-password-error').text('Passwords do not match');
+			}
 		}
 		
 		return validConfirmPassword;
@@ -318,6 +322,8 @@ $(document).ready(function() {
 	});
 	
 	$('#confirm-pass').keyup(function() {
+		isReachedConfirmPassword = true;
+		
 		validateField($('#confirm-pass'), '', $('#confirm-password-error'));
 	});
 });
