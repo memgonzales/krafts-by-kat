@@ -1,7 +1,10 @@
 {{#if userFlag}}
     {{#if adminFlag}}
-
+        {{!-- For admin --}
+        {{!-- PLACE CONTENTS OF ADMIN-HOME.HBS HERE --}}
+        }
     {{else}}
+        {{!-- For regular user --}}
         <div class="container d-flex flex-row flex-wrap justify-content-center">
             {{!-- TEMP LANG, para makita kung ano dapat mukha --}}
             {{>polaroid-card}}
@@ -14,6 +17,7 @@
         </div>
     {{/if}}
 {{else}}
+    {{!-- For unregistered user --}}
     <div class = "container-fluid d-flex justify-content-center p-4" id = "banner">
 
         <div class = "container f4 p-5" id = "banner-content">
