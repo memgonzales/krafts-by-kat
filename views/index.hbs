@@ -1,4 +1,12 @@
 {{>navbar}}
 
 {{!-- HBS Conditions for index --}}
-{{> home userFlag = userFlag adminFlag = adminFlag}}
+{{#if userFlag}}
+	{{#if adminFlag}}
+		{{> admin-home}}
+	{{else}}
+		{{> home}}
+	{{/if}}
+{{else}}
+	{{> landing}}
+{{/if}}
