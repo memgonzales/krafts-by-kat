@@ -1,18 +1,4 @@
 {{>navbar}}
 
-{{!-- {{>landing}} --}}
-{{>home}}
-
-{{!-- {{>review}} --}}
-
-{{!-- {{>polaroid-card }} --}}
 {{!-- HBS Conditions for index --}}
-{{!-- {{#if user-flag}}
-    {{>home}}
-    {{#if admin-flag}}
-        {{>admin-home}}
-    {{/if}}
-
-    {{else}}
-        {{>landing}}
-{{/if}} --}}
+{{> home userFlag = userFlag adminFlag = adminFlag}}

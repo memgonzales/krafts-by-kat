@@ -8,12 +8,37 @@ const indexController = {
 		
 		db.findOne(Display, query, '', function(result) {
 			if (result) {
-				let details = {
-					style: 'index',
-					logo: result.logo
+				if (req.session.username == undefined) {
+					let details = {
+						style: 'index',
+						logo: result.logo,
+						userFlag: false,
+						adminFlag: false
+					}
+
+					res.render('index', details);
+				} else {
+					if (req.session.isAdmin == true) {
+						let details = {
+							style: 'index',
+							logo: result.logo,
+							userFlag: true,
+							adminFlag: true
+						}
+
+						res.render('index', details);
+					} else {
+						let details = {
+							style: 'index',
+							logo: result.logo,
+							userFlag: true,
+							adminFlag: false
+						}
+
+						res.render('index', details);
+					}
 				}
-					
-				res.render('index', details);
+
 			} else {
 				console.log("Missing graphics elements");
 			}

@@ -1,15 +1,38 @@
-<div class="container d-flex flex-row flex-wrap justify-content-center">
+{{#if userFlag}}
+    {{#if adminFlag}}
 
+    {{else}}
+        <div class="container d-flex flex-row flex-wrap justify-content-center">
+            {{!-- TEMP LANG, para makita kung ano dapat mukha --}}
+            {{>polaroid-card}}
+            {{>polaroid-card}}
+            {{>polaroid-card}}
+            {{>polaroid-card}}
+            {{>polaroid-card}}
+            {{>polaroid-card}}
+            {{!-- HBS RENDERING HERE --}}
+        </div>
+    {{/if}}
+{{else}}
+    <div class = "container-fluid d-flex justify-content-center p-4" id = "banner">
 
-    {{!-- TEMP LANG, para makita kung ano dapat mukha --}}
-    {{>polaroid-card}}
-    {{>polaroid-card}}
-    {{>polaroid-card}}
-    {{>polaroid-card}}
-    {{>polaroid-card}}
-    {{>polaroid-card}}
-    
+        <div class = "container f4 p-5" id = "banner-content">
 
-    {{!-- HBS RENDERING HERE --}}
+            <div id = "banner-text">
+                <h1 id = "tagline">Krafted with Care</h1>
+                <h3 id = "tagline-inner">Custom giveaways headed your way...</h3>
+            </div>
+        </div>
 
-</div>
+    </div>
+
+    <div class = "container d-flex flex-row justify-content-center mt-5" id = "tape-feed">  
+        {{>tape-feed}}
+    </div>
+
+    <div class="container-fluid d-flex flex-row justify-content-center" id = "landing-item-reviews">
+        {{>testimonials}}
+    </div>
+
+    <div class="container-fluid"></div>
+{{/if}}
