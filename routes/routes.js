@@ -8,6 +8,7 @@ const indexController = require('../controllers/index-controller.js');
 const displayController = require('../controllers/display-controller.js');
 const signUpController = require('../controllers/sign-up-controller.js');
 const logInController = require('../controllers/log-in-controller.js');
+const logOutController = require('../controllers/log-out-controller.js');
 const validation = require('../helpers/validation.js');
 
 /* For file uploads */
@@ -25,6 +26,8 @@ krafts.get('/getCheckEmail', signUpController.getCheckEmail);
 
 /* For log in page */
 krafts.post('/postLogIn', logInController.postLogIn);
+
+krafts.get('/logOut', logOutController.getLogOut);
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
