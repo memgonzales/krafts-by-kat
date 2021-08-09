@@ -23,7 +23,8 @@ const indexController = {
 							style: 'index',
 							logo: result.logo,
 							userFlag: true,
-							adminFlag: true
+							adminFlag: true,
+							username: req.session.username
 						}
 
 						res.render('index', details);
@@ -32,7 +33,8 @@ const indexController = {
 							style: 'index',
 							logo: result.logo,
 							userFlag: true,
-							adminFlag: false
+							adminFlag: false,
+							username: req.session.username
 						}
 
 						res.render('index', details);
