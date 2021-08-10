@@ -40,6 +40,10 @@ a{
     color: var(--black);
 }
 
+a:hover{
+    color:var(--black);
+}
+
 span{
     font-size: 13px;
 }
