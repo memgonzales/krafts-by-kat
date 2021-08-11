@@ -10,9 +10,9 @@
     -webkit-box-shadow: 3px 4px 9px -2px rgba(0,0,0,0.93);
     -moz-box-shadow: 3px 4px 9px -2px rgba(0,0,0,0.93);
 
-    margin-top: 20px;
-    margin-left: 20px;
-}
+    /* margin-top: 20px;
+    margin-left: 20px;*/
+} 
 
 #item-img-carousel, .inner{
     height: 7.9375cm;
