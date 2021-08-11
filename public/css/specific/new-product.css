@@ -1,8 +1,3 @@
-#new-product-form{
-    width: 1100px;
-    border-radius: 20px;
-}
-
 #product-price, #product-quantity{
     width: 700px;
 }
@@ -15,4 +10,9 @@ input,textarea{
     
     border: none;
     border-radius: 5px;
+}
+
+form{
+    width: 1100px;
+    border-radius: 20px;
 }
