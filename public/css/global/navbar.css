@@ -1,7 +1,18 @@
 :root{
     --black: black;
+    --c4: #C2956E;
+    --white: white;
 }
 
+#error-text{
+    color: var(--c4);
+}
+
+#signup:hover{
+    text-decoration: none;
+    color: var(--white);
+
+}
 .footer{
     height: 100px;
 }
@@ -41,6 +52,7 @@ a{
 }
 
 a:hover{
+    text-decoration: underline;
     color:var(--black);
 }
 

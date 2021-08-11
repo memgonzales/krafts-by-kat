@@ -12,7 +12,7 @@ $(document).ready(function() {
 				},
 				
 				403: function() {
-					$('#error-text').text('Incorrect username and/or password');
+					$('#error-text').css('color', '#C70039');
 					$('#password').val('');
 				}
 			}

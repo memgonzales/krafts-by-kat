@@ -47,4 +47,14 @@ krafts.get('/new-product', function(req,res){
     res.render('new-product', obj);
 });
 
+
+krafts.get('/partials-test', function(req,res){
+    var obj = {
+        style: 'index'
+
+    }
+
+    res.render('partials-test',obj);
+})
+
 module.exports = krafts;

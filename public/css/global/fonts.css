@@ -33,6 +33,10 @@
     font-size: 12pt;
 }
 
+.bold{
+    font-weight:bolder;
+}
+
 #error-text{
     
 }

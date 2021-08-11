@@ -14,11 +14,11 @@
 
               </div>
 
-              <form id = "login-form" class = "d-flex flex-column justify-content-center mb-5" method = "POST"> 
+              <form id = "login-form" class = "d-flex flex-column justify-content-center mb-4" method = "POST"> 
                 
                   <div class = "mb-3">
 				  
-                      <div id = "error-text"></div>
+                      
 
                       <input type = "input" class = "form-control" id = "username" name = "username" required>
 
@@ -33,12 +33,16 @@
                     <div class = "form-text">password</div>
 
                   </div>
-                
+
+                  <div class = "mb-1 form-text bold" id = "error-text">Incorrect Credentials</div>
+
+                  
                   <button type = "submit" class = "cwhite btn bgc5 align-self-center mt-3">LOGIN</button>
+                  
           
               </form>
 
-              <span>Need an account? <a href = "/signup">Sign up here</a><span>
+              <span>Need an account? <a href = "/signup" class="bold">Sign up here</a> | <a href="forgot-pass" class="bold">Forgot Password?</a><span>
 
           </div>
 
