@@ -31,3 +31,32 @@ label{
     margin-top: 20px;
 }
 
+
+/* Success Modal CSS */
+
+#success-upper{
+    width: 350px;
+    height: 250px;
+
+    border-radius: 20px 20px 0px 0px;
+}
+#success-lower{
+
+    width: 350px;
+    height: 250px;
+    border-radius: 0px 0px 20px 20px;
+}
+
+#continue-btn{
+    border-radius: 20px 0px 20px 0px;
+
+    box-shadow: -1px 3px 5px 0px rgba(0,0,0,0.71);
+    -webkit-box-shadow: -1px 3px 5px 0px rgba(0,0,0,0.71);
+    -moz-box-shadow: -1px 3px 5px 0px rgba(0,0,0,0.71);
+}
+
+#success-msg{
+    font-size: 12pt;
+}
+
+/* END of Success Modal CSS */
