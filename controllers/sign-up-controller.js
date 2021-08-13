@@ -66,6 +66,8 @@ const signUpController = {
 				console.log(client);
 
 				db.insertOne(Client, client, function(flag) {
+					req.session.username = client.username;
+					console.log(req.session.username);
 					res.redirect('/');
 				});
 			})

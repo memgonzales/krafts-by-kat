@@ -9,6 +9,7 @@ const displayController = require('../controllers/display-controller.js');
 const signUpController = require('../controllers/sign-up-controller.js');
 const logInController = require('../controllers/log-in-controller.js');
 const logOutController = require('../controllers/log-out-controller.js');
+const newProductController = require('../controllers/new-product-controller.js');
 const validation = require('../helpers/validation.js');
 
 /* For file uploads */
@@ -29,6 +30,8 @@ krafts.post('/postLogIn', logInController.postLogIn);
 
 krafts.get('/logOut', logOutController.getLogOut);
 
+krafts.get('/newProduct', newProductController.getNewProduct);
+
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
 krafts.get('/uploadsTest', uploadsTestController.displayPage);
@@ -38,16 +41,6 @@ krafts.post('/uploadLogo', db.connect().single('upload-test'), displayController
 
 
 /* TEMPORARY ROUTING FOR FRONT-END EASE */
-krafts.get('/new-product', function(req,res){
-
-    var obj = {
-        style: 'new-product'
-    }
-
-    res.render('new-product', obj);
-});
-
-
 krafts.get('/partials-test', function(req,res){
     var obj = {
         style: 'index'
