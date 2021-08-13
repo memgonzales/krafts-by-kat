@@ -55,14 +55,74 @@ krafts.get('/partials-test', function(req,res){
     }
 
     res.render('partials-test',obj);
-})
+});
 
+
+
+/* START of Account Related Routes */
+    // IMPORTANT: For now ginawa ko lang /account ung route for easy access BUT BUT PERO.. Ang intention is /account/{{username}}
+    // This means that EVERY nav tab na may <a> to "My Account" is currently JUST /account na dapat /account/{{username}} 
+    // I'm putting this here para di ko  makalimutan pero sana makita niyo ito devs. Pero sana di ko rin makalimutan ;-;
+    // -- Ralph
 krafts.get('/account', function(req,res){
-    var obj={
-        style:'account-menu'
+    var obj = {
+        style:'account'
     }
 
-    res.render('account-menu',obj);
+    res.render('user-account',obj);
 });
+
+krafts.get('/account/purchase-history', function(req,res){
+    var obj = {
+        style:'account'
+    }
+
+    res.render('user-purchase-history',obj);
+});
+
+krafts.get('/account/support', function(req,res){
+    var obj = {
+        style:'account'
+    }
+
+    res.render('user-support',obj);
+});
+
+krafts.get('/account/admin/orders', function(req,res){
+    var obj = {
+        style:'account'
+    }
+
+    res.render('admin-orders',obj);
+});
+
+krafts.get('/account/admin/messages', function(req,res){
+    var obj = {
+        style:'account'
+    }
+
+    res.render('admin-messages',obj);
+});
+
+krafts.get('/account/admin/products-manager', function(req,res){
+    var obj = {
+        style:'account'
+    }
+
+    res.render('admin-products-manager',obj);
+});
+
+krafts.get('/account/admin/clients-manager', function(req,res){
+    var obj = {
+        style:'account'
+    }
+
+    res.render('admin-clients-manager',obj);
+});
+
+
+/* END of Account Related Routes */
+
+
 
 module.exports = krafts;
