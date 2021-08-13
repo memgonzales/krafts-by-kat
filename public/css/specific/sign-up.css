@@ -6,7 +6,7 @@
 .form-label{
     color: var(--white);
 }
-.form-text{
+.signup-tooltip{
     color: var(--tooltip);
 }
 
@@ -33,7 +33,7 @@ label{
 
 
 /* Success Modal CSS */
-
+ 
 #success-upper{
     width: 350px;
     height: 250px;

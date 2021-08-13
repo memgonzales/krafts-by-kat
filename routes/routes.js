@@ -57,4 +57,12 @@ krafts.get('/partials-test', function(req,res){
     res.render('partials-test',obj);
 })
 
+krafts.get('/account', function(req,res){
+    var obj={
+        style:'account-menu'
+    }
+
+    res.render('account-menu',obj);
+});
+
 module.exports = krafts;
