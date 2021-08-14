@@ -8,15 +8,36 @@ const newProductController = {
 		
 		db.findOne(Display, query, '', function(result) {
 			if (result) {
-				
-				let details = {
-					style: 'new-product',
-					logo: result.logo,
-					userFlag: true,
-					adminFlag: true
-				}
+				if (req.session.isAdmin == true) {
+					let details = {
+						style: 'new-product',
+						logo: result.logo,
+						userFlag: true,
+						adminFlag: true
+					}
 
-				res.render('new-product', details);
+					res.render('new-product', details);
+				} else {
+					if (req.session.username == undefined) {
+						let details = {
+							style: 'new-product',
+							logo: result.logo,
+							userFlag: false,
+							adminFlag: false
+						}
+
+						res.render('index', details);
+					} else {
+						let details = {
+							style: 'new-product',
+							logo: result.logo,
+							userFlag: true,
+							adminFlag: false
+						}
+
+						res.render('index', details);
+					}
+				}				
 			} else {
 				console.log("Missing graphics elements");
 			}
