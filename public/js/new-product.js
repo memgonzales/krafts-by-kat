@@ -41,14 +41,21 @@ $(document).ready(function() {
 	});
 });
 
+let imgTargetResults = [];
+
 function readURL(input, i) {
 	if (input.files && input.files[0]) {
 		let reader = new FileReader();
 		reader.onload = function(e) {
 			$('#img-' + i).css('display', 'none');
-			$('#pic-' + i).attr('src', e.target.result).width(150).height(100).css('marginLeft', '10px');
+			$('#pic-' + i).attr('src', e.target.result).width(150).height(100);
+
+			/* Store the image file paths in an array */
+			imgTargetResults.push(e.target.result);
 		}
 		
 		reader.readAsDataURL(input.files[0]);
 	}
+
+	alert(imgTargetResults);
 }
