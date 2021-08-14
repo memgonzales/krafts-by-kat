@@ -1,6 +1,6 @@
 {
     "01": {
-      "region_name": "REGION I",
+      "region_name": "REGION I (Ilocos Region)",
       "province_list": {
         "ILOCOS NORTE": {
           "municipality_list": {
@@ -3788,7 +3788,7 @@
       }
     },
     "02": {
-      "region_name": "REGION II",
+      "region_name": "REGION II (Cagayan Valley)",
       "province_list": {
         "BATANES": {
           "municipality_list": {
@@ -6496,7 +6496,7 @@
       }
     },
     "03": {
-      "region_name": "REGION III",
+      "region_name": "REGION III (Central Luzon)",
       "province_list": {
         "AURORA": {
           "municipality_list": {
@@ -10151,7 +10151,7 @@
       }
     },
     "4A": {
-      "region_name": "REGION IV-A",
+      "region_name": "REGION IV-A (CALABARZON)",
       "province_list": {
         "BATANGAS": {
           "municipality_list": {
@@ -14763,7 +14763,7 @@
       }
     },
     "4B": {
-      "region_name": "REGION IV-B",
+      "region_name": "REGION IV-B (MIMAROPA)",
       "province_list": {
         "MARINDUQUE": {
           "municipality_list": {
@@ -16540,7 +16540,7 @@
       }
     },
     "05": {
-      "region_name": "REGION V",
+      "region_name": "REGION V (Bicol Region)",
       "province_list": {
         "ALBAY": {
           "municipality_list": {
@@ -20496,7 +20496,7 @@
       }
     },
     "06": {
-      "region_name": "REGION VI",
+      "region_name": "REGION VI (Western Visayas)",
       "province_list": {
         "AKLAN": {
           "municipality_list": {
@@ -25108,7 +25108,7 @@
       }
     },
     "07": {
-      "region_name": "REGION VII",
+      "region_name": "REGION VII (Central Visayas)",
       "province_list": {
         "BOHOL": {
           "municipality_list": {
@@ -28660,7 +28660,7 @@
       }
     },
     "08": {
-      "region_name": "REGION VIII",
+      "region_name": "REGION VIII (Eastern Visayas)",
       "province_list": {
         "BILIRAN": {
           "municipality_list": {
@@ -33651,7 +33651,7 @@
       }
     },
     "09": {
-      "region_name": "REGION IX",
+      "region_name": "REGION IX (Zamboanga Peninsula)",
       "province_list": {
         "ZAMBOANGA DEL NORTE": {
           "municipality_list": {
@@ -35811,7 +35811,7 @@
       }
     },
     "10": {
-      "region_name": "REGION X",
+      "region_name": "REGION X (Northern Mindanao)",
       "province_list": {
         "BUKIDNON": {
           "municipality_list": {
@@ -38230,7 +38230,7 @@
       }
     },
     "11": {
-      "region_name": "REGION XI",
+      "region_name": "REGION XI (Davao Region)",
       "province_list": {
         "COMPOSTELA VALLEY": {
           "municipality_list": {
@@ -39613,7 +39613,7 @@
       }
     },
     "12": {
-      "region_name": "REGION XII",
+      "region_name": "REGION XII (SOCCSKSARGEN)",
       "province_list": {
         "COTABATO (NORTH COT.)": {
           "municipality_list": {
@@ -40988,7 +40988,7 @@
       }
     },
     "13": {
-      "region_name": "REGION XIII",
+      "region_name": "REGION XIII (Caraga)",
       "province_list": {
         "AGUSAN DEL NORTE": {
           "municipality_list": {
@@ -42616,7 +42616,7 @@
       }
     },
     "BARMM": {
-      "region_name": "BARMM",
+      "region_name": "BARMM (Bangsamoro Autonomous Region in Muslim Mindanao",
       "province_list": {
         "BASILAN": {
           "municipality_list": {
@@ -45692,7 +45692,7 @@
       }
     },
     "CAR": {
-      "region_name": "CAR",
+      "region_name": "CAR (Cordillera Administrative Region)",
       "province_list": {
         "ABRA": {
           "municipality_list": {
@@ -47205,312 +47205,9 @@
       }
     },
     "NCR": {
-      "region_name": "NCR",
+      "region_name": "NCR (National Capital Region)",
       "province_list": {
-        "NATIONAL CAPITAL REGION - FOURTH DISTRICT": {
-          "municipality_list": {
-            "CITY OF LAS PIÑAS": {
-              "barangay_list": [
-                "ALMANZA DOS",
-                "ALMANZA UNO",
-                "B. F. INTERNATIONAL VILLAGE",
-                "DANIEL FAJARDO",
-                "ELIAS ALDANA",
-                "ILAYA",
-                "MANUYO DOS",
-                "MANUYO UNO",
-                "PAMPLONA DOS",
-                "PAMPLONA TRES",
-                "PAMPLONA UNO",
-                "PILAR",
-                "PULANG LUPA DOS",
-                "PULANG LUPA UNO",
-                "TALON DOS",
-                "TALON KUATRO",
-                "TALON SINGKO",
-                "TALON TRES",
-                "TALON UNO",
-                "ZAPOTE"
-              ]
-            },
-            "CITY OF MAKATI": {
-              "barangay_list": [
-                "BANGKAL",
-                "BEL-AIR",
-                "CARMONA",
-                "CEMBO",
-                "COMEMBO",
-                "DASMARIÑAS",
-                "EAST REMBO",
-                "FORBES PARK",
-                "GUADALUPE NUEVO",
-                "GUADALUPE VIEJO",
-                "KASILAWAN",
-                "LA PAZ",
-                "MAGALLANES",
-                "OLYMPIA",
-                "PALANAN",
-                "PEMBO",
-                "PINAGKAISAHAN",
-                "PIO DEL PILAR",
-                "PITOGO",
-                "POBLACION",
-                "POST PROPER NORTHSIDE",
-                "POST PROPER SOUTHSIDE",
-                "RIZAL",
-                "SAN ANTONIO",
-                "SAN ISIDRO",
-                "SAN LORENZO",
-                "SANTA CRUZ",
-                "SINGKAMAS",
-                "SOUTH CEMBO",
-                "TEJEROS",
-                "URDANETA",
-                "VALENZUELA",
-                "WEST REMBO"
-              ]
-            },
-            "CITY OF MUNTINLUPA": {
-              "barangay_list": [
-                "ALABANG",
-                "BAYANAN",
-                "BULI",
-                "CUPANG",
-                "NEW ALABANG VILLAGE",
-                "POBLACION",
-                "PUTATAN",
-                "SUCAT",
-                "TUNASAN"
-              ]
-            },
-            "CITY OF PARAÑAQUE": {
-              "barangay_list": [
-                "B. F. HOMES",
-                "BACLARAN",
-                "DON BOSCO",
-                "DON GALO",
-                "LA HUERTA",
-                "MARCELO GREEN VILLAGE",
-                "MERVILLE",
-                "MOONWALK",
-                "SAN ANTONIO",
-                "SAN DIONISIO",
-                "SAN ISIDRO",
-                "SAN MARTIN DE PORRES",
-                "SANTO NIÑO",
-                "SUN VALLEY",
-                "TAMBO",
-                "VITALEZ"
-              ]
-            },
-            "PASAY CITY": {
-              "barangay_list": [
-                "BARANGAY 1",
-                "BARANGAY 2",
-                "BARANGAY 3",
-                "BARANGAY 4",
-                "BARANGAY 5",
-                "BARANGAY 6",
-                "BARANGAY 7",
-                "BARANGAY 8",
-                "BARANGAY 9",
-                "BARANGAY 10",
-                "BARANGAY 11",
-                "BARANGAY 12",
-                "BARANGAY 13",
-                "BARANGAY 14",
-                "BARANGAY 15",
-                "BARANGAY 16",
-                "BARANGAY 17",
-                "BARANGAY 18",
-                "BARANGAY 19",
-                "BARANGAY 20",
-                "BARANGAY 21",
-                "BARANGAY 22",
-                "BARANGAY 23",
-                "BARANGAY 24",
-                "BARANGAY 25",
-                "BARANGAY 26",
-                "BARANGAY 27",
-                "BARANGAY 28",
-                "BARANGAY 29",
-                "BARANGAY 30",
-                "BARANGAY 31",
-                "BARANGAY 32",
-                "BARANGAY 33",
-                "BARANGAY 34",
-                "BARANGAY 35",
-                "BARANGAY 36",
-                "BARANGAY 37",
-                "BARANGAY 38",
-                "BARANGAY 39",
-                "BARANGAY 40",
-                "BARANGAY 41",
-                "BARANGAY 42",
-                "BARANGAY 43",
-                "BARANGAY 44",
-                "BARANGAY 45",
-                "BARANGAY 46",
-                "BARANGAY 47",
-                "BARANGAY 48",
-                "BARANGAY 49",
-                "BARANGAY 50",
-                "BARANGAY 51",
-                "BARANGAY 52",
-                "BARANGAY 53",
-                "BARANGAY 54",
-                "BARANGAY 55",
-                "BARANGAY 56",
-                "BARANGAY 57",
-                "BARANGAY 58",
-                "BARANGAY 59",
-                "BARANGAY 60",
-                "BARANGAY 61",
-                "BARANGAY 62",
-                "BARANGAY 63",
-                "BARANGAY 64",
-                "BARANGAY 65",
-                "BARANGAY 66",
-                "BARANGAY 67",
-                "BARANGAY 68",
-                "BARANGAY 69",
-                "BARANGAY 70",
-                "BARANGAY 71",
-                "BARANGAY 72",
-                "BARANGAY 73",
-                "BARANGAY 74",
-                "BARANGAY 75",
-                "BARANGAY 76",
-                "BARANGAY 77",
-                "BARANGAY 78",
-                "BARANGAY 79",
-                "BARANGAY 80",
-                "BARANGAY 81",
-                "BARANGAY 82",
-                "BARANGAY 83",
-                "BARANGAY 84",
-                "BARANGAY 85",
-                "BARANGAY 86",
-                "BARANGAY 87",
-                "BARANGAY 88",
-                "BARANGAY 89",
-                "BARANGAY 90",
-                "BARANGAY 91",
-                "BARANGAY 92",
-                "BARANGAY 93",
-                "BARANGAY 94",
-                "BARANGAY 95",
-                "BARANGAY 96",
-                "BARANGAY 97",
-                "BARANGAY 98",
-                "BARANGAY 99",
-                "BARANGAY 100",
-                "BARANGAY 101",
-                "BARANGAY 102",
-                "BARANGAY 103",
-                "BARANGAY 104",
-                "BARANGAY 105",
-                "BARANGAY 106",
-                "BARANGAY 107",
-                "BARANGAY 108",
-                "BARANGAY 109",
-                "BARANGAY 110",
-                "BARANGAY 111",
-                "BARANGAY 112",
-                "BARANGAY 113",
-                "BARANGAY 114",
-                "BARANGAY 115",
-                "BARANGAY 116",
-                "BARANGAY 117",
-                "BARANGAY 118",
-                "BARANGAY 119",
-                "BARANGAY 120",
-                "BARANGAY 121",
-                "BARANGAY 122",
-                "BARANGAY 123",
-                "BARANGAY 124",
-                "BARANGAY 125",
-                "BARANGAY 126",
-                "BARANGAY 127",
-                "BARANGAY 128",
-                "BARANGAY 129",
-                "BARANGAY 130",
-                "BARANGAY 131",
-                "BARANGAY 132",
-                "BARANGAY 133",
-                "BARANGAY 134",
-                "BARANGAY 135",
-                "BARANGAY 136",
-                "BARANGAY 137",
-                "BARANGAY 138",
-                "BARANGAY 139",
-                "BARANGAY 140",
-                "BARANGAY 141",
-                "BARANGAY 142",
-                "BARANGAY 143",
-                "BARANGAY 144",
-                "BARANGAY 145",
-                "BARANGAY 146",
-                "BARANGAY 147",
-                "BARANGAY 148",
-                "BARANGAY 149",
-                "BARANGAY 150",
-                "BARANGAY 151",
-                "BARANGAY 152",
-                "BARANGAY 153",
-                "BARANGAY 154",
-                "BARANGAY 155",
-                "BARANGAY 156",
-                "BARANGAY 157",
-                "BARANGAY 158",
-                "BARANGAY 159",
-                "BARANGAY 160",
-                "BARANGAY 161",
-                "BARANGAY 162",
-                "BARANGAY 163",
-                "BARANGAY 164",
-                "BARANGAY 165",
-                "BARANGAY 166",
-                "BARANGAY 167",
-                "BARANGAY 168",
-                "BARANGAY 169",
-                "BARANGAY 170",
-                "BARANGAY 171",
-                "BARANGAY 172",
-                "BARANGAY 173",
-                "BARANGAY 174",
-                "BARANGAY 175",
-                "BARANGAY 176",
-                "BARANGAY 177",
-                "BARANGAY 178",
-                "BARANGAY 179",
-                "BARANGAY 180",
-                "BARANGAY 181",
-                "BARANGAY 182",
-                "BARANGAY 183",
-                "BARANGAY 184",
-                "BARANGAY 185",
-                "BARANGAY 186",
-                "BARANGAY 187",
-                "BARANGAY 188",
-                "BARANGAY 189",
-                "BARANGAY 190",
-                "BARANGAY 191",
-                "BARANGAY 192",
-                "BARANGAY 193",
-                "BARANGAY 194",
-                "BARANGAY 195",
-                "BARANGAY 196",
-                "BARANGAY 197",
-                "BARANGAY 198",
-                "BARANGAY 199",
-                "BARANGAY 200",
-                "BARANGAY 201"
-              ]
-            }
-          }
-        },
-        "NATIONAL CAPITAL REGION - MANILA": {
+        "NATIONAL CAPITAL REGION - FIRST DISTRICT (Manila)": {
           "municipality_list": {
             "BINONDO": {
               "barangay_list": [
@@ -49006,7 +48703,7 @@
             }
           }
         },
-        "TAGUIG - PATEROS": {
+        "NATIONAL CAPITAL REGION - FOURTH DISTRICT": {
           "municipality_list": {
             "PATEROS": {
               "barangay_list": [
@@ -49052,6 +48749,305 @@
                 "USUSAN",
                 "WAWA",
                 "WESTERN BICUTAN"
+              ]
+            },
+            "CITY OF LAS PIÑAS": {
+              "barangay_list": [
+                "ALMANZA DOS",
+                "ALMANZA UNO",
+                "B. F. INTERNATIONAL VILLAGE",
+                "DANIEL FAJARDO",
+                "ELIAS ALDANA",
+                "ILAYA",
+                "MANUYO DOS",
+                "MANUYO UNO",
+                "PAMPLONA DOS",
+                "PAMPLONA TRES",
+                "PAMPLONA UNO",
+                "PILAR",
+                "PULANG LUPA DOS",
+                "PULANG LUPA UNO",
+                "TALON DOS",
+                "TALON KUATRO",
+                "TALON SINGKO",
+                "TALON TRES",
+                "TALON UNO",
+                "ZAPOTE"
+              ]
+            },
+            "CITY OF MAKATI": {
+              "barangay_list": [
+                "BANGKAL",
+                "BEL-AIR",
+                "CARMONA",
+                "CEMBO",
+                "COMEMBO",
+                "DASMARIÑAS",
+                "EAST REMBO",
+                "FORBES PARK",
+                "GUADALUPE NUEVO",
+                "GUADALUPE VIEJO",
+                "KASILAWAN",
+                "LA PAZ",
+                "MAGALLANES",
+                "OLYMPIA",
+                "PALANAN",
+                "PEMBO",
+                "PINAGKAISAHAN",
+                "PIO DEL PILAR",
+                "PITOGO",
+                "POBLACION",
+                "POST PROPER NORTHSIDE",
+                "POST PROPER SOUTHSIDE",
+                "RIZAL",
+                "SAN ANTONIO",
+                "SAN ISIDRO",
+                "SAN LORENZO",
+                "SANTA CRUZ",
+                "SINGKAMAS",
+                "SOUTH CEMBO",
+                "TEJEROS",
+                "URDANETA",
+                "VALENZUELA",
+                "WEST REMBO"
+              ]
+            },
+            "CITY OF MUNTINLUPA": {
+              "barangay_list": [
+                "ALABANG",
+                "BAYANAN",
+                "BULI",
+                "CUPANG",
+                "NEW ALABANG VILLAGE",
+                "POBLACION",
+                "PUTATAN",
+                "SUCAT",
+                "TUNASAN"
+              ]
+            },
+            "CITY OF PARAÑAQUE": {
+              "barangay_list": [
+                "B. F. HOMES",
+                "BACLARAN",
+                "DON BOSCO",
+                "DON GALO",
+                "LA HUERTA",
+                "MARCELO GREEN VILLAGE",
+                "MERVILLE",
+                "MOONWALK",
+                "SAN ANTONIO",
+                "SAN DIONISIO",
+                "SAN ISIDRO",
+                "SAN MARTIN DE PORRES",
+                "SANTO NIÑO",
+                "SUN VALLEY",
+                "TAMBO",
+                "VITALEZ"
+              ]
+            },
+            "PASAY CITY": {
+              "barangay_list": [
+                "BARANGAY 1",
+                "BARANGAY 2",
+                "BARANGAY 3",
+                "BARANGAY 4",
+                "BARANGAY 5",
+                "BARANGAY 6",
+                "BARANGAY 7",
+                "BARANGAY 8",
+                "BARANGAY 9",
+                "BARANGAY 10",
+                "BARANGAY 11",
+                "BARANGAY 12",
+                "BARANGAY 13",
+                "BARANGAY 14",
+                "BARANGAY 15",
+                "BARANGAY 16",
+                "BARANGAY 17",
+                "BARANGAY 18",
+                "BARANGAY 19",
+                "BARANGAY 20",
+                "BARANGAY 21",
+                "BARANGAY 22",
+                "BARANGAY 23",
+                "BARANGAY 24",
+                "BARANGAY 25",
+                "BARANGAY 26",
+                "BARANGAY 27",
+                "BARANGAY 28",
+                "BARANGAY 29",
+                "BARANGAY 30",
+                "BARANGAY 31",
+                "BARANGAY 32",
+                "BARANGAY 33",
+                "BARANGAY 34",
+                "BARANGAY 35",
+                "BARANGAY 36",
+                "BARANGAY 37",
+                "BARANGAY 38",
+                "BARANGAY 39",
+                "BARANGAY 40",
+                "BARANGAY 41",
+                "BARANGAY 42",
+                "BARANGAY 43",
+                "BARANGAY 44",
+                "BARANGAY 45",
+                "BARANGAY 46",
+                "BARANGAY 47",
+                "BARANGAY 48",
+                "BARANGAY 49",
+                "BARANGAY 50",
+                "BARANGAY 51",
+                "BARANGAY 52",
+                "BARANGAY 53",
+                "BARANGAY 54",
+                "BARANGAY 55",
+                "BARANGAY 56",
+                "BARANGAY 57",
+                "BARANGAY 58",
+                "BARANGAY 59",
+                "BARANGAY 60",
+                "BARANGAY 61",
+                "BARANGAY 62",
+                "BARANGAY 63",
+                "BARANGAY 64",
+                "BARANGAY 65",
+                "BARANGAY 66",
+                "BARANGAY 67",
+                "BARANGAY 68",
+                "BARANGAY 69",
+                "BARANGAY 70",
+                "BARANGAY 71",
+                "BARANGAY 72",
+                "BARANGAY 73",
+                "BARANGAY 74",
+                "BARANGAY 75",
+                "BARANGAY 76",
+                "BARANGAY 77",
+                "BARANGAY 78",
+                "BARANGAY 79",
+                "BARANGAY 80",
+                "BARANGAY 81",
+                "BARANGAY 82",
+                "BARANGAY 83",
+                "BARANGAY 84",
+                "BARANGAY 85",
+                "BARANGAY 86",
+                "BARANGAY 87",
+                "BARANGAY 88",
+                "BARANGAY 89",
+                "BARANGAY 90",
+                "BARANGAY 91",
+                "BARANGAY 92",
+                "BARANGAY 93",
+                "BARANGAY 94",
+                "BARANGAY 95",
+                "BARANGAY 96",
+                "BARANGAY 97",
+                "BARANGAY 98",
+                "BARANGAY 99",
+                "BARANGAY 100",
+                "BARANGAY 101",
+                "BARANGAY 102",
+                "BARANGAY 103",
+                "BARANGAY 104",
+                "BARANGAY 105",
+                "BARANGAY 106",
+                "BARANGAY 107",
+                "BARANGAY 108",
+                "BARANGAY 109",
+                "BARANGAY 110",
+                "BARANGAY 111",
+                "BARANGAY 112",
+                "BARANGAY 113",
+                "BARANGAY 114",
+                "BARANGAY 115",
+                "BARANGAY 116",
+                "BARANGAY 117",
+                "BARANGAY 118",
+                "BARANGAY 119",
+                "BARANGAY 120",
+                "BARANGAY 121",
+                "BARANGAY 122",
+                "BARANGAY 123",
+                "BARANGAY 124",
+                "BARANGAY 125",
+                "BARANGAY 126",
+                "BARANGAY 127",
+                "BARANGAY 128",
+                "BARANGAY 129",
+                "BARANGAY 130",
+                "BARANGAY 131",
+                "BARANGAY 132",
+                "BARANGAY 133",
+                "BARANGAY 134",
+                "BARANGAY 135",
+                "BARANGAY 136",
+                "BARANGAY 137",
+                "BARANGAY 138",
+                "BARANGAY 139",
+                "BARANGAY 140",
+                "BARANGAY 141",
+                "BARANGAY 142",
+                "BARANGAY 143",
+                "BARANGAY 144",
+                "BARANGAY 145",
+                "BARANGAY 146",
+                "BARANGAY 147",
+                "BARANGAY 148",
+                "BARANGAY 149",
+                "BARANGAY 150",
+                "BARANGAY 151",
+                "BARANGAY 152",
+                "BARANGAY 153",
+                "BARANGAY 154",
+                "BARANGAY 155",
+                "BARANGAY 156",
+                "BARANGAY 157",
+                "BARANGAY 158",
+                "BARANGAY 159",
+                "BARANGAY 160",
+                "BARANGAY 161",
+                "BARANGAY 162",
+                "BARANGAY 163",
+                "BARANGAY 164",
+                "BARANGAY 165",
+                "BARANGAY 166",
+                "BARANGAY 167",
+                "BARANGAY 168",
+                "BARANGAY 169",
+                "BARANGAY 170",
+                "BARANGAY 171",
+                "BARANGAY 172",
+                "BARANGAY 173",
+                "BARANGAY 174",
+                "BARANGAY 175",
+                "BARANGAY 176",
+                "BARANGAY 177",
+                "BARANGAY 178",
+                "BARANGAY 179",
+                "BARANGAY 180",
+                "BARANGAY 181",
+                "BARANGAY 182",
+                "BARANGAY 183",
+                "BARANGAY 184",
+                "BARANGAY 185",
+                "BARANGAY 186",
+                "BARANGAY 187",
+                "BARANGAY 188",
+                "BARANGAY 189",
+                "BARANGAY 190",
+                "BARANGAY 191",
+                "BARANGAY 192",
+                "BARANGAY 193",
+                "BARANGAY 194",
+                "BARANGAY 195",
+                "BARANGAY 196",
+                "BARANGAY 197",
+                "BARANGAY 198",
+                "BARANGAY 199",
+                "BARANGAY 200",
+                "BARANGAY 201"
               ]
             }
           }
