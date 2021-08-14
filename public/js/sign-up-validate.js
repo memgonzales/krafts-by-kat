@@ -7,6 +7,8 @@ $(document).ready(function() {
 	let isChangedEmail = false;
 	
 	let isReachedConfirmPassword = false;
+
+	let isSubmitButtonDisabled = false;
 	
 	const adminEmail = "krafts.by.kat.webmaster@gmail.com";
 	const adminUsername = "kraftsbykatadmin";
@@ -186,18 +188,22 @@ $(document).ready(function() {
 						if (!isValidUsername) {
 							isUniqueUsername(field, function(uniqueUsername) {
 								if (validPassword && validConfirmPassword && uniqueUsername && validContactNumber && validZipCode && uniqueEmail && nonAdmin) {
-									$('#signup-submit').prop('disabled', false);
+									// $('#signup-submit').prop('disabled', false);
+									isSubmitButtonDisabled = false;
 								} else {
-									$('#signup-submit').prop('disabled', true);
+									// $('#signup-submit').prop('disabled', true);
+									isSubmitButtonDisabled = true;
 								}
 							});
 							
 						} else {
 							/* Do not check anymore since it is already a valid username */
 							if (validPassword && validConfirmPassword && validContactNumber && validZipCode && uniqueEmail && nonAdmin) {
-								$('#signup-submit').prop('disabled', false);
+								// $('#signup-submit').prop('disabled', false);
+								isSubmitButtonDisabled = false;
 							} else {
-								$('#signup-submit').prop('disabled', true);
+								// $('#signup-submit').prop('disabled', true);
+								isSubmitButtonDisabled = true;
 							}
 						}
 						
@@ -206,9 +212,11 @@ $(document).ready(function() {
 						
 						/* Use the global isValidUsername for efficiency */
 						if (validPassword && validConfirmPassword && isValidUsername && validContactNumber && validZipCode && uniqueEmail && nonAdmin) {
-							$('#signup-submit').prop('disabled', false);
+							// $('#signup-submit').prop('disabled', false);
+							isSubmitButtonDisabled = false;
 						} else {
-							$('#signup-submit').prop('disabled', true);
+							// $('#signup-submit').prop('disabled', true);
+							isSubmitButtonDisabled = true;
 						}
 					}
 				});
@@ -224,18 +232,22 @@ $(document).ready(function() {
 					if (!isValidUsername) {
 						isUniqueUsername(field, function(uniqueUsername) {
 							if (validPassword && validConfirmPassword && uniqueUsername && validContactNumber && validZipCode && nonAdmin) {
-								$('#signup-submit').prop('disabled', false);
+								// $('#signup-submit').prop('disabled', false);
+								isSubmitButtonDisabled = false;
 							} else {
-								$('#signup-submit').prop('disabled', true);
+								// $('#signup-submit').prop('disabled', true);
+								isSubmitButtonDisabled = true;
 							}
 						});
 						
 					} else {
 						/* Do not check anymore since it is already a valid username */
 						if (validPassword && validConfirmPassword && validContactNumber && validZipCode && nonAdmin) {
-							$('#signup-submit').prop('disabled', false);
+							// $('#signup-submit').prop('disabled', false);
+							isSubmitButtonDisabled = false;
 						} else {
-							$('#signup-submit').prop('disabled', true);
+							// $('#signup-submit').prop('disabled', true);
+							isSubmitButtonDisabled = true;
 						}
 					}
 					
@@ -244,9 +256,11 @@ $(document).ready(function() {
 					
 					/* Use the global isValidUsername for efficiency */
 					if (validPassword && validConfirmPassword && isValidUsername && validContactNumber && validZipCode && nonAdmin) {
-						$('#signup-submit').prop('disabled', false);
+						// $('#signup-submit').prop('disabled', false);
+						isSubmitButtonDisabled = false;
 					} else {
-						$('#signup-submit').prop('disabled', true);
+						// $('#signup-submit').prop('disabled', true);
+						isSubmitButtonDisabled = true;
 					}
 				}	
 			}
@@ -265,18 +279,22 @@ $(document).ready(function() {
 				if (!isValidUsername) {
 					isUniqueUsername(field, function(uniqueUsername) {
 						if (validPassword && validConfirmPassword && uniqueUsername && validContactNumber && validZipCode && isValidEmail && nonAdmin) {
-							$('#signup-submit').prop('disabled', false);
+							// $('#signup-submit').prop('disabled', false);
+							isSubmitButtonDisabled = false;
 						} else {
-							$('#signup-submit').prop('disabled', true);
+							// $('#signup-submit').prop('disabled', true);
+							isSubmitButtonDisabled = true;
 						}
 					});
 					
 				} else {
 					/* Do not check anymore since it is already a valid username */
 					if (validPassword && validConfirmPassword && validContactNumber && validZipCode && isValidEmail && nonAdmin) {
-						$('#signup-submit').prop('disabled', false);
+						// $('#signup-submit').prop('disabled', false);
+						isSubmitButtonDisabled = false;
 					} else {
-						$('#signup-submit').prop('disabled', true);
+						// $('#signup-submit').prop('disabled', true);
+						isSubmitButtonDisabled = true;
 					}
 				}
 				
@@ -286,9 +304,11 @@ $(document).ready(function() {
 				 * Use the global isValidUsername for efficiency 
 				 */
 				if (validPassword && validConfirmPassword && isValidUsername && validContactNumber && validZipCode && isValidEmail && nonAdmin) {
-					$('#signup-submit').prop('disabled', false);
+					// $('#signup-submit').prop('disabled', false);
+					isSubmitButtonDisabled = false;
 				} else {
-					$('#signup-submit').prop('disabled', true);
+					// $('#signup-submit').prop('disabled', true);
+					isSubmitButtonDisabled = true;
 				}
 			}
 		}
@@ -325,5 +345,12 @@ $(document).ready(function() {
 		isReachedConfirmPassword = true;
 		
 		validateField($('#confirm-pass'), '', $('#confirm-password-error'));
+	});
+
+	$('#signup-submit').on('click', function(e) {
+		if (isSubmitButtonDisabled) {
+			e.preventDefault();
+			alert("Yo");
+		}
 	});
 });

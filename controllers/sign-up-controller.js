@@ -78,7 +78,7 @@ const signUpController = {
 				db.insertOne(Client, client, function(flag) {
 					req.session.username = client.username;
 					console.log(req.session.username);
-					res.redirect('/');
+					res.send(200);
 				});
 			})
 		} 
@@ -87,6 +87,7 @@ const signUpController = {
 		else {
 			console.log("Error: Passwords do not match");
 			res.redirect('/signup');
+			res.send(403);
 		}	
     },
 	

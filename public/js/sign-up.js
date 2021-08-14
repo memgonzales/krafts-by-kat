@@ -17,6 +17,22 @@ $(document).ready(function() {
 			$('#province').append(new Option(province, province));
 		}
 	});
+
+	/* Ajax for submitting the form */
+	$('#signup-form').on('submit', function(e) {		
+		e.preventDefault();
+			
+		$.ajax({
+			url: '/postSignup',
+			method: 'POST',
+			data: $('#signup-form').serialize(),
+			statusCode: {
+				200: function() {
+					$('#signup-success-modal').modal('show');
+				}
+			}
+		});
+	});
 });
 
 function loadRegions() {

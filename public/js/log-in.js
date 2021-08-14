@@ -8,12 +8,7 @@ $(document).ready(function() {
 			data: $('#login-form').serialize(),
 			statusCode: {
 				200: function() {
-					window.location.replace('/');
-				},
-				
-				403: function() {
-					$('#error-text').css('color', '#C70039');
-					$('#password').val('');
+					alert("Hello");
 				}
 			}
 		});

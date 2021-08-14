@@ -20,7 +20,7 @@ krafts.get('/', indexController.getDisplay);
 
 /* For sign up page */
 krafts.get('/signup', signUpController.getSignUp);
-krafts.post('/signup', validation.signUpValidation(), signUpController.postSignUp);
+krafts.post('/postSignup', validation.signUpValidation(), signUpController.postSignUp);
 krafts.get('/getCheckUsername', signUpController.getCheckUsername);
 krafts.get('/getCheckEmail', signUpController.getCheckEmail);
 
