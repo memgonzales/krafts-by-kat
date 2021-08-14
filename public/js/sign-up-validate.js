@@ -350,7 +350,6 @@ $(document).ready(function() {
 	$('#signup-submit').on('click', function(e) {
 		if (isSubmitButtonDisabled) {
 			e.preventDefault();
-			alert("Yo");
 		}
 	});
 });
