@@ -1,5 +1,6 @@
 const db = require('../models/db.js');
 
+const fs = require('fs');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -12,13 +13,22 @@ const signUpController = {
 
     	db.findOne(Display, query, '', function(result) {
 			if (result) {
-				let details = {
-					style: 'sign-up',
-					logo: result.logo,
-					user: ''
-				}
-					
-				res.render('sign-up', details);
+				fs.readFile('./public/json/ph.json', 'utf8', function (err, jsonString) {
+					if (err) {
+						console.log("File read failed: ", err);
+					} else {
+						let details = {
+							style: 'sign-up',
+							logo: result.logo,
+							user: '',
+		
+							/* Only for sign up */
+							ph: jsonString
+						}
+
+						res.render('sign-up', details);
+					}
+				});
 			} else {
 				console.log("Missing graphics elements");
 			}
