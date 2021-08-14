@@ -43,7 +43,7 @@ krafts.post('/uploadLogo', db.connect().single('upload-test'), displayController
 /* TEMPORARY ROUTING FOR FRONT-END EASE */
 krafts.get('/partials-test', function(req,res){
     var obj = {
-        style: 'index'
+        style: 'sign-up'
 
     }
 
