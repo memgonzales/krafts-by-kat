@@ -9,6 +9,14 @@ $(document).ready(function() {
 	let isReachedConfirmPassword = false;
 
 	let isSubmitButtonDisabled = false;
+
+	/* Variables for scrolling to erroneous field */
+	let scrollToContact = true;
+	let scrollToZip = true;
+	let scrollToEmail = true;
+	let scrollToUsername = true;
+	let scrollToPassword = true;
+	let scrollToConfirmPassword = true;
 	
 	const adminEmail = "krafts.by.kat.webmaster@gmail.com";
 	const adminUsername = "kraftsbykatadmin";
@@ -30,10 +38,13 @@ $(document).ready(function() {
 			}
 			
 			validContactNumber = true;
+			scrollToContact = false;
 		} else {
 			if (field.is($('#contact-number'))) {
 				$('#contact-number-error').text('Enter a valid contact number');
 			}
+
+			scrollToContact = true;
 		}
 
 		return validContactNumber;
@@ -52,10 +63,13 @@ $(document).ready(function() {
 			}
 			
 			validZipCode = true;
+			scrollToZip = false;
 		} else {
 			if (field.is($('#zip-code'))) {
 				$('#zip-code-error').text('Enter a valid ZIP code');
 			}
+
+			scrollToZip = true;
 		}
 
 		return validZipCode;
@@ -72,6 +86,7 @@ $(document).ready(function() {
 				}
 				
 				isValidEmail = true;
+				scrollToEmail = false;
 				
 				return callback(true);
 				
@@ -81,6 +96,7 @@ $(document).ready(function() {
 				}
 				
 				isValidEmail = false;
+				scrollToEmail = true;
 				
 				return callback(false);
 			}
@@ -98,6 +114,7 @@ $(document).ready(function() {
 				}
 				
 				isValidUsername = true;
+				scrollToUsername = false;
 				
 				return callback(true);
 				
@@ -126,16 +143,21 @@ $(document).ready(function() {
 					$('#password-error').text('');
 				}
 				
+				scrollToPassword = false;
 				validPassword = true;
 			} else {
 				if (field.is($('#create-password'))) {
 					$('#password-error').text('Should contain at least one number');
 				}
+
+				scrollToPassword = true;
 			}
 			
 		} else {
 			if (field.is($('#create-password'))) {
 				$('#password-error').text('Should contain at least 8 characters');
+
+				scrollToPassword = true;
 			}
 		}
 		
@@ -155,9 +177,13 @@ $(document).ready(function() {
 		if (password == confirmPassword) {
 			$('#confirm-password-error').text('');
 			validConfirmPassword = true;
+
+			scrollToConfirmPassword = false;
 		} else {
 			if (isReachedConfirmPassword) {
 				$('#confirm-password-error').text('Passwords do not match');
+
+				scrollToConfirmPassword = true;
 			}
 		}
 		
@@ -350,6 +376,33 @@ $(document).ready(function() {
 	$('#signup-submit').on('click', function(e) {
 		if (isSubmitButtonDisabled) {
 			e.preventDefault();
+
+			/* Scroll to error */
+			if (scrollToContact) {
+				$('html, body').animate({
+					scrollTop: $('#contact-number-label').offset().top
+				});
+			} else if (scrollToZip) {
+				$('html, body').animate({
+					scrollTop: $('#zip-code-label').offset().top
+				});
+			} else if (scrollToEmail) {
+				$('html, body').animate({
+					scrollTop: $('#create-email-label').offset().top
+				});
+			} else if (scrollToUsername) {
+				$('html, body').animate({
+					scrollTop: $('#create-username-label').offset().top
+				});
+			} else if (scrollToPassword) {
+				$('html, body').animate({
+					scrollTop: $('#create-password-label').offset().top
+				});
+			} else if (scrollToConfirmPassword) {
+				$('html, body').animate({
+					scrollTop: $('#confirm-pass-label').offset().top
+				});
+			}
 		}
 	});
 });
