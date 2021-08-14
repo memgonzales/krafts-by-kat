@@ -20,7 +20,7 @@ const newProductController = {
 				} else {
 					if (req.session.username == undefined) {
 						let details = {
-							style: 'new-product',
+							style: 'index',
 							logo: result.logo,
 							userFlag: false,
 							adminFlag: false
@@ -29,7 +29,7 @@ const newProductController = {
 						res.render('index', details);
 					} else {
 						let details = {
-							style: 'new-product',
+							style: 'index',
 							logo: result.logo,
 							userFlag: true,
 							adminFlag: false
