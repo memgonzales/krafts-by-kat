@@ -35,6 +35,8 @@ $(document).ready(function() {
 		if (isValidLength && isValidCompose) {
 			if (field.is($('#contact-number'))) {
 				$('#contact-number-error').text('');
+				$('#contact-number').css('border-color', '#CED4DA');
+				$('#contact-number').css('border-width', 'thin');
 			}
 			
 			validContactNumber = true;
@@ -42,6 +44,8 @@ $(document).ready(function() {
 		} else {
 			if (field.is($('#contact-number'))) {
 				$('#contact-number-error').text('Enter a valid contact number');
+				$('#contact-number').css('border-color', '#FF0000');
+				$('#contact-number').css('border-width', '2px');
 			}
 
 			scrollToContact = true;
@@ -60,6 +64,8 @@ $(document).ready(function() {
 		if (isValidLength && isValidCompose) {
 			if (field.is($('#zip-code'))) {
 				$('#zip-code-error').text('');
+				$('#zip-code').css('border-color', '#CED4DA');
+				$('#zip-code').css('border-width', 'thin');
 			}
 			
 			validZipCode = true;
@@ -67,6 +73,8 @@ $(document).ready(function() {
 		} else {
 			if (field.is($('#zip-code'))) {
 				$('#zip-code-error').text('Enter a valid ZIP code');
+				$('#zip-code').css('border-color', '#FF0000');
+				$('#zip-code').css('border-width', '2px');
 			}
 
 			scrollToZip = true;
@@ -83,6 +91,8 @@ $(document).ready(function() {
 			if (result.emailAddress != emailAddress && !isAdminCredential(emailAddress)) {
 				if (field.is($('#create-email'))) {
 					$('#email-error').text('');
+					$('#create-email').css('border-color', '#CED4DA');
+					$('#create-email').css('border-width', 'thin');
 				}
 				
 				isValidEmail = true;
@@ -93,6 +103,8 @@ $(document).ready(function() {
 			} else {
 				if (field.is($('#create-email'))) {
 					$('#email-error').text('Email is already in use');
+					$('#create-email').css('border-color', '#FF0000');
+					$('#create-email').css('border-width', '2px');
 				}
 				
 				isValidEmail = false;
@@ -111,6 +123,8 @@ $(document).ready(function() {
 			if (result.username != username && !isAdminCredential(username)) {
 				if (field.is($('#create-username'))) {
 					$('#username-error').text('');
+					$('#create-username').css('border-color', '#CED4DA');
+					$('#create-username').css('border-width', 'thin');
 				}
 				
 				isValidUsername = true;
@@ -121,6 +135,8 @@ $(document).ready(function() {
 			} else {
 				if (field.is($('#create-username'))) {
 					$('#username-error').text('Username has already been taken');
+					$('#create-username').css('border-color', '#FF0000');
+					$('#create-username').css('border-width', '2px');
 				}
 				
 				isValidUsername = false;
@@ -141,6 +157,8 @@ $(document).ready(function() {
 			if (isValidCompose) {
 				if (field.is($('#create-password'))) {
 					$('#password-error').text('');
+					$('#create-password').css('border-color', '#CED4DA');
+					$('#create-password').css('border-width', 'thin');
 				}
 				
 				scrollToPassword = false;
@@ -148,6 +166,8 @@ $(document).ready(function() {
 			} else {
 				if (field.is($('#create-password'))) {
 					$('#password-error').text('Should contain at least one number');
+					$('#create-password').css('border-color', '#FF0000');
+					$('#create-password').css('border-width', '2px');
 				}
 
 				scrollToPassword = true;
@@ -156,6 +176,8 @@ $(document).ready(function() {
 		} else {
 			if (field.is($('#create-password'))) {
 				$('#password-error').text('Should contain at least 8 characters');
+				$('#create-password').css('border-color', '#FF0000');
+				$('#create-password').css('border-width', '2px');
 
 				scrollToPassword = true;
 			}
@@ -176,12 +198,17 @@ $(document).ready(function() {
 		 */
 		if (password == confirmPassword) {
 			$('#confirm-password-error').text('');
+			$('#confirm-pass').css('border-color', '#CED4DA');
+			$('#confirm-pass').css('border-width', 'thin');
+
 			validConfirmPassword = true;
 
 			scrollToConfirmPassword = false;
 		} else {
 			if (isReachedConfirmPassword) {
 				$('#confirm-password-error').text('Passwords do not match');
+				$('#confirm-pass').css('border-color', '#FF0000');
+				$('#confirm-pass').css('border-width', '2px');
 
 				scrollToConfirmPassword = true;
 			}
