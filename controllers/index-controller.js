@@ -84,6 +84,8 @@ const indexController = {
 									productNumberSold: numberSold
 								}
 
+								console.log(details);
+
 								res.render('index', details);
 							}
 						});
@@ -148,6 +150,8 @@ const indexController = {
 									productRatings: aveRatings,
 									productNumberSold: numberSold
 								}
+
+								console.log(details);
 
 								res.render('index', details);
 							}
