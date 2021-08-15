@@ -13,7 +13,7 @@ const catalogItemSchema = new mongoose.Schema({
 
     description: {
         type: String,
-        required: true
+        required: false
     },
 
     price: {
@@ -28,8 +28,8 @@ const catalogItemSchema = new mongoose.Schema({
 
     pictures: {
         type: [String],
-        required: true
-    }
+        required: false
+    },
 
     ratings: {
         type: [Number],

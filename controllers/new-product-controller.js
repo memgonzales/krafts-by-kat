@@ -1,6 +1,7 @@
 const db = require('../models/db.js');
 
 const Display = require('../models/display-schema.js');
+const CatalogItem = require('../models/catalog-item-schema.js');
 
 const newProductController = {
 	getNewProduct: function(req, res) {
@@ -41,6 +42,30 @@ const newProductController = {
 			} else {
 				console.log("Missing graphics elements");
 			}
+		});
+	},
+
+	postNewProduct: function(req, res) {
+		console.log(req.files);
+
+
+		let productName = req.body.productName;
+		let productDesc = req.body.productDesc;
+		let productPrice = req.body.productPrice;
+		let productQuantity = req.body.productQuantity;
+
+		let product = {
+			name: productName,
+			quantity: productQuantity,
+			description: productDesc,
+			price: productPrice,
+			quantity: productQuantity
+		}
+
+		console.log(product);
+
+		db.insertOne(CatalogItem, product, function(flag) {
+			res.send(200);
 		});
 	}
 }
