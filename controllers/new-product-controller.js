@@ -56,6 +56,10 @@ const newProductController = {
 			}
 		}
 
+		if (paths.length == 0) {
+			paths.push('img/placeholder/no-image.png');
+		}
+
 		let productName = req.body.productName;
 		let productDesc = req.body.productDesc;
 		let productPrice = req.body.productPrice;
@@ -80,7 +84,7 @@ const newProductController = {
 		console.log(product);
 
 		db.insertOne(CatalogItem, product, function(flag) {
-			res.send(200);
+			res.redirect('/');
 		});
 	}
 }
