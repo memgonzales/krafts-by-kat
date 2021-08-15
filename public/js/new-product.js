@@ -52,6 +52,9 @@ $(document).ready(function() {
 		let imgCtr = imgTargetResults.length;
 		let i = 0;
 
+		let productName = $('#product-name').val();
+		let productPrice = $('#product-price').val();
+
 		if (imgCtr >= 1) {
 			$('#polaroid-pic-1').attr('src', imgTargetResults[i]);
 			i++;
@@ -77,6 +80,12 @@ $(document).ready(function() {
 				imgCtr--;
 			}
 		}
+
+		let formattedProductName = productName.trim();
+		let formattedProductPrice = 'P ' + productPrice.trim();
+
+		$('#item-name').text(productName);
+		$('#item-price').text(formattedProductPrice);
 	});
 
 	let imgTargetResults = [];
