@@ -61,12 +61,16 @@ const newProductController = {
 		let productPrice = req.body.productPrice;
 		let productQuantity = req.body.productQuantity;
 
+		let formattedProductName = productName.trim();
+		let formattedProductDesc = productDesc.trim();
+		let formattedProductPrice = productPrice.trim();
+		let formattedProductQuantity = productQuantity.trim();
+
 		let product = {
-			name: productName,
-			quantity: productQuantity,
-			description: productDesc,
-			price: productPrice,
-			quantity: productQuantity,
+			name: formattedProductName,
+			quantity: formattedProductQuantity,
+			description: formattedProductDesc,
+			price: formattedProductPrice,
 			pictures: paths
 		}
 
