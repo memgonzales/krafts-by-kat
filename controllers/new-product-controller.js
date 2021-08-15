@@ -46,8 +46,15 @@ const newProductController = {
 	},
 
 	postNewProduct: function(req, res) {
-		console.log(req.files);
-
+		/* Iterate over the five pictures */
+		var paths = [];
+		
+		/* Names in the HTML form are one-based */
+		for (let i = 1; i <= 5; i++) {
+			if (req.files['productImg' + i]) {
+				paths.push('/files/' + req.files['productImg' + i][0]['filename'])
+			}
+		}
 
 		let productName = req.body.productName;
 		let productDesc = req.body.productDesc;
@@ -59,7 +66,8 @@ const newProductController = {
 			quantity: productQuantity,
 			description: productDesc,
 			price: productPrice,
-			quantity: productQuantity
+			quantity: productQuantity,
+			pictures: paths
 		}
 
 		console.log(product);
