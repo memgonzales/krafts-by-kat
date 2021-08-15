@@ -1,7 +1,7 @@
 /* Dotenv file used to access constants */
 const dotenv = require('dotenv');
 
-/* Mongoose used for database functions */
+/* Mongoose is used for database functions */
 const mongoose = require('mongoose');
 
 /* Additional middleware for storing and displaying images */
