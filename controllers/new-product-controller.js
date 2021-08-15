@@ -71,7 +71,10 @@ const newProductController = {
 			quantity: formattedProductQuantity,
 			description: formattedProductDesc,
 			price: formattedProductPrice,
-			pictures: paths
+			commentIds: [],
+			pictures: paths,
+			ratings: [],
+			numberSold: 0
 		}
 
 		console.log(product);

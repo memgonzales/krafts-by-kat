@@ -34,6 +34,11 @@ const catalogItemSchema = new mongoose.Schema({
     ratings: {
         type: [Number],
         required: false
+    },
+
+    numberSold: {
+        type: Number,
+        required: true
     }
 });
 
