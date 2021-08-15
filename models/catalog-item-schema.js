@@ -1,6 +1,8 @@
+/* Schema for the catalog items */
+
+/* Mongoose is used for database functions */
 const mongoose = require('mongoose');
 
-/* Schema for the catalog items */
 const catalogItemSchema = new mongoose.Schema({
     /* Item name */
     name: {

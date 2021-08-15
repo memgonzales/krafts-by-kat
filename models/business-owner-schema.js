@@ -1,8 +1,10 @@
-const mongoose = require('mongoose');
-
 /* Schema for the business owner (i.e., the project client) account; this account also serves as the 
  * "administrator" of the web app 
  */
+
+/* Mongoose is used for database functions */
+const mongoose = require('mongoose');
+
 const businessOwnerSchema = new mongoose.Schema({
     /* Account username */
     username: {

@@ -1,6 +1,8 @@
+/* Schema for the user (i.e. the customer) accounts */
+
+/* Mongoose is used for database functions */
 const mongoose = require('mongoose');
 
-/* Schema for the user (i.e. the customer) accounts */
 const clientSchema = new mongoose.Schema({
     /* Account username */
     username: {

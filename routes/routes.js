@@ -30,7 +30,7 @@ krafts.post('/postLogIn', logInController.postLogIn);
 /* For user page */
 krafts.get('/logOut', logOutController.getLogOut);
 
-/* For admin page */
+/* For new product page */
 krafts.get('/newProduct', newProductController.getNewProduct);
 const newProductFields = [{name: 'productImg1', maxCount: 1},
                           {name: 'productImg2', maxCount: 1},
