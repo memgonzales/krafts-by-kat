@@ -27,7 +27,7 @@
 
 							<i class = "far fa-images fa-3x mx-3 fc3" id = "img-2"></i>
 							<img id = "pic-2">
-							<input type = "file" accept = "image/*" id = "product-img-2" class = "hidden" onchange = "readURL(this, 2)">
+							<input type = "file" accept = "image/*" id = "product-img-2" class = "hidden">
 						
 						</div>
 
@@ -35,7 +35,7 @@
 
 							<i class = "far fa-images fa-3x mx-3 fc3" id = "img-3"></i>
 							<img id = "pic-3">
-							<input type = "file" accept = "image/*" id = "product-img-3" class = "hidden" onchange = "readURL(this, 3)">
+							<input type = "file" accept = "image/*" id = "product-img-3" class = "hidden">
 							
 						</div>
 
@@ -43,7 +43,7 @@
 
 							<i class = "far fa-images fa-3x mx-3 fc3" id = "img-4"></i>
 							<img id = "pic-4">
-							<input type = "file" accept = "image/*" id = "product-img-4" class = "hidden" onchange = "readURL(this, 4)">
+							<input type = "file" accept = "image/*" id = "product-img-4" class = "hidden">
 						
 						</div>
 
@@ -51,7 +51,7 @@
 
 							<i class = "far fa-images fa-3x mx-3 fc3" id = "img-5"></i> 
 							<img id = "pic-5">
-							<input type = "file" accept = "image/*" id = "product-img-5" class = "hidden" onchange = "readURL(this, 5)">
+							<input type = "file" accept = "image/*" id = "product-img-5" class = "hidden">
 							
 						</div>
 
@@ -64,11 +64,11 @@
 							<div class = "inner">
 								<div id = "item-img-carousel" class = "carousel slide d-flex align-items-center overflow-hidden" data-bs-ride="carousel">
 									
-									<div class = "carousel-inner">
+									<div class = "carousel-inner" id = "polaroid-pic-carousel">
 
 										{{!-- Sample Carousel Item... Will be replaced by hbs when necessary --}}
 										<div class = "carousel-item active">
-											<img src = "/img/placeholder/no-image.png" class = "d-block w-100  thumbnail" alt = "item 1">
+											<img src = "/img/placeholder/no-image.png" class = "d-block w-100  thumbnail" alt = "item 1"  id = "polaroid-pic-1">
 										</div>
 
 									</div>
@@ -115,7 +115,7 @@
 					</div>
 				</div>
 
-				<button class = "btn bgc1 align-self-center mt-4" type = "button"> Click to preview</button>
+				<button class = "btn bgc1 align-self-center mt-4" type = "button" id = "preview-polaroid"> Click to preview</button>
 				
 		</form>
 

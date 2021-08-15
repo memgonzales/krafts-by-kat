@@ -47,6 +47,38 @@ $(document).ready(function() {
 		});
 	}
 
+	/* Refresh the preview */
+	$('#preview-polaroid').click(function() {
+		let imgCtr = imgTargetResults.length;
+		let i = 0;
+
+		if (imgCtr >= 1) {
+			$('#polaroid-pic-1').attr('src', imgTargetResults[i]);
+			i++;
+
+			imgCtr--;
+
+			while (imgCtr != 0) {
+				let divImg = document.createElement("div");
+				divImg.className = "carousel-item";
+
+				let img = document.createElement("img");
+				img.src = imgTargetResults[i];
+
+				divImg.appendChild(img);
+				document.getElementById('polaroid-pic-carousel').appendChild(divImg);
+
+				/* Increment immediately since the IDs of the polaroid pictures are one-based */
+				i++;
+				img.id = "polaroid-pic-" + i;
+				img.className = "d-block w-100  thumbnail";
+				img.alt = "item " + i;
+
+				imgCtr--;
+			}
+		}
+	});
+
 	let imgTargetResults = [];
 
 	function readURL(input, i) {
@@ -62,8 +94,6 @@ $(document).ready(function() {
 			
 			reader.readAsDataURL(input.files[0]);
 		}
-
-		alert(imgTargetResults);
 	}
 });
 
