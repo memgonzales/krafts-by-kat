@@ -9,10 +9,13 @@ const indexController = {
 		
 		db.findOne(Display, query, '', function(result) {
 			if (result) {
+				let appLogo = result;
+				
 				if (req.session.username == undefined) {
+
 					let details = {
 						style: 'index',
-						logo: result.logo,
+						logo: appLogo.logo,
 						userFlag: false,
 						adminFlag: false
 					}
@@ -67,7 +70,7 @@ const indexController = {
 
 								let details = {
 									style: 'index',
-									logo: result.logo,
+									logo: appLogo.logo,
 									userFlag: true,
 									adminFlag: true,
 									username: req.session.username,
@@ -132,7 +135,7 @@ const indexController = {
 
 								let details = {
 									style: 'index',
-									logo: result.logo,
+									logo: appLogo.logo,
 									userFlag: true,
 									adminFlag: false,
 									username: req.session.username,
