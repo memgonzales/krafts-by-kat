@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	/* Initialize to five empty strings to handle changing of pictures */
+	let imgTargetResultsOrig = ['', '', '', '', ''];
+
 	/* Click the image and trigger upload */
 	$('#img-1').on('click', function() {
 		$('#product-img-1').click();
@@ -105,14 +108,28 @@ $(document).ready(function() {
 		$('#item-price').text(formattedProductPrice);
 	});
 
-	/* Initialize to five empty strings to handle changing of pictures */
-	let imgTargetResultsOrig = ['', '', '', '', ''];
+	/* Clear the picture fields */
+	$('#cancel-product').click(function() {
+		/* The indices of the HTML IDs are one-based */
+		for (let i = 1; i <= 5; i++) {
+			$('#img-' + i).css('display', 'block');
+			$('#pic-' + i).css('display', 'none');
+
+			/* The indices of the array are zero-based. Remove the saved images */
+			imgTargetResultsOrig[i - 1] = '';
+
+			/* Use the image placeholder */
+			$('#polaroid-pic-1').attr('src', '/img/placeholder/no-image.png');
+			$('#preview-polaroid').click();
+		}
+	});
 
 	function readURL(input, i) {
 		if (input.files && input.files[0]) {
 			let reader = new FileReader();
 			reader.onload = function(e) {
 				$('#img-' + i).css('display', 'none');
+				$('#pic-' + i).css('display', 'block');
 				$('#pic-' + i).attr('src', e.target.result).width(150).height(100);
 
 				/* Store the image file paths in an array. Subtract 1 from index since array is zero-based. */
