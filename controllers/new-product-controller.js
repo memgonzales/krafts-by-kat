@@ -7,7 +7,12 @@ const CatalogItem = require('../models/catalog-item-schema.js');
 
 const newProductController = {
 
-	/* Display the new product page */
+	/** 
+	 * Displays the new product page
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
 	getNewProduct: function(req, res) {
 
 		/* Prepare a query for the web application logo */
@@ -62,7 +67,12 @@ const newProductController = {
 		});
 	},
 
-	/* Submit information stored in the new product page */
+	/**
+	 * Submits information stored in the new product page
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
 	postNewProduct: function(req, res) {
 
 		/* Iterate over the five pictures */

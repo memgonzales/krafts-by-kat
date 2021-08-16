@@ -14,7 +14,12 @@ const adminUsername = "kraftsbykatadmin";
 
 const logInController = {
 
-    /* Log a user into the web application */
+    /**
+     * Logs a user into the web application
+     * 
+     * @param req object that contains information on the HTTP request from the client
+     * @param res object that contains information on the HTTP response from the server 
+     */
     postLogIn: function(req, res) {
 
         /* Retrieve the username and password from the user input */

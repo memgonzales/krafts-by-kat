@@ -5,7 +5,12 @@ const db = require('../models/db.js');
 const Display = require('../models/display-schema.js');
 
 const displayController = {
-	/* Update the web application logo */
+	/** 
+	 * Updates the web application logo
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server  
+	 */
 	postEditLogo: function(req, res) {
 		/* The new logo is accessed using its file name */
 		let filename = "/files/" + req.file.filename;
