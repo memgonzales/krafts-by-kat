@@ -1,9 +1,20 @@
 /* Javascript file for handling the front end of the new product page */
 
 $(document).ready(function() {
-	/* Initialize five empty strings to handle changing of pictures */
-	let imgTargetResultsOrig = ['', '', '', '', ''];
+	/* The maximum number of pictures is the number of children of the div with the id below. */
 	const maxNumPictures = $('#img-parent-div').children().length;
+
+	/* 
+	 * Initialize an array to store the image file paths.
+	 * 
+	 * Place empty strings (corresponding to the maximum number of allowable pictures in the polaroid)
+	 * to handle the case that the user does not upload the pictures on consecutive file input fields.
+	 */
+	let imgTargetResultsOrig = [];
+	for (let i = 0; i < maxNumPictures; i++) {
+		imgTargetResultsOrig.push('');
+	}
+
 
 	/* */
 	triggerUpload();
