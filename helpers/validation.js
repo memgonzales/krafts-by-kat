@@ -1,29 +1,49 @@
-const db = require('../models/db.js');
+/* Object for performing validations on the sign up page */
 
+/* The db file, client schema, and express validator are used for the validatio object */
+const db = require('../models/db.js');
+const Client = require('../models/client-schema.js');
 const {check} = require('express-validator');
 
-const Client = require('../models/client-schema.js');
-
+/* The email address and username of the administrator account are included as constants */
 const adminEmail = "krafts.by.kat.webmaster@gmail.com";
 const adminUsername = "kraftsbykatadmin"
 
 const validation = {
+
+	/**
+	 * Performs validations on the sign up page
+	 * 
+	 * @return whether the input on a sign up text field is valid 
+	 */
 	signUpValidation: function() {
 		let validation = [/* Check the contact number */
+						  
+						  /* Limit the contact number to 7 to 12 digits */
 						  check('contactNumber', 'Enter a valid contact number').trim().isLength({min: 7, max: 12}),
 						  check('contactNumber').custom(function(value) {
+							 
+							  /* If the input does not contain non-numeric characters, it is valid */
 							  if (value.match(/^\d+$/)) {
 								  return true;
+
+							  /* Otherwise, display an error message */
 							  } else {
 								  throw new Error('Enter a valid contact number');
 							  }
 						  }),
 				
 						  /* Check the ZIP code */
+
+						  /* Limit the ZIP code to 3 to 4 digits */
 						  check('zipCode', 'Enter a valid ZIP code').trim().isLength({min: 3, max: 4}),
 						  check('zipCode').custom(function(value) {
+
+						  	  /* If the input does not contain non-numeric characters, it is valid */
 							  if (value.match(/^\d+$/)) {
 								  return true;
+
+							  /* Otherwise, display an error message */
 							  } else {
 								  throw new Error('Enter a valid ZIP code');
 							  }
@@ -31,14 +51,22 @@ const validation = {
 						
 						  /* Check the username */
 						  check('createUsername').custom(function(value) {
+							  
+							  /* If the input is not the same as the username for the administrator account, 
+							   * it is valid
+							   */
 							  if (value != adminUsername) {
 								  return true;
+
+							  /* Otherwise, display an error message */
 							  } else {
 								  throw new Error('Username has already been taken')
 							  }
 						  }),
 						  
 						  check('createUsername').custom(function(value) {
+							  
+							  /* Accept usernames that are not already in use (i.e., in the database) */
 							  return new Promise(function(resolve, reject) {
 								  let query = {username: value};
 								  
@@ -54,14 +82,22 @@ const validation = {
 						  
 						  /* Check the email */
 						  check('createEmail').custom(function(value) {
+							  
+							  /* If the input is not the same as the email address of the administrator account,
+							   * it is valid
+							   */
 							  if (value != adminEmail) {
 								  return true;
+
+							  /* Otherwise, display an error message */
 							  } else {
 								  throw new Error('Email is already in use');
 							  }
 						  }),
 						  
 						  check('createEmail').custom(function(value) {
+							  
+							  /* Accept email addresses that are not already in use (i.e., in the database) */
 							  return new Promise(function(resolve, reject) {
 								  let query = {emailAddress: value};
 								  
@@ -76,10 +112,16 @@ const validation = {
 						  }),
 						  
 						  /* Check the password */
+
+						  /* Check that the password contains at least 8 characters */
 						  check('createPassword', 'Should contain at least 8 characters').trim().isLength({min: 8}),
 						  check('createPassword').custom(function(value) {
+							  
+							  /* If the password contains at least one numeric character, it is accepted */
 							  if (value.match(/.*[0-9].*/)) {
 								  return true;
+
+						      /* Otherwise, display an error message */
 							  } else {
 								  throw new Error('Should contain at least one number');
 							  }
@@ -87,8 +129,12 @@ const validation = {
 						  
 						  /* Check the confirm password */
 						  check('confirmPass').custom(function(value, {req}) {
+							  
+						  	  /* If the text field has the same input as the password text field, it is accepted */
 							  if (value == req.body.createPassword) {
 								  return true;
+
+							  /* Otherwise, display an error message */
 							  } else {
 								  throw new Error('Passwords do not match');
 							  }
