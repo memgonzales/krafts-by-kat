@@ -1,6 +1,7 @@
 /* Javascript file for handling the front end of the new product page */
 
 $(document).ready(function() {
+
 	/* The maximum number of pictures is the number of children of the div with the id below. */
 	const maxNumPictures = $('#img-parent-div').children().length;
 
@@ -16,15 +17,18 @@ $(document).ready(function() {
 	}
 
 
-	/* */
+	/* Call the triggerUpload(), changePicOnUpoad(), preview(), and cancel() methods */
 	triggerUpload();
 	changePicOnUpload();
 	preview();
 	cancel();
 	
+	/** 
+	 * Clears the picture fields
+	 */
 	function cancel() {
-		/* Clear the picture fields */
 		$('#cancel-product').click(function() {
+
 			/* The indices of the HTML IDs are one-based */
 			for (let i = 1; i <= maxNumPictures; i++) {
 				$('#img-' + i).css('display', 'block');
@@ -40,8 +44,10 @@ $(document).ready(function() {
 		});
 	}
 
+	/** 
+	 * Open the file explorer for uploading images when an image placeholder is clicked
+	 */
 	function triggerUpload() {
-		/* Click the image and trigger upload */
 		for (let i = 1; i <= maxNumPictures; i++) {
 			$('#img-' + i).on('click', function() {
 				$('#product-img-' + i).click();
@@ -53,8 +59,10 @@ $(document).ready(function() {
 		}
 	}
 
+	/** 
+	 * Change the display when the user uploads an image
+	 */
 	function changePicOnUpload() {
-		/* Change the picture upon upload */
 		for (let i = 1; i <= maxNumPictures; i++) {
 			$('#product-img-' + i).on('change', function() {
 				readURL(this, i);
@@ -62,14 +70,19 @@ $(document).ready(function() {
 		}
 	}
 
+	/** 
+	 * Refresh the polaroid preview
+	 */ 
 	function preview() {
-		/* Refresh the preview */
 		$('#preview-polaroid').click(function() {
 			previewPictures();
 			previewText();
 		});
 	}
 
+	/**
+	 * Display the uploaded images on the polaroid preview
+	 */
 	function previewPictures() {
 		let imgTargetResults = [];
 
@@ -97,6 +110,7 @@ $(document).ready(function() {
 
 			imgCtr--;
 
+			/* Create a new carousel item for each additional image */
 			while (imgCtr != 0) {
 				let divImg = document.createElement("div");
 				divImg.className = "carousel-item";
@@ -119,7 +133,12 @@ $(document).ready(function() {
 		}
 	}
 
+	/** 
+	 * Display the entered text on the polaroid preview
+	 */
 	function previewText() {
+
+		/* Retrieve the entered product name and price from the new product page and apply some formatting */
 		let productName = $('#product-name').val();
 		let productPrice = $('#product-price').val();
 		let formattedProductName = productName.trim();
@@ -131,10 +150,17 @@ $(document).ready(function() {
 			formattedProductPrice = '₱'+ parseFloat(productPrice.trim()).toLocaleString('en-US', {maximumFractionDigits: 2});
 		}
 
+		/* Display the formatted product name and price on the polaroid */
 		$('#item-name').text(formattedProductName);
 		$('#item-price').text(formattedProductPrice);
 	}
 
+	/**
+	 * Reads the URLs of the uploaded images to display them on the polaroid
+	 * 
+	 * @param input the file input field
+	 * @param i the one-based index of the file input field 
+	 */
 	function readURL(input, i) {
 		if (input.files && input.files[0]) {
 			let reader = new FileReader();
