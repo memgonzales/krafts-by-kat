@@ -109,10 +109,12 @@ $(document).ready(function() {
 		let productName = $('#product-name').val();
 		let productPrice = $('#product-price').val();
 		let formattedProductName = productName.trim();
-		let formattedProductPrice = '₱'+ parseFloat(productPrice.trim()).toLocaleString('en-US', {maximumFractionDigits: 2});
-
-		if (isNaN(formattedProductPrice)) {
-			formattedProductPrice = '';
+		let formattedProductPrice = '';
+		
+		/* Check if the user input a product price */
+		if (productPrice) {
+			/* Use commas to separate groups of three digits */
+			formattedProductPrice = '₱'+ parseFloat(productPrice.trim()).toLocaleString('en-US', {maximumFractionDigits: 2});
 		}
 
 		$('#item-name').text(formattedProductName);
