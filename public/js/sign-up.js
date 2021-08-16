@@ -20,8 +20,8 @@ $(document).ready(function() {
 		const provinces = loadProvinces($('#region').val(), ph, regionNumbers);
 		
 		$('#province').empty();
-		$('#province').append(new Option("", ""));
-		$('#province option:first-child').attr("disabled", "disabled");
+		$('#province').append(new Option('', ''));
+		$('#province option:first-child').attr('disabled', 'disabled');
 		for (let province of provinces) {
 			$('#province').append(new Option(province, province));
 		}
@@ -31,8 +31,8 @@ $(document).ready(function() {
 		const cities = loadCities($('#region').val(), $('#province').val(), ph, regionNumbers);
 		
 		$('#city').empty();
-		$('#city').append(new Option("", ""));
-		$('#city option:first-child').attr("disabled", "disabled");
+		$('#city').append(new Option('', ''));
+		$('#city option:first-child').attr('disabled', 'disabled');
 		for (let city of cities) {
 			$('#city').append(new Option(city, city));
 		}
@@ -42,8 +42,8 @@ $(document).ready(function() {
 		const barangays = loadBarangays($('#region').val(), $('#province').val(), $('#city').val(), ph, regionNumbers);
 		
 		$('#barangay').empty();
-		$('#barangay').append(new Option("", ""));
-		$('#barangay option:first-child').attr("disabled", "disabled");
+		$('#barangay').append(new Option('', ''));
+		$('#barangay option:first-child').attr('disabled', 'disabled');
 		for (let barangay of barangays) {
 			$('#barangay').append(new Option(barangay, barangay));
 		}
@@ -77,7 +77,7 @@ $(document).ready(function() {
 	function loadProvinces(regionName, ph, regionNumbers) {
 		let provinces = [];
 
-		for (let province in ph[regionNumbers[regionName]]["province_list"]) {
+		for (let province in ph[regionNumbers[regionName]]['province_list']) {
 			provinces.push(province);
 		}
 
@@ -87,7 +87,7 @@ $(document).ready(function() {
 	function loadCities(regionName, provinceName, ph, regionNumbers) {
 		let cities = [];
 
-		for (let city in ph[regionNumbers[regionName]]["province_list"][provinceName]["municipality_list"]) {
+		for (let city in ph[regionNumbers[regionName]]['province_list'][provinceName]['municipality_list']) {
 			cities.push(city);
 		}
 
@@ -97,8 +97,8 @@ $(document).ready(function() {
 	function loadBarangays(regionName, provinceName, cityName, ph, regionNumbers) {
 		let barangays = [];
 
-		for (let barangay in ph[regionNumbers[regionName]]["province_list"][provinceName]["municipality_list"][cityName]["barangay_list"]) {
-			barangays.push(ph[regionNumbers[regionName]]["province_list"][provinceName]["municipality_list"][cityName]["barangay_list"][barangay]);
+		for (let barangay of ph[regionNumbers[regionName]]['province_list'][provinceName]['municipality_list'][cityName]['barangay_list']) {
+			barangays.push(barangay);
 		}
 
 		return barangays;
