@@ -58,6 +58,15 @@ krafts.get('/partials-test', function(req,res){
 });
 
 
+krafts.get('/view-product', function(req,res){
+    var obj = {
+        style: 'view-product'
+    }
+
+    res.render('view-product',obj);
+})
+
+
 
 /* START of Account Related Routes */
     // IMPORTANT: For now ginawa ko lang /account ung route for easy access BUT BUT PERO.. Ang intention is /account/{{username}}
