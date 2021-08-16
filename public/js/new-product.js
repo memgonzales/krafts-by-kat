@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	/* Initialize to five empty strings to handle changing of pictures */
 	let imgTargetResultsOrig = ['', '', '', '', ''];
+	const maxNumPictures = $('#img-parent-div').children().length;
 
 	triggerUpload();
 	changePicOnUpload();
@@ -11,7 +12,7 @@ $(document).ready(function() {
 		/* Clear the picture fields */
 		$('#cancel-product').click(function() {
 			/* The indices of the HTML IDs are one-based */
-			for (let i = 1; i <= 5; i++) {
+			for (let i = 1; i <= maxNumPictures; i++) {
 				$('#img-' + i).css('display', 'block');
 				$('#pic-' + i).css('display', 'none');
 
@@ -27,50 +28,20 @@ $(document).ready(function() {
 
 	function triggerUpload() {
 		/* Click the image and trigger upload */
-		$('#img-1').on('click', function() {
-			$('#product-img-1').click();
-		});
+		for (let i = 1; i <= maxNumPictures; i++) {
+			$('#img-' + i).on('click', function() {
+				$('#product-img-' + i).click();
+			});	
 
-		$('#img-2').on('click', function() {
-			$('#product-img-2').click();
-		});
-
-		$('#img-3').on('click', function() {
-			$('#product-img-3').click();
-		});
-
-		$('#img-4').on('click', function() {
-			$('#product-img-4').click();
-		});
-
-		$('#img-5').on('click', function() {
-			$('#product-img-5').click();
-		});
-
-		$('#pic-1').on('click', function() {
-			$('#product-img-1').click();
-		});
-
-		$('#pic-2').on('click', function() {
-			$('#product-img-2').click();
-		});
-
-		$('#pic-3').on('click', function() {
-			$('#product-img-3').click();
-		});
-
-		$('#pic-4').on('click', function() {
-			$('#product-img-4').click();
-		});
-
-		$('#pic-5').on('click', function() {
-			$('#product-img-5').click();
-		});
+			$('#pic-' + i).on('click', function() {
+				$('#product-img-'  + i).click();
+			});
+		}
 	}
 
 	function changePicOnUpload() {
 		/* Change the picture upon upload */
-		for (let i = 1; i <= 5; i++) {
+		for (let i = 1; i <= maxNumPictures; i++) {
 			$('#product-img-' + i).on('change', function() {
 				readURL(this, i);
 			});
@@ -102,7 +73,7 @@ $(document).ready(function() {
 		$('#polaroid-div-1').addClass('active');
 
 		/* Remove the existing polaroid pictures, except the first one */
-		for (let j = 2; j <= 5; j++) {
+		for (let j = 2; j <= maxNumPictures; j++) {
 			$('#polaroid-div-' + j).remove();
 		}
 
