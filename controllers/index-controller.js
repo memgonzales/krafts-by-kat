@@ -110,7 +110,8 @@ const indexController = {
 									productComments: comments,
 									productPictures: pictures,
 									productRatings: aveRatings,
-									productNumberSold: numberSold
+									productNumberSold: numberSold,
+									username: req.session.username
 								}
 
 								res.render('index', details);
@@ -130,7 +131,8 @@ const indexController = {
 									productComments: comments,
 									productPictures: pictures,
 									productRatings: aveRatings,
-									productNumberSold: numberSold
+									productNumberSold: numberSold,
+									username: req.session.username
 								}
 
 								res.render('index', details);
