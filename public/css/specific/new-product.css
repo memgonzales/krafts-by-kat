@@ -2,13 +2,10 @@
     --img-bg: #C2956E;
 }
 
-#confirm-add{
-    border-radius: 20px;
-}
-
 #new-product-form{
-    width: 500px;
-    height: 550px;
+    width: 1280px;
+    border-radius: 20px;
+    
 }
 
 #upload-new-product-form{
@@ -32,6 +29,6 @@
     border-radius: 5px;
 }
 
-form{
-    border-radius: 20px;
+#product-price,#product-quantity{
+    width: 170px;
 }

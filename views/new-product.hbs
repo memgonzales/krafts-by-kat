@@ -3,11 +3,11 @@
 <div class="container-fluid content" >
 	<h1 class="f1 ms-5 mt-3">Add a new Product</h1>
 
-<div class="container-fluid d-flex flex-row f1 mb-5">
+<div class="container d-flex flex-row f1 mb-5 bgc5 " id="new-product-form">
 
-	<div class="col-md-7 ps-4">
+	<div class="col-md-7">
 		
-		<form method = "POST" action = "/postNewProduct" enctype = "multipart/form-data" class = "bgc5 p-5 d-flex flex-column justify-content-center align-self-center " id = "upload-new-product-form">
+		<form method = "POST" action = "/postNewProduct" enctype = "multipart/form-data" class = "p-5 d-flex flex-column justify-content-center align-self-center " id = "upload-new-product-form">
         
 			<h3 class = "f1 cwhite bold mb-3">Product Images</h3>
 
@@ -60,13 +60,11 @@
 				<div class="col-md-10 d-flex justify-content-center flex-column align-items-center bgc3">
 					<div class = "outer d-flex align-items-center pt-3 flex-column">
 
-						<!-- Polaroid card -->
 						<div class = "inner">
 							<div id = "item-img-carousel" class = "carousel slide d-flex align-items-center overflow-hidden" data-bs-ride="carousel">
 								
 								<div class = "carousel-inner" id = "polaroid-pic-carousel">
 
-									{{!-- Sample Carousel Item... Will be replaced by hbs when necessary --}}
 									<div class = "carousel-item active" id = "polaroid-div-1">
 										<img src = "/img/placeholder/no-image.png" class = "d-block w-100  thumbnail" alt = "item 1"  id = "polaroid-pic-1">
 									</div>
@@ -116,12 +114,13 @@
 			</div>
 
 			<button class = "btn bgc1 align-self-center mt-4" type = "button" id = "preview-polaroid"> Click to preview</button>
+		</form>
 		<!-- The form will be continued on the next div -->
 	</div>
 
-	<div class="col-md-5 d-flex justify-content-center align-items-center flex-column">
+	<div class="col-md-5 d-flex  flex-column">
 		<!-- This is part of the form -->
-			<div class = "bgc5 p-5 d-flex flex-column justify-content-center">
+			<div class = " d-flex flex-column justify-content-center p-5">
 				<h3 class="f1 cwhite mb-3 bold">Product Information</h3>
 
 				<div  class = "form-text cwhite">Product Name</div>
@@ -138,7 +137,7 @@
 				</div>
 			</div>
 
-			<div class="d-flex flex-column align-self-center m-5 bgc5 p-5" id="confirm-add">
+			<div class="d-flex flex-column align-self-center p-5 mb-5" id="confirm-add">
 
 				<h3 class="cwhite">Add Product?</h3>
 
