@@ -1,8 +1,13 @@
+/* Javascript file routing the redirect strings to their respective controllers */
+
+/* Use the express web application framework*/
 const express = require('express');
 
+/* Use the krafts database and the db file for accessing the database */
 const krafts = express();
 const db = require('../models/db.js');
 
+/* Call the controllers for each of the web application features */
 const filesController = require('../controllers/files-controller.js');
 const indexController = require('../controllers/index-controller.js');
 const displayController = require('../controllers/display-controller.js');
@@ -10,6 +15,8 @@ const signUpController = require('../controllers/sign-up-controller.js');
 const logInController = require('../controllers/log-in-controller.js');
 const logOutController = require('../controllers/log-out-controller.js');
 const newProductController = require('../controllers/new-product-controller.js');
+
+/* Call the validation file */
 const validation = require('../helpers/validation.js');
 
 /* For file uploads */

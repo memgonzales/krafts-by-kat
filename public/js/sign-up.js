@@ -1,3 +1,5 @@
+/* Javascript file for displaying the dropdown menus on the sign up page */
+
 $(document).ready(function() {
 	/* Supply the contents of the region dropdown */
 	const ph = JSON.parse($('#ph').text());
@@ -27,6 +29,7 @@ $(document).ready(function() {
 		}
 	});
 
+	/* Supply the contents of the city dropdown depending on the province selected */
 	$('#province').on('change', function() {
 		const cities = loadCities($('#region').val(), $('#province').val(), ph, regionNumbers);
 		
@@ -38,6 +41,7 @@ $(document).ready(function() {
 		}
 	});
 
+	/* Supply the contents of the barangay dropdown depending on the city selected */
 	$('#city').on('change', function() {
 		const barangays = loadBarangays($('#region').val(), $('#province').val(), $('#city').val(), ph, regionNumbers);
 		
@@ -65,6 +69,12 @@ $(document).ready(function() {
 		});
 	});
 
+	/**
+	 * Maps region numbers to their respective region names
+	 * 
+	 * @param ph json file containing the location data
+	 * @return list of region names
+	 */
 	function mapRegionNumbers(ph) {
 		let regionNumbersMap = new Map();
 		for (let region in ph) {
@@ -74,6 +84,14 @@ $(document).ready(function() {
 		return regionNumbersMap;
 	}
 
+	/**
+	 * Loads the provinces for the specified region
+	 * 
+	 * @param regionName name of the region
+	 * @param ph json file containing the location data
+	 * @param regionNumbers list of region numbers
+	 * @return list of provinces
+	 */
 	function loadProvinces(regionName, ph, regionNumbers) {
 		let provinces = [];
 
@@ -84,6 +102,15 @@ $(document).ready(function() {
 		return provinces;
 	}
 
+	/**
+	 * Loads the cities for the specified province
+	 * 
+	 * @param regionName name of the region
+	 * @param provinceName name of the province
+	 * @param ph json file containing the location data
+	 * @param regionNumbers list of region numbers
+	 * @return list of cities
+	 */
 	function loadCities(regionName, provinceName, ph, regionNumbers) {
 		let cities = [];
 
@@ -94,6 +121,16 @@ $(document).ready(function() {
 		return cities;
 	}
 
+	/**
+	 * Loads the barangays for the specified city
+	 * 
+	 * @param regionName name of the region
+	 * @param provinceName name of the province
+	 * @param cityName name of the city
+	 * @param ph json file containing the location data
+	 * @param regionNumbers list of region numbers
+	 * @return list of barangays 
+	 */
 	function loadBarangays(regionName, provinceName, cityName, ph, regionNumbers) {
 		let barangays = [];
 

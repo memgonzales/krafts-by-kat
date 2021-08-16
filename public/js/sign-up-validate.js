@@ -450,15 +450,17 @@ $(document).ready(function() {
 		}
 	}
 	
-	
+	/* Validate the contact number for every key press */
 	$('#contact-number').keyup(function() {
 		validateField($('#contact-number'), $('#contact-number-error'));
 	});
 	
+	/* Validate the ZIP code for every key press */
 	$('#zip-code').keyup(function() {
 		validateField($('#zip-code'), $('#zip-code-error'));
 	});
 	
+	/* Validate the username for every key press */
 	$('#create-username').keyup(function() {
 		isValidUsername = false;
 		isChangedUsername = true;
@@ -466,6 +468,7 @@ $(document).ready(function() {
 		validateField($('#create-username'), $('#username-error'));
 	});
 	
+	/* Validate the email address for every key press */
 	$('#create-email').keyup(function() {
 		isValidEmail = false;
 		isChangedEmail = true;
@@ -473,17 +476,19 @@ $(document).ready(function() {
 		validateField($('#create-email'), $('#email-error'));
 	});
 	
-	
+	/* Validate the password for every key press */
 	$('#create-password').keyup(function() {
 		validateField($('#create-password'), $('#password-error'));
 	});
 	
+	/* Validate the password for confirmation for every key press */
 	$('#confirm-pass').keyup(function() {
 		isReachedConfirmPassword = true;
 		
 		validateField($('#confirm-pass'), $('#confirm-password-error'));
 	});
 
+	/* Scroll to the text field with an erroneous input if applicable */
 	$('#signup-submit').on('click', function(e) {
 		if (isSubmitButtonDisabled) {
 			e.preventDefault();

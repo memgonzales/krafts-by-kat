@@ -1,3 +1,7 @@
+/* JSON file containing the name of each region in the Philippines, along with its respective provinces, the 
+ * cities in each province, and the barangays in each city
+ */
+
 {
     "01": {
       "region_name": "REGION I (Ilocos Region)",
