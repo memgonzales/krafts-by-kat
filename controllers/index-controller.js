@@ -40,12 +40,8 @@ const indexController = {
 						/* Assign the results of the database retrieval to the variable items */
 						let items = result;
 
-						/* Counter variables for processing */
-						var i;
-						var j;
-
 						/* For each catalog item, push each detail to its respective array */
-						for (i = 0; i < items.length; i++) {
+						for (let i = 0; i < items.length; i++) {
 							names.push(items[i].name);
 							quantities.push(items[i].quantity);
 							descriptions.push(items[i].description);
@@ -64,7 +60,7 @@ const indexController = {
 							} else {
 								var totalRating = 0;
 
-								for (j = 0; j < items[i].ratings.length; j++) {
+								for (let j = 0; j < items[i].ratings.length; j++) {
 									totalRating += items[i].ratings[j];
 								}
 
