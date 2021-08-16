@@ -111,6 +111,10 @@ $(document).ready(function() {
 		let formattedProductName = productName.trim();
 		let formattedProductPrice = '₱'+ parseFloat(productPrice.trim()).toLocaleString('en-US', {maximumFractionDigits: 2});
 
+		if (isNaN(formattedProductPrice)) {
+			formattedProductPrice = '';
+		}
+
 		$('#item-name').text(formattedProductName);
 		$('#item-price').text(formattedProductPrice);
 	}
