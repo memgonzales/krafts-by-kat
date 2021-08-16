@@ -315,10 +315,9 @@ $(document).ready(function() {
 	 * Validates the text fields in the sign up page
 	 * 
 	 * @param field the text field to be validated
-	 * @param fieldName the name of the text field to be validated
-	 * @param error whether the text field input is invalid
+	 * @param error the container of the error message
 	 */
-	function validateField(field, fieldName, error) {
+	function validateField(field, error) {
 		let value = validator.trim(field.val());
 		
 		/* Check whether the text fields are valid */
@@ -453,36 +452,36 @@ $(document).ready(function() {
 	
 	
 	$('#contact-number').keyup(function() {
-		validateField($('#contact-number'), '', $('#contact-number-error'));
+		validateField($('#contact-number'), $('#contact-number-error'));
 	});
 	
 	$('#zip-code').keyup(function() {
-		validateField($('#zip-code'), '', $('#zip-code-error'));
+		validateField($('#zip-code'), $('#zip-code-error'));
 	});
 	
 	$('#create-username').keyup(function() {
 		isValidUsername = false;
 		isChangedUsername = true;
 		
-		validateField($('#create-username'), '', $('#username-error'));
+		validateField($('#create-username'), $('#username-error'));
 	});
 	
 	$('#create-email').keyup(function() {
 		isValidEmail = false;
 		isChangedEmail = true;
 		
-		validateField($('#create-email'), '', $('#email-error'));
+		validateField($('#create-email'), $('#email-error'));
 	});
 	
 	
 	$('#create-password').keyup(function() {
-		validateField($('#create-password'), '', $('#password-error'));
+		validateField($('#create-password'), $('#password-error'));
 	});
 	
 	$('#confirm-pass').keyup(function() {
 		isReachedConfirmPassword = true;
 		
-		validateField($('#confirm-pass'), '', $('#confirm-password-error'));
+		validateField($('#confirm-pass'), $('#confirm-password-error'));
 	});
 
 	$('#signup-submit').on('click', function(e) {
