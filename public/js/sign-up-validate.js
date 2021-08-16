@@ -451,6 +451,7 @@ $(document).ready(function() {
 		}
 	}
 	
+	
 	$('#contact-number').keyup(function() {
 		validateField($('#contact-number'), '', $('#contact-number-error'));
 	});
