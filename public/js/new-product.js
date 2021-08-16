@@ -1,8 +1,11 @@
+/* Javascript file for handling the front end of the new product page */
+
 $(document).ready(function() {
-	/* Initialize to five empty strings to handle changing of pictures */
+	/* Initialize five empty strings to handle changing of pictures */
 	let imgTargetResultsOrig = ['', '', '', '', ''];
 	const maxNumPictures = $('#img-parent-div').children().length;
 
+	/* */
 	triggerUpload();
 	changePicOnUpload();
 	preview();
