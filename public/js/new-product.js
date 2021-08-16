@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	/* Initialize to five empty strings to handle changing of pictures */
+	let imgTargetResultsOrig = ['', '', '', '', ''];
+
 	/* Click the image and trigger upload */
 	$('#img-1').on('click', function() {
 		$('#product-img-1').click();
@@ -49,11 +52,25 @@ $(document).ready(function() {
 
 	/* Refresh the preview */
 	$('#preview-polaroid').click(function() {
+		let imgTargetResults = [];
+
+		/* Push only uploaded images */
+		for (var imgTargetResult of imgTargetResultsOrig) {
+			if (imgTargetResult != '') {
+				imgTargetResults.push(imgTargetResult);
+			}
+		}
+
 		let imgCtr = imgTargetResults.length;
 		let i = 0;
 
-		let productName = $('#product-name').val();
-		let productPrice = $('#product-price').val();
+		/* Reset first polaroid picture to active status */
+		$('#polaroid-div-1').addClass('active');
+
+		/* Remove the existing polaroid pictures, except the first one */
+		for (let j = 2; j <= 5; j++) {
+			$('#polaroid-div-' + j).remove();
+		}
 
 		if (imgCtr >= 1) {
 			$('#polaroid-pic-1').attr('src', imgTargetResults[i]);
@@ -76,29 +93,47 @@ $(document).ready(function() {
 				img.id = "polaroid-pic-" + i;
 				img.className = "d-block w-100  thumbnail";
 				img.alt = "item " + i;
+				divImg.id = "polaroid-div-" + i;
 
 				imgCtr--;
 			}
 		}
 
+		let productName = $('#product-name').val();
+		let productPrice = $('#product-price').val();
 		let formattedProductName = productName.trim();
 		let formattedProductPrice = 'P ' + productPrice.trim();
 
-		$('#item-name').text(productName);
+		$('#item-name').text(formattedProductName);
 		$('#item-price').text(formattedProductPrice);
 	});
 
-	let imgTargetResults = [];
+	/* Clear the picture fields */
+	$('#cancel-product').click(function() {
+		/* The indices of the HTML IDs are one-based */
+		for (let i = 1; i <= 5; i++) {
+			$('#img-' + i).css('display', 'block');
+			$('#pic-' + i).css('display', 'none');
+
+			/* The indices of the array are zero-based. Remove the saved images */
+			imgTargetResultsOrig[i - 1] = '';
+
+			/* Use the image placeholder */
+			$('#polaroid-pic-1').attr('src', '/img/placeholder/no-image.png');
+			$('#preview-polaroid').click();
+		}
+	});
 
 	function readURL(input, i) {
 		if (input.files && input.files[0]) {
 			let reader = new FileReader();
 			reader.onload = function(e) {
 				$('#img-' + i).css('display', 'none');
+				$('#pic-' + i).css('display', 'block');
 				$('#pic-' + i).attr('src', e.target.result).width(150).height(100);
 
-				/* Store the image file paths in an array */
-				imgTargetResults.push(e.target.result);
+				/* Store the image file paths in an array. Subtract 1 from index since array is zero-based. */
+				imgTargetResultsOrig[i - 1] = e.target.result;
 			}
 			
 			reader.readAsDataURL(input.files[0]);

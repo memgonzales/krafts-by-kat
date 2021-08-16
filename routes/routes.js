@@ -24,13 +24,20 @@ krafts.post('/postSignup', validation.signUpValidation(), signUpController.postS
 krafts.get('/getCheckUsername', signUpController.getCheckUsername);
 krafts.get('/getCheckEmail', signUpController.getCheckEmail);
 
-
 /* For log in page */
 krafts.post('/postLogIn', logInController.postLogIn);
 
+/* For user page */
 krafts.get('/logOut', logOutController.getLogOut);
 
+/* For new product page */
 krafts.get('/newProduct', newProductController.getNewProduct);
+const newProductFields = [{name: 'productImg1', maxCount: 1},
+                          {name: 'productImg2', maxCount: 1},
+                          {name: 'productImg3', maxCount: 1},
+                          {name: 'productImg4', maxCount: 1},
+                          {name: 'productImg5', maxCount: 1}];
+krafts.post('/postNewProduct', db.connect().fields(newProductFields), newProductController.postNewProduct);
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');

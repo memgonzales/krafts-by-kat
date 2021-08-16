@@ -7,153 +7,149 @@
 
 	<div class="col-md-7 ps-4">
 		
-		<form method = "POST" class = "bgc5 p-5 d-flex flex-column justify-content-center align-self-center " id = "upload-new-product-form">
+		<form method = "POST" action = "/postNewProduct" enctype = "multipart/form-data" class = "bgc5 p-5 d-flex flex-column justify-content-center align-self-center " id = "upload-new-product-form">
         
-				<h3 class = "f1 cwhite bold mb-3">Product Images</h3>
+			<h3 class = "f1 cwhite bold mb-3">Product Images</h3>
 
-				<div class="container d-flex flex-row">
+			<div class="container d-flex flex-row">
 
-					<div class="col-md-2 d-flex flex-column">
+				<div class="col-md-2 d-flex flex-column">
 
-						<div class = "container img-frame d-flex justify-content-center align-items-center overflow-hidden my-2"> 
+					<div class = "container img-frame d-flex justify-content-center align-items-center overflow-hidden my-2"> 
 
-							<i class = "far fa-images fa-3x fc3" id = "img-1"></i>
-							<img id = "pic-1">
-							<input type = "file" accept = "image/*" id = "product-img-1" class = "hidden">
+						<i class = "far fa-images fa-3x fc3" id = "img-1"></i>
+						<img id = "pic-1">
+						<input type = "file" accept = "image/*" id = "product-img-1" class = "hidden" name = "productImg1">
+				
+					</div>
+
+					<div class = "container img-frame d-flex justify-content-center align-items-center overflow-hidden my-2"> 
+
+						<i class = "far fa-images fa-3x mx-3 fc3" id = "img-2"></i>
+						<img id = "pic-2">
+						<input type = "file" accept = "image/*" id = "product-img-2" class = "hidden" name = "productImg2">
 					
-						</div>
-
-						<div class = "container img-frame d-flex justify-content-center align-items-center overflow-hidden my-2"> 
-
-							<i class = "far fa-images fa-3x mx-3 fc3" id = "img-2"></i>
-							<img id = "pic-2">
-							<input type = "file" accept = "image/*" id = "product-img-2" class = "hidden">
-						
-						</div>
-
-						<div class = "container img-frame d-flex justify-content-center align-items-center overflow-hidden my-2"> 
-
-							<i class = "far fa-images fa-3x mx-3 fc3" id = "img-3"></i>
-							<img id = "pic-3">
-							<input type = "file" accept = "image/*" id = "product-img-3" class = "hidden">
-							
-						</div>
-
-						<div class = "container img-frame d-flex justify-content-center align-items-center overflow-hidden my-2"> 
-
-							<i class = "far fa-images fa-3x mx-3 fc3" id = "img-4"></i>
-							<img id = "pic-4">
-							<input type = "file" accept = "image/*" id = "product-img-4" class = "hidden">
-						
-						</div>
-
-						<div class = "container img-frame d-flex justify-content-center align-items-center overflow-hidden my-2"> 
-
-							<i class = "far fa-images fa-3x mx-3 fc3" id = "img-5"></i> 
-							<img id = "pic-5">
-							<input type = "file" accept = "image/*" id = "product-img-5" class = "hidden">
-							
-						</div>
-
 					</div>
 
-					<div class="col-md-10 d-flex justify-content-center flex-column align-items-center bgc3">
-						<div class = "outer d-flex align-items-center pt-3 flex-column">
+					<div class = "container img-frame d-flex justify-content-center align-items-center overflow-hidden my-2"> 
 
-							<!-- Polaroid card -->
-							<div class = "inner">
-								<div id = "item-img-carousel" class = "carousel slide d-flex align-items-center overflow-hidden" data-bs-ride="carousel">
-									
-									<div class = "carousel-inner" id = "polaroid-pic-carousel">
-
-										{{!-- Sample Carousel Item... Will be replaced by hbs when necessary --}}
-										<div class = "carousel-item active">
-											<img src = "/img/placeholder/no-image.png" class = "d-block w-100  thumbnail" alt = "item 1"  id = "polaroid-pic-1">
-										</div>
-
-									</div>
-
-									<button class = "carousel-control-prev" type = "button" data-bs-target = "#item-img-carousel" data-bs-slide = "prev">
-
-										<span class = "carousel-control-prev-icon" aria-hidden = "true"></span>
-
-										<span class = "visually-hidden">Previous</span>
-
-									</button>
-
-									<button class = "carousel-control-next" type = "button" data-bs-target = "#item-img-carousel" data-bs-slide = "next">
-
-										<span class = "carousel-control-next-icon" aria-hidden = "true"></span>
-
-										<span class = "visually-hidden">Next</span>
-										
-									</button>
-									
-								</div>
-
-							</div>
-							
-							<div class = "container-fluid f1 item overflow-hidden" id = "item-info">
-
-								<span class = "d-inline-block text-truncate item mt-2" id = "item-name" style = "max-width: 290px;">
-									An absurdly long amount of lines with the objective to see how much the text needs to be before it is needed to truncate
-								</span>
-
-								<div class = "container d-flex flex-row justify-content-center mt-2">
-
-									<span class = "addl" id = "item-price">P 1304</span>
-
-									<span class = "addl" id = "item-rating">4.5<i class = "fas fa-star ms-1"></i></span>
-
-									<span class = "addl" id = "item-sale-count"> 299 sold</span>
-
-								</div>
-								
-							</div>
-						</div>
-
+						<i class = "far fa-images fa-3x mx-3 fc3" id = "img-3"></i>
+						<img id = "pic-3">
+						<input type = "file" accept = "image/*" id = "product-img-3" class = "hidden" name = "productImg3">
+						
 					</div>
+
+					<div class = "container img-frame d-flex justify-content-center align-items-center overflow-hidden my-2"> 
+
+						<i class = "far fa-images fa-3x mx-3 fc3" id = "img-4"></i>
+						<img id = "pic-4">
+						<input type = "file" accept = "image/*" id = "product-img-4" class = "hidden" name = "productImg4">
+					
+					</div>
+
+					<div class = "container img-frame d-flex justify-content-center align-items-center overflow-hidden my-2"> 
+
+						<i class = "far fa-images fa-3x mx-3 fc3" id = "img-5"></i> 
+						<img id = "pic-5">
+						<input type = "file" accept = "image/*" id = "product-img-5" class = "hidden" name = "productImg5">
+						
+					</div>
+
 				</div>
 
-				<button class = "btn bgc1 align-self-center mt-4" type = "button" id = "preview-polaroid"> Click to preview</button>
-				
-		</form>
+				<div class="col-md-10 d-flex justify-content-center flex-column align-items-center bgc3">
+					<div class = "outer d-flex align-items-center pt-3 flex-column">
 
+						<!-- Polaroid card -->
+						<div class = "inner">
+							<div id = "item-img-carousel" class = "carousel slide d-flex align-items-center overflow-hidden" data-bs-ride="carousel">
+								
+								<div class = "carousel-inner" id = "polaroid-pic-carousel">
+
+									{{!-- Sample Carousel Item... Will be replaced by hbs when necessary --}}
+									<div class = "carousel-item active" id = "polaroid-div-1">
+										<img src = "/img/placeholder/no-image.png" class = "d-block w-100  thumbnail" alt = "item 1"  id = "polaroid-pic-1">
+									</div>
+
+								</div>
+
+								<button class = "carousel-control-prev" type = "button" data-bs-target = "#item-img-carousel" data-bs-slide = "prev">
+
+									<span class = "carousel-control-prev-icon" aria-hidden = "true"></span>
+
+									<span class = "visually-hidden">Previous</span>
+
+								</button>
+
+								<button class = "carousel-control-next" type = "button" data-bs-target = "#item-img-carousel" data-bs-slide = "next">
+
+									<span class = "carousel-control-next-icon" aria-hidden = "true"></span>
+
+									<span class = "visually-hidden">Next</span>
+									
+								</button>
+								
+							</div>
+
+						</div>
+						
+						<div class = "container-fluid f1 item overflow-hidden" id = "item-info">
+
+							<span class = "d-inline-block text-truncate item mt-2" id = "item-name" style = "max-width: 290px;">
+								An absurdly long amount of lines with the objective to see how much the text needs to be before it is needed to truncate
+							</span>
+
+							<div class = "container d-flex flex-row justify-content-center mt-2">
+
+								<span class = "addl" id = "item-price">P 1304</span>
+
+								<span class = "addl" id = "item-rating">4.5<i class = "fas fa-star ms-1"></i></span>
+
+								<span class = "addl" id = "item-sale-count"> 299 sold</span>
+
+							</div>
+							
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<button class = "btn bgc1 align-self-center mt-4" type = "button" id = "preview-polaroid"> Click to preview</button>
+		<!-- The form will be continued on the next div -->
 	</div>
 
 	<div class="col-md-5 d-flex justify-content-center align-items-center flex-column">
+		<!-- This is part of the form -->
+			<div class = "bgc5 p-5 d-flex flex-column justify-content-center">
+				<h3 class="f1 cwhite mb-3 bold">Product Information</h3>
 
+				<div  class = "form-text cwhite">Product Name</div>
+				<input type = "text" id = "product-name" name = "productName" required>
 
-		<form method = "POST" class = "bgc5 p-5 d-flex flex-column justify-content-center  " id = "new-product-form">
-			<h3 class="f1 cwhite mb-3 bold">Product Information</h3>
+				<div  class = "form-text cwhite">Product Description</div>
+				<textarea id = "product-desc" name = "productDesc" rows = "7"></textarea>
 
-			<div  class = "form-text cwhite">Product Name</div>
-			<input type = "text" id = "product-name" name = "product-name">
+				<div class = "d-flex justify-content-between"> 
 
-			<div  class = "form-text cwhite">Product Description</div>
-			<textarea id = "product-desc" name = "product-desc" rows = "7"></textarea>
+					<input type = "number" step = ".01" min = "0" id = "product-price" placeholder = "Price per unit" name = "productPrice" required>
 
-			<div class = "d-flex justify-content-between"> 
+					<input type = "number" min = "0" id = "product-quantity" placeholder = "Quantity available" name = "productQuantity" required>
+				</div>
+			</div>
 
-				<input type = "number" step = ".01" min = "0" id = "product-price" placeholder = "Price per unit">
+			<div class="d-flex flex-column align-self-center m-5 bgc5 p-5" id="confirm-add">
 
+				<h3 class="cwhite">Add Product?</h3>
+
+				<div class="d-flex justify-content-between mt-2">
+					<button type = "submit" class = "btn bgc4 align-self-center me-3" id = "new-product-submit">Add</button>
+					<button type = "reset" class = "btn bgc4 align-self-center ms-3" id = "cancel-product">Cancel</button>
+				</div>
 				
-				<input type = "number" min = "0" id = "product-quantity" placeholder = "Quantity available">
 			</div>
-   	 	</form>
 
-		<div class="d-flex flex-column align-self-center m-5 bgc5 p-5" id="confirm-add">
-
-			<h3 class="cwhite">Add Product?</h3>
-
-			<div class="d-flex justify-content-between mt-2">
-				<button type = "submit" class = "btn bgc4 align-self-center me-3" id = "new-product-submit" disabled>Add</button>
-				<button type = "reset" class = "btn bgc4 align-self-center ms-3">Cancel</button>
-			</div>
-			
-		</div>
-		
-	
+		</form>
 	</div>
 	
 </div>
