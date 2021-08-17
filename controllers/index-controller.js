@@ -25,7 +25,7 @@ const indexController = {
 				let appLogo = result;
 				
 				/* Assign the needed details of the item catalog documents to the variable projection */
-				let projection = 'name quantity description price commentIds pictures ratings numberSold';
+				let projection = 'name quantity description price commentIds pictures ratings numberSold visible';
 
 				/* The needed details of all catalog items are retrieved to be displayed on the landing page */
 				db.findMany(CatalogItem, {}, projection, function(result) {
@@ -45,31 +45,35 @@ const indexController = {
 						/* Assign the results of the database retrieval to the variable items */
 						let items = result;
 
-						/* For each catalog item, push each detail to its respective array */
+						/* For each catalog item, push each detail to its respective array if the item
+						 * has been made visible and is not depleted 
+						 */
 						for (let i = 0; i < items.length; i++) {
-							names.push(items[i].name);
-							quantities.push(items[i].quantity);
-							descriptions.push(items[i].description);
-							prices.push(items[i].price);
-							numberSold.push(items[i].numberSold);
-							/* Currently, commentIds are stored as comments (will change to actual comments once comment functionality has been implemented) */
-							comments.push(items[i].commentIds);
-							pictures.push(items[i].pictures);
-							ratings.push(items[i].ratings);
+							if (items[i].visible && items[i].quantity > 0) {
+								names.push(items[i].name);
+								quantities.push(items[i].quantity);
+								descriptions.push(items[i].description);
+								prices.push(items[i].price);
+								numberSold.push(items[i].numberSold);
+								/* Currently, commentIds are stored as comments (will change to actual comments once comment functionality has been implemented) */
+								comments.push(items[i].commentIds);
+								pictures.push(items[i].pictures);
+								ratings.push(items[i].ratings);
 
-							/* Average rating is displayed as 0 if there are no ratings yet */
-							if (items[i].ratings.length == 0) {
-								aveRatings.push(0);
+								/* Average rating is displayed as 0 if there are no ratings yet */
+								if (items[i].ratings.length == 0) {
+									aveRatings.push(0);
 
-							/* Otherwise, the average rating is computed and displayed */
-							} else {
-								var totalRating = 0;
+								/* Otherwise, the average rating is computed and displayed */
+								} else {
+									var totalRating = 0;
 
-								for (let j = 0; j < items[i].ratings.length; j++) {
-									totalRating += items[i].ratings[j];
+									for (let j = 0; j < items[i].ratings.length; j++) {
+										totalRating += items[i].ratings[j];
+									}
+
+									aveRatings.push(totalRating / items[i].ratings.length);
 								}
-
-								aveRatings.push(totalRating / items[i].ratings.length);
 							}
 						}
 

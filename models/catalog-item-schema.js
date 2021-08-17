@@ -50,6 +50,12 @@ const catalogItemSchema = new mongoose.Schema({
     numberSold: {
         type: Number,
         required: true
+    },
+
+    /* Whether the item can be seen by customers and unregistered users */
+    visible: {
+        type: Boolean,
+        required: true
     }
 });
 

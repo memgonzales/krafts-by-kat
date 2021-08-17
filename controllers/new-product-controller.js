@@ -93,7 +93,8 @@ const newProductController = {
 			commentIds: [],
 			pictures: paths,
 			ratings: [],
-			numberSold: 0
+			numberSold: 0,
+			visible: true
 		}
 
 		/* Insert the new product into the database and redirect the user to the landing page */
