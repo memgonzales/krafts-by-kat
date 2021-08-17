@@ -6,7 +6,12 @@ const Display = require('../models/display-schema.js');
 const CatalogItem = require('../models/catalog-item-schema.js');
 
 const indexController = {
-	/* Get the landing page */
+	/**
+	 * Gets the landing page
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
 	getDisplay: function(req, res) {
 		/* Query for retrieving the web application logo */
 		let query = {id: 0};
@@ -105,7 +110,8 @@ const indexController = {
 									productComments: comments,
 									productPictures: pictures,
 									productRatings: aveRatings,
-									productNumberSold: numberSold
+									productNumberSold: numberSold,
+									username: req.session.username
 								}
 
 								res.render('index', details);
@@ -125,7 +131,8 @@ const indexController = {
 									productComments: comments,
 									productPictures: pictures,
 									productRatings: aveRatings,
-									productNumberSold: numberSold
+									productNumberSold: numberSold,
+									username: req.session.username
 								}
 
 								res.render('index', details);

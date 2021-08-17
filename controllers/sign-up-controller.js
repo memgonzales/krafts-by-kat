@@ -14,7 +14,12 @@ const saltRounds = 10;
 
 const signUpController = {
 
-	/* Retrieve the sign up page */
+	/**
+	 * Retrieves the sign up page
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
 	getSignUp: function(req, res) {
 
 		/* Prepare a query for the display schema */
@@ -49,7 +54,12 @@ const signUpController = {
 		});	
 	},
 
-	/* Submit information stored in the sign up page */
+	/**
+	 * Submits information stored in the sign up page
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
 	postSignUp: function(req, res) {
 		
 		/* Retrieve user inputs */
@@ -110,7 +120,12 @@ const signUpController = {
 		}	
     },
 	
-	/* Verify whether the entered username is unique */
+	/**
+	 * Verifies whether the entered username is unique
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
 	getCheckUsername: function(req, res) {
 
 		/* Retrieve the pertinent user input */
@@ -125,7 +140,12 @@ const signUpController = {
 		});
 	},
 	
-	/* Verify whether the entered email address is unique */
+	/**
+	 * Verifies whether the entered email address is unique
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
 	getCheckEmail: function(req, res) {
 
 		/* Retrieve the pertinent user input */

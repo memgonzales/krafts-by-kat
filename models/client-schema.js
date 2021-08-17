@@ -40,7 +40,7 @@ const clientSchema = new mongoose.Schema({
         required: true
     },
 
-    /* Account contact number (mobile number) */
+    /* Account contact number */
     contactNumber: {
         type: String,
         required: true

@@ -10,7 +10,12 @@ const mongoose = require('mongoose');
 const grid = require('gridfs-stream');
 
 const filesController = {
-	/* Retrieve an image file from the database */
+	/**
+	 * Retrieves an image file from the database
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server  
+	 */
 	getFile: function(req, res) {
 		let connection = mongoose.connection;
 		let gfs = grid(connection.db, mongoose.mongo);
