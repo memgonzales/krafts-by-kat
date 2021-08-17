@@ -1,43 +1,8 @@
 {{>navbar}}
 
 <div class="container-fluid content d-flex flex-row f1" id="account-container" >
-    <div class="col-md-3 bgc3 vh-100 ps-5 pt-5 pb-5" id="sidebar">
-
-        <h2>Account Settings</h2>
-
-        <ul class="nav d-flex flex-column justify-content-center cblack">
-
-            <li class="nav-item">
-                <a class="nav-link cblack" href="/account">My Account</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link cblack" href="/account/purchase-history">Purchase History</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link cblack" href="/account/support">Support</a>
-            </li>
-        </ul>
-
-        <h2 class="mt-5">Admin</h2>
-
-        <ul class="nav d-flex flex-column justify-content-center cblack">
-
-            <li class="nav-item">
-                <a class="nav-link cblack" href="/account/admin/orders">Orders</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link cblack" href="/account/admin/messages">Messages</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link cblack active" href="/account/admin/products-manager">Products Manager</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link cblack" href="/account/admin/clients-manager">Clients Manager</a>
-            </li>
-        </ul>
-
-    </div>
+    {{>account-sidebar isAdmin = isAdmin accountTab = false purchaseHistoryTab = false supportTab = false
+                       ordersTab = false messagesTab = false productsManagerTab = true clientsManagerTab = false}}
 
     <div class="col-md-9" id="sidebar-content">
         

@@ -39,25 +39,7 @@ const newProductController = {
 				 * only the administrator is allowed to add products to the catalog
 				 */
 				} else {
-					if (req.session.username == undefined) {
-						let details = {
-							style: 'index',
-							logo: result.logo,
-							userFlag: false,
-							adminFlag: false
-						}
-
-						res.render('index', details);
-					} else {
-						let details = {
-							style: 'index',
-							logo: result.logo,
-							userFlag: true,
-							adminFlag: false
-						}
-
-						res.render('index', details);
-					}
+					res.redirect('/');
 				}	
 
 			/* If the data retrieval was not successful, display an error message */			
