@@ -1,0 +1,36 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delete-product-modal">
+  Launch demo modal
+</button>
+
+<div class = "container">
+    <!-- Modal -->
+    <div class = "modal fade" id = "delete-product-modal" tabindex = "-1" aria-hidden = "true">
+
+    <div class = "modal-dialog d-flex justify">
+
+        <div class = "modal-content d-flex flex-column align-items-center">
+
+            <div class = "col-md-6 bgc4 d-flex justify-content-center align-items-center" id = "delete-upper">
+
+                <i class="fas fa-exclamation-triangle fa-5x"></i>
+
+            </div>
+
+            <div class = "col-md-6 bgc3 d-flex justify-content-center align-items-center flex-column f1 p-5" id = "delete-lower">
+               
+                <span class = "text-center delete-msg" id = "delete-prompt">Are you sure you want delete <span class="bolder delete-msg" id="delete-product-name">Product name here</span>?</span>  
+
+                <div class="d-flex container justify-content-between" >
+                    <button type = "button" class = "btn bgc4 cblack mt-5" id = "continue-delete">Continue</button>
+                    <button type = "button" class = "btn bgc5 cwhite mt-5" data-bs-dismiss = "modal" id = "cancel-delete">Cancel</button>
+                </div>
+           
+            </div>
+        </div>
+
+    </div>
+    
+    </div>
+
+</div>

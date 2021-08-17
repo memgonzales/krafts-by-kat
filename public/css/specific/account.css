@@ -7,6 +7,8 @@
     --black: black;
     --white: white;
 }
+
+/* Account Page Navigation CSS */
 #account-container{
     padding: 0px 0px 0px 0px;
 }
@@ -60,3 +62,35 @@
 #product-name{
     font-size: 15pt;
 }
+
+/* END of Account Page Navigation CSS */
+
+
+/* Delete Modal CSS */
+#delete-upper{
+    width: 350px;
+    height: 250px;
+
+    border-radius: 20px 20px 0px 0px;
+}
+#delete-lower{
+
+    width: 350px;
+    height: 250px;
+    border-radius: 0px 0px 20px 20px;
+}
+
+#continue-btn{
+    border-radius: 20px;
+
+    box-shadow: -1px 3px 5px 0px rgba(0,0,0,0.71);
+    -webkit-box-shadow: -1px 3px 5px 0px rgba(0,0,0,0.71);
+    -moz-box-shadow: -1px 3px 5px 0px rgba(0,0,0,0.71);
+}
+
+.delete-msg{
+    font-size: 14pt;
+}
+
+/* END of Delete Modal CSS */
+
