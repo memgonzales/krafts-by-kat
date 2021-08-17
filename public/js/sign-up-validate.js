@@ -1,4 +1,4 @@
-/* Javascript file for validating the user input in the sign up page */
+/* JavaScript file for validating the user input in the sign up page */
 
 $(document).ready(function() {
 	

@@ -1,4 +1,4 @@
-/* Javascript file for handling the front end of the log in page */
+/* JavaScript file for handling the front end of the log in page */
 
 $(document).ready(function() {
 	$('#login-form').on('submit', function(e) {		

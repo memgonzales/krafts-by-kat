@@ -1,5 +1,5 @@
-/* Javascript file for handling the front end of the landing page "polaroid" elements 
- * (i.e., the catalog item displays 
+/* JavaScript file for handling the front end of the landing page "polaroid" elements 
+ * (i.e., the catalog item displays) 
  */
 
 $(document).ready(function() {

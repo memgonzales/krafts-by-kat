@@ -1,4 +1,4 @@
-/* Javascript file for handling the front end of the new product page */
+/* JavaScript file for handling the front end of the new product page */
 
 $(document).ready(function() {
 

@@ -1,4 +1,4 @@
-/* Javascript file for displaying the dropdown menus on the sign up page */
+/* JavaScript file for displaying the dropdown menus on the sign up page */
 
 $(document).ready(function() {
 	/* Supply the contents of the region dropdown */
@@ -85,7 +85,7 @@ $(document).ready(function() {
 	}
 
 	/**
-	 * Loads the provinces for the specified region
+	 * Loads the provinces of the specified region
 	 * 
 	 * @param regionName name of the region
 	 * @param ph json file containing the location data
@@ -103,13 +103,13 @@ $(document).ready(function() {
 	}
 
 	/**
-	 * Loads the cities for the specified province
+	 * Loads the municipalities/cities of the specified province
 	 * 
 	 * @param regionName name of the region
 	 * @param provinceName name of the province
 	 * @param ph json file containing the location data
 	 * @param regionNumbers list of region numbers
-	 * @return list of cities
+	 * @return list of municipalities/cities
 	 */
 	function loadCities(regionName, provinceName, ph, regionNumbers) {
 		let cities = [];
@@ -122,7 +122,7 @@ $(document).ready(function() {
 	}
 
 	/**
-	 * Loads the barangays for the specified city
+	 * Loads the barangays of the specified city
 	 * 
 	 * @param regionName name of the region
 	 * @param provinceName name of the province
