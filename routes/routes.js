@@ -58,9 +58,7 @@ krafts.post('/uploadLogo', db.connect().single('upload-test'), displayController
 krafts.get('/partials-test', function(req,res){
     var obj = {
         style: 'sign-up'
-
     }
-
     res.render('partials-test',obj);
 });
 
@@ -69,7 +67,6 @@ krafts.get('/view-product', function(req,res){
     var obj = {
         style: 'view-product'
     }
-
     res.render('view-product',obj);
 });
 
@@ -77,7 +74,6 @@ krafts.get('/order', function(req,res){
     var obj = {
         style: 'order-product'
     }
-
     res.render('order-product', obj);
 })
 
