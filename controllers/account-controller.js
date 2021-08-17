@@ -40,14 +40,7 @@ const accountController = {
 				/* If the user is not registered, redirect them to the landing page */
 				} else {
 					if (req.session.username == undefined) {
-						let details = {
-							style: 'index',
-							logo: result.logo,
-							userFlag: false,
-							adminFlag: false
-						}
-
-						res.render('index', details);
+						res.redirect('/');
 
 					/* If the user is using a regular account, display the nav bar accordingly */	
 					} else {
@@ -56,8 +49,7 @@ const accountController = {
 							logo: result.logo,
 							userFlag: true,
 							adminFlag: false,
-							username: req.session.username,
-							isAdmin: req.session.isAdmin
+							username: req.session.username
 						}
 
 						res.render('user-account', details);
@@ -104,14 +96,7 @@ const accountController = {
 				/* If the user is not registered, redirect them to the landing page */
 				} else {
 					if (req.session.username == undefined) {
-						let details = {
-							style: 'index',
-							logo: result.logo,
-							userFlag: false,
-							adminFlag: false
-						}
-
-						res.render('index', details);
+						res.redirect('/');
 
 					/* If the user is using a regular account, display the nav bar accordingly */	
 					} else {
@@ -120,8 +105,7 @@ const accountController = {
 							logo: result.logo,
 							userFlag: true,
 							adminFlag: false,
-							username: req.session.username,
-							isAdmin: req.session.isAdmin
+							username: req.session.username
 						}
 
 						res.render('user-purchase-history', details);
@@ -168,14 +152,7 @@ const accountController = {
 				/* If the user is not registered, redirect them to the landing page */
 				} else {
 					if (req.session.username == undefined) {
-						let details = {
-							style: 'index',
-							logo: result.logo,
-							userFlag: false,
-							adminFlag: false
-						}
-
-						res.render('index', details);
+						res.redirect('/');
 
 					/* If the user is using a regular account, display the nav bar accordingly */	
 					} else {
@@ -184,8 +161,7 @@ const accountController = {
 							logo: result.logo,
 							userFlag: true,
 							adminFlag: false,
-							username: req.session.username,
-							isAdmin: req.session.isAdmin
+							username: req.session.username
 						}
 
 						res.render('user-support', details);
@@ -229,31 +205,9 @@ const accountController = {
 
 					res.render('admin-orders', details);
 
-				/* If the user is not registered, redirect them to the landing page */
+				/* If the user is not the admin, redirect them to the landing page */
 				} else {
-					if (req.session.username == undefined) {
-						let details = {
-							style: 'index',
-							logo: result.logo,
-							userFlag: false,
-							adminFlag: false
-						}
-
-						res.render('index', details);
-
-					/* If the user is using a regular account, display the nav bar accordingly */	
-					} else {
-						let details = {
-							style: 'account',
-							logo: result.logo,
-							userFlag: true,
-							adminFlag: false,
-							username: req.session.username,
-							isAdmin: req.session.isAdmin
-						}
-
-						res.render('admin-orders', details);
-					}
+					res.redirect('/');
 				}	
 
 			/* If the data retrieval was not successful, display an error message */			
@@ -293,31 +247,9 @@ const accountController = {
 
 					res.render('admin-messages', details);
 
-				/* If the user is not registered, redirect them to the landing page */
+				/* If the user is not the admin, redirect them to the landing page */
 				} else {
-					if (req.session.username == undefined) {
-						let details = {
-							style: 'index',
-							logo: result.logo,
-							userFlag: false,
-							adminFlag: false
-						}
-
-						res.render('index', details);
-
-					/* If the user is using a regular account, display the nav bar accordingly */	
-					} else {
-						let details = {
-							style: 'account',
-							logo: result.logo,
-							userFlag: true,
-							adminFlag: false,
-							username: req.session.username,
-							isAdmin: req.session.isAdmin
-						}
-
-						res.render('admin-messages', details);
-					}
+					res.redirect('/');
 				}	
 
 			/* If the data retrieval was not successful, display an error message */			
@@ -357,31 +289,9 @@ const accountController = {
 
 					res.render('admin-products-manager', details);
 
-				/* If the user is not registered, redirect them to the landing page */
+				/* If the user is not the admin, redirect them to the landing page */
 				} else {
-					if (req.session.username == undefined) {
-						let details = {
-							style: 'index',
-							logo: result.logo,
-							userFlag: false,
-							adminFlag: false
-						}
-
-						res.render('index', details);
-
-					/* If the user is using a regular account, display the nav bar accordingly */	
-					} else {
-						let details = {
-							style: 'account',
-							logo: result.logo,
-							userFlag: true,
-							adminFlag: false,
-							username: req.session.username,
-							isAdmin: req.session.isAdmin
-						}
-
-						res.render('admin-products-manager', details);
-					}
+					res.redirect('/');
 				}	
 
 			/* If the data retrieval was not successful, display an error message */			
@@ -421,31 +331,9 @@ const accountController = {
 
 					res.render('admin-clients-manager', details);
 
-				/* If the user is not registered, redirect them to the landing page */
+				/* If the user is not the admin, redirect them to the landing page */
 				} else {
-					if (req.session.username == undefined) {
-						let details = {
-							style: 'index',
-							logo: result.logo,
-							userFlag: false,
-							adminFlag: false
-						}
-
-						res.render('index', details);
-
-					/* If the user is using a regular account, display the nav bar accordingly */	
-					} else {
-						let details = {
-							style: 'account',
-							logo: result.logo,
-							userFlag: true,
-							adminFlag: false,
-							username: req.session.username,
-							isAdmin: req.session.isAdmin
-						}
-
-						res.render('admin-clients-manager', details);
-					}
+					res.redirect('/');
 				}	
 
 			/* If the data retrieval was not successful, display an error message */			
