@@ -1,0 +1,31 @@
+:root{
+    --black: black;
+}
+
+#order-form{
+    border-radius: 20px;
+    width: 1200px;
+}
+
+#order-name{
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 2px solid var(--black);
+    font-size: 30px;
+}
+
+#order-header, #order-details{
+    border-radius: 5px;
+}
+
+#add-cart-icon{
+    border-radius: 100px;
+}
+
+
+
+input{
+    border: none;
+    border-radius: 5px;
+}

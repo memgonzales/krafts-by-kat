@@ -64,6 +64,14 @@ krafts.get('/view-product', function(req,res){
     }
 
     res.render('view-product',obj);
+});
+
+krafts.get('/order', function(req,res){
+    var obj = {
+        style: 'order-product'
+    }
+
+    res.render('order-product', obj);
 })
 
 
