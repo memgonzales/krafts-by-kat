@@ -5,31 +5,31 @@
     </div>
     <div class="col-md-9 d-flex flex-column"> 
 
-        <div id = "product_id" style = "display: none;">{{lookup ../ids @index}}</div>
+        <div id = "product-id-{{@index}}" class = "hidden">{{lookup ../ids @index}}</div>
 
-        <div id = "product-name">
+        <div id = "product-name-{{@index}}">
             {{this}}
         </div>
 
-        <div class="pt-4 d-flex flex-row justify-content-start align-items-center"id="product-details">
-            <span class = "me-4" id = "item-price">P {{lookup ../prices @index}}</span>
+        <div class="pt-4 d-flex flex-row justify-content-start align-items-center" id="product-details-{{@index}}">
+            <span class = "me-4" id = "item-price-{{@index}}">P {{lookup ../prices @index}}</span>
 
-            <span class = "me-4" id = "item-rating">{{lookup ../aveRatings @index}}<i class = "fas fa-star ms-1"></i></span>
+            <span class = "me-4" id = "item-rating-{{@index}}">{{lookup ../aveRatings @index}}<i class = "fas fa-star ms-1"></i></span>
 
-            <span class = "me-4 " id = "item-sale-count"> {{lookup ../numberSold @index}} sold</span>
+            <span class = "me-4 " id = "item-sale-count-{{@index}}"> {{lookup ../numberSold @index}} sold</span>
         </div>
     
     </div>
     <div class="col-md-1 d-flex justify-content-end pe-3 pt-2">
         <div class="dropdown">
-            <button class="btn" type="button" id="product-options" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn" type="button" id="product-options-{{@index}}" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fas fa-ellipsis-v"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="product-options">
-                <li><a class="dropdown-item" href="#">View</a></li>
-                <li><a class="dropdown-item" href="#">Edit</a></li>
-                <li><a class="dropdown-item" href="#">Hide</a></li>
-                <li><a class="dropdown-item" data-toggle="modal" href="#delete-product-modal">Delete</a></li>
+                <li><a class="dropdown-item" href="#" id = "view-dropdown-{{@index}}">View</a></li>
+                <li><a class="dropdown-item" href="#" id = "edit-dropdown-{{@index}}">Edit</a></li>
+                <li><a class="dropdown-item" href="#" id = "hide-dropdown-{{@index}}">Hide</a></li>
+                <li><a class="dropdown-item delete-dropdown" data-toggle="modal" id = "delete-dropdown-{{@index}}">Delete</a></li>
             </ul>
         </div>
         
@@ -49,10 +49,13 @@
             <div class = "col-md-6 bgc3 d-flex justify-content-center align-items-center flex-column f1 p-5" id = "delete-lower">
                
                 <span class = "text-center delete-msg" id = "delete-prompt">Are you sure you want delete <span class="bolder delete-msg" id="delete-product-name">Product name here</span>?</span>  
-
                 <div class="d-flex container justify-content-between" >
-                    <button type = "button" class = "btn bgc4 cblack mt-5" id = "continue-delete">Continue</button>
-                    <button type = "button" class = "btn bgc5 cwhite mt-5" data-bs-dismiss = "modal" id = "cancel-delete">Cancel</button>
+                    <form id = "modal-delete-form">
+                        <input type = "hidden" id = "modal-delete-product-id">
+
+                        <button type = "submit" class = "btn bgc4 cblack mt-5" id = "continue-delete">Continue</button>
+                        <button type = "button" class = "btn bgc5 cwhite mt-5" data-bs-dismiss = "modal" id = "cancel-delete">Cancel</button>
+                    </form>
                 </div>       
             </div>
         </div>
