@@ -418,7 +418,7 @@ const accountController = {
 
 							let details = {
 								style: 'account',
-								logo: appLogo,
+								logo: appLogo.logo,
 								userFlag: true,
 								adminFlag: true,
 								username: req.session.username,
