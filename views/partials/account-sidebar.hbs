@@ -1,0 +1,87 @@
+<div class="col-md-3 bgc3 vh-100 ps-5 pt-5 pb-5" id="sidebar">
+
+    <h2>Account Settings</h2>
+
+    <ul class="nav d-flex flex-column justify-content-center cblack">
+
+        {{#if accountTab}}
+            <li class="nav-item">
+                <a class="nav-link cblack active" href="/account">My Account</a>
+            </li>
+        {{else}}
+            <li class="nav-item">
+                <a class="nav-link cblack" href="/account">My Account</a>
+            </li>
+        {{/if}}
+
+        {{#if purchaseHistoryTab}}
+            <li class="nav-item">
+                <a class="nav-link cblack active" href="/account/purchaseHistory">Purchase History</a>
+            </li>
+        {{else}}
+            <li class="nav-item">
+                <a class="nav-link cblack" href="/account/purchaseHistory">Purchase History</a>
+            </li>
+        {{/if}}
+
+        {{#if supportTab}}
+            <li class="nav-item">
+                <a class="nav-link cblack active" href="/account/support">Support</a>
+            </li>
+        {{else}}
+            <li class="nav-item">
+                <a class="nav-link cblack" href="/account/support">Support</a>
+            </li>
+        {{/if}}
+    </ul>
+
+    {{#if isAdmin}}
+
+    <h2 class="mt-5">Admin</h2>
+
+    <ul class="nav d-flex flex-column justify-content-center cblack">
+
+        {{#if ordersTab}}
+            <li class="nav-item">
+                <a class="nav-link cblack active" href="/account/admin/orders">Orders</a>
+            </li>
+        {{else}}
+            <li class="nav-item">
+                <a class="nav-link cblack" href="/account/admin/orders">Orders</a>
+            </li>
+        {{/if}}
+
+        {{#if messagesTab}}
+            <li class="nav-item">
+                <a class="nav-link cblack active" href="/account/admin/messages">Messages</a>
+            </li>
+        {{else}}
+            <li class="nav-item">
+                <a class="nav-link cblack" href="/account/admin/messages">Messages</a>
+            </li>
+        {{/if}}
+
+        {{#if productsManagerTab}}
+            <li class="nav-item">
+                <a class="nav-link cblack active" href="/account/admin/productsManager">Products Manager</a>
+            </li>
+        {{else}}
+            <li class="nav-item">
+                <a class="nav-link cblack" href="/account/admin/productsManager">Products Manager</a>
+            </li>
+        {{/if}}
+
+        {{#if clientsManagerTab}}
+            <li class="nav-item">
+                <a class="nav-link cblack active" href="/account/admin/clientsManager">Clients Manager</a>
+            </li>
+        {{else}}
+            <li class="nav-item">
+                <a class="nav-link cblack" href="/account/admin/clientsManager">Clients Manager</a>
+            </li>
+        {{/if}}
+    </ul>
+
+    {{/if}}
+
+</div>
