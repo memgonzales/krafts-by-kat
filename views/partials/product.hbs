@@ -1,5 +1,5 @@
 {{#each names}}
-<div class="container bgc3 product d-flex flex-row p-3">
+<div class="container bgc3 product d-flex flex-row p-3 mt-3">
     <div class="col-md-2 p-1 d-flex">
         <img src="{{lookup ../pictures @index}}" id="product-img">
     </div>
@@ -49,12 +49,15 @@
             <div class = "col-md-6 bgc3 d-flex justify-content-center align-items-center flex-column f1 p-5" id = "delete-lower">
                
                 <span class = "text-center delete-msg" id = "delete-prompt">Are you sure you want to delete <span class="bolder delete-msg" id="deleteProductName">{{this}}</span>?</span>  
-                <div class="d-flex container justify-content-between" >
+                <div class="container" >
                     <form id = "modal-delete-form">
                         <input type = "hidden" id = "modal-delete-product-id" name = "modalDeleteProductId">
 
-                        <button type = "submit" class = "btn bgc4 cblack mt-5" id = "continue-delete">Continue</button>
-                        <button type = "button" class = "btn bgc5 cwhite mt-5" data-bs-dismiss = "modal" id = "cancel-delete">Cancel</button>
+                        <div class="d-flex justify-content-between">
+                            <button type = "submit" class = "btn bgc4 cblack mt-5" id = "continue-delete">Continue</button>
+                            <button type = "button" class = "btn bgc5 cwhite mt-5" data-bs-dismiss = "modal" id = "cancel-delete">Cancel</button>
+                        </div>
+                        
                     </form>
                 </div>       
             </div>

@@ -1,11 +1,15 @@
 
-#product-details, #product-reviews{
+#product-focused, #product-reviews{
     width: 1200px;
     border-radius: 15px;
 }
 
 #product-images{
     border-radius: 15px 0px 0px 15px;
+}
+
+#product-details{
+    border-radius: 0px 15px 15px 0px;
 }
 
 #focused-img{
@@ -19,6 +23,14 @@
     border-radius: 5px;
 }
 
-.price-container{
+.price-details{
     border-radius: 15px;
+}
+
+#price-desc-container{
+    height: 170px;
+}
+
+#add-to-order{
+    border-radius: 100px;
 }
