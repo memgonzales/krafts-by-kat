@@ -4,7 +4,7 @@
 
 
 
-    <div class = "d-flex justify-content-center bgc3" id = "product-details">
+    <div class = "d-flex justify-content-center" id = "product-focused">
 
         <div class = "col-md-4 py-4 d-flex justify-content-center align-items-center flex-column bgc1 " id = "product-images">
             
@@ -30,12 +30,17 @@
                     <i class = "far fa-images fa-2x mx-1 fc3"></i>
                 </div>
 
-            </div>   
+            </div>  
+
+
         </div>
 
-        <div class = "col-md-8 d-flex flex-column p-5 f1">
+        <div class = "col-md-8 d-flex flex-column bgc3 p-5 f1" id="product-details">
+
             <div class = "container">
-                <h2 class = "bold"> Product name</h2>
+                <h3 class = "d-inline-block text-truncate bold" style = "max-width: 600px;">
+                        Praeterea iter est quasdam res quas ex communi.
+                </h3>
             </div>
 
             <div class = "container bold d-flex flex-row">
@@ -46,15 +51,27 @@
                 </span>
 
                 <span class = "mx-2">|</span>
-                <span class = "mx-2">412 Ratings</span>
+                <span class = "mx-2"><span id="rating-count">412</span> Ratings</span>
                 <span class = "mx-2">|</span>
-                <span class = "mx-2">30k Sold</span>
+                <span class = "mx-2"><span id="units-sold">30k</span> Sold</span>
+                <span class = "mx-2">|</span>
+                <span class = "mx-2" ><a href="#" id="add-to-order" class="bgc5 p-2 " ><i class="fas fa-cart-plus fc1"></i></a></span>
 
             </div>
 
-            <div class="container mt-4 bgc4 p-2 price-container">
-
+            <div class="container mt-4 bgc4 p-2 price-details d-flex flex-column">
                 <h3 id="product-price">₱ 1,320</h3>
+
+                
+            </div>
+
+            <div class="container bgc4 mt-4 price-details p-3" id="price-desc-container">
+                <h5 >Description</h5>
+                <div class="dropdown-divider"></div>
+                <div class="container">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo saepe quasi ea quaerat fugiat beatae aspernatur. Maiores ipsa eveniet nobis cupiditate, impedit ratione aliquid molestias dolorum similique nihil. Nihil, exercitationem!</div>
+
+
+
             </div>
 
 
