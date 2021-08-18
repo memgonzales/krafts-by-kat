@@ -62,3 +62,14 @@ input{
 }
 
 /* END of Pick Product Modal CSS */
+
+
+
+/* One Product CSS */
+#product-sm-card{
+    width: 120px;
+    height: 120px;
+}
+
+
+/* END of One Product CSS */
