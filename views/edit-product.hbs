@@ -2,9 +2,7 @@
 
 <div class="container-fluid d-flex justify-content-center align-items-center flex-column p-5 h-100">
 
-
-
-    <div class = "d-flex justify-content-center" id = "product-focused">
+    <form class = "d-flex justify-content-center" id = "edit-product-form">
 
         <div class = "col-md-4 py-4 d-flex justify-content-center align-items-center flex-column bgc1 " id = "product-images">
             
@@ -37,42 +35,31 @@
 
         <div class = "col-md-8 d-flex flex-column bgc3 p-5 f1" id="product-details">
 
-            <div class = "container">
-                <h3 class = "d-inline-block text-truncate bold" style = "max-width: 600px;">
-                        Praeterea iter est quasdam res quas ex communi.
-                </h3>
+            <div class = "container mb-2">
+                <input class="bgc3 bold" type="text" id="product-name" placeholder="Praeterea iter est quasdam res quas ex communi.">
             </div>
 
             <div class = "container bold d-flex flex-row">
 
                 <span class = "me-2">
-                    <span class = "product-rating"> 4.5</span>
+                    <span class = "product-rating">4.5</span>
                     <i class = "fas fa-star ms-1"></i>
                 </span>
 
                 <span class = "mx-2">|</span>
                 <span class = "mx-2"><span id="rating-count">412</span> Ratings</span>
-
                 <span class = "mx-2">|</span>
-
+                <span class = "mx-2"><span id="units-sold">30k</span> Sold</span>
+                <span class = "mx-2">|</span>
                 <span class = "mx-2">
-                    <span id="units-sold">30k</span> Sold
+                    <input class="bgc3" type = "number" id="units-available" placeholder="420" > <span class="ms-2">Units Available</span>
                 </span>
-
-                <span class = "mx-2">|</span>
-
-                <span class = "mx-2">
-                    <span id="units-available">420</span> Units Available
-                </span>
-
-                <span class = "mx-2">|</span>
-
-                <span class = "mx-2" ><a href="#" id="add-to-order" class="bgc5 p-2 " data-bs-toggle="tooltip" data-bs-placement="left" title="add to order"><i class="fas fa-cart-plus fc1"></i></a></span>
 
             </div>
 
             <div class="container mt-4 bgc4 p-2 price-details d-flex flex-column">
-                <h3 id="product-price">₱ 1,320</h3>
+                
+                <input class="bgc4 bold" type="text" id = "product-price" placeholder="₱ 1,320">
 
                 
             </div>
@@ -80,8 +67,12 @@
             <div class="container bgc4 mt-4 price-details p-3" id="price-desc-container">
                 <h5 >Description</h5>
                 <div class="dropdown-divider"></div>
-                <div class="container">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo saepe quasi ea quaerat fugiat beatae aspernatur. Maiores ipsa eveniet nobis cupiditate, impedit ratione aliquid molestias dolorum similique nihil. Nihil, exercitationem!</div>
 
+                <div class="container">
+                    <textarea class="bgc4" id="product-description" rows="4" cols="80">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem repudiandae nihil quos rem recusandae esse accusantium dolore velit debitis modi. Quidem necessitatibus, impedit maxime qui alias tempora. Incidunt, quasi sed.</textarea>
+                    
+                </div>
+                    
 
 
             </div>
@@ -90,10 +81,11 @@
 
         </div>
 
-    </div>
+    </form>
 
-    <div class="container bgc3 mt-5" id="product-reviews">
-        Product Reviews Here
+    <div class="container mt-5 d-flex justify-content-center" id="edit-user-prompt">
+        <button class="btn bgc3 mx-2" type="button" id="submit-changes" disabled>Save Changes</button>
+        <button class="btn bgc5 cwhite mx-2" type="button">Cancel</button>
     </div>
 
 </div>

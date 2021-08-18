@@ -74,6 +74,13 @@ krafts.get('/partials-test', function(req,res){
 });
 
 
+krafts.get('/edit-product', function(req,res){
+    var obj = {
+        style: 'edit-product'
+    }
+    res.render('edit-product',obj);
+})
+
 krafts.get('/view-product', function(req,res){
     var obj = {
         style: 'view-product'
@@ -86,7 +93,7 @@ krafts.get('/order', function(req,res){
         style: 'order-product'
     }
     res.render('order-product', obj);
-})
+});
 
 /* END of Account Related Routes */
 
