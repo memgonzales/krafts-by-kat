@@ -26,7 +26,9 @@ const url = process.env.DB_URL;
  * CRUD operations)
  */
 const database = {
-    /* Connect to the database */
+    /** 
+     * Connects to the database 
+     */
     connect: function() {
         mongoose.connect(url, options, function(error) {
             if (error) throw error;
@@ -69,7 +71,14 @@ const database = {
 		return upload;
     },
 
-    /* Insert one document into the database */
+    /** 
+     * Inserts one document into the database 
+     * 
+     * @param model collection to be accessed 
+     * @param doc document to be inserted
+     * @param callback callback for indicating whether the insertion succeeded
+     * @return whether the insertion succeeded
+     */
     insertOne: function(model, doc, callback) {
         model.create (doc, function(error, result) {
             if (error) return callback(false);
@@ -78,7 +87,14 @@ const database = {
         });
     },
 
-    /* Insert multiple documents into the database */
+    /** 
+     * Inserts multiple documents into the database 
+     * 
+     * @param model collection to be accessed
+     * @param docs documents to be inserted
+     * @param callback callback for indicating whether the insertion succeeded
+     * @return whether the insertion succeeded 
+     */
     insertMany: function (model, docs, callback) {
         model.insertMany (docs, function(error, result) {
             if(error) return callback(false);
@@ -87,7 +103,15 @@ const database = {
         });
     },
 
-    /* Retrieve one document from the database */
+    /** 
+     * Retrieves one document from the database 
+     * 
+     * @param model collection to be accessed
+     * @param query query to be executed on the collection
+     * @param projection fields to be returned
+     * @param callback callback for indicating whether the search succeeded
+     * @return false if the searching did not succeed; otherwise, the specified fields to be returned 
+     */
     findOne: function(model, query, projection, callback) {
         model.findOne (query, projection, function(error, result) {
             if (error) return callback(false);
@@ -95,7 +119,15 @@ const database = {
         });
     },
 
-    /* Retrieve multiple documents from the database */
+    /** 
+     * Retrieves multiple documents from the database 
+     * 
+     * @param model collection to be accessed
+     * @param query query to be executed on the collection
+     * @param projection fields to be returned
+     * @param callback callback for indicating whether the search succeeded
+     * @return false if the searching did not succeed; otherwise, the specified fields to be returned 
+     */
     findMany: function(model, query, projection, callback) {
         model.find (query, projection, function(error, result) {
             if (error) return callback(false);
@@ -103,7 +135,15 @@ const database = {
         });
     },
 
-    /* Update one document in the database */
+    /** 
+     * Updates one document in the database 
+     * 
+     * @param model collection to be accessed
+     * @param filter query with which to filter the collection documents
+     * @param update revisions to the document data
+     * @param callback callback for indicating whether the update succeeded
+     * @return whether the update succeeded
+     */
     updateOne: function(model, filter, update, callback) {
         model.updateOne (filter, update, function(error, result) {
             if (error) return callback(false);
@@ -112,7 +152,15 @@ const database = {
         });
     },
 
-    /* Update multiple documents in the database */
+    /** 
+     * Updates multiple documents in the database 
+     * 
+     * @param model collection to be accessed
+     * @param filter query with which to filter the collection documents
+     * @param update revisions to the document data
+     * @param callback callback for indicating whether the update succeeded
+     * @return whether the update succeeded
+     */
     updateMany: function(model, filter, update, callback) {
         model.updateMany (filter, update, function(error, result) {
             if (error) return callback(false);
@@ -121,7 +169,14 @@ const database = {
         });
     },
 
-    /* Delete one document in the database */
+    /** 
+     * Deletes one document in the database 
+     * 
+     * @param model collection to be accessed
+     * @param conditions query with which to obtain the document to be deleted
+     * @param callback callback for indicating whether the deletion succeeded
+     * @return whether the deletion succeeded
+     */
     deleteOne: function(model, conditions, callback) {
         model.deleteOne (conditions, function (error, result) {
             if(error) return callback(false);
@@ -130,13 +185,30 @@ const database = {
         });
     },
 
-    /* Delete multiple documents in the database */
+    /** 
+     * Deletes multiple documents in the database 
+     * 
+     * @param model collection to be accessed
+     * @param conditions query with which to obtain the documents to be deleted
+     * @param callback callback for indicating whether the deletion succeeded
+     * @return whether the deletion succeeded
+     */
     deleteMany: function(model, conditions, callback) {
         model.deleteMany (conditions, function (error, result) {
             if(error) return callback(false);
             console.log('Document deleted: ' + result.deletedCount);
             return callback(true);
         });
+    },
+
+    /**
+     * Converts a string to the ObjectId data type
+     * 
+     * @param id string to be converted
+     * @return ObjectId variable of the input string
+     */
+    convertToObjectId: function(id) {
+        return mongoose.Types.ObjectId(id);
     }
 }
 

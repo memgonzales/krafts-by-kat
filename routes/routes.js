@@ -55,6 +55,7 @@ krafts.get('/account/admin/orders', accountController.getAccountAdminOrders);
 krafts.get('/account/admin/messages', accountController.getAccountAdminMessages);
 krafts.get('/account/admin/productsManager', accountController.getAccountAdminProductsManager);
 krafts.get('/account/admin/clientsManager', accountController.getAccountAdminClientsManager);
+krafts.post('/deleteItem', accountController.postDeleteItem);
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');

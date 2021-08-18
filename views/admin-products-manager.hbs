@@ -10,21 +10,24 @@
             <h2 class = "bold product-header mt-2" >Active</h2>
             {{>product names = activeNames quantities = activeQuantities descriptions = activeDescriptions
                        prices = activePrices comments = activeComments pictures = activePictures 
-                       aveRatings = activeAveRatings numberSold = activeNumberSold ids = activeIds}}
+                       aveRatings = activeAveRatings numberSold = activeNumberSold ids = activeIds
+                       type = activeProductType}}
         </div>
 
         <div id="hidden-products">
             <h2 class = "bold product-header">Hidden</h2>
             {{>product names = hiddenNames quantities = hiddenQuantities descriptions = hiddenDescriptions
                        prices = hiddenPrices comments = hiddenComments pictures = hiddenPictures 
-                       aveRatings = hiddenAveRatings numberSold = hiddenNumberSold ids = hiddenIds }}
+                       aveRatings = hiddenAveRatings numberSold = hiddenNumberSold ids = hiddenIds 
+                       type = hiddenProductType}}
         </div>
 
         <div id="depleted-products">
             <h2 class = "bold product-header">Depleted</h2>
             {{>product names = depletedNames quantities = depletedQuantities descriptions = depletedDescriptions
                        prices = depletedPrices comments = depletedComments pictures = depletedPictures 
-                       aveRatings = depletedAveRatings numberSold = depletedNumberSold ids = depletedIds}}
+                       aveRatings = depletedAveRatings numberSold = depletedNumberSold ids = depletedIds
+                       type = depletedProductType}}
         </div>
 
     </div>

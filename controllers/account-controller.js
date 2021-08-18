@@ -433,6 +433,7 @@ const accountController = {
 								activePictures: activePictures,
 								activeAveRatings: activeAveRatings,
 								activeNumberSold: activeNumberSold,
+								activeProductType: 1,
 
 								hiddenIds: hiddenIds,
 								hiddenNames: hiddenNames,
@@ -443,6 +444,7 @@ const accountController = {
 								hiddenPictures: hiddenPictures,
 								hiddenAveRatings: hiddenAveRatings,
 								hiddenNumberSold: hiddenNumberSold,
+								hiddenProductType: 2,
 
 								depletedIds: depletedIds,
 								depletedNames: depletedNames,
@@ -452,7 +454,8 @@ const accountController = {
 								depletedComments: depletedComments,
 								depletedPictures: depletedPictures,
 								depletedAveRatings: depletedAveRatings,
-								depletedNumberSold: depletedNumberSold
+								depletedNumberSold: depletedNumberSold,
+								depletedProductType: 3
 							}
 
 							res.render('admin-products-manager', details);
@@ -511,7 +514,26 @@ const accountController = {
 				console.log("Missing graphics elements");
 			}
 		});
-	}
+	},
+
+	/**
+	 * Deletes the selected product from the database
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
+	postDeleteItem: function(req, res) {
+
+		/* Obtain the ID of the product to be deleted from the modal */
+		let id = req.body.modalDeleteProductId;
+
+		/* Delete the catalog item document with the corresponding ID */
+		let conditions = {_id: db.convertToObjectId(id)};
+
+		db.deleteOne(CatalogItem, conditions, function(err, result) {
+			/* If the deletion is successful, update the products manager page */
+			res.status(200).send();
+		});
+	},
 }
 
 module.exports = accountController;
