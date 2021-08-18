@@ -1,4 +1,4 @@
-{{#each names}}
+{{#each visibilities}}
 <div class="container bgc3 product d-flex flex-row p-3 mt-3">
     <div class="col-md-2 p-1 d-flex">
         <img src="{{lookup ../pictures @index}}" id="product-img">
@@ -8,7 +8,7 @@
         <div id = "product-id-{{../type}}_{{@index}}" class = "hidden">{{lookup ../ids @index}}</div>
 
         <div id = "product-name-{{../type}}_{{@index}}">
-            {{this}}
+            {{lookup ../names @index}}
         </div>
 
         <div class="pt-4 d-flex flex-row justify-content-start align-items-center" id="product-details-{{@index}}">
@@ -26,9 +26,15 @@
                 <i class="fas fa-ellipsis-v"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="product-options">
-                <li><a class="dropdown-item" href="#" id = "view-dropdown-{{../type}}_{{@index}}">View</a></li>
-                <li><a class="dropdown-item" href="#" id = "edit-dropdown-{{../type}}_{{@index}}">Edit</a></li>
-                <li><a class="dropdown-item" href="#" id = "hide-dropdown-{{../type}}_{{@index}}">Hide</a></li>
+                <li><a class="dropdown-item" href="/viewItem/{{lookup ../ids @index}}" id = "view-dropdown-{{../type}}_{{@index}}">View</a></li>
+                <li><a class="dropdown-item" href="/editItem/{{lookup ../ids @index}}" id = "edit-dropdown-{{../type}}_{{@index}}">Edit</a></li>
+
+                {{#if this}}
+                <li><a class="dropdown-item" href="/toggleVisibility/{{lookup ../ids @index}}" id = "hide-dropdown-{{../type}}_{{@index}}">Hide</a></li>
+                {{else}}
+                <li><a class="dropdown-item" href="/toggleVisibility/{{lookup ../ids @index}}" id = "hide-dropdown-{{../type}}_{{@index}}">Unhide</a></li>
+                {{/if}}
+
                 <li><a class="dropdown-item delete-dropdown" data-toggle="modal" id = "delete-dropdown-{{../type}}_{{@index}}">Delete</a></li>
             </ul>
         </div>

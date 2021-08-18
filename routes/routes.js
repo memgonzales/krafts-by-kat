@@ -56,6 +56,9 @@ krafts.get('/account/admin/messages', accountController.getAccountAdminMessages)
 krafts.get('/account/admin/productsManager', accountController.getAccountAdminProductsManager);
 krafts.get('/account/admin/clientsManager', accountController.getAccountAdminClientsManager);
 krafts.post('/deleteItem', accountController.postDeleteItem);
+krafts.get('/editItem/:id', accountController.getEditItem);
+krafts.get('/viewItem/:id', accountController.getViewItem);
+krafts.get('/toggleVisibility/:id', accountController.getToggleVisibility);
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
@@ -73,20 +76,6 @@ krafts.get('/partials-test', function(req,res){
     res.render('partials-test',obj);
 });
 
-
-krafts.get('/edit-product', function(req,res){
-    var obj = {
-        style: 'edit-product'
-    }
-    res.render('edit-product',obj);
-})
-
-krafts.get('/view-product', function(req,res){
-    var obj = {
-        style: 'view-product'
-    }
-    res.render('view-product',obj);
-});
 
 krafts.get('/order', function(req,res){
     var obj = {

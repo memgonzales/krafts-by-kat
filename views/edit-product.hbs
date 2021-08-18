@@ -1,4 +1,4 @@
-{{>navbar}}
+{{>navbar userFlag = userFlag adminFlag = adminFlag}}
 
 <div class="container-fluid d-flex justify-content-center align-items-center flex-column p-5 h-100">
 
@@ -36,30 +36,30 @@
         <div class = "col-md-8 d-flex flex-column bgc3 p-5 f1" id="product-details">
 
             <div class = "container mb-2">
-                <input class="bgc3 bold" type="text" id="product-name" placeholder="Praeterea iter est quasdam res quas ex communi.">
+                <input class="bgc3 bold" type="text" id="product-name" value = "{{name}}">
             </div>
 
             <div class = "container bold d-flex flex-row">
 
                 <span class = "me-2">
-                    <span class = "product-rating">4.5</span>
+                    <span class = "product-rating">{{aveRating}}</span>
                     <i class = "fas fa-star ms-1"></i>
                 </span>
 
                 <span class = "mx-2">|</span>
-                <span class = "mx-2"><span id="rating-count">412</span> Ratings</span>
+                <span class = "mx-2"><span id="rating-count">{{numRatings}}</span> Ratings</span>
                 <span class = "mx-2">|</span>
-                <span class = "mx-2"><span id="units-sold">30k</span> Sold</span>
+                <span class = "mx-2"><span id="units-sold">{{numberSold}}k</span> Sold</span>
                 <span class = "mx-2">|</span>
                 <span class = "mx-2">
-                    <input class="bgc3" type = "number" id="units-available" placeholder="420" > <span class="ms-2">Units Available</span>
+                    <input class="bgc3" type = "number" id="units-available" value = "{{quantity}}"> <span class="ms-2">Units Available</span>
                 </span>
 
             </div>
 
             <div class="container mt-4 bgc4 p-2 price-details d-flex flex-column">
                 
-                <input class="bgc4 bold" type="text" id = "product-price" placeholder="₱ 1,320">
+                <span class="ms-2">₱ </span><input class="bgc4 bold" type="text" id = "product-price" value ="{{price}}">
 
                 
             </div>
@@ -69,7 +69,7 @@
                 <div class="dropdown-divider"></div>
 
                 <div class="container">
-                    <textarea class="bgc4" id="product-description" rows="4" cols="80">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem repudiandae nihil quos rem recusandae esse accusantium dolore velit debitis modi. Quidem necessitatibus, impedit maxime qui alias tempora. Incidunt, quasi sed.</textarea>
+                    <textarea class="bgc4" id="product-description" rows="4" cols="80">{{description}}</textarea>
                     
                 </div>
                     
