@@ -19,8 +19,9 @@
     border-radius: 5px;
 }
 
-#add-cart-icon{
-    border-radius: 100px;
+#add-cart{
+    border-radius: 50px;
+
 }
 
 
@@ -29,3 +30,35 @@ input{
     border: none;
     border-radius: 5px;
 }
+
+
+/* Pick Product Modal CSS */
+
+#pick-product-card{
+    width:100%;
+}
+
+#pick-product-modal-body{
+    overflow-y: scroll;
+    overflow-x: hidden;
+  
+}
+
+#pick-product-modal-body::-webkit-scrollbar{
+    width: 5px;
+    height: 5px;
+}
+#pick-product-modal-body::-webkit-scrollbar-thumb{
+    background: #000000;
+    border-radius: 0px;
+}
+#pick-product-modal-body:-webkit-scrollbar-thumb:hover{
+    background: #000000;
+}
+#pick-product-modal-body::-webkit-scrollbar-track{
+    background: #C2956E;
+    border-radius: 0px;
+    box-shadow: inset 0px 0px 0px 0px #F0F0F0;
+}
+
+/* END of Pick Product Modal CSS */
