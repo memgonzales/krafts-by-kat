@@ -16,6 +16,7 @@ const logInController = require('../controllers/log-in-controller.js');
 const logOutController = require('../controllers/log-out-controller.js');
 const newProductController = require('../controllers/new-product-controller.js');
 const accountController = require('../controllers/account-controller.js');
+const productsManagerController = require('../controllers/products-manager-controller.js');
 
 /* Call the validation file */
 const validation = require('../helpers/validation.js');
@@ -55,10 +56,10 @@ krafts.get('/account/admin/orders', accountController.getAccountAdminOrders);
 krafts.get('/account/admin/messages', accountController.getAccountAdminMessages);
 krafts.get('/account/admin/productsManager', accountController.getAccountAdminProductsManager);
 krafts.get('/account/admin/clientsManager', accountController.getAccountAdminClientsManager);
-krafts.post('/deleteItem', accountController.postDeleteItem);
-krafts.get('/editItem/:id', accountController.getEditItem);
-krafts.get('/viewItem/:id', accountController.getViewItem);
-krafts.get('/toggleVisibility/:id', accountController.getToggleVisibility);
+krafts.post('/deleteItem', productsManagerController.postDeleteItem);
+krafts.get('/editItem/:id', productsManagerController.getEditItem);
+krafts.get('/viewItem/:id', productsManagerController.getViewItem);
+krafts.get('/toggleVisibility/:id', productsManagerController.getToggleVisibility);
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
