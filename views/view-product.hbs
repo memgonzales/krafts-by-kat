@@ -2,32 +2,36 @@
 
 <div class="container-fluid d-flex justify-content-center align-items-center flex-column p-5 h-100">
 
-
-
     <div class = "d-flex justify-content-center" id = "product-focused">
 
         <div class = "col-md-4 py-4 d-flex justify-content-center align-items-center flex-column bgc1 " id = "product-images">
             
             <div class = " bgc5 d-flex justify-content-center align-items-center mt-2 p-5" id = "focused-img">
-                <i class = "far fa-images fa-7x fc3"></i>
+                <i class = "far fa-images fa-7x fc3" id = "icon-big"></i>
+                <img id = "pic-big">
             </div>
 
-            <div class = "container d-flex mt-3 flex-row">
+            <div class = "container d-flex mt-3 flex-row" id = "small-view-pic-container">
 
                 <div class = "container mx-1 bgc5 other-img" id="img1">
-                    <i class = "far fa-images fa-2x mx-1 fc3"></i>
+                    <i class = "far fa-images fa-2x mx-1 fc3" id = "icon1"></i>
+                    <img id = "pic1" class = "small-view-pic"> 
                 </div>
                 <div class = "container mx-1 bgc5 other-img" id="img2">
-                    <i class = "far fa-images fa-2x mx-1 fc3"></i>
+                    <i class = "far fa-images fa-2x mx-1 fc3" id = "icon2"></i>
+                    <img id = "pic2" class = "small-view-pic">
                 </div>
                 <div class = "container mx-1 bgc5 other-img" id="img3">
-                    <i class = "far fa-images fa-2x mx-1 fc3" ></i>
+                    <i class = "far fa-images fa-2x mx-1 fc3" id = "icon3"></i>
+                    <img id = "pic3" class = "small-view-pic">
                 </div>
                 <div class = "container mx-1 bgc5 other-img" id="img4">
-                    <i class = "far fa-images fa-2x mx-1 fc3"></i>
+                    <i class = "far fa-images fa-2x mx-1 fc3" id = "icon4"></i>
+                    <img id = "pic4" class = "small-view-pic">
                 </div>
                 <div class = "container mx-1 bgc5 other-img" id="img5">
-                    <i class = "far fa-images fa-2x mx-1 fc3"></i>
+                    <i class = "far fa-images fa-2x mx-1 fc3" id = "icon5"></i>
+                    <img id = "pic5" class = "small-view-pic">
                 </div>
 
             </div>  
@@ -68,7 +72,7 @@
             </div>
 
             <div class="container mt-4 bgc4 p-2 price-details d-flex flex-column">
-                <h3 id="product-price">₱ {{price}}</h3>
+                <h3 id="product-price">₱{{price}}</h3>
 
                 
             </div>
@@ -78,11 +82,7 @@
                 <div class="dropdown-divider"></div>
                 <div class="container">{{description}}</div>
 
-
-
             </div>
-
-
 
         </div>
 
@@ -93,3 +93,7 @@
     </div>
 
 </div>
+
+<div class = "invisible" id = "picturePaths">{{pictures}}</div>
+
+<script src = "/js/view-product.js"></script>

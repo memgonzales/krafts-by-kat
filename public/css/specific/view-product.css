@@ -17,6 +17,17 @@
     height: 300px;
 }
 
+#pic-big {
+    width: 100%; 
+    height: 100%;
+    display: none;
+}
+
+.small-view-pic {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
 
 .other-img{
     padding: 12px 12px 12px 12px;
