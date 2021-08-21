@@ -69,7 +69,7 @@ const newProductController = {
 
 		/* Use a placeholder image if no images have been uploaded */
 		if (paths.length == 0) {
-			paths.push('img/placeholder/no-image.png');
+			paths.push('/img/placeholder/no-image.png');
 		}
 
 		/* Retrieve the data entered in the text fields */
