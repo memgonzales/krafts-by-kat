@@ -16,7 +16,6 @@ $(document).ready(function() {
 		imgTargetResultsOrig.push('');
 	}
 
-
 	/* Call the triggerUpload(), changePicOnUpoad(), preview(), and cancel() methods */
 	triggerUpload();
 	changePicOnUpload();
@@ -162,18 +161,77 @@ $(document).ready(function() {
 	 * @param i the one-based index of the file input field 
 	 */
 	function readURL(input, i) {
-		if (input.files && input.files[0]) {
-			let reader = new FileReader();
-			reader.onload = function(e) {
-				$('#img-' + i).css('display', 'none');
-				$('#pic-' + i).css('display', 'block');
-				$('#pic-' + i).attr('src', e.target.result).width(150).height(100);
+		/* Get the file extension using regex */
+		let extension = input.value.match(/\.([^\.]+)$/)[1];
+		let isImage = imgFilter(extension.toLowerCase());
 
-				/* Store the image file paths in an array. Subtract 1 from index since array is zero-based. */
-				imgTargetResultsOrig[i - 1] = e.target.result;
+		/* The uploaded file is recognized as a valid image file type */
+		if (isImage) {
+			if (input.files && input.files[0]) {
+				let reader = new FileReader();
+				reader.onload = function(e) {
+					$('#img-' + i).css('display', 'none');
+					$('#pic-' + i).css('display', 'block');
+					$('#pic-' + i).attr('src', e.target.result).width(150).height(100);
+
+					/* Store the image file paths in an array. Subtract 1 from index since array is zero-based. */
+					imgTargetResultsOrig[i - 1] = e.target.result;
+				}
+				
+				reader.readAsDataURL(input.files[0]);
 			}
-			
-			reader.readAsDataURL(input.files[0]);
+		} else {
+			/* The uploaded file is not recognized as a valid image file type */
+			input.value = '';
+		}
+	}
+
+	/**
+	 * Prevents the uploading of non-image files on the client-side by displaying an alert
+	 * 
+	 * @param extension extension of the file uploaded (all letters in lowercase)
+	 */
+	function imgFilter(extension) {
+		switch(extension) {
+			/* Fall through in all cases is deliberate */
+			case 'jpg':
+			case 'jpeg':
+			case 'jpe':
+			case 'jif':
+			case 'jfif':
+			case 'jfi':
+			case 'png':
+			case 'gif':
+			case 'webp':
+			case 'tiff':
+			case 'tif':
+			case 'psd':
+			case 'raw':
+			case 'arw':
+			case 'cr2':
+			case 'nrw':
+			case 'k25':
+			case 'bmp':
+			case 'dib':
+			case 'heif':
+			case 'heic':
+			case 'ind':
+			case 'indd':
+			case 'indt':
+			case 'jp2':
+			case 'j2k':
+			case 'jpf':
+			case 'jpx':
+			case 'jpm':
+			case 'mj2':
+			case 'svg':
+			case 'svgz':
+			case 'ai':
+			case 'eps':
+				return true;
+			default:
+				alert("This file type is not supported. Please upload a valid image");
+				return false;
 		}
 	}
 });
