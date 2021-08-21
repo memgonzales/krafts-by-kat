@@ -65,8 +65,64 @@ const database = {
 				});
 			}
 		});
+
+        const fileFilter = function(req, file, callback) {
+            /* Exclude the period preceding the file extension */
+            const ext = path.extname(file.originalname).substr(1);
+            let validExtension = false;
+
+            console.log(ext);
+
+            switch(ext) {
+                /* Fall through in all cases is deliberate */
+                case 'jpg':
+                case 'jpeg':
+                case 'jpe':
+                case 'jif':
+                case 'jfif':
+                case 'jfi':
+                case 'png':
+                case 'gif':
+                case 'webp':
+                case 'tiff':
+                case 'tif':
+                case 'psd':
+                case 'raw':
+                case 'arw':
+                case 'cr2':
+                case 'nrw':
+                case 'k25':
+                case 'bmp':
+                case 'dib':
+                case 'heif':
+                case 'heic':
+                case 'ind':
+                case 'indd':
+                case 'indt':
+                case 'jp2':
+                case 'j2k':
+                case 'jpf':
+                case 'jpx':
+                case 'jpm':
+                case 'mj2':
+                case 'svg':
+                case 'svgz':
+                case 'ai':
+                case 'eps':
+                    validExtension = true;
+                    break;
+                default:
+                    break;
+            }
+
+            if (!validExtension) {
+                return callback(new Error('This file type is not supported. Please upload a valid image.'))
+            }
+
+            callback(null, true)
+        }
 		
-		const upload = multer({ storage });
+		const upload = multer({ storage, fileFilter });
 		
 		return upload;
     },

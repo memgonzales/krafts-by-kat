@@ -230,7 +230,7 @@ $(document).ready(function() {
 			case 'eps':
 				return true;
 			default:
-				alert("This file type is not supported. Please upload a valid image");
+				alert('This file type is not supported. Please upload a valid image.');
 				return false;
 		}
 	}
