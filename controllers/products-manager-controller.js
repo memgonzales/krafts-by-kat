@@ -5,7 +5,7 @@ const db = require('../models/db.js');
 const Display = require('../models/display-schema.js');
 const CatalogItem = require('../models/catalog-item-schema.js');
 
-const accountController = {
+const productsManagerController = {
 	/**
 	 * Deletes the selected product from the database
 	 * @param req object that contains information on the HTTP request from the client
