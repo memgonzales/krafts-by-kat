@@ -17,6 +17,7 @@
     height: 300px;
 }
 
+/* Added by developers to handle display of images */
 #pic-big {
     width: 100%; 
     height: 100%;
@@ -28,6 +29,7 @@
     height: 100%;
     display: none;
 }
+/* END: Added by developers to handle display of images */
 
 .other-img{
     padding: 12px 12px 12px 12px;
