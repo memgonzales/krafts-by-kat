@@ -42,7 +42,7 @@
         <div class = "col-md-8 d-flex flex-column bgc3 p-5 f1" id="product-details">
 
             <div class = "container mb-2">
-                <input class="bgc3 bold" type="text" id="product-name" value = "{{name}}">
+                <input class="bgc3 bold" type="text" id="product-name" name = "productName" value = "{{name}}">
             </div>
 
             <div class = "container bold d-flex flex-row">
@@ -55,17 +55,17 @@
                 <span class = "mx-2">|</span>
                 <span class = "mx-2"><span id="rating-count">{{numRatings}}</span> Ratings</span>
                 <span class = "mx-2">|</span>
-                <span class = "mx-2"><span id="units-sold">{{numberSold}}k</span> Sold</span>
+                <span class = "mx-2"><span id="units-sold">{{numberSold}}</span> Sold</span>
                 <span class = "mx-2">|</span>
                 <span class = "mx-2">
-                    <input class="bgc3" type = "number" id="units-available" value = "{{quantity}}"> <span class="ms-2">Units Available</span>
+                    <input class="bgc3" type = "number" id="units-available" name = "quantity" value = "{{quantity}}"> <span class="ms-2">Units Available</span>
                 </span>
 
             </div>
 
             <div class="container mt-4 bgc4 p-2 price-details d-flex flex-column">
                 
-                <span class="ms-2">₱ </span><input class="bgc4 bold" type="text" id = "product-price" value ="{{price}}">
+                <span class="ms-2">₱ </span><input class="bgc4 bold" type="text" id = "product-price" name = "productPrice" value ="{{price}}">
 
                 
             </div>
@@ -75,7 +75,7 @@
                 <div class="dropdown-divider"></div>
 
                 <div class="container">
-                    <textarea class="bgc4" id="product-description" rows="4" cols="80">{{description}}</textarea>
+                    <textarea class="bgc4" id="product-description" rows="4" name = "description" cols="80">{{description}}</textarea>
                     
                 </div>
                     
@@ -87,12 +87,13 @@
 
         </div>
 
+    <div class="container mt-5 d-flex justify-content-center" id="edit-user-prompt">
+        <button type = "submit" class="btn bgc3 mx-2" id="submit-changes">Save Changes</button>
+        <button class="btn bgc5 cwhite mx-2" type= "reset">Cancel</button>
+    </div>
+
     </form>
 
-    <div class="container mt-5 d-flex justify-content-center" id="edit-user-prompt">
-        <button class="btn bgc3 mx-2" type="button" id="submit-changes" disabled>Save Changes</button>
-        <button class="btn bgc5 cwhite mx-2" type="button">Cancel</button>
-    </div>
 
 </div>
 

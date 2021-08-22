@@ -60,6 +60,7 @@ krafts.post('/deleteItem', productsManagerController.postDeleteItem);
 krafts.get('/editItem/:id', productsManagerController.getEditItem);
 krafts.get('/viewItem/:id', productsManagerController.getViewItem);
 krafts.get('/toggleVisibility/:id', productsManagerController.getToggleVisibility);
+krafts.post('/editItem/:id', productsManagerController.postEditItem);
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');

@@ -314,6 +314,59 @@ const productsManagerController = {
 				console.log("Missing graphics elements");
 			}
 		});
+	},
+
+	/**
+	 * Submits information stored in the edit product page
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
+	postEditItem: function(req, res) {
+
+		/* Use the product ID for the database query */
+		let filter = {_id: db.convertToObjectId(req.params.id)};
+
+		/* MAY BE REUSED FOR PICTURES */
+		// /* Iterate over the five pictures */
+		// var paths = [];
+		
+		// /* Names in the HTML form are one-based */
+		// for (let i = 1; i <= 5; i++) {
+		// 	if (req.files['productImg' + i]) {
+		// 		paths.push('/files/' + req.files['productImg' + i][0]['filename'])
+		// 	}
+		// }
+
+		// /* Use a placeholder image if no images have been uploaded */
+		// if (paths.length == 0) {
+		// 	paths.push('/img/placeholder/no-image.png');
+		// }
+
+		/* Retrieve the data entered in the text fields */
+		let productName = req.body.productName;
+		let productDesc = req.body.description;
+		let productPrice = req.body.productPrice;
+		let productQuantity = req.body.quantity;
+
+		/* Trim the entered data to remove heading and trailing whitespaces */
+		let formattedProductName = productName.trim();
+		let formattedProductDesc = productDesc.trim();
+		let formattedProductPrice = productPrice.trim();
+		let formattedProductQuantity = productQuantity.trim();
+
+		/* Assign the needed details to the variable update */
+		let update = {
+			name: formattedProductName,
+			quantity: formattedProductQuantity,
+			description: formattedProductDesc,
+			price: formattedProductPrice
+		}
+
+		/* Insert the new product into the database and redirect the user to the landing page */
+		db.updateOne(CatalogItem, filter, update, function(error, result) {
+			res.redirect('/account/admin/productsManager');
+		});
 	}
 }
 
