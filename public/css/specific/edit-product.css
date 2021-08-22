@@ -1,5 +1,5 @@
 
-#edit-product-form, #edit-user-prompt{
+#edit-product-div, #edit-user-prompt{
     width: 1200px;
     border-radius: 15px;
 }
@@ -57,8 +57,12 @@
     
 }
 
-#product-price{
+#product-price,#peso-sign{
     font-size: 25px;
+}
+
+#product-price{
+    width: 640px;
 }
 
 #product-description{
@@ -85,11 +89,14 @@
 
 
 
-
-input,textarea{
+input{
     border: none;
     border-radius: 5px;
     border-bottom: 2px solid var(--black);
 }
 
+textarea{
+    border: none;
+    border-radius: 5px;
+}
 

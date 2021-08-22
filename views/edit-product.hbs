@@ -2,11 +2,12 @@
 
 <div class="container-fluid d-flex justify-content-center align-items-center flex-column p-5 h-100">
 
-    <form method = "POST" action = "/postEditItem/{{id}}" class = "d-flex justify-content-center" id = "edit-product-form">
+    <form method = "POST" action = "/postEditItem/{{id}}" class = "d-flex justify-content-center flex-column" id = "edit-product-form">
 
-        <div class = "col-md-4 py-4 d-flex justify-content-center align-items-center flex-column bgc1 " id = "product-images">
+        <div class="debug1 d-flex flex-row" id="edit-product-div">
+            <div class = "col-md-4 py-4 d-flex justify-content-center align-items-center flex-column bgc1 " id = "product-images">
             
-            <div class = " bgc5 d-flex justify-content-center align-items-center mt-2 p-5" id = "focused-img">
+            <div class = " bgc5 d-flex justify-content-center align-items-center mt-2" id = "focused-img">
                 <i class = "far fa-images fa-7x fc3" id = "icon-big"></i>
                 <img id = "pic-big">
             </div>
@@ -63,14 +64,13 @@
 
             </div>
 
-            <div class="container mt-4 bgc4 p-2 price-details d-flex flex-column">
-                
-                <span class="ms-2">₱ </span><input class="bgc4 bold" type="text" id = "product-price" name = "productPrice" value ="{{price}}">
-
-                
+            <div class="container mt-4 bgc4 p-2 price-details d-flex flex-row">
+                <span class="mx-2" id="peso-sign">₱</span>
+                <input class="bgc4 bold" type="text" id = "product-price" name = "productPrice" value ="{{price}}">
             </div>
 
             <div class="container bgc4 mt-4 price-details p-3" id="price-desc-container">
+
                 <h5 >Description</h5>
                 <div class="dropdown-divider"></div>
 
@@ -86,6 +86,8 @@
 
 
         </div>
+        </div>
+        
 
         <div class="container mt-5 d-flex justify-content-center" id="edit-user-prompt">
             <button type = "submit" class="btn bgc3 mx-2" id="submit-changes">Save Changes</button>
