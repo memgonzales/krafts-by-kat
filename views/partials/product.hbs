@@ -1,17 +1,19 @@
 {{#each visibilities}}
 <div class="container bgc3 product d-flex flex-row p-3 mt-3">
+
     <div class="col-md-2 p-1 d-flex">
         <img src="{{lookup ../pictures @index}}" id="product-img">
     </div>
+
     <div class="col-md-9 d-flex flex-column"> 
 
         <div id = "product-id-{{../type}}_{{@index}}" class = "hidden">{{lookup ../ids @index}}</div>
 
-        <div id = "product-name-{{../type}}_{{@index}}">
+        <div class="product-name" id = "product-name-{{../type}}_{{@index}}">
             {{lookup ../names @index}}
         </div>
 
-        <div class="pt-4 d-flex flex-row justify-content-start align-items-center" id="product-details-{{@index}}">
+        <div class="d-flex flex-row justify-content-start align-items-center product-details" id="product-details-{{@index}}">
             <span class = "me-4" id = "item-price-{{../type}}_{{@index}}">P {{lookup ../prices @index}}</span>
 
             <span class = "me-4" id = "item-rating-{{../type}}_{{@index}}">{{lookup ../aveRatings @index}}<i class = "fas fa-star ms-1"></i></span>
@@ -20,12 +22,14 @@
         </div>
     
     </div>
+
     <div class="col-md-1 d-flex justify-content-end pe-3 pt-2">
         <div class="dropdown">
             <button class="btn" type="button" id="product-options-{{../type}}_{{@index}}" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fas fa-ellipsis-v"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="product-options">
+
                 <li><a class="dropdown-item" href="/viewItem/{{lookup ../ids @index}}" id = "view-dropdown-{{../type}}_{{@index}}">View</a></li>
                 <li><a class="dropdown-item" href="/editItem/{{lookup ../ids @index}}" id = "edit-dropdown-{{../type}}_{{@index}}">Edit</a></li>
 

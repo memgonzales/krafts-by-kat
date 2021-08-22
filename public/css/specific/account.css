@@ -41,6 +41,12 @@
     padding: 50px 70px 0px 50px;
 }
 
+/* END of Account Page Navigation CSS */
+
+
+
+/* Products Manager CSS */
+
 .product-header{
     margin-bottom: 20px;
     margin-top: 60px;
@@ -59,11 +65,18 @@
     width: 100px;
 }
 
-#product-name{
-    font-size: 15pt;
+.product-name{
+    height: 80px;
+    font-size: 20pt;
+    font-weight: bold;
 }
 
-/* END of Account Page Navigation CSS */
+.product-details{
+    height: 20px;
+}
+/* Products Manager CSS */
+
+
 
 
 /* Delete Modal CSS */
