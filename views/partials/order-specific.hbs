@@ -1,0 +1,123 @@
+<div class = "accordion-item bgc3">    
+
+    <h2 class = "accordion-header " id = "productId_heading">
+        <button class = "accordion-button bold bgc3" type = "button" data-bs-toggle = "collapse" data-bs-target = "#productId_collapse" aria-expanded = "true" aria-controls = "productId_collapse">
+            Product Name Here
+        </button>
+    </h2>
+
+    <div id = "productId_collapse" class = "accordion-collapse collapse show" aria-labelledby = "productId_heading" data-bs-parent = "#order-list">
+        
+        <div class = "accordion-body bgc3">
+            
+            <label for="quantity"><h5>Quantity</h5></label>
+            <input type="number" min = 0 step = "0" id = "quantity" class="ms-3">
+
+            <div class="mt-3" id="customization">
+
+                <h5>Customization</h5>
+                <div class="dropdown-divider">.</div>
+
+
+                <div class="container ps-4 mt-4" id="packaging">
+
+                    <h6 class="bold" >Packaging</h6>
+
+                    <div  class="d-flex flex-row mt-3" id="packaging-radio">
+
+                        <div class=" mx-2 form-check">
+                            <input class="form-check-input" type="radio"  name="packaging_radio" id="packaging_kraft_box" value="kraft_box" checked>
+                            <label class="form-check-label" for="packaging_kraft_box">Kraft Box</label>
+                        </div>
+
+                        <div class="mx-2 form-check">
+                            <input class="form-check-input" type="radio"  name="packaging_radio" id="packaging_mailer_box" value="mailer_box">
+                            <label class="form-check-label" for="packaging_mailer_box">Mailer Box</label>
+                        </div>
+
+                        <div class="mx-2 form-check">
+                            <input class="form-check-input" type="radio"  name="packaging_radio" id="packaging_silk_pouch" value="silk_pouch">
+                            <label class="form-check-label" for="radio1">Silk Pouch</label>
+                        </div>
+
+                        <div class="mx-2 form-check">
+                            <input class="form-check-input" type="radio"  name="packaging_radio" id="packaging_canvas" value="packaging_canvas">
+                            <label class="form-check-label" for="radio1">Packaging Canvas</label>
+                        </div>
+
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-between mt-2">
+                        <select class="form-select w-50 mx-3" aria-label="Packaging Color Select">
+                            <option value="packaging_color_1" selected>Packaging Color 1</option>
+                            <option value="packaging_color_2">Packaging Color 2</option> 
+                            <option value="packaging_color_3">Packaging Color 3</option> 
+                            <option value="packaging_color_4">Packaging Color 4</option> 
+                            <option value="packaging_color_5">Packaging Color 5</option> 
+                        </select>
+                        <input type="text" class="mx-3" id="package-text" placeholder="Want to add a message? (Optional)">
+                    </div>
+                   
+
+
+                </div>
+
+                <div class="container ps-4 mt-4" id="item">
+
+                    <h6 class="bold">Item</h6>
+
+                    <div class="d-flex flex-row justify-content-between mt-2">
+                        <select class="form-select w-50 mx-3" aria-label="Item Color Select">
+                            <option value="item_color_1" selected>Item Color 1</option>
+                            <option value="item_color_2">Item Color 2</option> 
+                            <option value="item_color_3">Item Color 3</option> 
+                            <option value="item_color_4">Item Color 4</option> 
+                            <option value="item_color_5">Item Color 5</option> 
+                        </select>
+
+                        {{!-- Pweds palagay na limit ung text dito, parang mga 10-15 characters lang for now.. clarify ko lang kay Sab n Cheska kung pano itong part  --}}
+                        <input type="text" class="mx-3" id="package-text" placeholder="You can also add text here (Optional)">
+                    </div>                        
+                </div>
+
+                <div class="container ps-4 mt-4" id="logo">
+                    <h6 class="bold">Company Logo</h6>
+                    
+
+                    <div  class="d-flex flex-row mt-3" id="logo_radio">
+
+                        <div class=" mx-2 form-check">
+                            <input class="form-check-input" type="radio"  name="logo_radio" id="logo_with" value="true" checked>
+                            <label class="form-check-label" for="logo_with">With</label>
+                        </div>
+
+                        <div class=" mx-2 form-check">
+                            <input class="form-check-input" type="radio"  name="logo_radio" id="logo_without" value="false" checked>
+                            <label class="form-check-label" for="logo_without">Without</label>
+                        </div>
+
+                        
+                    </div>
+
+                    {{#if true}}
+                        {{>order-with-logo}}
+                    {{/if}}
+                    
+
+                    
+                </div>
+
+
+
+                
+
+                
+
+
+            </div>
+
+            
+        </div> 
+
+    </div>
+</div>

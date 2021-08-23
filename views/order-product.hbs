@@ -5,10 +5,10 @@
 <div class = "container-fluid d-flex justify-content-center align-items-center flex-column mb-5">
 
 
-    <div class = "container bgc5 p-5 " id = "order-form">
+    <form class = "container bgc5 p-5 " id = "order-form">
 
 
-        <form class = "f1 d-flex p-5 justify-content-center cwhite flex-column m-5 bgc4" method = "POST" id = "order-header">
+        <div class = "f1 d-flex p-5 justify-content-center cwhite flex-column m-5 bgc4" id = "order-header">
   
             <input class = "cblack" type = "text" id = "order-name" placeholder = "Order Name">
             <div id = "order-name-error" class = "form-text cblack fc3">Type why you're ordering, maybe an event perhaps.</div>
@@ -18,9 +18,9 @@
             <input class = "cblack" type = "text" id = "company-name">
             <div id = "company-name-error" class = "form text fc3"></div>
 
-        </form>
+        </div>
 
-        <form class = " f1 d-flex p-5 justify-content-center flex-column mt-5 mx-5 bgc4" id = "order-details">
+        <div class = " f1 d-flex p-5 justify-content-center flex-column mt-5 mx-5 bgc4" id = "order-details">
 
             <div class = "container d-flex flex-row align-items-center justify-content-start p-1">
 
@@ -36,31 +36,14 @@
             
             <div class = "accordion mt-2" id = "order-list">
 
-                <div class = "accordion-item bgc3">    
-
-                    <h2 class = "accordion-header " id = "productId_heading">
-                        <button class = "accordion-button bold bgc3" type = "button" data-bs-toggle = "collapse" data-bs-target = "#productId_collapse" aria-expanded = "true" aria-controls = "productId_collapse">
-                            Product Name Here
-                        </button>
-                    </h2>
-
-                    <div id = "productId_collapse" class = "accordion-collapse collapse show" aria-labelledby = "productId_heading" data-bs-parent = "#order-list">
-                        
-                        <div class = "accordion-body bgc3">
-
-                            
-                        
-                        </div>
-
-                    </div>
-                </div>
+                {{>order-specific}}
 
             </div>
          
 
-        </form>
+        </div>
 
-    </div>
+    </form>
     
 </div>
 
