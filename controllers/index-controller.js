@@ -25,13 +25,14 @@ const indexController = {
 				let appLogo = result;
 				
 				/* Assign the needed details of the item catalog documents to the variable projection */
-				let projection = 'name quantity description price commentIds pictures ratings numberSold visible';
+				let projection = '_id name quantity description price commentIds pictures ratings numberSold visible';
 
 				/* The needed details of all catalog items are retrieved to be displayed on the landing page */
 				db.findMany(CatalogItem, {}, projection, function(result) {
 					/* If the data retrieval is successful, the landing page is displayed */
 					if (result != null) {
 						/* Store data in parallel arrays (to allow for processing) */
+						let ids = [];
 						let names = [];
 						let quantities = [];
 						let descriptions = [];
@@ -50,6 +51,7 @@ const indexController = {
 						 */
 						for (let i = 0; i < items.length; i++) {
 							if (items[i].visible && items[i].quantity > 0) {
+								ids.push(items[i]._id);
 								names.push(items[i].name);
 								quantities.push(items[i].quantity);
 								descriptions.push(items[i].description);
@@ -85,6 +87,7 @@ const indexController = {
 								logo: appLogo.logo,
 								userFlag: false,
 								adminFlag: false,
+								productIds: ids,
 								productNames: names,
 								productQuantities: quantities,
 								productDescriptions: descriptions,
@@ -107,6 +110,7 @@ const indexController = {
 									logo: appLogo.logo,
 									userFlag: true,
 									adminFlag: true,
+									productIds: ids,
 									productNames: names,
 									productQuantities: quantities,
 									productDescriptions: descriptions,
@@ -128,6 +132,7 @@ const indexController = {
 									logo: appLogo.logo,
 									userFlag: true,
 									adminFlag: false,
+									productIds: ids,
 									productNames: names,
 									productQuantities: quantities,
 									productDescriptions: descriptions,
