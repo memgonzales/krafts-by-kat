@@ -1,11 +1,19 @@
 $(document).ready(function() {
+    /* Format the numbers to use commas to separate groups of three digits. */
     formatNumber('#units-sold');
     formatNumber('#units-available');
     formatNumber('#product-price-num');
 
+    /* Load the pictures onto the front-end */
     const pictures = getPictures();
     displayPictures();
 
+    /**
+     * Formats the number given the ID of its HTML container so that commas are used to separate groups
+     * of three digits
+     * 
+     * @param id ID of the HTML element containing the number to be formatted
+     */
     function formatNumber(id) {
         let number = $(id).text();
         let formatted = '';
@@ -27,6 +35,11 @@ $(document).ready(function() {
         $(id).text(formatted);
     }
 
+    /**
+     * Returns an array containing the file paths to the product photos loaded from the database
+     * 
+     * @return  array containing the file paths to the product photos loaded from the database
+     */
     function getPictures() {
         const pathsString = $('#picturePaths').text();
         const paths = pathsString.split(',');
@@ -34,9 +47,14 @@ $(document).ready(function() {
         return paths;
     }
 
+    /**
+     * Displays the product photos retrieved from the database on the front-end
+     */
     function displayPictures() {
+        /* Refers to the maximum number of product photos that can be uploaded (and viewed) */
         const numPics = $('#small-view-pic-container').children().length;
         
+        /* Use this placeholder image used when the user did not upload a photo */
         const placeholder = '/img/placeholder/no-image.png';
 
         /* Display pictures only if pictures have been uploaded */
@@ -56,8 +74,10 @@ $(document).ready(function() {
             }
         }
 
+        /* Handle the case when the user uploaded less than the maximum */
         const indexRemoveImg = pictures.length + 1;
         for (let i = indexRemoveImg; i <= numPics; i++) {
+            /* Hide the placeholders and center the loaded images */
             $('#img' + i).remove();
         }
     }
