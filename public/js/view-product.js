@@ -58,7 +58,7 @@ $(document).ready(function() {
 
         const indexRemoveImg = pictures.length + 1;
         for (let i = indexRemoveImg; i <= numPics; i++) {
-            $('#img' + i).css('display', 'none');
+            $('#img' + i).remove();
         }
     }
 });
