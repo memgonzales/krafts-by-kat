@@ -67,8 +67,8 @@ const database = {
 		});
 
         const fileFilter = function(req, file, callback) {
-            /* Exclude the period preceding the file extension */
-            const ext = path.extname(file.originalname).substr(1);
+            /* Exclude the period preceding the file extension, and convert to lowercase */
+            const ext = path.extname(file.originalname).substr(1).toLowerCase();
             let validExtension = false;
 
             console.log(ext);
