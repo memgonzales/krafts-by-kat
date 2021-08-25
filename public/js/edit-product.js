@@ -164,8 +164,11 @@ $(document).ready(function() {
                         $('#icon-big').css('display', 'none');
                     }
 
-                    /* Indicate that the photo has been modified */
-                    
+                    /*
+                     * Indicate that the photo has been modified. Subtract 1 from index since array is zero-based
+                     */ 
+                    modifiedIndices[i - 1] = true;
+                    trackModifiedIndices();
 				}
 				
 				reader.readAsDataURL(input.files[0]);
@@ -175,4 +178,18 @@ $(document).ready(function() {
 			input.value = '';
 		}
 	}
+
+    function trackModifiedIndices() {
+        let modifiedIndicesStr = "";
+
+        for (let i = 0; i < maxNumPictures; i++) {
+            if (modifiedIndices[i] == true) {
+                modifiedIndicesStr += i;
+            }
+        }
+
+        alert(modifiedIndicesStr);
+
+        $('#modified-indices').val(modifiedIndicesStr);
+    }
 });

@@ -2,7 +2,7 @@
 
 <div class="container-fluid d-flex justify-content-center align-items-center flex-column p-5 h-100">
 
-    <form method = "POST" action = "/postEditItem/{{id}}" class = "d-flex justify-content-center flex-column" id = "edit-product-form">
+    <form method = "POST" action = "/postEditItem/{{id}}" enctype = "multipart/form-data" class = "d-flex justify-content-center flex-column" id = "edit-product-form">
 
         <div class="debug1 d-flex flex-row" id="edit-product-div">
             <div class = "col-md-4 py-4 d-flex justify-content-center align-items-center flex-column bgc1 " id = "product-images">
@@ -87,17 +87,14 @@
 
                 <div class="container">
                     <textarea class="bgc4" id="product-description" rows="4" name = "description" cols="80">{{description}}</textarea>
-                    
+                            <input type = "text" id = "modified-indices">
+
                 </div>
                     
-
-
             </div>
 
+        </div></div>
 
-
-        </div>
-        </div>
         
 
         <div class="container mt-5 d-flex justify-content-center" id="edit-user-prompt">
