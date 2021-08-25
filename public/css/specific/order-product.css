@@ -15,7 +15,7 @@
     font-size: 30px;
 }
 
-#order-header, #order-details{
+#order-header, #order-details, #delivery-details{
     border-radius: 5px;
 }
 
