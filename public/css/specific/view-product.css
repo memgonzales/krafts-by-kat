@@ -29,6 +29,16 @@
     height: 100%;
     display: none;
 }
+
+.fixed-pic {
+    width: 65px;
+    height: 65px;
+}
+
+.center-content {
+    align-items: center; 
+    justify-content: center;
+}
 /* END: Added by developers to handle display of images */
 
 .other-img{

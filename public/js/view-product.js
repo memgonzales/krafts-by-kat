@@ -35,7 +35,8 @@ $(document).ready(function() {
     }
 
     function displayPictures() {
-        const numPics = $('#small-view-pic-container').length;
+        const numPics = $('#small-view-pic-container').children().length;
+        
         const placeholder = '/img/placeholder/no-image.png';
 
         /* Display pictures only if pictures have been uploaded */
@@ -53,6 +54,11 @@ $(document).ready(function() {
                 /* Use zero-based indexing to conform with array notation */
                 $('#pic' + i).attr('src', pictures[i - 1]);
             }
+        }
+
+        const indexRemoveImg = pictures.length + 1;
+        for (let i = indexRemoveImg; i <= numPics; i++) {
+            $('#img' + i).css('display', 'none');
         }
     }
 });
