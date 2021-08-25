@@ -328,20 +328,19 @@ const productsManagerController = {
 		let filter = {_id: db.convertToObjectId(req.params.id)};
 
 		/* MAY BE REUSED FOR PICTURES */
-		// /* Iterate over the five pictures */
-		// var paths = [];
+		/* Iterate over the five pictures */
+		var paths = [];
 		
-		// /* Names in the HTML form are one-based */
-		// for (let i = 1; i <= 5; i++) {
-		// 	if (req.files['productImg' + i]) {
-		// 		paths.push('/files/' + req.files['productImg' + i][0]['filename'])
-		// 	}
-		// }
+		/* Names in the HTML form are one-based */
+		for (let i = 1; i <= 5; i++) {
+			if (req.files['productImg' + i]) {
+				paths.push('/files/' + req.files['productImg' + i][0]['filename'])
+			}
+		}
 
-		// /* Use a placeholder image if no images have been uploaded */
-		// if (paths.length == 0) {
-		// 	paths.push('/img/placeholder/no-image.png');
-		// }
+		/* Filter the image data in the database to be edited/added */
+		let modifiedIndices = req.body.modifiedIndices;
+		console.log(modifiedIndices);
 
 		/* Retrieve the data entered in the text fields */
 		let productName = req.body.productName;

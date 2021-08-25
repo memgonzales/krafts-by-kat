@@ -179,17 +179,28 @@ $(document).ready(function() {
 		}
 	}
 
+    /**
+     * Pass a string representing the indices of the product photos that have been edited or added
+     * to a hidden input text field.
+     * 
+     * This string is a concatenation of the indices of these photos (arranged in ascending order).
+     * For example, if the indices are 1 and 4, the string is "14"
+     * 
+     * Precondition:
+     * - All the indices must be single-digit numbers.
+     */
     function trackModifiedIndices() {
+        /* Initialize to an empty string to prevent duplicates when editing is done repetitively */
         let modifiedIndicesStr = "";
 
+        /* Concatenate if the photo has been modified by the user */
         for (let i = 0; i < maxNumPictures; i++) {
             if (modifiedIndices[i] == true) {
                 modifiedIndicesStr += i;
             }
         }
 
-        alert(modifiedIndicesStr);
-
+        /* Pass to the appropriate hidden text field */
         $('#modified-indices').val(modifiedIndicesStr);
     }
 });

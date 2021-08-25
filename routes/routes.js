@@ -56,11 +56,24 @@ krafts.get('/account/admin/orders', accountController.getAccountAdminOrders);
 krafts.get('/account/admin/messages', accountController.getAccountAdminMessages);
 krafts.get('/account/admin/productsManager', accountController.getAccountAdminProductsManager);
 krafts.get('/account/admin/clientsManager', accountController.getAccountAdminClientsManager);
+
+/* For deleting product */
 krafts.post('/deleteItem', productsManagerController.postDeleteItem);
+
+/* For editing product */
 krafts.get('/editItem/:id', productsManagerController.getEditItem);
+const editProductFields = [{name: 'productImg1', maxCount: 1},
+                           {name: 'productImg2', maxCount: 1},
+                           {name: 'productImg3', maxCount: 1},
+                           {name: 'productImg4', maxCount: 1},
+                           {name: 'productImg5', maxCount: 1}];
+krafts.post('/postEditItem/:id', db.connect().fields(editProductFields), productsManagerController.postEditItem);
+
+/* For viewing product */
 krafts.get('/viewItem/:id', productsManagerController.getViewItem);
+
+/* For toggling visibility of product */
 krafts.get('/toggleVisibility/:id', productsManagerController.getToggleVisibility);
-krafts.post('/postEditItem/:id', productsManagerController.postEditItem);
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
