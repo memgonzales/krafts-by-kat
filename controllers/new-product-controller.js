@@ -5,6 +5,8 @@ const db = require('../models/db.js');
 const Display = require('../models/display-schema.js');
 const CatalogItem = require('../models/catalog-item-schema.js');
 
+const maxNumItems = 5;
+
 const newProductController = {
 
 	/** 
@@ -61,7 +63,7 @@ const newProductController = {
 		var paths = [];
 		
 		/* Names in the HTML form are one-based */
-		for (let i = 1; i <= 5; i++) {
+		for (let i = 1; i <= maxNumItems; i++) {
 			if (req.files['productImg' + i]) {
 				paths.push('/files/' + req.files['productImg' + i][0]['filename'])
 			}
