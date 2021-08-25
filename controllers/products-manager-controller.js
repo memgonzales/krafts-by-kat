@@ -5,6 +5,8 @@ const db = require('../models/db.js');
 const Display = require('../models/display-schema.js');
 const CatalogItem = require('../models/catalog-item-schema.js');
 
+const maxNumItems = 5;
+
 const productsManagerController = {
 	/**
 	 * Deletes the selected product from the database
@@ -332,15 +334,47 @@ const productsManagerController = {
 		var paths = [];
 		
 		/* Names in the HTML form are one-based */
-		for (let i = 1; i <= 5; i++) {
+		for (let i = 1; i <= maxNumItems; i++) {
 			if (req.files['productImg' + i]) {
 				paths.push('/files/' + req.files['productImg' + i][0]['filename'])
 			}
 		}
 
 		/* Filter the image data in the database to be edited/added */
-		let modifiedIndices = req.body.modifiedIndices;
-		console.log(modifiedIndices);
+		let modifiedIndicesStr = req.body.modifiedIndices;
+		let originalPicsStr = req.body.originalPics;
+
+		/*
+		 * Convert the string data from the input fields into arrays:
+		 * - The indices are delimited per character.
+		 * - The paths to the pictures are delimited using a comma.
+		 */
+		let modifiedIndices = modifiedIndicesStr.split('');
+		let editedPics = originalPicsStr.split(',');
+
+		/*
+		 * If the user originally uploaded less than the maximum number of pictures, ensure that the number
+		 * of elements in the array is the equal to the maximum	by placing empty strings.
+		 * 
+		 * This is to prevent complications related to editing paths to existing images and adding paths 
+		 * to newly uploaded images.
+		 */
+		const numBlankPics = maxNumItems - editedPics.length;
+		for (let i = 0; i < numBlankPics; i++) {
+			editedPics.push('');
+		}
+
+		/*
+		 * It is expected that the length of modifiedIndices is equal to the length of paths since they
+		 * both reflect the number of images uploaded by the user.
+		 */
+		for (let i = 0; i < modifiedIndices.length; i++) {
+			editedPics[modifiedIndices[i]] = paths[i];
+		}
+
+		editedPics = editedPics.filter(function(element) {
+			return element != '';
+		});
 
 		/* Retrieve the data entered in the text fields */
 		let productName = req.body.productName;
@@ -359,7 +393,8 @@ const productsManagerController = {
 			name: formattedProductName,
 			quantity: formattedProductQuantity,
 			description: formattedProductDesc,
-			price: formattedProductPrice
+			price: formattedProductPrice,
+			pictures: editedPics
 		}
 
 		/* Insert the new product into the database and redirect the user to the landing page */
