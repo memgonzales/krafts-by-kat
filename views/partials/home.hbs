@@ -2,8 +2,7 @@
 
     {{#each productNames}}
     <!-- Polaroid anchor -->
-
-    <a href = "#" class = "m-4">
+    <a href = "/viewItem/{{lookup ../productIds @index}}" class = "m-4">
         <div class = "outer d-flex align-items-center pt-3 flex-column">
 
             <div class = "inner">
@@ -42,9 +41,8 @@
             <div class = "container-fluid f1 item overflow-hidden" id = "item-info">
 
                 <span class = "d-inline-block text-truncate item mt-2" id = "item-name" style = "max-width: 290px;">
-                <a href = "/viewItem/{{lookup ../productIds @index}}">
                     {{lookup ../productNames @index}}
-                </a></span>
+                </span>
 
                 <div class = "container d-flex flex-row justify-content-center mt-2">
 
