@@ -7,6 +7,7 @@ $(document).ready(function() {
     /* Load the pictures onto the front-end */
     const pictures = getPictures();
     displayPictures();
+    emphasizePicture();
 
     /**
      * Formats the number given the ID of its HTML container so that commas are used to separate groups
@@ -79,6 +80,19 @@ $(document).ready(function() {
         for (let i = indexRemoveImg; i <= numPics; i++) {
             /* Hide the placeholders and center the loaded images */
             $('#img' + i).remove();
+        }
+    }
+
+    /**
+     * Projects the image clicked as the largest picture displayed in the gallery
+     */
+    function emphasizePicture() {
+        /* Use one-based indexing to follow the ID convention in the HTML file */
+        for (let i = 1; i <= pictures.length; i++) {
+            $('#pic' + i).on('click', function(e) {
+                /* Set the largest picture to the image clicked */
+                $('#pic-big').attr('src', $('#pic' + i).attr('src'))
+            });
         }
     }
 });
