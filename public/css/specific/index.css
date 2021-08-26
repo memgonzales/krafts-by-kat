@@ -86,3 +86,7 @@ hr {
   }
 
 /* END of HTML tag CSS */
+#login:hover{
+    text-decoration:none;
+    color: var(--white);
+}
