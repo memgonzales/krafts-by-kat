@@ -91,7 +91,14 @@ $(document).ready(function() {
         for (let i = 1; i <= pictures.length; i++) {
             $('#pic' + i).on('click', function(e) {
                 /* Set the largest picture to the image clicked */
-                $('#pic-big').attr('src', $('#pic' + i).attr('src'))
+                $('#pic-big').attr('src', $('#pic' + i).attr('src'));
+
+                /* Only the clicked (and projected) photo should have a border */
+                for (j = 1; j <= pictures.length; j++) {
+                    $('#img' + j).css('background-color', '#2b2129');
+                }
+
+                $('#img' + i).css('background-color', '#E5D1B8');
             });
         }
     }
