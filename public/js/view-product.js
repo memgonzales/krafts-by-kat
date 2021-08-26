@@ -4,9 +4,13 @@ $(document).ready(function() {
     formatNumber('#units-available');
     formatNumber('#product-price-num');
 
+    /* Use this placeholder image used when the user did not upload a photo */
+    const placeholder = '/img/placeholder/no-image.png';
+
     /* Load the pictures onto the front-end */
     const pictures = getPictures();
     displayPictures();
+    emphasizeOnLoad();
     emphasizePicture();
 
     /**
@@ -55,9 +59,6 @@ $(document).ready(function() {
         /* Refers to the maximum number of product photos that can be uploaded (and viewed) */
         const numPics = $('#small-view-pic-container').children().length;
         
-        /* Use this placeholder image used when the user did not upload a photo */
-        const placeholder = '/img/placeholder/no-image.png';
-
         /* Display pictures only if pictures have been uploaded */
         if (pictures[0] != placeholder) {
             /* Update the large picture, and set it to the first picture in the polaroid display */
@@ -80,6 +81,17 @@ $(document).ready(function() {
         for (let i = indexRemoveImg; i <= numPics; i++) {
             /* Hide the placeholders and center the loaded images */
             $('#img' + i).remove();
+        }
+    }
+
+    /**
+     * Add border around the first image when the page is loaded since it is the largest picture
+     * displayed in the gallery by default
+     */
+    function emphasizeOnLoad() {
+        /* Do not place a border if no product photo was uploaded */
+        if (pictures[0] != placeholder) {
+            $('#img1').css('background-color', '#E5D1B8');
         }
     }
 
