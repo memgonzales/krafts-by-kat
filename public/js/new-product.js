@@ -203,37 +203,12 @@ $(document).ready(function() {
 			case 'jpg':
 			case 'jpeg':
 			case 'jpe':
-			case 'jif':
 			case 'jfif':
-			case 'jfi':
 			case 'png':
 			case 'gif':
 			case 'webp':
-			case 'tiff':
-			case 'tif':
-			case 'psd':
-			case 'raw':
-			case 'arw':
-			case 'cr2':
-			case 'nrw':
-			case 'k25':
 			case 'bmp':
-			case 'dib':
-			case 'heif':
-			case 'heic':
-			case 'ind':
-			case 'indd':
-			case 'indt':
-			case 'jp2':
-			case 'j2k':
-			case 'jpf':
-			case 'jpx':
-			case 'jpm':
-			case 'mj2':
 			case 'svg':
-			case 'svgz':
-			case 'ai':
-			case 'eps':
 				return true;
 			default:
 				alert('This file type is not supported. Please upload a valid image.');
