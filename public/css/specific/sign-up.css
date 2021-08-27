@@ -59,3 +59,7 @@ label{
 }
 
 /* END of Success Modal CSS */
+#login-btn:hover{
+    text-decoration:none;
+    color: var(--white);
+}
