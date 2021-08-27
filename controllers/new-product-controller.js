@@ -32,7 +32,8 @@ const newProductController = {
 						style: 'new-product',
 						logo: result.logo,
 						userFlag: true,
-						adminFlag: true
+						adminFlag: true,
+						username: req.session.username
 					}
 
 					res.render('new-product', details);
