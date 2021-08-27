@@ -19,6 +19,11 @@
     border-radius: 5px;
 }
 
+.form-header{
+    font-size: 40pt;
+}
+
+
 #add-cart{
     border-radius: 50px;
 
