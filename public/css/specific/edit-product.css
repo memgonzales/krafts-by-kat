@@ -88,6 +88,11 @@
     box-shadow: inset 0px 0px 0px 0px #F0F0F0;
 }
 
+#cancel-changes:hover{
+    text-decoration:none;
+    color: var(--white);
+}
+
 
 
 input{
