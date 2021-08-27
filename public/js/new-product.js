@@ -204,6 +204,7 @@ $(document).ready(function() {
 			case 'jpeg':
 			case 'jpe':
 			case 'jfif':
+			case 'heic':
 			case 'png':
 			case 'gif':
 			case 'webp':

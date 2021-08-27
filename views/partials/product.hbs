@@ -10,7 +10,7 @@
         <div id = "product-id-{{../type}}_{{@index}}" class = "hidden">{{lookup ../ids @index}}</div>
 
         <div class="product-name" id = "product-name-{{../type}}_{{@index}}">
-            {{lookup ../names @index}}
+            <a href = "/viewItem/{{lookup ../ids @index}}">{{lookup ../names @index}}</a>
         </div>
 
         <div class="d-flex flex-row justify-content-start align-items-center product-details" id="product-details-{{@index}}">
