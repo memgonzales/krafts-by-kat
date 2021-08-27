@@ -8,11 +8,14 @@ const logOutController = {
      * @param res object that contains information on the HTTP response from the server 
      */
     getLogOut: function (req, res) {
-        
         /* Destroy the current session and redirect to the landing page */
         req.session.destroy(function(err) {
-            if(err) throw err;
-            res.redirect('/');
+            if(err) {
+                throw err;
+            } else {
+                req.session = null;
+                res.redirect('/');
+            }
         });
     }
 }

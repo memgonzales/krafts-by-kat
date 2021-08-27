@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 const express = require('express');
 const exphbs = require('express-handlebars');
+const nocache = require("nocache");
 
 const bodyParser = require('body-parser');
 const fs = require('fs');
@@ -32,6 +33,8 @@ krafts.engine('hbs',exphbs({
 	extname:'.hbs',
 	helpers: helper})
 );
+
+krafts.use(nocache());
 
 krafts.use(session({
 	secret: process.env.session_secret,
