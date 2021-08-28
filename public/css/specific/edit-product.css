@@ -1,4 +1,3 @@
-
 #edit-product-div, #edit-user-prompt{
     width: 1200px;
     border-radius: 15px;
@@ -35,6 +34,12 @@
     width: 65px;
     height: 65px;
 }
+
+.remove-img{
+    width:65px;
+    outline: none;
+}
+
 /* END: Added by developers to handle display of images */
 
 .price-details{
@@ -92,8 +97,6 @@
     text-decoration:none;
     color: var(--white);
 }
-
-
 
 input{
     border: none;

@@ -5,98 +5,120 @@
     <form method = "POST" action = "/postEditItem/{{id}}" enctype = "multipart/form-data" class = "d-flex justify-content-center flex-column" id = "edit-product-form">
 
         <div class="debug1 d-flex flex-row" id="edit-product-div">
-            <div class = "col-md-4 py-4 d-flex justify-content-center align-items-center flex-column bgc1 " id = "product-images">
+
+            <div class = "col-md-4 pt-4 pb-1 d-flex justify-content-center align-items-center flex-column bgc1" id = "product-images">
             
-            <div class = " bgc5 d-flex justify-content-center align-items-center mt-2" id = "focused-img">
-                <i class = "far fa-images fa-7x fc3" id = "icon-big"></i>
-                <img id = "pic-big">
+                <div class = " bgc5 d-flex justify-content-center align-items-center mt-2" id = "focused-img">
+                    <i class = "far fa-images fa-7x fc3" id = "icon-big"></i>
+                    <img id = "pic-big">
+                </div>
+
+                <div class = "container d-flex mt-3 flex-row" id = "small-view-pic-container">
+
+                    <div class = "container mx-1 bgc5 d-flex justify-content-center align-items-center p-1 fixed-pic" id="img1">
+                        <i class = "far fa-images fa-2x mx-1 fc3" id = "icon1"></i>
+                        <img id = "pic1" class = "small-view-pic"> 
+                        <input type = "file" accept = "image/*" id = "product-img-1" class = "hidden" name = "productImg1">
+
+                    </div>
+                    <div class = "container mx-1 bgc5 d-flex justify-content-center align-items-center p-1 fixed-pic" id="img2">
+                        <i class = "far fa-images fa-2x mx-1 fc3" id = "icon2"></i>
+                        <img id = "pic2" class = "small-view-pic">
+                        <input type = "file" accept = "image/*" id = "product-img-2" class = "hidden" name = "productImg2">
+
+                    </div>
+                    <div class = "container mx-1 bgc5 d-flex justify-content-center align-items-center p-1 fixed-pic" id="img3">
+                        <i class = "far fa-images fa-2x mx-1 fc3" id = "icon3"></i>
+                        <img id = "pic3" class = "small-view-pic">
+                        <input type = "file" accept = "image/*" id = "product-img-3" class = "hidden" name = "productImg3">
+                    
+                    </div>
+                    <div class = "container mx-1 bgc5 d-flex justify-content-center align-items-center p-1 fixed-pic" id="img4">
+                        <i class = "far fa-images fa-2x mx-1 fc3" id = "icon4"></i>
+                        <img id = "pic4" class = "small-view-pic">
+                        <input type = "file" accept = "image/*" id = "product-img-4" class = "hidden" name = "productImg4">
+
+                    </div>
+                    <div class = "container mx-1 bgc5 d-flex justify-content-center align-items-center p-1 fixed-pic" id="img5">
+                        <i class = "far fa-images fa-2x mx-1 fc3" id = "icon5"></i>
+                        <img id = "pic5" class = "small-view-pic">
+                        <input type = "file" accept = "image/*" id = "product-img-5" class = "hidden" name = "productImg5">
+
+                    </div>
+
+                </div>  
+
+                <div class = "container d-flex flex-row ">
+
+                    <div class = "container mx-1 d-flex justify-content-center align-items-center remove-img" id="img1">
+                        <button type="button" class="btn" id="remove-img1"> <i class="fas fa-times-circle"></i></button>
+                        
+                    </div>
+                    <div class = "container mx-1 d-flex justify-content-center align-items-center remove-img" id="img2">
+                        <button type="button" class="btn" id="remove-img2"> <i class="fas fa-times-circle"></i></button>
+                    </div>
+                    <div class = "container mx-1 d-flex justify-content-center align-items-center remove-img" id="img3">
+                        <button type="button" class="btn" id="remove-img3"> <i class="fas fa-times-circle"></i></button>
+                    
+                    </div>
+                    <div class = "container mx-1 d-flex justify-content-center align-items-center remove-img" id="img4">
+                        <button type="button" class="btn" id="remove-img4"> <i class="fas fa-times-circle"></i></button>
+
+                    </div>
+                    <div class = "container mx-1 d-flex justify-content-center align-items-center remove-img" id="img5">
+                        <button type="button" class="btn" id="remove-img5"> <i class="fas fa-times-circle"></i></button>
+                    </div>
+
+                </div>
+
             </div>
+        
+            <div class = "col-md-8 d-flex flex-column bgc3 p-5 f1" id="product-details">
 
-            <div class = "container d-flex mt-3 flex-row" id = "small-view-pic-container">
-
-                <div class = "container mx-1 bgc5 d-flex justify-content-center align-items-center p-1 fixed-pic" id="img1">
-                    <i class = "far fa-images fa-2x mx-1 fc3" id = "icon1"></i>
-                    <img id = "pic1" class = "small-view-pic"> 
-                    <input type = "file" accept = "image/*" id = "product-img-1" class = "hidden" name = "productImg1">
-				
-
+                <div class = "container mb-2">
+                    <input class="bgc3 bold" type="text" id="product-name" name = "productName" value = "{{name}}">
                 </div>
-                <div class = "container mx-1 bgc5 d-flex justify-content-center align-items-center p-1 fixed-pic" id="img2">
-                    <i class = "far fa-images fa-2x mx-1 fc3" id = "icon2"></i>
-                    <img id = "pic2" class = "small-view-pic">
-                    <input type = "file" accept = "image/*" id = "product-img-2" class = "hidden" name = "productImg2">
 
-                </div>
-                <div class = "container mx-1 bgc5 d-flex justify-content-center align-items-center p-1 fixed-pic" id="img3">
-                    <i class = "far fa-images fa-2x mx-1 fc3" id = "icon3"></i>
-                    <img id = "pic3" class = "small-view-pic">
-                    <input type = "file" accept = "image/*" id = "product-img-3" class = "hidden" name = "productImg3">
-                   
-                </div>
-                <div class = "container mx-1 bgc5 d-flex justify-content-center align-items-center p-1 fixed-pic" id="img4">
-                    <i class = "far fa-images fa-2x mx-1 fc3" id = "icon4"></i>
-                    <img id = "pic4" class = "small-view-pic">
-                    <input type = "file" accept = "image/*" id = "product-img-4" class = "hidden" name = "productImg4">
+                <div class = "container bold d-flex flex-row">
 
-                </div>
-                <div class = "container mx-1 bgc5 d-flex justify-content-center align-items-center p-1 fixed-pic" id="img5">
-                    <i class = "far fa-images fa-2x mx-1 fc3" id = "icon5"></i>
-                    <img id = "pic5" class = "small-view-pic">
-                    <input type = "file" accept = "image/*" id = "product-img-5" class = "hidden" name = "productImg5">
+                    <span class = "me-2">
+                        <span class = "product-rating">{{aveRating}}</span>
+                        <i class = "fas fa-star ms-1"></i>
+                    </span>
+
+                    <span class = "mx-2">|</span>
+                    <span class = "mx-2"><span id="rating-count">{{numRatings}}</span> Ratings</span>
+                    <span class = "mx-2">|</span>
+                    <span class = "mx-2"><span id="units-sold">{{numberSold}}</span> Sold</span>
+                    <span class = "mx-2">|</span>
+                    <span class = "mx-2">
+                        <input class="bgc3" type = "number" id="units-available" name = "quantity" value = "{{quantity}}"> <span class="ms-2">Units Available</span>
+                    </span>
 
                 </div>
 
-            </div>  
+                <div class="container mt-4 bgc4 p-2 price-details d-flex flex-row">
+                    <span class="mx-2" id="peso-sign">₱</span>
+                    <input class="bgc4 bold" type="text" id = "product-price" name = "productPrice" value ="{{price}}">
+                </div>
 
+                <div class="container bgc4 mt-4 price-details p-3" id="price-desc-container">
+
+                    <h5 >Description</h5>
+                    <div class="dropdown-divider"></div>
+
+                    <div class="container">
+                        <textarea class="bgc4" id="product-description" rows="4" name = "description" cols="80">{{description}}</textarea>
+                        
+                        <input type = "hidden" id = "modified-indices" name = "modifiedIndices">
+                        <input type = "hidden" id = "original-pics" name = "originalPics" value = {{pictures}}>
+                    </div>
+                        
+                </div>
+
+            </div>
 
         </div>
-
-        <div class = "col-md-8 d-flex flex-column bgc3 p-5 f1" id="product-details">
-
-            <div class = "container mb-2">
-                <input class="bgc3 bold" type="text" id="product-name" name = "productName" value = "{{name}}">
-            </div>
-
-            <div class = "container bold d-flex flex-row">
-
-                <span class = "me-2">
-                    <span class = "product-rating">{{aveRating}}</span>
-                    <i class = "fas fa-star ms-1"></i>
-                </span>
-
-                <span class = "mx-2">|</span>
-                <span class = "mx-2"><span id="rating-count">{{numRatings}}</span> Ratings</span>
-                <span class = "mx-2">|</span>
-                <span class = "mx-2"><span id="units-sold">{{numberSold}}</span> Sold</span>
-                <span class = "mx-2">|</span>
-                <span class = "mx-2">
-                    <input class="bgc3" type = "number" id="units-available" name = "quantity" value = "{{quantity}}"> <span class="ms-2">Units Available</span>
-                </span>
-
-            </div>
-
-            <div class="container mt-4 bgc4 p-2 price-details d-flex flex-row">
-                <span class="mx-2" id="peso-sign">₱</span>
-                <input class="bgc4 bold" type="text" id = "product-price" name = "productPrice" value ="{{price}}">
-            </div>
-
-            <div class="container bgc4 mt-4 price-details p-3" id="price-desc-container">
-
-                <h5 >Description</h5>
-                <div class="dropdown-divider"></div>
-
-                <div class="container">
-                    <textarea class="bgc4" id="product-description" rows="4" name = "description" cols="80">{{description}}</textarea>
-                    
-                    <input type = "hidden" id = "modified-indices" name = "modifiedIndices">
-                    <input type = "hidden" id = "original-pics" name = "originalPics" value = {{pictures}}>
-                </div>
-                    
-            </div>
-
-        </div></div>
-
-        
 
         <div class="container mt-5 d-flex justify-content-center" id="edit-user-prompt">
             <button type = "submit" class="btn bgc3 mx-2" id="submit-changes">Save Changes</button>

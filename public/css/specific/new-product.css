@@ -36,3 +36,15 @@
 .form-header{
     font-size: 40pt;
 }
+
+.remove-img{
+    height: 80px;
+}
+
+.remove-img-grp{
+    padding: 0px;
+}
+
+.remove-img1,.remove-img2,.remove-img3,.remove-img4,.remove-img5{
+    width:1px;
+}
