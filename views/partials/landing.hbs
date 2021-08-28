@@ -15,7 +15,11 @@
     </div>
 
     <div class="container-fluid d-flex flex-row justify-content-center" id = "landing-item-reviews">
-        {{>testimonials}}
+        {{#each testimonialsComments}}
+            {{>review comment = this profilePicture = (lookup ../testimonialsProfilePictures @index)
+               username = (lookup ../testimonialsUsernames @index) rating = (lookup ../testimonialsRatings @index)}}
+        {{/each}}
+        
     </div>
 
 <div class="container-fluid"></div>
