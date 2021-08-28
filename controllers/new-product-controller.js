@@ -6,6 +6,7 @@ const Display = require('../models/display-schema.js');
 const CatalogItem = require('../models/catalog-item-schema.js');
 
 const maxNumItems = 5;
+const imagePlaceholder = '/img/placeholder/no-image.png';
 
 const newProductController = {
 
@@ -72,7 +73,7 @@ const newProductController = {
 
 		/* Use a placeholder image if no images have been uploaded */
 		if (paths.length == 0) {
-			paths.push('/img/placeholder/no-image.png');
+			paths.push(imagePlaceholder);
 		}
 
 		/* Retrieve the data entered in the text fields */

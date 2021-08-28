@@ -14,23 +14,8 @@ $(document).ready(function() {
     /* Call the methods for uploading (editing) a picture */
     triggerUpload();
     changePicOnUpload();
+    removePic();
     cancel();
-
-    /** 
-	 * Clears the picture fields
-	 */
-	function cancel() {
-		$('#cancel-changes').click(function() {
-
-			/* The indices of the HTML IDs are one-based */
-			for (let i = 1; i <= maxNumPictures; i++) {
-                $('#icon' + i).css('display', 'block');
-				$('#pic' + i).css('display', 'none');
-			}
-
-            displayPictures();
-		});
-	}
 	
     /* 
 	 * Initialize an array to store the image file paths.
@@ -53,6 +38,27 @@ $(document).ready(function() {
     for (let i = 0; i < maxNumPictures; i++) {
         modifiedIndices.push(false);
     }
+
+    /*
+     * Initialize an array to store a Boolean value corresponding to whether a photo has been removed
+     *
+     * Each photo is identified via a zero-based index. Initially, all of them are not removed; thus,
+     * the initial values are all set to false.
+     */
+    let deletedIndices = [];
+    for (let i = 0; i < maxNumPictures; i++) {
+        deletedIndices.push(false);
+    }
+
+    /** 
+	 * Clears the picture fields
+	 */
+	function cancel() {
+		$('#cancel-changes').click(function() {
+			/* Redirect the user back to the prducts manager page */
+			location.href = '/account/admin/productsManager';
+		});
+	}
 
     /**
      * Formats the number given the ID of its HTML container so that commas are used to separate groups
@@ -181,9 +187,7 @@ $(document).ready(function() {
                         $('#icon-big').css('display', 'none');
                     }
 
-                    /*
-                     * Indicate that the photo has been modified. Subtract 1 from index since array is zero-based
-                     */ 
+                    /* Indicate that the photo has been modified. Subtract 1 from index since array is zero-based */ 
                     modifiedIndices[i - 1] = true;
                     trackModifiedIndices();
 				}
@@ -219,5 +223,54 @@ $(document).ready(function() {
 
         /* Pass to the appropriate hidden text field */
         $('#modified-indices').val(modifiedIndicesStr);
+    }
+
+    /**
+     * Sets the click listener for removing the product photos
+     */
+    function removePic() {
+        /* The indices of the HTML IDs are one-based */
+        for (let i = 1; i <= maxNumPictures; i++) {
+            $('#remove-img' + i).on('click', function() {
+                $('#icon' + i).css('display', 'block');
+                $('#pic' + i).css('display', 'none');
+
+                /* Indicate that the photo has been removed. Subtract 1 from index since array is zero-based */ 
+                deletedIndices[i - 1] = true;
+                trackDeletedIndices();
+
+                /* Remove from the modified indices to signify that no file is to be passed to the server */
+                modifiedIndices[i - 1] = false;
+                trackModifiedIndices();
+
+                /* Clear the input field */
+                $('#product-img-' + i).val('');
+            });
+        }
+    }
+
+    /**
+     * Pass a string representing the indices of the product photos that have been removed
+     * to a hidden input text field.
+     * 
+     * This string is a concatenation of the indices of these photos (arranged in ascending order).
+     * For example, if the indices are 1 and 4, the string is "14"
+     * 
+     * Precondition:
+     * - All the indices must be single-digit numbers.
+     */
+    function trackDeletedIndices() {
+        /* Initialize to an empty string to prevent duplicates when editing is done repetitively */
+        let deletedIndicesStr = "";
+
+        /* Concatenate if the photo has been modified by the user */
+        for (let i = 0; i < maxNumPictures; i++) {
+            if (deletedIndices[i] == true) {
+                deletedIndicesStr += i;
+            }
+        }
+
+        /* Pass to the appropriate hidden text field */
+        $('#deleted-indices').val(deletedIndicesStr);
     }
 });

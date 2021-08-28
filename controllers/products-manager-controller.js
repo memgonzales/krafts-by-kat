@@ -6,6 +6,7 @@ const Display = require('../models/display-schema.js');
 const CatalogItem = require('../models/catalog-item-schema.js');
 
 const maxNumItems = 5;
+const imagePlaceholder = '/img/placeholder/no-image.png';
 
 const productsManagerController = {
 	/**
@@ -342,6 +343,7 @@ const productsManagerController = {
 
 		/* Filter the image data in the database to be edited/added */
 		let modifiedIndicesStr = req.body.modifiedIndices;
+		let deletedIndicesStr = req.body.deletedIndices;
 		let originalPicsStr = req.body.originalPics;
 
 		/*
@@ -350,6 +352,7 @@ const productsManagerController = {
 		 * - The paths to the pictures are delimited using a comma.
 		 */
 		let modifiedIndices = modifiedIndicesStr.split('');
+		let deletedIndices = deletedIndicesStr.split('');
 		let editedPics = originalPicsStr.split(',');
 
 		/*
@@ -365,6 +368,14 @@ const productsManagerController = {
 		}
 
 		/*
+		 * Address the case that the user chooses to remove originally uploaded photos by setting their
+		 * paths to empty strings.
+		 */
+		for (let i = 0; i < deletedIndices.length; i++) {
+			editedPics[deletedIndices[i]] = '';
+		}
+
+		/*
 		 * It is expected that the length of modifiedIndices is equal to the length of paths since they
 		 * both reflect the number of images uploaded by the user.
 		 */
@@ -375,6 +386,11 @@ const productsManagerController = {
 		editedPics = editedPics.filter(function(element) {
 			return element != '';
 		});
+
+		/* Use the placeholder image if all product photos have been removed */
+		if (editedPics.length == 0) {
+			editedPics.push(imagePlaceholder);
+		}
 
 		/* Retrieve the data entered in the text fields */
 		let productName = req.body.productName;

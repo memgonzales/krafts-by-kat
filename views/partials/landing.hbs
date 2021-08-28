@@ -11,11 +11,17 @@
     </div>
 
     <div class = "container d-flex flex-row justify-content-center mt-5" id = "tape-feed">  
-        {{>tape-feed}}
+        {{#each pictures}}
+            {{>tape-feed pictures = this}}
+        {{/each}}
     </div>
 
     <div class="container-fluid d-flex flex-row justify-content-center" id = "landing-item-reviews">
-        {{>testimonials}}
+        {{#each testimonialsComments}}
+            {{>review comment = this profilePicture = (lookup ../testimonialsProfilePictures @index)
+               username = (lookup ../testimonialsUsernames @index) rating = (lookup ../testimonialsRatings @index)}}
+        {{/each}}
+        
     </div>
 
 <div class="container-fluid"></div>

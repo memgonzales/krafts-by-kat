@@ -110,6 +110,7 @@
                     <div class="container">
                         <textarea class="bgc4" id="product-description" rows="4" name = "description" cols="80">{{description}}</textarea>
                         
+                        <input type = "hidden" id = "deleted-indices" name = "deletedIndices">
                         <input type = "hidden" id = "modified-indices" name = "modifiedIndices">
                         <input type = "hidden" id = "original-pics" name = "originalPics" value = {{pictures}}>
                     </div>
@@ -122,7 +123,7 @@
 
         <div class="container mt-5 d-flex justify-content-center" id="edit-user-prompt">
             <button type = "submit" class="btn bgc3 mx-2" id="submit-changes">Save Changes</button>
-            <a href="/account/admin/productsManager" class="btn bgc5 cwhite mx-2" id = "cancel-changes">Cancel</a>
+            <button type = "reset" class="btn bgc5 mx-2 cwhite" id="cancel-changes">Cancel</button>
         </div>
 
     </form>
