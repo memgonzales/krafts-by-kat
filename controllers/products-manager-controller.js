@@ -6,6 +6,7 @@ const Display = require('../models/display-schema.js');
 const CatalogItem = require('../models/catalog-item-schema.js');
 
 const maxNumItems = 5;
+const imagePlaceholder = '/img/placeholder/no-image.png';
 
 const productsManagerController = {
 	/**
@@ -385,6 +386,11 @@ const productsManagerController = {
 		editedPics = editedPics.filter(function(element) {
 			return element != '';
 		});
+
+		/* Use the placeholder image if all product photos have been removed */
+		if (editedPics.length == 0) {
+			editedPics.push(imagePlaceholder);
+		}
 
 		/* Retrieve the data entered in the text fields */
 		let productName = req.body.productName;
