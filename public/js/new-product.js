@@ -26,23 +26,6 @@ $(document).ready(function() {
 	 * Clears the picture fields
 	 */
 	function cancel() {
-		
-		// $('#cancel-product').click(function() {
-
-		// 	/* The indices of the HTML IDs are one-based */
-		// 	for (let i = 1; i <= maxNumPictures; i++) {
-		// 		$('#img-' + i).css('display', 'block');
-		// 		$('#pic-' + i).css('display', 'none');
-
-		// 		 The indices of the array are zero-based. Remove the saved images 
-		// 		imgTargetResultsOrig[i - 1] = '';
-
-		// 		/* Use the image placeholder */
-		// 		$('#polaroid-pic-1').attr('src', '/img/placeholder/no-image.png');
-		// 		$('#preview-polaroid').click();
-		// 	}
-		// });
-		
 		$('#cancel-product').click(function() {
 			/* Redirect the user to the home page */
 			location.href = "/";
