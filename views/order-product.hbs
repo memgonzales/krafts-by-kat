@@ -1,6 +1,6 @@
 {{>navbar}}
 
-<h1 class = "f1 text-start ms-5 mt-5 form-header">Make an Order</h1>
+<span class = "f1 text-start ms-5 mt-5 form-header">Make an Order</span>
 
 <div class = "container-fluid d-flex justify-content-center align-items-center flex-column mb-5 ">
 
@@ -81,15 +81,38 @@
         </div>
 
         <div class="d-flex justify-content-center mt-5">
+            <button type="button" class="btn bgc2 mx-3">Save Order</button>
             <button type="submit" class="btn bgc3 mx-3">Place Order</button>
-            <button type="button" class="btn bgc4 mx-3">Cancel</button>
+            <button type="button" class="btn bgc4 mx-3" data-bs-toggle="modal" data-bs-target="#save-prompt">Cancel</button>
         </div>
 
     </form>
     
 </div>
 
-
-
-
 {{>pick-product}}
+
+<div class = "modal fade" id = "save-prompt" tabindex = "-1" aria-hidden="true">
+    <div class = "modal-dialog d-flex justify-content-center">
+        <div class = "modal-content d-flex flex-column align-items-center">
+            <div class = "col-md-6 bgc4 d-flex justify-content-center align-items-center" id = "save-upper">
+
+                <i class="fas fa-exclamation-triangle fa-5x"></i>
+
+            </div>
+
+            <div class = "col-md-6 bgc3 d-flex justify-content-center align-items-center flex-column f1 p-5" id = "save-lower">
+               
+                <span class = "text-center delete-msg" id = "save-prompt">Careful! You might want to save your order. Are you sure want to go back?</span>  
+                
+                   
+                <div class = "container d-flex justify-content-between mt-4">
+                    <a class="btn cblack bgc4 btn-anchor" href="/">Yes</a>
+                    <button type = "button" class = "btn bgc5 cwhite" data-bs-dismiss = "modal">No, Wait!</button>
+                </div>
+
+                    
+            </div>
+        </div>
+    </div>
+</div>

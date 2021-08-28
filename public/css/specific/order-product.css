@@ -82,3 +82,20 @@ input, textarea{
 }
 
 /* END of One Product CSS */
+
+
+/* Save Prompt Modal CSS */
+
+#save-upper{
+    width: 350px;
+    height: 250px;
+
+    border-radius: 20px 20px 0px 0px;
+}
+#save-lower{
+
+    width: 350px;
+    height: 250px;
+    border-radius: 0px 0px 20px 20px;
+}
+/* END of Save Prompt Modal CSS*/
