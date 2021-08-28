@@ -51,7 +51,7 @@ krafts.post('/postNewProduct', db.connect().fields(newProductFields), newProduct
 /* For account page */
 krafts.get('/account', accountController.getAccount);
 krafts.get('/account/purchaseHistory', accountController.getAccountPurchaseHistory);
-krafts.get('/account/support', accountController.getAccountSupport);
+krafts.get('/account/myOrders', accountController.getAccountOrders);
 krafts.get('/account/admin/orders', accountController.getAccountAdminOrders);
 krafts.get('/account/admin/messages', accountController.getAccountAdminMessages);
 krafts.get('/account/admin/productsManager', accountController.getAccountAdminProductsManager);

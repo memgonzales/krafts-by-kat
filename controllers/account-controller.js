@@ -126,7 +126,7 @@ const accountController = {
 	 * @param req object that contains information on the HTTP request from the client
 	 * @param res object that contains information on the HTTP response from the server 
 	 */
-	getAccountSupport: function(req, res) {
+	getAccountOrders: function(req, res) {
 
 		/* Prepare a query for the web application logo */
 		let query = {id: 0};
@@ -148,7 +148,7 @@ const accountController = {
 						isAdmin: req.session.isAdmin
 					}
 
-					res.render('user-support', details);
+					res.render('user-my-orders', details);
 
 				/* If the user is not registered, redirect them to the landing page */
 				} else {
@@ -165,7 +165,7 @@ const accountController = {
 							username: req.session.username
 						}
 
-						res.render('user-support', details);
+						res.render('user-my-orders', details);
 					}
 				}	
 
