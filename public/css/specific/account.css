@@ -38,9 +38,14 @@
 }
 
 #sidebar-content{
-    padding: 50px 70px 0px 50px;
+    overflow-y: scroll;
+    height: 721px;
 }
 
+
+#sidebar{
+    position:sticky;
+}
 /* END of Account Page Navigation CSS */
 
 
@@ -158,6 +163,15 @@
     border-radius: 0px 20px 20px 0px;
   
 } 
+
+.one-order{
+    border-radius:20px;
+}
+
+#orders-collection{
+    overflow-y:scroll;
+    height: 649px;
+}
 /* END of Admin Order Tab CSS*/
 
 
