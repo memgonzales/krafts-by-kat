@@ -342,6 +342,7 @@ const productsManagerController = {
 
 		/* Filter the image data in the database to be edited/added */
 		let modifiedIndicesStr = req.body.modifiedIndices;
+		let deletedIndicesStr = req.body.deletedIndices;
 		let originalPicsStr = req.body.originalPics;
 
 		/*
@@ -350,6 +351,7 @@ const productsManagerController = {
 		 * - The paths to the pictures are delimited using a comma.
 		 */
 		let modifiedIndices = modifiedIndicesStr.split('');
+		let deletedIndices = deletedIndicesStr.split('');
 		let editedPics = originalPicsStr.split(',');
 
 		/*
@@ -362,6 +364,14 @@ const productsManagerController = {
 		const numBlankPics = maxNumItems - editedPics.length;
 		for (let i = 0; i < numBlankPics; i++) {
 			editedPics.push('');
+		}
+
+		/*
+		 * Address the case that the user chooses to remove originally uploaded photos by setting their
+		 * paths to empty strings.
+		 */
+		for (let i = 0; i < deletedIndices.length; i++) {
+			editedPics[deletedIndices[i]] = '';
 		}
 
 		/*
