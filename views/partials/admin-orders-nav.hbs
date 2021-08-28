@@ -1,0 +1,68 @@
+<div class="container-fluid bgc5 p-3 d-flex flex-row justify-content between">
+
+    <div class="container">
+        <ul class="nav justify-content-start cwhite">
+
+            {{#if allOrdersTab}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link admin-orders-link-start cblack start-active" aria-current="page" href="/account/admin/orders">All Orders</a>
+                </li>
+            {{else}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link admin-orders-link-start cwhite" aria-current="page" href="/account/admin/orders">All Orders</a>
+                </li>
+            {{/if}}
+
+            {{#if pendingTab}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link admin-orders-link cblack between-active" href="/account/admin/orders/pending">Pending</a>
+                </li>
+
+            {{else}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link admin-orders-link cwhite" href="/account/admin/orders/pending">Pending</a>
+                </li>
+            {{/if}}
+
+            {{#if acceptedTab}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link admin-orders-link cblack between-active" href="/account/admin/orders/accepted">Accepted</a>
+                </li>
+            {{else}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link admin-orders-link cwhite" href="/account/admin/orders/accepted">Accepted</a>
+                </li>
+            {{/if}}
+
+            {{#if enRouteTab}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link admin-orders-link cblack between-active" href="/account/admin/orders/enRoute">En Route</a>
+                </li>
+            {{else}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link admin-orders-link cwhite" href="/account/admin/orders/enRoute">En Route</a>
+                </li>
+            {{/if}}
+
+            {{#if deliveredTab}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link admin-orders-link-end cblack end-active" href="/account/admin/orders/delivered">Delivered</a>
+                </li>       
+            {{else}}
+
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link admin-orders-link-end cwhite" href="/account/admin/orders/delivered">Delivered</a>
+                </li>
+            {{/if}}
+        </ul>
+    </div>
+        
+
+    <div class="container">
+            <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
+        <button class="btn bgc2" type="submit"><i class="fas fa-search"></i></button>
+    </form> 
+    </div>
+           
+</div>
