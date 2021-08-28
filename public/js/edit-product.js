@@ -14,21 +14,26 @@ $(document).ready(function() {
     /* Call the methods for uploading (editing) a picture */
     triggerUpload();
     changePicOnUpload();
+    removePic();
     cancel();
+
+    function removePic() {
+        /* The indices of the HTML IDs are one-based */
+        for (let i = 1; i <= maxNumPictures; i++) {
+            $('#remove-img' + i).on('click', function() {
+                $('#icon' + i).css('display', 'block');
+				$('#pic' + i).css('display', 'none');
+            });
+        }
+    }
 
     /** 
 	 * Clears the picture fields
 	 */
 	function cancel() {
 		$('#cancel-changes').click(function() {
-
-			/* The indices of the HTML IDs are one-based */
-			for (let i = 1; i <= maxNumPictures; i++) {
-                $('#icon' + i).css('display', 'block');
-				$('#pic' + i).css('display', 'none');
-			}
-
-            displayPictures();
+			/* Redirect the user back to the prducts manager page */
+			location.href = '/account/admin/productsManager';
 		});
 	}
 	
