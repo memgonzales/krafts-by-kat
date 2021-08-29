@@ -21,6 +21,10 @@ $(document).ready(function() {
      */
     function formatNumber(id) {
         let number = $(id).text();
+        formatNumberIDText(id, number);
+    }
+
+    function formatNumberIDText(id, number) {
         let formatted = '';
 
         if (number) {
