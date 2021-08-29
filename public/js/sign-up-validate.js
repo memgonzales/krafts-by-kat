@@ -219,13 +219,13 @@ $(document).ready(function() {
 		/* Specify restrictions for the password */
 		let password = validator.trim($('#create-password').val());
 		let isValidLength = validator.isLength(password, {min: 8});
-		let isValidCompose = validator.matches(password, /.*[0-9].*/);
+		let isValidCompose = validator.matches(password, /^(?=.*[a-zA-Z])(?=.*[0-9])/);
 		
 		if (isValidLength) {
 			if (isValidCompose) {
 
-				/* If the entered password is at least 8 characters long and has at least one numeric character, 
-				 * it is accepted
+				/* If the entered password is at least 8 characters long and has at least one numeric and literal 
+				 * character, it is accepted
 				 */
 				if (field.is($('#create-password'))) {
 					$('#password-error').text('');
@@ -241,7 +241,7 @@ $(document).ready(function() {
 			 */
 			} else {
 				if (field.is($('#create-password'))) {
-					$('#password-error').text('Should contain at least one number');
+					$('#password-error').text('Should contain at least one number and at least one letter');
 					$('#create-password').css('border-color', '#FF0000');
 					$('#create-password').css('border-width', '2px');
 				}
