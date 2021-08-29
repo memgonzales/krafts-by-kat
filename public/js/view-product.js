@@ -2,7 +2,7 @@ $(document).ready(function() {
     /* Format the numbers to use commas to separate groups of three digits. */
     formatNumber('#units-sold');
     formatNumber('#units-available');
-    formatNumber('#product-price-num');
+    formatNumber('#product-price');
 
     /* Use this placeholder image used when the user did not upload a photo */
     const placeholder = '/img/placeholder/no-image.png';
@@ -28,16 +28,16 @@ $(document).ready(function() {
         let formatted = '';
 
         if (number) {
-            if (id == '#product-price-num') {
+            if (id == '#product-price') {
                 formatted = number.substr(1);
-                formatted = parseFloat(formatted.trim()).toLocaleString('en-US', {maximumFractionDigits: 2});
+                formatted = parseFloat(formatted.trim()).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             } else {
-                formatted = parseFloat(number.trim()).toLocaleString('en-US', {maximumFractionDigits: 2});
+                formatted = parseFloat(number.trim()).toLocaleString('en-US', {maximumFractionDigits: 0});
             }
     
         }
 
-        if (id == '#product-price-num') {
+        if (id == '#product-price') {
             formatted = '₱' + formatted;
         }
 
