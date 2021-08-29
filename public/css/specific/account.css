@@ -172,6 +172,10 @@
     overflow-y:scroll;
     height: 649px;
 }
+
+#order-focused{
+    border-radius: 15px;
+}
 /* END of Admin Order Tab CSS*/
 
 

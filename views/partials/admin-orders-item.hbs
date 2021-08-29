@@ -7,15 +7,38 @@
         </div>
 
         <div class="container d-flex flex-row">
-            <span class="me-3">Order ID: <span>1gG3tzP</span></span>
-            <span class="mx-3">Status: <span>Pending</span></span>
-            <span class="mx-3">Delivery Date: <span>October 29, 2021</span></span>
+            <span class="me-3">
+                <span class="bold">Order ID:</span> 
+                <span>AgG3tzP</span>
+            </span>
+
+
+            <span class="mx-3">
+                <span class="bold">Status: </span> 
+                <span>Pending</span>
+            </span>
+
+            <span class="mx-3">
+                <span class="bold">Delivery Date: </span>
+                {{!-- Format is MM/DD/YYYY --}}
+                <span>01/22/2021</span>
+            </span>
+
         </div>
 
     </div>
 
     <div class="col-md-1 d-flex justify-content-end pe-2">
-        <i class="fas fa-ellipsis-v"></i>
+       
+        <div class="dropdown">
+            <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                 <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="/account/admin/orders/view/orderID">View Order</a></li>
+                <li><a class="dropdown-item" href="#">Set Accepted or Set En Route</a></li>
+            </ul>
+        </div>
     </div>
     
 </div>

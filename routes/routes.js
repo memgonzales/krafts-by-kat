@@ -132,6 +132,13 @@ krafts.get('/account/admin/orders/delivered', function(req,res){
 
 });
 
+krafts.get('/account/admin/orders/view/orderID', function(req,res){
+    var obj = {
+        style: 'account'
+    }
+    res.render('admin-orders-item-focused',obj);
+});
+
 /*END of TEMP Orders Nav Tabs*/ 
 
 
