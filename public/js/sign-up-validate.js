@@ -17,6 +17,7 @@ $(document).ready(function() {
 	let scrollToUsername = true;
 	let scrollToPassword = true;
 	let scrollToConfirmPassword = true;
+
 	
 	/* Provide the email address and username of the administrator account as constants */
 	const adminEmail = "krafts.by.kat.webmaster@gmail.com";
@@ -449,7 +450,126 @@ $(document).ready(function() {
 			}
 		}
 	}
+
+	function isEmptyFirstName() {
+		if ($('#firstname').val().trim() == '') {	
+			/* Style here */	
+			$('#firstname-error').text('Required');
+			return true;
+		}
+
+		/* Style here */
+		return false;
+	}
+
+	function isEmptySurname() {
+		if ($('#surname').val().trim() == '') {
+			$('#surname-error').text('Required');
+			return true;
+		}
+
+		return false;
+	}
+
+	function isEmptyContact() {
+		if ($('#contact-number').val().trim() == '') {
+			$('#contact-number-error').text('Required');
+			return true;
+		}
+
+		return false;
+	}
+
+	function isEmptyRegion() {
+		if ($('#region').find(':selected').text() == '') {
+			$('#region-error').text('Required');
+			return true;
+		}
+
+		return false;
+	}
+
+	function isEmptyProvince() {
+		if ($('#province').find(':selected').text() == '') {
+			$('#province-error').text('Required');
+			return true;
+		}
+
+		return false;
+	}
+
+	function isEmptyCity() {
+		if ($('#barangay').find(':selected').text() == '') {
+			$('#barangay-error').text('Required');
+			return true;
+		}
+
+		return false;
+	}
+
+	function isEmptyBarangay() {
+		if ($('#city').find(':selected').text() == '') {
+			$('#city-error').text('Required');
+			return true;
+		}
+
+		return false;
+	}
 	
+	function isEmptyZipCode() {
+		if ($('#zip-code').val().trim() == '') {
+			$('#zip-code-error').text('Required');
+			return true;
+		}
+
+		return false;
+	}
+
+	function isEmptyAddress() {
+		if ($('#address').val().trim() == '') {
+			$('#address-error').text('Required');
+			return true;
+		}
+
+		return false;
+	}
+
+	function isEmptyEmail() {
+		if ($('#create-email').val().trim() == '') {
+			$('#email-error').text('Required');
+			return true;
+		}
+
+		return false;
+	}
+
+	function isEmptyUsername() {
+		if ($('#create-username').val().trim() == '') {
+			$('#username-error').text('Required');
+			return true;
+		}
+
+		return false;
+	}
+
+	function isEmptyPassword() {
+		if ($('#create-password').val().trim() == '') {
+			$('#password-error').text('Required');
+			return true;
+		}
+
+		return false;
+	}
+
+	function isEmptyRepeatPassword() {
+		if ($('#confirm-pass').val().trim() == '') {
+			$('#confirm-password-error').text('Required');
+			return true;
+		}
+
+		return false;
+	}
+
 	/* Validate the contact number for every key press */
 	$('#contact-number').keyup(function() {
 		validateField($('#contact-number'), $('#contact-number-error'));
@@ -490,35 +610,106 @@ $(document).ready(function() {
 
 	/* Scroll to the text field with an erroneous input if applicable */
 	$('#signup-submit').on('click', function(e) {
+		if (isEmptyFirstName()) {
+			$('html, body').animate({
+				scrollTop: $('#firstname-label').offset().top
+			});
+
+		} else if (isEmptySurname()) {
+			$('html, body').animate({
+				scrollTop: $('#surname-label').offset().top
+			});
+ 
+		} else if (isEmptyContact()) {
+			$('html, body').animate({
+				scrollTop: $('#contact-number-label').offset().top
+			});
+
+		} else if (scrollToContact) {
+			$('html, body').animate({
+				scrollTop: $('#contact-number-label').offset().top
+			});
+
+		} else if (isEmptyRegion()) {
+			$('html, body').animate({
+				scrollTop: $('#region-label').offset().top
+			});
+
+		} else if (isEmptyProvince()) {
+			$('html, body').animate({
+				scrollTop: $('#province-label').offset().top
+			});
+
+		} else if (isEmptyCity()) {
+			$('html, body').animate({
+				scrollTop: $('#city-label').offset().top
+			});
+
+		} else if (isEmptyBarangay()) {
+			$('html, body').animate({
+				scrollTop: $('#barangay-label').offset().top
+			});
+
+		} else if (isEmptyZipCode()) {
+			$('html, body').animate({
+				scrollTop: $('#zip-code-label').offset().top
+			});
+
+		} else if (scrollToZip) {
+			$('html, body').animate({
+				scrollTop: $('#zip-code-label').offset().top
+			});
+
+		} else if (isEmptyAddress()) {
+			$('html, body').animate({
+				scrollTop: $('#address-label').offset().top
+			});
+
+		} else if (isEmptyEmail()) {
+			$('html, body').animate({
+				scrollTop: $('#create-email-label').offset().top
+			});
+
+		} else if (scrollToEmail) {
+			$('html, body').animate({
+				scrollTop: $('#create-email-label').offset().top
+			});
+
+		} else if (isEmptyUsername()) {
+			$('html, body').animate({
+				scrollTop: $('#create-username-label').offset().top
+			});
+
+		} else if (scrollToUsername) {
+			$('html, body').animate({
+				scrollTop: $('#create-username-label').offset().top
+			});
+
+		} else if (isEmptyPassword()) {
+			$('html, body').animate({
+				scrollTop: $('#create-password-label').offset().top
+			});
+
+		} else if (scrollToPassword) {
+			$('html, body').animate({
+				scrollTop: $('#create-password-label').offset().top
+			});
+
+		} else if (isEmptyRepeatPassword()) {
+			$('html, body').animate({
+				scrollTop: $('#confirm-pass-label').offset().top
+			});
+
+		} else if (scrollToConfirmPassword) {
+			$('html, body').animate({
+				scrollTop: $('#confirm-pass-label').offset().top
+			});
+			
+		}
+ 
+		/* Necessary to carry out client-side validation */
 		if (isSubmitButtonDisabled) {
 			e.preventDefault();
-
-			/* Scroll to error */
-			if (scrollToContact) {
-				$('html, body').animate({
-					scrollTop: $('#contact-number-label').offset().top
-				});
-			} else if (scrollToZip) {
-				$('html, body').animate({
-					scrollTop: $('#zip-code-label').offset().top
-				});
-			} else if (scrollToEmail) {
-				$('html, body').animate({
-					scrollTop: $('#create-email-label').offset().top
-				});
-			} else if (scrollToUsername) {
-				$('html, body').animate({
-					scrollTop: $('#create-username-label').offset().top
-				});
-			} else if (scrollToPassword) {
-				$('html, body').animate({
-					scrollTop: $('#create-password-label').offset().top
-				});
-			} else if (scrollToConfirmPassword) {
-				$('html, body').animate({
-					scrollTop: $('#confirm-pass-label').offset().top
-				});
-			}
 		}
 	});
 });
