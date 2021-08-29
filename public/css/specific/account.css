@@ -13,7 +13,7 @@
     padding: 0px 0px 0px 0px;
 }
 
-.nav-item{
+.account-sidebar-item{
     border-radius: 20px 0px 0px 20px;
 }
 
@@ -22,25 +22,30 @@
     background-color: var(--c4);
 }
 
-.nav-link{
+.account-sidebar-link{
     text-decoration:none;
 }
 
-.nav-link:hover{
+.account-sidebar-link:hover{
     border-radius: 20px 0px 0px 20px;
     color: var(--black);
     background-color: var(--c4);
     text-decoration:none;
 }
 
-.nav-link:not(:hover){
+.account-sidebar-link:not(:hover){
     border-radius: 20px 0px 0px 20px;
 }
 
 #sidebar-content{
-    padding: 50px 70px 0px 50px;
+    overflow-y: scroll;
+    height: 721px;
 }
 
+
+#sidebar{
+    position:sticky;
+}
 /* END of Account Page Navigation CSS */
 
 
@@ -106,4 +111,71 @@
 }
 
 /* END of Delete Modal CSS */
+
+
+/* Admin Orders Tab CSS*/
+
+.start-active{
+    border-radius: 20px 0px 0px 20px;
+    background-color: var(--c4);
+}
+
+.between-active{
+    background-color: var(--c4);
+}
+
+.end-active{
+    border-radius: 0px 20px 20px 0px;
+    background-color: var(--c4); 
+}
+
+.start-active:hover, .between-active:hover, .end-active:hover{
+    text-decoration:none;
+    color:var(--black);
+}
+
+
+.admin-orders-link:hover{
+    background-color: var(--c4);
+    text-decoration:none;
+    color: var(--black);
+}
+
+.admin-orders-link-start:hover{
+    border-radius: 20px 0px 0px 20px;
+    text-decoration:none;
+    background-color: var(--c4);
+    color: var(--black);
+}
+
+.admin-orders-link-end:hover{
+    border-radius: 0px 20px 20px 0px;
+    text-decoration:none;
+    background-color: var(--c4);
+    color: var(--black);
+}
+
+.admin-orders-link-start:not(:hover){
+    border-radius: 20px 0px 0px 20px;
+}
+
+.admin-orders-link-end:not(:hover){
+    border-radius: 0px 20px 20px 0px;
+  
+} 
+
+.one-order{
+    border-radius:20px;
+}
+
+#orders-collection{
+    overflow-y:scroll;
+    height: 649px;
+}
+
+#order-focused{
+    border-radius: 15px;
+}
+/* END of Admin Order Tab CSS*/
+
 

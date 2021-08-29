@@ -99,7 +99,47 @@ krafts.get('/order', function(req,res){
     res.render('order-product', obj);
 });
 
-/* END of Account Related Routes */
+
+/* TEMP Orders Nav Tabs*/ 
+
+krafts.get('/account/admin/orders/pending', function(req,res){
+    var obj = {
+        style: 'account'
+    }
+    res.render('admin-orders-pending',obj);
+});
+
+krafts.get('/account/admin/orders/accepted', function(req,res){
+    var obj = {
+        style: 'account'
+    }
+    res.render('admin-orders-accepted',obj);
+});
+
+krafts.get('/account/admin/orders/enRoute', function(req,res){
+    var obj = {
+        style: 'account'
+    }
+    res.render('admin-orders-en-route',obj);
+
+});
+
+krafts.get('/account/admin/orders/delivered', function(req,res){
+    var obj = {
+        style: 'account'
+    }
+    res.render('admin-orders-delivered',obj);
+
+});
+
+krafts.get('/account/admin/orders/view/orderID', function(req,res){
+    var obj = {
+        style: 'account'
+    }
+    res.render('admin-orders-item-focused',obj);
+});
+
+/*END of TEMP Orders Nav Tabs*/ 
 
 
 
