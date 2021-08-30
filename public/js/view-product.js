@@ -11,7 +11,7 @@ $(document).ready(function() {
     const placeholder = '/img/placeholder/no-image.png';
 
     /* Load the pictures onto the front-end */
-    const pictures = getPictures();
+    const pictures = getPictures($('#picturePaths').text());
     displayPictures();
     emphasizeOnLoad();
     emphasizePicture();
@@ -24,7 +24,7 @@ $(document).ready(function() {
      */
     function formatNumber(id) {
         let number = $(id).text();
-        formatNumberIDText(id, number);
+        $(id).text(formatNumberIDText(id, number));
     }
 
     function formatNumberIDText(id, number) {
@@ -44,7 +44,7 @@ $(document).ready(function() {
             formatted = '₱' + formatted;
         }
 
-        $(id).text(formatted);
+        return formatted;
     }
 
     function hideAddToOrder() {
@@ -60,10 +60,8 @@ $(document).ready(function() {
      * 
      * @return  array containing the file paths to the product photos loaded from the database
      */
-    function getPictures() {
-        const pathsString = $('#picturePaths').text();
+    function getPictures(pathsString) {
         const paths = pathsString.split(',');
-
         return paths;
     }
 
@@ -75,7 +73,7 @@ $(document).ready(function() {
         const numPics = $('#small-view-pic-container').children().length;
         
         /* Display pictures only if pictures have been uploaded */
-        if (pictures[0] != placeholder) {
+        if (!isPlaceholder(pictures, placeholder)) {
             /* Update the large picture, and set it to the first picture in the polaroid display */
             $('#pic-big').css('display', 'block');
             $('#pic-big').attr('src', pictures[0]);
@@ -105,7 +103,7 @@ $(document).ready(function() {
      */
     function emphasizeOnLoad() {
         /* Do not place a border if no product photo was uploaded */
-        if (pictures[0] != placeholder) {
+        if (!isPlaceholder(pictures, placeholder)) {
             $('#img1').css('background-color', '#E5D1B8');
         }
     }
@@ -128,5 +126,9 @@ $(document).ready(function() {
                 $('#img' + i).css('background-color', '#E5D1B8');
             });
         }
+    }
+
+    function isPlaceholder(pictures, placeholder) {
+        return pictures[0] == placeholder;
     }
 });
