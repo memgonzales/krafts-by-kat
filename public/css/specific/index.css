@@ -28,6 +28,18 @@
     height: 200px !important;
 }
 
+#user-dp{
+    width:40px;
+    height:40px;
+    overflow:hidden;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+#user-dp img{
+ max-width: 40px;
+ max-height: 40px;
+}
 /* END of Landing Page CSS */
 
 /* Review Card CSS */
