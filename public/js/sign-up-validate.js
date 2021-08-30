@@ -547,6 +547,11 @@ $(document).ready(function() {
 		return false;
 	}
 
+	/**
+	 * Checks if the user has placed any input on the field for barangay
+	 * 
+	 * @return true if the user has not placed any input on the field for barangay; false, otherwise
+	 */
 	function isEmptyBarangay() {
 		/* If the barangay selection field is left empty, an error message is displayed */
 		if ($('#barangay').find(':selected').text() == '') {
