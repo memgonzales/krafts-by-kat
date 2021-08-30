@@ -1,7 +1,9 @@
 /* JavaScript file for handling the front end of the log in page */
 
 $(document).ready(function() {
-	$('#login-form').on('submit', function(e) {		
+	$('#login-form').on('submit', function(e) {
+		/* Remove warning if submitting the form */
+		window.onbeforeunload = null;
 		
 		/* Override the default submit behavior and insert AJAX */
 		e.preventDefault();
