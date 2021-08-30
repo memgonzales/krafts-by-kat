@@ -1,9 +1,10 @@
 /* JavaScript file for displaying the dropdown menus on the sign up page */
 
 $(document).ready(function() {
-	// window.onbeforeunload = function() {
-	// 	return true;
-	// };
+	/* Show warning if navigating away from page */
+	window.onbeforeunload = function() {
+		return true;
+	};
 
 	/* Supply the contents of the region dropdown */
 	const ph = JSON.parse($('#ph').text());

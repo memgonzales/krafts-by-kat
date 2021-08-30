@@ -835,10 +835,9 @@ $(document).ready(function() {
 		/* Necessary to carry out client-side validation */
 		if (isSubmitButtonDisabled) {
 			e.preventDefault();
-		} 
-		
-		// else {
-		// 	window.onbeforeunload = null;
-		// }
+		} else {
+			/* Disable warning if navigating away from page */
+			window.onbeforeunload = null;
+		}
 	});
 });
