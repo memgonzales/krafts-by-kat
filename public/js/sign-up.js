@@ -16,6 +16,9 @@ $(document).ready(function() {
 	for (let region of regions) {
 		$('#region').append(new Option(region, region));
 	}
+
+	/* Place Region IX after Region VIII since the ordering of Roman numerals is not necessarily alphabetical */
+	$('#region option:eq(9)').insertAfter($('#region option:eq(13)'));
 	
 	/* Supply the contents of the province dropdown depending on the region selected */
 	$('#region').on('change', function() {
