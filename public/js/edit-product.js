@@ -1,4 +1,14 @@
 $(document).ready(function() {
+    /* Show warning if navigating away from page */
+    window.onbeforeunload = function() {
+        return true;
+    };
+
+    /* Remove warning if submitting the form */
+    $('#edit-product-form').on('submit', function() {
+        window.onbeforeunload = null;
+    });
+
     /* Format the numbers to use commas to separate groups of three digits. */
     formatNumberText('#units-sold');
     formatNumberVal('#units-available');
