@@ -14,11 +14,11 @@
         </div>
 
         <div class="d-flex flex-row justify-content-start align-items-center product-details" id="product-details-{{@index}}">
-            <span class = "me-4" id = "item-price-{{../type}}_{{@index}}">P {{lookup ../prices @index}}</span>
+            <span class = "me-4 item-prices" id = "item-price-{{../type}}_{{@index}}">₱{{lookup ../prices @index}}</span>
 
-            <span class = "me-4" id = "item-rating-{{../type}}_{{@index}}">{{lookup ../aveRatings @index}}<i class = "fas fa-star ms-1"></i></span>
+            <span class = "me-4" id = "item-rating-{{../type}}_{{@index}}"><span class = "item-ratings">{{lookup ../aveRatings @index}}</span><i class = "fas fa-star ms-1"></i></span>
 
-            <span class = "me-4 " id = "item-sale-count-{{../type}}_{{@index}}"> {{lookup ../numberSold @index}} sold</span>
+            <span class = "me-4 item-sold" id = "item-sale-count-{{../type}}_{{@index}}"> {{lookup ../numberSold @index}} sold</span>
         </div>
     
     </div>
