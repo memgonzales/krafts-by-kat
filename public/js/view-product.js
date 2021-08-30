@@ -62,8 +62,11 @@ $(document).ready(function() {
      */
     function getPictures() {
         const pathsString = $('#picturePaths').text();
-        const paths = pathsString.split(',');
+        return getPicturesPaths(pathsString);
+    }
 
+    function getPicturesPaths(pathsString) {
+        const paths = pathsString.split(',');
         return paths;
     }
 
@@ -75,7 +78,7 @@ $(document).ready(function() {
         const numPics = $('#small-view-pic-container').children().length;
         
         /* Display pictures only if pictures have been uploaded */
-        if (pictures[0] != placeholder) {
+        if (!isPlaceholder(pictures, placeholder)) {
             /* Update the large picture, and set it to the first picture in the polaroid display */
             $('#pic-big').css('display', 'block');
             $('#pic-big').attr('src', pictures[0]);
@@ -105,7 +108,7 @@ $(document).ready(function() {
      */
     function emphasizeOnLoad() {
         /* Do not place a border if no product photo was uploaded */
-        if (pictures[0] != placeholder) {
+        if (!isPlaceholder(pictures, placeholder)) {
             $('#img1').css('background-color', '#E5D1B8');
         }
     }
@@ -128,5 +131,9 @@ $(document).ready(function() {
                 $('#img' + i).css('background-color', '#E5D1B8');
             });
         }
+    }
+
+    function isPlaceholder(pictures, placeholder) {
+        return pictures[0] == placeholder;
     }
 });
