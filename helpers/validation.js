@@ -24,7 +24,7 @@ const validation = {
 						  check('contactNumber').custom(function(value) {
 							 
 							  /* If the input does not contain non-numeric characters, it is valid */
-							  if (value.match(/^(?=.*[a-zA-Z])(?=.*[0-9])/)) {
+							  if (value.match(/^\d+$/)) {
 								  return true;
 
 							  /* Otherwise, display an error message */
@@ -118,7 +118,7 @@ const validation = {
 						  check('createPassword').custom(function(value) {
 							  
 							  /* If the password contains at least one numeric character, it is accepted */
-							  if (value.match(/.*[0-9].*/)) {
+							  if (value.match(/^(?=.*[a-zA-Z])(?=.*[0-9])/)) {
 								  return true;
 
 						      /* Otherwise, display an error message */
