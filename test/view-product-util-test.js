@@ -1,6 +1,6 @@
 const assert = require('chai').assert;
 const {formatNumberIDText, 
-    getPicturesPaths,
+    getPictures,
     isPlaceholder} = require('./view-product-util');
 
 describe('the function to format numbers', function() {
@@ -47,27 +47,27 @@ describe('the function to format numbers', function() {
 
 describe('the function to get the paths of the product photos', function() {
     it('should return an array', function() {
-        const result = getPicturesPaths('');
+        const result = getPictures('');
         assert.typeOf(result, 'array');
     });
 
     it('should return a single-element array if the path string does not contain any path', function() {
-        const result = getPicturesPaths('');
+        const result = getPictures('');
         assert.lengthOf(result, 1);
     });
 
     it('should return a single-element array if the path string contains only a single path', function() {
-        const result = getPicturesPaths('img1.png');
+        const result = getPictures('img1.png');
         assert.lengthOf(result, 1);
     });
 
     it('should return a two-element array if the path string contains two paths', function() {
-        const result = getPicturesPaths('img1.png,img2.png');
+        const result = getPictures('img1.png,img2.png');
         assert.lengthOf(result, 2);
     });
 
     it('should return a three-element array if the path string contains three paths', function() {
-        const result = getPicturesPaths('img1.png,img2.png,img3.png');
+        const result = getPictures('img1.png,img2.png,img3.png');
         assert.lengthOf(result, 3);
     });
 });

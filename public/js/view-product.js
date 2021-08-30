@@ -11,7 +11,7 @@ $(document).ready(function() {
     const placeholder = '/img/placeholder/no-image.png';
 
     /* Load the pictures onto the front-end */
-    const pictures = getPicturesPaths($('#picturePaths').text());
+    const pictures = getPictures($('#picturePaths').text());
     displayPictures();
     emphasizeOnLoad();
     emphasizePicture();
@@ -24,7 +24,7 @@ $(document).ready(function() {
      */
     function formatNumber(id) {
         let number = $(id).text();
-        formatNumberIDText(id, number);
+        $(id).text(formatNumberIDText(id, number));
     }
 
     function formatNumberIDText(id, number) {
@@ -44,7 +44,7 @@ $(document).ready(function() {
             formatted = '₱' + formatted;
         }
 
-        $(id).text(formatted);
+        return formatted;
     }
 
     function hideAddToOrder() {
@@ -60,7 +60,7 @@ $(document).ready(function() {
      * 
      * @return  array containing the file paths to the product photos loaded from the database
      */
-    function getPicturesPaths(pathsString) {
+    function getPictures(pathsString) {
         const paths = pathsString.split(',');
         return paths;
     }

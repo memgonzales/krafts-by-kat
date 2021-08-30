@@ -18,7 +18,7 @@ const formatNumberIDText = function(id, number) {
     return formatted;
 }
 
-const getPicturesPaths = function(pathsString) {
+const getPictures = function(pathsString) {
     const paths = pathsString.split(',');
     return paths;
 }
@@ -29,6 +29,6 @@ const isPlaceholder = function(pictures, placeholder) {
 
 module.exports = {
     formatNumberIDText,
-    getPicturesPaths,
+    getPictures,
     isPlaceholder
 };
