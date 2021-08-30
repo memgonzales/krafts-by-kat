@@ -725,6 +725,10 @@ $(document).ready(function() {
 				scrollTop: $('#contact-number-label').offset().top
 			});
 
+			$('#contact-number-error').text('Enter a valid contact number');
+			$('#contact-number').css('border-color', '#FF0000');
+			$('#contact-number').css('border-width', '2px');
+
 		} else if (isEmptyRegion()) {
 			$('html, body').animate({
 				scrollTop: $('#region-label').offset().top
@@ -755,6 +759,10 @@ $(document).ready(function() {
 				scrollTop: $('#zip-code-label').offset().top
 			});
 
+			$('#zip-code-error').text('Enter a valid ZIP code');
+			$('#zip-code').css('border-color', '#FF0000');
+			$('#zip-code').css('border-width', '2px');
+
 		} else if (isEmptyAddress()) {
 			$('html, body').animate({
 				scrollTop: $('#address-label').offset().top
@@ -770,6 +778,10 @@ $(document).ready(function() {
 				scrollTop: $('#create-email-label').offset().top
 			});
 
+			$('#email-error').text('Email is already in use');
+			$('#create-email').css('border-color', '#FF0000');
+			$('#create-email').css('border-width', '2px');
+
 		} else if (isEmptyUsername()) {
 			$('html, body').animate({
 				scrollTop: $('#create-username-label').offset().top
@@ -779,6 +791,10 @@ $(document).ready(function() {
 			$('html, body').animate({
 				scrollTop: $('#create-username-label').offset().top
 			});
+
+			$('#username-error').text('Username has already been taken');
+			$('#create-username').css('border-color', '#FF0000');
+			$('#create-username').css('border-width', '2px');
 
 		} else if (isEmptyPassword()) {
 			$('html, body').animate({
@@ -790,6 +806,17 @@ $(document).ready(function() {
 				scrollTop: $('#create-password-label').offset().top
 			});
 
+			if ($('#create-password').val().length < 8) {
+				$('#password-error').text('Should contain at least 8 characters');
+				$('#create-password').css('border-color', '#FF0000');
+				$('#create-password').css('border-width', '2px');
+
+			} else {
+				$('#password-error').text('Should contain at least one number and at least one letter');
+				$('#create-password').css('border-color', '#FF0000');
+				$('#create-password').css('border-width', '2px');
+			}
+
 		} else if (isEmptyRepeatPassword()) {
 			$('html, body').animate({
 				scrollTop: $('#confirm-pass-label').offset().top
@@ -800,11 +827,18 @@ $(document).ready(function() {
 				scrollTop: $('#confirm-pass-label').offset().top
 			});
 			
+			$('#confirm-password-error').text('Passwords do not match');
+			$('#confirm-pass').css('border-color', '#FF0000');
+			$('#confirm-pass').css('border-width', '2px');
 		}
  
 		/* Necessary to carry out client-side validation */
 		if (isSubmitButtonDisabled) {
 			e.preventDefault();
-		}
+		} 
+		
+		// else {
+		// 	window.onbeforeunload = null;
+		// }
 	});
 });
