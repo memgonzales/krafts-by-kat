@@ -452,121 +452,211 @@ $(document).ready(function() {
 	}
 
 	function isEmptyFirstName() {
-		if ($('#firstname').val().trim() == '') {	
-			/* Style here */	
+		/* If the first name text field is left empty, an error message is displayed */
+		if ($('#firstname').val().trim() == '') {		
 			$('#firstname-error').text('Required');
+			$('#firstname').css('border-color', '#FF0000');
+			$('#firstname').css('border-width', '2px');
 			return true;
 		}
 
-		/* Style here */
+		/* Otherwise, the entered first name is accepted */
+		$('#firstname-error').text('');
+		$('#firstname').css('border-color', '#CED4DA');
+		$('#firstname').css('border-width', 'thin');
 		return false;
 	}
 
 	function isEmptySurname() {
+		/* If the surname text field is left empty, an error message is displayed */
 		if ($('#surname').val().trim() == '') {
 			$('#surname-error').text('Required');
+			$('#surname').css('border-color', '#FF0000');
+			$('#surname').css('border-width', '2px');
 			return true;
 		}
 
+		/* Otherwise, the entered surname is accepted */
+		$('#surname-error').text('');
+		$('#surname').css('border-color', '#CED4DA');
+		$('#surname').css('border-width', 'thin');
 		return false;
 	}
 
 	function isEmptyContact() {
+		/* If the contact number text field is left empty, an error message is displayed */
 		if ($('#contact-number').val().trim() == '') {
 			$('#contact-number-error').text('Required');
+			$('#contact-number').css('border-color', '#FF0000');
+			$('#contact-number').css('border-width', '2px');
 			return true;
 		}
 
+		/* Otherwise, the entered contact number is accepted */
+		$('#contact-number-error').text('');
+		$('#contact-number').css('border-color', '#CED4DA');
+		$('#contact-number').css('border-width', 'thin');
 		return false;
 	}
 
 	function isEmptyRegion() {
+		/* If the region selection field is left empty, an error message is displayed */
 		if ($('#region').find(':selected').text() == '') {
 			$('#region-error').text('Required');
+			$('#region').css('border-color', '#FF0000');
+			$('#region').css('border-width', '2px');
 			return true;
 		}
 
+		/* Otherwise, the entered region is accepted */
+		$('#region-error').text('');
+		$('#region').css('border-color', '#CED4DA');
+		$('#region').css('border-width', 'thin');
 		return false;
 	}
 
 	function isEmptyProvince() {
+		/* If the region selection field is left empty, an error message is displayed */
 		if ($('#province').find(':selected').text() == '') {
 			$('#province-error').text('Required');
+			$('#province').css('border-color', '#FF0000');
+			$('#province').css('border-width', '2px');
 			return true;
 		}
 
+		/* Otherwise, the entered province is accepted */
+		$('#province-error').text('');
+		$('#province').css('border-color', '#CED4DA');
+		$('#province').css('border-width', 'thin');
 		return false;
 	}
 
 	function isEmptyCity() {
-		if ($('#barangay').find(':selected').text() == '') {
-			$('#barangay-error').text('Required');
+		/* If the city selection field is left empty, an error message is displayed */
+		if ($('#city').find(':selected').text() == '') {
+			$('#city-error').text('Required');
+			$('#city').css('border-color', '#FF0000');
+			$('#city').css('border-width', '2px');
 			return true;
 		}
 
+		/* Otherwise, the entered city is accepted */
+		$('#city-error').text('');
+		$('#city').css('border-color', '#CED4DA');
+		$('#city').css('border-width', 'thin');
 		return false;
 	}
 
 	function isEmptyBarangay() {
-		if ($('#city').find(':selected').text() == '') {
-			$('#city-error').text('Required');
+		/* If the barangay selection field is left empty, an error message is displayed */
+		if ($('#barangay').find(':selected').text() == '') {
+			$('#barangay-error').text('Required');
+			$('#barangay').css('border-color', '#FF0000');
+			$('#barangay').css('border-width', '2px');
 			return true;
 		}
 
+		/* Otherwise, the entered barangay is accepted */
+		$('#barangay-error').text('');
+		$('#barangay').css('border-color', '#CED4DA');
+		$('#barangay').css('border-width', 'thin');
 		return false;
 	}
+
 	
 	function isEmptyZipCode() {
+		/* If the ZIP code text field is left empty, an error message is displayed */
 		if ($('#zip-code').val().trim() == '') {
 			$('#zip-code-error').text('Required');
+			$('#zip-code').css('border-color', '#FF0000');
+			$('#zip-code').css('border-width', '2px');
 			return true;
 		}
 
+		/* Otherwise, the entered ZIP code is accepted */
+		$('#zip-code-error').text('');
+		$('#zip-code').css('border-color', '#CED4DA');
+		$('#zip-code').css('border-width', 'thin');
 		return false;
 	}
 
 	function isEmptyAddress() {
+		/* If the address text field is left empty, an error message is displayed */
 		if ($('#address').val().trim() == '') {
 			$('#address-error').text('Required');
+			$('#address').css('border-color', '#FF0000');
+			$('#address').css('border-width', '2px');
 			return true;
 		}
 
+		/* Otherwise, the entered address is accepted */
+		$('#address-error').text('');
+		$('#address').css('border-color', '#CED4DA');
+		$('#address').css('border-width', 'thin');
 		return false;
 	}
 
 	function isEmptyEmail() {
+		/* If the email text field is left empty, an error message is displayed */
 		if ($('#create-email').val().trim() == '') {
 			$('#email-error').text('Required');
+			$('#create-email').css('border-color', '#FF0000');
+			$('#create-email').css('border-width', '2px');
 			return true;
 		}
 
+		/* Otherwise, the entered email is accepted */
+		$('#email-error').text('');
+		$('#create-email').css('border-color', '#CED4DA');
+		$('#create-email').css('border-width', 'thin');
 		return false;
 	}
 
 	function isEmptyUsername() {
+		/* If the username text field is left empty, an error message is displayed */
 		if ($('#create-username').val().trim() == '') {
 			$('#username-error').text('Required');
+			$('#create-username').css('border-color', '#FF0000');
+			$('#create-username').css('border-width', '2px');
 			return true;
 		}
 
+		/* Otherwise, the entered username is accepted */
+		$('#username-error').text('');
+		$('#create-username').css('border-color', '#CED4DA');
+		$('#create-username').css('border-width', 'thin');
 		return false;
 	}
 
 	function isEmptyPassword() {
+		/* If the password text field is left empty, an error message is displayed */
 		if ($('#create-password').val().trim() == '') {
 			$('#password-error').text('Required');
+			$('#create-password').css('border-color', '#FF0000');
+			$('#create-password').css('border-width', '2px');
 			return true;
 		}
 
+		/* Otherwise, the entered password is accepted */
+		$('#password-error').text('');
+		$('#create-password').css('border-color', '#CED4DA');
+		$('#create-password').css('border-width', 'thin');
 		return false;
 	}
 
 	function isEmptyRepeatPassword() {
+		/* If the confirm password text field is left empty, an error message is displayed */
 		if ($('#confirm-pass').val().trim() == '') {
 			$('#confirm-password-error').text('Required');
+			$('#confirm-pass').css('border-color', '#FF0000');
+			$('#confirm-pass').css('border-width', '2px');
 			return true;
 		}
 
+		/* Otherwise, the entered confirm password is accepted */
+		$('#confirm-password-error').text('');
+		$('#confirm-pass').css('border-color', '#CED4DA');
+		$('#confirm-pass').css('border-width', 'thin');
 		return false;
 	}
 
