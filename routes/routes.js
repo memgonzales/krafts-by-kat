@@ -139,6 +139,13 @@ krafts.get('/account/admin/orders/view/orderID', function(req,res){
     res.render('admin-orders-item-focused',obj);
 });
 
+krafts.get('/account/contactMerchant', function(req,res){
+    var obj = {
+        style: 'account'
+    }
+    res.render('user-contact-merchant',obj);
+});
+
 /*END of TEMP Orders Nav Tabs*/ 
 
 
