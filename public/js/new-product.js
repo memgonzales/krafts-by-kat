@@ -1,6 +1,15 @@
 /* JavaScript file for handling the front end of the new product page */
 
 $(document).ready(function() {
+	/* Show warning if navigating away from page */
+	window.onbeforeunload = function() {
+		return true;
+	};
+
+	/* Remove warning if submitting the form */
+	$('#upload-new-product-form').on('submit', function() {
+		window.onbeforeunload = null;
+	});
 
 	/* The maximum number of pictures is the number of children of the div with the id below. */
 	const maxNumPictures = $('#img-parent-div').children().length;
