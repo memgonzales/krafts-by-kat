@@ -24,7 +24,7 @@ const validation = {
 						  check('contactNumber').custom(function(value) {
 							 
 							  /* If the input does not contain non-numeric characters, it is valid */
-							  if (value.match(/^\d+$/)) {
+							  if (value.match(/^(?=.*[a-zA-Z])(?=.*[0-9])/)) {
 								  return true;
 
 							  /* Otherwise, display an error message */
