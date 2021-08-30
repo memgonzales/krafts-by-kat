@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    /* Hide add to order button if viewing using an admin account */
+    hideAddToOrder();
+
     /* Format the numbers to use commas to separate groups of three digits. */
     formatNumber('#units-sold');
     formatNumber('#units-available');
@@ -42,6 +45,14 @@ $(document).ready(function() {
         }
 
         $(id).text(formatted);
+    }
+
+    function hideAddToOrder() {
+        const hide = $('#is-admin').text().trim();
+
+        if (hide == 'true') {
+            $('#add-to-order').hide();
+        }
     }
 
     /**

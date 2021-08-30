@@ -33,6 +33,18 @@
                 <a class="nav-link account-sidebar-link cblack" href="/account/myOrders">My Orders</a>
             </li>
         {{/if}}
+
+        {{#unless isAdmin}}
+            {{#if contactMerchantTab}}
+                <li class="nav-item account-sidebar-item"></li>
+                    <a class="nav-link account-sidebar-link cblack active" href="/account/contactMerchant">Contact Merchant</a>
+                </li>
+            {{else}}
+                <li class="nav-item account-sidebar-item"></li>
+                    <a class="nav-link account-sidebar-link cblack" href="/account/contactMerchant">Contact Merchant</a>
+                </li>
+            {{/if}}
+        {{/unless}}
     </ul>
 
     {{#if isAdmin}}

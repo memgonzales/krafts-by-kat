@@ -1,6 +1,15 @@
 /* JavaScript file for handling the front end of the new product page */
 
 $(document).ready(function() {
+	/* Show warning if navigating away from page */
+	window.onbeforeunload = function() {
+		return true;
+	};
+
+	/* Remove warning if submitting the form */
+	$('#upload-new-product-form').on('submit', function() {
+		window.onbeforeunload = null;
+	});
 
 	/* The maximum number of pictures is the number of children of the div with the id below. */
 	const maxNumPictures = $('#img-parent-div').children().length;
@@ -17,10 +26,45 @@ $(document).ready(function() {
 	}
 
 	/* Call the triggerUpload(), changePicOnUpoad(), preview(), and cancel() methods */
+	hideRemoveImg();
 	triggerUpload();
 	changePicOnUpload();
 	preview();
 	cancel();
+	removePic();
+
+	/**
+	 * Hides the remove buttons of all the product photos
+	 * 
+	 * Initially, all the remove buttons are hidden from view
+	 */
+	function hideRemoveImg() {
+		for (let i = 1; i <= maxNumPictures; i++) {
+			$('#remove-img' + i).css('visibility', 'hidden');
+		}
+	}
+
+	/**
+     * Sets the click listener for removing the product photos
+     */
+	 function removePic() {
+        /* The indices of the HTML IDs are one-based */
+        for (let i = 1; i <= maxNumPictures; i++) {
+            $('#remove-img' + i).on('click', function() {
+                $('#img-' + i).css('display', 'block');
+                $('#pic-' + i).css('display', 'none');
+
+				/* Use zero-based indexing for the array storing the image file paths for the preview */
+				imgTargetResultsOrig[i - 1] = ''
+
+				/* Remove the remove button from view */
+				$('#remove-img' + i).css('visibility', 'hidden');
+
+                /* Clear the input field */
+                $('#product-img-' + i).val('');
+            });
+        }
+    }
 	
 	/** 
 	 * Clears the picture fields
@@ -135,7 +179,7 @@ $(document).ready(function() {
 		/* Check if the user input a product price */
 		if (productPrice) {
 			/* Use commas to separate groups of three digits */
-			formattedProductPrice = '₱'+ parseFloat(productPrice.trim()).toLocaleString('en-US', {maximumFractionDigits: 2});
+			formattedProductPrice = '₱'+ parseFloat(productPrice.trim()).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 		}
 
 		/* Display the formatted product name and price on the polaroid */
@@ -162,6 +206,9 @@ $(document).ready(function() {
 					$('#img-' + i).css('display', 'none');
 					$('#pic-' + i).css('display', 'block');
 					$('#pic-' + i).attr('src', e.target.result).width(150).height(100);
+
+					/* Display the remove photo button */
+					$('#remove-img' + i).css('visibility', 'visible');
 
 					/* Store the image file paths in an array. Subtract 1 from index since array is zero-based. */
 					imgTargetResultsOrig[i - 1] = e.target.result;

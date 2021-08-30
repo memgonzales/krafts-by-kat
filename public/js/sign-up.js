@@ -1,6 +1,11 @@
 /* JavaScript file for displaying the dropdown menus on the sign up page */
 
 $(document).ready(function() {
+	/* Show warning if navigating away from page */
+	window.onbeforeunload = function() {
+		return true;
+	};
+
 	/* Supply the contents of the region dropdown */
 	const ph = JSON.parse($('#ph').text());
 
@@ -16,6 +21,9 @@ $(document).ready(function() {
 	for (let region of regions) {
 		$('#region').append(new Option(region, region));
 	}
+
+	/* Place Region IX after Region VIII since the ordering of Roman numerals is not necessarily alphabetical */
+	$('#region option:eq(9)').insertAfter($('#region option:eq(13)'));
 	
 	/* Supply the contents of the province dropdown depending on the region selected */
 	$('#region').on('change', function() {
