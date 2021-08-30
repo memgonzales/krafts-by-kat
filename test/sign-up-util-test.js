@@ -1,5 +1,8 @@
 const assert = require('chai').assert;
-const {mapRegionNumbers} = require('./sign-up-util');
+const {mapRegionNumbers,
+    loadProvinces,
+    loadCities,
+    loadBarangays} = require('./sign-up-util');
 
 const ph = {
     "01": {
@@ -49064,4 +49067,80 @@ describe('the function to fetch the regions in the Philippines', function() {
         const result = mapRegionNumbers(ph);
         assert.typeOf(result, 'map');
     });
+
+    it('should return a map with length equal to the number of regions in the Philippines', function() {
+        const result = mapRegionNumbers(ph);
+        assert.equal(Object.keys(result).length, 17);
+    });
+
+    it('should map region name with number', function() {
+        const result = mapRegionNumbers(ph);
+        assert.equal(result['REGION XI (Davao Region)'], 11);
+    });
+
+    it('should map region name (without number) with code', function() {
+        const result = mapRegionNumbers(ph);
+        assert.equal(result['NCR (National Capital Region)'], 'NCR');
+    });
 });
+
+describe('the function to fetch the provinces under a region', function() {
+    it('should return an array', function() {
+        const regionNumbers = mapRegionNumbers(ph);
+        const result = loadProvinces('REGION XI (Davao Region)', ph, regionNumbers);
+        assert.typeOf(result, 'array')
+    });
+
+    it('should return an array with length equal to the number of provinces of a given region', function() {
+        const regionNumbers = mapRegionNumbers(ph);
+        const result = loadProvinces('CAR (Cordillera Administrative Region)', ph, regionNumbers);
+        assert.lengthOf(result, 6);
+    });
+
+    it('should return an array with the provinces of a given region', function() {
+        const regionNumbers = mapRegionNumbers(ph);
+        const result = loadProvinces('CAR (Cordillera Administrative Region)', ph, regionNumbers);
+        assert.sameMembers(result, ['ABRA', 'APAYAO', 'BENGUET', 'IFUGAO', 'KALINGA', 'MOUNTAIN PROVINCE']);
+    });
+});
+
+describe('the function to fetch the cities/municipalities under a region', function() {
+    it('should return an array', function() {
+        const regionNumbers = mapRegionNumbers(ph);
+        const result = loadCities('REGION XI (Davao Region)', 'COMPOSTELA VALLEY', ph, regionNumbers);
+        assert.typeOf(result, 'array')
+    });
+
+    it('should return an array with length equal to the number of cities/municipalities of a given province', function() {
+        const regionNumbers = mapRegionNumbers(ph);
+        const result = loadCities('CAR (Cordillera Administrative Region)', 'APAYAO', ph, regionNumbers);
+        assert.lengthOf(result, 7);
+    });
+
+    it('should return an array with the cities/municipalities of a given province', function() {
+        const regionNumbers = mapRegionNumbers(ph);
+        const result = loadCities('CAR (Cordillera Administrative Region)', 'APAYAO', ph, regionNumbers);
+        assert.sameMembers(result, ['CALANASAN (BAYAG)', 'CONNER', 'FLORA', 'KABUGAO', 'LUNA', 'PUDTOL', 'SANTA MARCELA']);
+    });
+});
+
+describe('the function to fetch the barangays under a city', function() {
+    it('should return an array', function() {
+        const regionNumbers = mapRegionNumbers(ph);
+        const result = loadBarangays('REGION XI (Davao Region)', 'COMPOSTELA VALLEY', 'MAWAB', ph, regionNumbers);
+        assert.typeOf(result, 'array')
+    });
+
+    it('should return an array with length equal to the number of barangays of a given city', function() {
+        const regionNumbers = mapRegionNumbers(ph);
+        const result = loadBarangays('REGION XI (Davao Region)', 'COMPOSTELA VALLEY', 'MAWAB', ph, regionNumbers);
+        assert.lengthOf(result, 11);
+    });
+
+    it('should return an array with the barangays of a given city', function() {
+        const regionNumbers = mapRegionNumbers(ph);
+        const result = loadBarangays('REGION XI (Davao Region)', 'COMPOSTELA VALLEY', 'MAWAB', ph, regionNumbers);
+        assert.sameMembers(result, ['ANDILI', 'BAWANI', 'CONCEPCION', 'MALINAWON', 'NUEVA VISAYAS',
+            'NUEVO ILOCO', 'POBLACION', 'SALVACION', 'SAOSAO', 'SAWANGAN', 'TUBORAN']);
+    });
+})
