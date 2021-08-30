@@ -1,8 +1,8 @@
 $(document).ready(function() {
     /* Format the numbers to use commas to separate groups of three digits. */
-    formatNumber('#units-sold');
-    formatNumber('#units-available');
-    formatNumber('#product-price-num');
+    formatNumberText('#units-sold');
+    formatNumberVal('#units-available');
+    formatNumberVal('#product-price');
 
     /* Load the pictures onto the front-end */
     const pictures = getPictures();
@@ -66,28 +66,40 @@ $(document).ready(function() {
      * 
      * @param id ID of the HTML element containing the number to be formatted
      */
-    function formatNumber(id) {
+     function formatNumberText(id) {
         let number = $(id).text();
         let formatted = '';
 
         /* Add a null safety check */
         if (number) {
+            formatted = parseFloat(number.trim()).toLocaleString('en-US', {maximumFractionDigits: 0});
+        }
+
+        $(id).text(formatted);
+    }
+
+    /**
+     * Formats the number given the ID of its HTML container so that commas are used to separate groups
+     * of three digits
+     * 
+     * @param id ID of the HTML element containing the number to be formatted
+     */
+    function formatNumberVal(id) {
+        let number = $(id).val();
+        let formatted = '';
+
+        /* Add a null safety check */
+        if (number) {
             /* Ignore the peso sign */
-            if (id == '#product-price-num') {
-                formatted = number.substr(1);
-                formatted = parseFloat(formatted.trim()).toLocaleString('en-US', {maximumFractionDigits: 2});
+            if (id == '#product-price') {
+                formatted = parseFloat(number.trim()).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             } else {
-                formatted = parseFloat(number.trim()).toLocaleString('en-US', {maximumFractionDigits: 2});
+                formatted = parseFloat(number.trim()).toLocaleString('en-US', {maximumFractionDigits: 0});
             }
     
         }
 
-        /* Affix the peso sign */
-        if (id == '#product-price-num') {
-            formatted = '₱' + formatted;
-        }
-
-        $(id).text(formatted);
+        $(id).val(formatted);
     }
 
     /**

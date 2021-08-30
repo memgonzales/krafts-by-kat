@@ -170,7 +170,7 @@ $(document).ready(function() {
 		/* Check if the user input a product price */
 		if (productPrice) {
 			/* Use commas to separate groups of three digits */
-			formattedProductPrice = '₱'+ parseFloat(productPrice.trim()).toLocaleString('en-US', {maximumFractionDigits: 2});
+			formattedProductPrice = '₱'+ parseFloat(productPrice.trim()).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 		}
 
 		/* Display the formatted product name and price on the polaroid */
