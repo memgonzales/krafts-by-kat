@@ -11,7 +11,7 @@ $(document).ready(function() {
     const placeholder = '/img/placeholder/no-image.png';
 
     /* Load the pictures onto the front-end */
-    const pictures = getPictures();
+    const pictures = getPicturesPaths($('#picturePaths').text());
     displayPictures();
     emphasizeOnLoad();
     emphasizePicture();
@@ -60,11 +60,6 @@ $(document).ready(function() {
      * 
      * @return  array containing the file paths to the product photos loaded from the database
      */
-    function getPictures() {
-        const pathsString = $('#picturePaths').text();
-        return getPicturesPaths(pathsString);
-    }
-
     function getPicturesPaths(pathsString) {
         const paths = pathsString.split(',');
         return paths;
