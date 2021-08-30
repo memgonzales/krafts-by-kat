@@ -4,6 +4,9 @@ $(document).ready(function() {
     formatNumberVal('#units-available');
     formatNumberVal('#product-price');
 
+    /* Use this placeholder image used when the user did not upload a photo */
+    const placeholder = '/img/placeholder/no-image.png';
+
     /* Load the pictures onto the front-end */
     const pictures = getPictures();
     displayPictures();
@@ -12,6 +15,7 @@ $(document).ready(function() {
     const maxNumPictures = $('#small-view-pic-container').children().length;
 
     /* Call the methods for uploading (editing) a picture */
+    hideRemoveImg();
     triggerUpload();
     changePicOnUpload();
     removePic();
@@ -38,6 +42,24 @@ $(document).ready(function() {
     for (let i = 0; i < maxNumPictures; i++) {
         modifiedIndices.push(false);
     }
+
+    /**
+	 * Hides the remove buttons of all the product photos
+	 * 
+	 * Initially, all the remove buttons are hidden from view
+	 */
+	function hideRemoveImg() {
+        /* Handle the case if the only picture is the placeholder */
+        if (pictures[0] == placeholder) {
+            for (let i = 1; i <= maxNumPictures; i++) {
+                $('#remove-img' + i).css('visibility', 'hidden');
+            }
+        } else {
+            for (let i = pictures.length + 1; i <= maxNumPictures; i++) {
+                $('#remove-img' + i).css('visibility', 'hidden');
+            }
+        }
+	}
 
     /*
      * Initialize an array to store a Boolean value corresponding to whether a photo has been removed
@@ -119,9 +141,6 @@ $(document).ready(function() {
      * Displays the product photos retrieved from the database on the front-end
      */
     function displayPictures() {
-        /* Use this placeholder image used when the user did not upload a photo */
-        const placeholder = '/img/placeholder/no-image.png';
-
         /* Display pictures only if pictures have been uploaded */
         if (pictures[0] != placeholder) {
             /* Update the large picture, and set it to the first picture in the polaroid display */
@@ -199,6 +218,9 @@ $(document).ready(function() {
                         $('#icon-big').css('display', 'none');
                     }
 
+                    /* Display the remove photo button */
+					$('#remove-img' + i).css('visibility', 'visible');
+
                     /* Indicate that the photo has been modified. Subtract 1 from index since array is zero-based */ 
                     modifiedIndices[i - 1] = true;
                     trackModifiedIndices();
@@ -254,6 +276,9 @@ $(document).ready(function() {
                 /* Remove from the modified indices to signify that no file is to be passed to the server */
                 modifiedIndices[i - 1] = false;
                 trackModifiedIndices();
+
+                /* Remove the remove button from view */
+				$('#remove-img' + i).css('visibility', 'hidden');
 
                 /* Clear the input field */
                 $('#product-img-' + i).val('');
