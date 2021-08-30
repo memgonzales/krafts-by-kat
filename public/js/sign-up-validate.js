@@ -205,6 +205,7 @@ $(document).ready(function() {
 				}
 				
 				isValidUsername = false;
+				scrollToUsername = true;
 				
 				return callback(false);
 			}
@@ -505,8 +506,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyContact() {
+		return isEmptyContactText($('#contact-number').val().trim());
+	}
+
+	function isEmptyContactText(str) {
 		/* If the contact number text field is left empty, an error message is displayed */
-		if ($('#contact-number').val().trim() == '') {
+		if (str == '') {
 			$('#contact-number-error').text('Required');
 			$('#contact-number').css('border-color', '#FF0000');
 			$('#contact-number').css('border-width', '2px');
@@ -521,8 +526,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyRegion() {
+		return isEmptyRegionText($('#region').find(':selected').text());
+	}
+
+	function isEmptyRegionText(str) {
 		/* If the region selection field is left empty, an error message is displayed */
-		if ($('#region').find(':selected').text() == '') {
+		if (str == '') {
 			$('#region-error').text('Required');
 			$('#region').css('border-color', '#FF0000');
 			$('#region').css('border-width', '2px');
@@ -537,8 +546,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyProvince() {
+		return isEmptyProvinceText($('#province').find(':selected').text());
+	}
+
+	function isEmptyProvinceText(str) {
 		/* If the region selection field is left empty, an error message is displayed */
-		if ($('#province').find(':selected').text() == '') {
+		if (str == '') {
 			$('#province-error').text('Required');
 			$('#province').css('border-color', '#FF0000');
 			$('#province').css('border-width', '2px');
@@ -553,8 +566,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyCity() {
+		return isEmptyCityText($('#city').find(':selected').text());
+	}
+
+	function isEmptyCityText(str) {
 		/* If the city selection field is left empty, an error message is displayed */
-		if ($('#city').find(':selected').text() == '') {
+		if (str == '') {
 			$('#city-error').text('Required');
 			$('#city').css('border-color', '#FF0000');
 			$('#city').css('border-width', '2px');
@@ -574,8 +591,12 @@ $(document).ready(function() {
 	 * @return true if the user has not placed any input on the field for barangay; false, otherwise
 	 */
 	function isEmptyBarangay() {
+		return isEmptyBarangayText($('#barangay').find(':selected').text());
+	}
+
+	function isEmptyBarangayText(str) {
 		/* If the barangay selection field is left empty, an error message is displayed */
-		if ($('#barangay').find(':selected').text() == '') {
+		if (str == '') {
 			$('#barangay-error').text('Required');
 			$('#barangay').css('border-color', '#FF0000');
 			$('#barangay').css('border-width', '2px');
@@ -591,8 +612,12 @@ $(document).ready(function() {
 
 	
 	function isEmptyZipCode() {
+		return isEmptyZipCodeText($('#zip-code').val().trim());
+	}
+
+	function isEmptyZipCodeText(str) {
 		/* If the ZIP code text field is left empty, an error message is displayed */
-		if ($('#zip-code').val().trim() == '') {
+		if (str == '') {
 			$('#zip-code-error').text('Required');
 			$('#zip-code').css('border-color', '#FF0000');
 			$('#zip-code').css('border-width', '2px');
@@ -607,8 +632,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyAddress() {
+		return isEmptyAddressText($('#address').val().trim());
+	}
+
+	function isEmptyAddressText(str) {
 		/* If the address text field is left empty, an error message is displayed */
-		if ($('#address').val().trim() == '') {
+		if (str == '') {
 			$('#address-error').text('Required');
 			$('#address').css('border-color', '#FF0000');
 			$('#address').css('border-width', '2px');
@@ -623,8 +652,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyEmail() {
+		return isEmptyEmailText($('#create-email').val().trim());		
+	}
+
+	function isEmptyEmailText(str) {
 		/* If the email text field is left empty, an error message is displayed */
-		if ($('#create-email').val().trim() == '') {
+		if (str == '') {
 			$('#email-error').text('Required');
 			$('#create-email').css('border-color', '#FF0000');
 			$('#create-email').css('border-width', '2px');
@@ -639,8 +672,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyUsername() {
+		return isEmptyUsernameText($('#create-username').val().trim());		
+	}
+
+	function isEmptyUsernameText(str) {
 		/* If the username text field is left empty, an error message is displayed */
-		if ($('#create-username').val().trim() == '') {
+		if (str == '') {
 			$('#username-error').text('Required');
 			$('#create-username').css('border-color', '#FF0000');
 			$('#create-username').css('border-width', '2px');
@@ -655,8 +692,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyPassword() {
+		return isEmptyPasswordText($('#create-password').val().trim());
+	}
+
+	function isEmptyPasswordText(str) {
 		/* If the password text field is left empty, an error message is displayed */
-		if ($('#create-password').val().trim() == '') {
+		if (str == '') {
 			$('#password-error').text('Required');
 			$('#create-password').css('border-color', '#FF0000');
 			$('#create-password').css('border-width', '2px');
@@ -671,8 +712,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyRepeatPassword() {
+		return isEmptyRepeatPasswordText($('#confirm-pass').val().trim())
+	}
+
+	function isEmptyRepeatPasswordText(str) {
 		/* If the confirm password text field is left empty, an error message is displayed */
-		if ($('#confirm-pass').val().trim() == '') {
+		if (str == '') {
 			$('#confirm-password-error').text('Required');
 			$('#confirm-pass').css('border-color', '#FF0000');
 			$('#confirm-pass').css('border-width', '2px');
