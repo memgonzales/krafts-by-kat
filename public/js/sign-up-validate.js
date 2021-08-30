@@ -18,11 +18,6 @@ $(document).ready(function() {
 	let scrollToPassword = true;
 	let scrollToConfirmPassword = true;
 
-	
-	/* Provide the email address and username of the administrator account as constants */
-	const adminEmail = "krafts.by.kat.webmaster@gmail.com";
-	const adminUsername = "kraftsbykatadmin";
-	
 	/**
 	 * Checks if the user input is the same as the email address or username of the administrator account
 	 * 
@@ -30,6 +25,10 @@ $(document).ready(function() {
 	 * @return whether the user input is the same as the email address or username of the administrator account
 	 */
 	function isAdminCredential(value) {
+		/* Provide the email address and username of the administrator account as constants */
+		const adminEmail = "krafts.by.kat.webmaster@gmail.com";
+		const adminUsername = "kraftsbykatadmin";
+
 		return value == adminEmail || value == adminUsername;
 	}
 	
@@ -40,12 +39,15 @@ $(document).ready(function() {
 	 * @return whether the entered contact number is valid
 	 */
 	function isValidContactNumber(field) {
+		let contactNumber = validator.trim($('#contact-number').val());
+		return isValidContactNumberText(field, contactNumber);
+	}
 
+	function isValidContactNumberText(field, contactNumber) {
 		/* Assume that the input is invalid */
 		let validContactNumber = false;
 		
 		/* Specify restrictions for the contact number */
-		let contactNumber = validator.trim($('#contact-number').val());
 		let isValidLength = validator.isLength(contactNumber, {min: 7, max: 12});
 		let isValidCompose = validator.matches(contactNumber, /^\d+$/);
 		
@@ -83,12 +85,15 @@ $(document).ready(function() {
 	 * @return whether the entered ZIP code is valid
 	 */
 	function isValidZipCode(field) {
+		let zipCode = validator.trim($('#zip-code').val());
+		return isValidZipCodeText(field, zipCode);
+	}
 
+	function isValidZipCodeText(field, zipCode) {
 		/* Assume that the input is invalid */
 		let validZipCode = false;
 		
 		/* Specify restrictions for the ZIP code*/
-		let zipCode = validator.trim($('#zip-code').val());
 		let isValidLength = validator.isLength(zipCode, {min: 3, max: 4});
 		let isValidCompose = validator.matches(zipCode, /^\d+$/);
 		
@@ -212,12 +217,16 @@ $(document).ready(function() {
 	 * @param field the text field for entering the password
 	 */
 	function isValidPassword(field) {
+		let password = validator.trim($('#create-password').val());
+		return isValidPasswordText(field, password);
+	}
 		
+
+	function isValidPasswordText(field, password) {
 		/* Assume that the input is invalid */
 		let validPassword = false;
 		
 		/* Specify restrictions for the password */
-		let password = validator.trim($('#create-password').val());
 		let isValidLength = validator.isLength(password, {min: 8});
 		let isValidCompose = validator.matches(password, /^(?=.*[a-zA-Z])(?=.*[0-9])/);
 		
@@ -273,13 +282,17 @@ $(document).ready(function() {
 	 * @return whether the entered password (for confirmation) is valid
 	 */
 	function isValidConfirmPassword(field) {
-		
-		/* Assume that the input is invalid */
-		let validConfirmPassword = false;
-		
 		/* Retrieve the entered passwords */
 		let password = validator.trim($('#create-password').val());
 		let confirmPassword = validator.trim($('#confirm-pass').val());
+		
+		return isValidConfirmPasswordText(field, password, confirmPassword);
+	}
+
+
+	function isValidConfirmPasswordText(field, password, confirmPassword) {
+		/* Assume that the input is invalid */
+		let validConfirmPassword = false;
 		
 		/* 
 		 * Omit field.is check since client-side error must be detected even if the focus 
@@ -452,8 +465,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyFirstName() {
+		return isEmptyFirstNameText($('#firstname').val().trim());
+	}
+
+	function isEmptyFirstNameText(str) {
 		/* If the first name text field is left empty, an error message is displayed */
-		if ($('#firstname').val().trim() == '') {		
+		if (str == '') {		
 			$('#firstname-error').text('Required');
 			$('#firstname').css('border-color', '#FF0000');
 			$('#firstname').css('border-width', '2px');
@@ -468,8 +485,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptySurname() {
+		return isEmptySurnameText($('#surname').val().trim());
+	}
+
+	function isEmptySurnameText(str) {
 		/* If the surname text field is left empty, an error message is displayed */
-		if ($('#surname').val().trim() == '') {
+		if (str == '') {
 			$('#surname-error').text('Required');
 			$('#surname').css('border-color', '#FF0000');
 			$('#surname').css('border-width', '2px');
