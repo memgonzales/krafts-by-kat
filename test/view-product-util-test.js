@@ -83,7 +83,7 @@ describe('the function to check if the first photo is merely a placeholder', fun
         assert.equal(result, true);
     });
 
-    it('should return true if the first photo is a placeholder', function() {
+    it('should return false if the first photo is not a placeholder', function() {
         const result = isPlaceholder(['img1.png', 'img2.png'], '/img/placeholder/no-image.png');
         assert.equal(result, false);
     });
