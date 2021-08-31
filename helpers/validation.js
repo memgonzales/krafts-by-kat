@@ -103,7 +103,7 @@ const validation = {
 							  /* If the input is not the same as the email address of the administrator account,
 							   * it is valid
 							   */
-							  if (value.trim() != adminEmail) {
+							  if (value.trim().toLowerCase() != adminEmail) {
 								  return true;
 
 							  /* Otherwise, display an error message */
@@ -116,7 +116,7 @@ const validation = {
 							  
 							  /* Accept email addresses that are not already in use (i.e., in the database) */
 							  return new Promise(function(resolve, reject) {
-								  let query = {emailAddress: value.trim()};
+								  let query = {emailAddress: value.trim().toLowerCase()};
 								  
 								  db.findOne(Client, query, 'emailAddress', function(error, result) {
 									  if (error || result) {

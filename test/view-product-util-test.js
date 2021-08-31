@@ -166,14 +166,6 @@ describe('the function to display the product photos', function() {
         assert.equal($('#icon-big').css('display'), 'none');
     });
 
-    it('should hide the large icon placeholder', function() {
-        const pictures = ['img1.png', 'img2.png'];
-        const placeholder = '/img/placeholder/no-image.png';
-
-        const result = displayPictures(pictures, placeholder);
-        assert.equal($('#icon-big').css('display'), 'none');
-    });
-
     it('should hide the small icon placeholders', function() {
         const pictures = ['img1.png', 'img2.png'];
         const placeholder = '/img/placeholder/no-image.png';
@@ -203,12 +195,20 @@ describe('the function to place a border around the first uploaded product photo
         global.$ = global.jQuery = require('jquery')(window);
     });
 
-    it('should put a red border if the first photo is not a placeholder', function() {
+    it('should put a red border if the first photo is not the placeholder', function() {
         const pictures = ['img1.png', 'img2.png'];
         const placeholder = '/img/placeholder/no-image.png';
 
         const result = emphasizeOnLoad(pictures, placeholder);
-        assert.notEqual($('#img1').css('background-color'), '#E5D1B8');
+        assert.equal($('#img1').css('background-color'), 'rgb(229, 209, 184)');
+    });
+
+    it('should not put a red border if the first photo is the placeholder', function() {
+        const pictures = ['/img/placeholder/no-image.png'];
+        const placeholder = '/img/placeholder/no-image.png';
+
+        const result = emphasizeOnLoad(pictures, placeholder);
+        assert.notEqual($('#img1').css('background-color'), 'rgb(229, 209, 184)');
     });
 });
 
