@@ -12,8 +12,8 @@ $(document).ready(function() {
 
     /* Load the pictures onto the front-end */
     const pictures = getPictures($('#picturePaths').text());
-    displayPictures();
-    emphasizeOnLoad();
+    displayPictures(pictures, placeholder);
+    emphasizeOnLoad(pictures, placeholder);
     emphasizePicture();
 
     /**
@@ -68,7 +68,7 @@ $(document).ready(function() {
     /**
      * Displays the product photos retrieved from the database on the front-end
      */
-    function displayPictures() {
+    function displayPictures(pictures, placeholder) {
         /* Refers to the maximum number of product photos that can be uploaded (and viewed) */
         const numPics = $('#small-view-pic-container').children().length;
         
@@ -101,7 +101,7 @@ $(document).ready(function() {
      * Add border around the first image when the page is loaded since it is the largest picture
      * displayed in the gallery by default
      */
-    function emphasizeOnLoad() {
+    function emphasizeOnLoad(pictures, placeholder) {
         /* Do not place a border if no product photo was uploaded */
         if (!isPlaceholder(pictures, placeholder)) {
             $('#img1').css('background-color', '#E5D1B8');
