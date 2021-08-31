@@ -4,10 +4,39 @@ const { JSDOM } = jsdom;
 const assert = require('chai').assert;
 const {isAdminCredential,
     isValidContactNumberText,
+    isValidContactNumber,
     isValidZipCodeText,
+    isValidZipCode,
     isValidPasswordText,
+    isValidPassword,
     isValidConfirmPasswordText,
-    isEmptyFirstNameText} = require('./sign-up-validate-util');
+    isValidConfirmPassword,
+    isEmptyFirstNameText,
+    isEmptyFirstName,
+    isEmptySurnameText,
+    isEmptySurname,
+    isEmptyContactText,
+    isEmptyContact,
+    isEmptyRegionText,
+    isEmptyRegion,
+    isEmptyProvinceText,
+    isEmptyProvince,
+    isEmptyCityText,
+    isEmptyCity,
+    isEmptyBarangayText,
+    isEmptyBarangay,
+    isEmptyZipCodeText,
+    isEmptyZipCode,
+    isEmptyAddressText,
+    isEmptyAddress,
+    isEmptyEmailText,
+    isEmptyEmail,
+    isEmptyUsernameText,
+    isEmptyUsername,
+    isEmptyPasswordText,
+    isEmptyPassword,
+    isEmptyRepeatPasswordText,
+    isEmptyRepeatPassword} = require('./sign-up-validate-util');
 
 describe('the function to check if the user input is the same as the email address or username of the administrator account', function() {
     it('should return a Boolean', function() {
@@ -20,8 +49,18 @@ describe('the function to check if the user input is the same as the email addre
         assert.equal(result, true);
     });
 
+    it('should return true if the username (uppercase) is that of the administrator', function() {
+        const result = isAdminCredential('KRAFTSBYKATADMIN');
+        assert.equal(result, true);
+    });
+
     it('should return true if the email is that of the administrator', function() {
         const result = isAdminCredential('krafts.by.kat.webmaster@gmail.com');
+        assert.equal(result, true);
+    });
+
+    it('should return true if the email (uppercase) is that of the administrator', function() {
+        const result = isAdminCredential('KRAFTS.BY.KAT.WEBMASTER@GMAIL.COM');
         assert.equal(result, true);
     });
 
@@ -37,6 +76,16 @@ describe('the function to check if the user input is the same as the email addre
 });
 
 describe('the function to check if a given contact number is valid', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "text" id = "contact-number"><div id = "contact-number-error"></div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
     it('should return a Boolean', function() {
         const result = isValidContactNumberText('#hello', '09123456789');
         assert.isBoolean(result);
@@ -68,7 +117,55 @@ describe('the function to check if a given contact number is valid', function() 
     });
 });
 
+describe('the function to display the error message related to the contact number', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "text" id = "contact-number"><div id = "contact-number-error"></div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+    it('should display an error message if the contact number is erroneous', function() {
+        $('#contact-number').val(123456);
+        const result = isValidContactNumber('#contact-number') ;
+        assert.equal($('#contact-number-error').text(), 'Enter a valid contact number');
+    });
+
+    it('should display a red border if the contact number is erroneous', function() {
+        $('#contact-number').val(123456);
+        const result = isValidContactNumber('#contact-number') ;
+        assert.equal($('#contact-number').css('border-color'), '#ff0000');
+    });
+
+    it('should not display an error message if the contact number is correct', function() {
+        $('#contact-number').val(09123456789);
+        const result = isValidContactNumber('#contact-number') ;
+        assert.equal($('#contact-number-error').text(), '');
+    });
+
+    it('should not display a red border if the contact number is correct', function() {
+        $('#contact-number').val(09123456789);
+        const result = isValidContactNumber('#contact-number') ;
+        assert.notEqual($('#contact-number').css('border-color'), '#ff0000');
+    });
+});
+
+
 describe('the function to check if a given zip code is valid', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "text" id = "zip-code"><div id = "zip-code-error"></div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+
     it('should return a Boolean', function() {
         const result = isValidZipCodeText('#hello', '1234');
         assert.isBoolean(result);
@@ -95,7 +192,55 @@ describe('the function to check if a given zip code is valid', function() {
     });
 });
 
+describe('the function to display the error message related to the zip code', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "text" id = "zip-code"><div id = "zip-code-error"></div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+    it('should display an error message if the zip code is erroneous', function() {
+        $('#zip-code').val(123456);
+        const result = isValidZipCode('#zip-code') ;
+        assert.equal($('#zip-code-error').text(), 'Enter a valid ZIP code');
+    });
+
+    it('should display a red border if the zip code is erroneous', function() {
+        $('#zip-code').val(123456);
+        const result = isValidZipCode('#zip-code') ;
+        assert.equal($('#zip-code').css('border-color'), '#ff0000');
+    });
+
+    it('should not display an error message if the zip code is correct', function() {
+        $('#zip-code').val(1234);
+        const result = isValidZipCode('#zip-code') ;
+        assert.equal($('#zip-code-error').text(), '');
+    });
+
+    it('should not display a red border if the zip code is correct', function() {
+        $('#zip-code').val(1234);
+        const result = isValidZipCode('#zip-code') ;
+        assert.notEqual($('#zip-code').css('border-color'), '#ff0000');
+    });
+});
+
+
 describe('the function to check if a given password is valid', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "password" id = "create-password"><div id = "password-error"></div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+
     it('should return a Boolean', function() {
         const result = isValidPasswordText('#hello', 'boogiepop');
         assert.isBoolean(result);
@@ -167,7 +312,55 @@ describe('the function to check if a given password is valid', function() {
     });
 });
 
+
+describe('the function to display the error message related to the password', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "password" id = "create-password"><div id = "password-error"></div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+    it('should display an error message if the password is less than 8 characters', function() {
+        $('#create-password').val('a1b2c3');
+        const result = isValidPassword('#create-password') ;
+        assert.equal($('#password-error').text(), 'Should contain at least 8 characters');
+    });
+
+    it('should display a red border if the password is less than 8 characters', function() {
+        $('#create-password').val('a1b2c3');
+        const result = isValidPassword('#create-password') ;
+        assert.equal($('#create-password').css('border-color'), '#ff0000');
+    });
+
+    it('should not display an error message if the password is correct', function() {
+        $('#create-password').val('a1b2c3d4');
+        const result = isValidPassword('#create-password') ;
+        assert.equal($('#password-error').text(), '');
+    });
+
+    it('should not display a red border if the password is erroneous', function() {
+        $('#create-password').val('a1b2c3d4');
+        const result = isValidPassword('#create-password') ;
+        assert.notEqual($('#create-password').css('border-color'), '#ff0000');
+    });
+});
+
 describe('the function to check whether the password for confirmation is equal to the first entered password', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "password" id = "create-password"><input type = "password" id = "confirm-pass"><div id = "confirm-password-error"></div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+
     it('should return a Boolean', function() {
         const result = isValidConfirmPasswordText('#hello', 'boogiepop1', 'boogiepop1');
         assert.isBoolean(result)
