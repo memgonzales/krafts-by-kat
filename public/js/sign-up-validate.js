@@ -29,7 +29,7 @@ $(document).ready(function() {
 		const adminEmail = "krafts.by.kat.webmaster@gmail.com";
 		const adminUsername = "kraftsbykatadmin";
 
-		return value == adminEmail || value == adminUsername;
+		return value.toString().toLowerCase() == adminEmail || value.toString().toLowerCase() == adminUsername;
 	}
 	
 	/**
@@ -132,7 +132,7 @@ $(document).ready(function() {
 	function isUniqueEmail(field, callback) {
 
 		/* Use the entered email address in a database query */
-		let emailAddress = validator.trim($('#create-email').val());
+		let emailAddress = validator.trim($('#create-email').val().toLowerCase());
 		let data = {emailAddress: emailAddress};
 		
 		$.get('/getCheckEmail', data, function(result) {

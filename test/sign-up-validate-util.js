@@ -6,7 +6,7 @@ const isAdminCredential = function(value) {
     const adminEmail = "krafts.by.kat.webmaster@gmail.com";
     const adminUsername = "kraftsbykatadmin";
 
-    return value == adminEmail || value == adminUsername;
+    return value.toString().toLowerCase() == adminEmail || value.toString().toLowerCase() == adminUsername;
 }
 
 const isValidContactNumberText = function(field, contactNumber) {
