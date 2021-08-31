@@ -168,8 +168,15 @@ describe('the function to check whether the password for confirmation is equal t
         const result = isValidConfirmPasswordText('#hello', 'boogiepop1', 'boogiepop1');
         assert.isBoolean(result)
     });
+
+    it('should return true if the password and the confirmatory password are the same', function() {
+        const result = isValidConfirmPasswordText('#hello', 'boogiepop1', 'boogiepop1');
+        assert.equal(result, true)
+    });
+
+    it('should return false if the password and the confirmatory password are different', function() {
+        const result = isValidConfirmPasswordText('#hello', 'boogiepop1', 'boogiepop2');
+        assert.equal(result, false)
+    });
 });
-
-
-
 
