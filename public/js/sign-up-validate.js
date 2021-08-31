@@ -178,7 +178,7 @@ $(document).ready(function() {
 	function isUniqueUsername(field, callback) {
 		
 		/* Use the entered username in a database query */
-		let username = validator.trim($('#create-username').val());
+		let username = validator.trim($('#create-username').val().toLowerCase());
 		let data = {username: username};
 		
 		$.get('/getCheckUsername', data, function(result) {

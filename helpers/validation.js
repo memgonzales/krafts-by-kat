@@ -72,7 +72,7 @@ const validation = {
 							  /* If the input is not the same as the username for the administrator account, 
 							   * it is valid
 							   */
-							  if (value.trim() != adminUsername) {
+							  if (value.trim().toLowerCase() != adminUsername) {
 								  return true;
 
 							  /* Otherwise, display an error message */
@@ -85,7 +85,7 @@ const validation = {
 							  
 							  /* Accept usernames that are not already in use (i.e., in the database) */
 							  return new Promise(function(resolve, reject) {
-								  let query = {username: value.trim()};
+								  let query = {username: value.trim().toLowerCase()};
 								  
 								  db.findOne(Client, query, 'username', function(error, result) {
 									  if (error || result) {
