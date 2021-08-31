@@ -49,8 +49,18 @@ describe('the function to check if the user input is the same as the email addre
         assert.equal(result, true);
     });
 
+    it('should return true if the username (uppercase) is that of the administrator', function() {
+        const result = isAdminCredential('KRAFTSBYKATADMIN');
+        assert.equal(result, true);
+    });
+
     it('should return true if the email is that of the administrator', function() {
         const result = isAdminCredential('krafts.by.kat.webmaster@gmail.com');
+        assert.equal(result, true);
+    });
+
+    it('should return true if the email (uppercase) is that of the administrator', function() {
+        const result = isAdminCredential('KRAFTS.BY.KAT.WEBMASTER@GMAIL.COM');
         assert.equal(result, true);
     });
 
@@ -117,6 +127,8 @@ describe('the function to display the error message related to the contact numbe
         global.document = dom.window.document;   
         global.$ = global.jQuery = require('jquery')(window);
     });
+
+    
 });
 
 
