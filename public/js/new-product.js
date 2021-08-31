@@ -14,6 +14,9 @@ $(document).ready(function() {
 	/* The maximum number of pictures is the number of children of the div with the id below. */
 	const maxNumPictures = $('#img-parent-div').children().length;
 
+	/* Use this placeholder image used when the user did not upload a photo */
+	const placeholder = '/img/placeholder/no-image.png';
+
 	/* 
 	 * Initialize an array to store the image file paths.
 	 * 
@@ -63,7 +66,7 @@ $(document).ready(function() {
                 /* Clear the input field */
                 $('#product-img-' + i).val('');
             });
-        }
+        }	
     }
 	
 	/** 
@@ -127,6 +130,12 @@ $(document).ready(function() {
 
 		let imgCtr = imgTargetResults.length;
 		let i = 0;
+
+		/* Handle the case when the user uploads only a single product photo then removes it */
+		if (imgCtr == 0) {
+			$('#polaroid-pic-1').attr('src', placeholder);
+			return;
+		}
 
 		/* Reset first polaroid picture to active status */
 		$('#polaroid-div-1').addClass('active');
