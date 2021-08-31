@@ -18,11 +18,6 @@ $(document).ready(function() {
 	let scrollToPassword = true;
 	let scrollToConfirmPassword = true;
 
-	
-	/* Provide the email address and username of the administrator account as constants */
-	const adminEmail = "krafts.by.kat.webmaster@gmail.com";
-	const adminUsername = "kraftsbykatadmin";
-	
 	/**
 	 * Checks if the user input is the same as the email address or username of the administrator account
 	 * 
@@ -30,6 +25,10 @@ $(document).ready(function() {
 	 * @return whether the user input is the same as the email address or username of the administrator account
 	 */
 	function isAdminCredential(value) {
+		/* Provide the email address and username of the administrator account as constants */
+		const adminEmail = "krafts.by.kat.webmaster@gmail.com";
+		const adminUsername = "kraftsbykatadmin";
+
 		return value == adminEmail || value == adminUsername;
 	}
 	
@@ -40,12 +39,15 @@ $(document).ready(function() {
 	 * @return whether the entered contact number is valid
 	 */
 	function isValidContactNumber(field) {
+		let contactNumber = validator.trim($('#contact-number').val());
+		return isValidContactNumberText(field, contactNumber);
+	}
 
+	function isValidContactNumberText(field, contactNumber) {
 		/* Assume that the input is invalid */
 		let validContactNumber = false;
 		
 		/* Specify restrictions for the contact number */
-		let contactNumber = validator.trim($('#contact-number').val());
 		let isValidLength = validator.isLength(contactNumber, {min: 7, max: 12});
 		let isValidCompose = validator.matches(contactNumber, /^\d+$/);
 		
@@ -83,12 +85,15 @@ $(document).ready(function() {
 	 * @return whether the entered ZIP code is valid
 	 */
 	function isValidZipCode(field) {
+		let zipCode = validator.trim($('#zip-code').val());
+		return isValidZipCodeText(field, zipCode);
+	}
 
+	function isValidZipCodeText(field, zipCode) {
 		/* Assume that the input is invalid */
 		let validZipCode = false;
 		
 		/* Specify restrictions for the ZIP code*/
-		let zipCode = validator.trim($('#zip-code').val());
 		let isValidLength = validator.isLength(zipCode, {min: 3, max: 4});
 		let isValidCompose = validator.matches(zipCode, /^\d+$/);
 		
@@ -200,6 +205,7 @@ $(document).ready(function() {
 				}
 				
 				isValidUsername = false;
+				scrollToUsername = true;
 				
 				return callback(false);
 			}
@@ -212,12 +218,17 @@ $(document).ready(function() {
 	 * @param field the text field for entering the password
 	 */
 	function isValidPassword(field) {
+		/* Retrieve the entered password, and do not trim */
+		let password = $('#create-password').val();
+		return isValidPasswordText(field, password);
+	}
 		
+
+	function isValidPasswordText(field, password) {
 		/* Assume that the input is invalid */
 		let validPassword = false;
 		
 		/* Specify restrictions for the password */
-		let password = validator.trim($('#create-password').val());
 		let isValidLength = validator.isLength(password, {min: 8});
 		let isValidCompose = validator.matches(password, /^(?=.*[a-zA-Z])(?=.*[0-9])/);
 		
@@ -273,13 +284,17 @@ $(document).ready(function() {
 	 * @return whether the entered password (for confirmation) is valid
 	 */
 	function isValidConfirmPassword(field) {
+		/* Retrieve the entered passwords, and do not trim */
+		let password = $('#create-password').val();
+		let confirmPassword = $('#confirm-pass').val();
 		
+		return isValidConfirmPasswordText(field, password, confirmPassword);
+	}
+
+
+	function isValidConfirmPasswordText(field, password, confirmPassword) {
 		/* Assume that the input is invalid */
 		let validConfirmPassword = false;
-		
-		/* Retrieve the entered passwords */
-		let password = validator.trim($('#create-password').val());
-		let confirmPassword = validator.trim($('#confirm-pass').val());
 		
 		/* 
 		 * Omit field.is check since client-side error must be detected even if the focus 
@@ -452,8 +467,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyFirstName() {
+		return isEmptyFirstNameText($('#firstname').val().trim());
+	}
+
+	function isEmptyFirstNameText(str) {
 		/* If the first name text field is left empty, an error message is displayed */
-		if ($('#firstname').val().trim() == '') {		
+		if (str == '') {		
 			$('#firstname-error').text('Required');
 			$('#firstname').css('border-color', '#FF0000');
 			$('#firstname').css('border-width', '2px');
@@ -468,8 +487,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptySurname() {
+		return isEmptySurnameText($('#surname').val().trim());
+	}
+
+	function isEmptySurnameText(str) {
 		/* If the surname text field is left empty, an error message is displayed */
-		if ($('#surname').val().trim() == '') {
+		if (str == '') {
 			$('#surname-error').text('Required');
 			$('#surname').css('border-color', '#FF0000');
 			$('#surname').css('border-width', '2px');
@@ -484,8 +507,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyContact() {
+		return isEmptyContactText($('#contact-number').val().trim());
+	}
+
+	function isEmptyContactText(str) {
 		/* If the contact number text field is left empty, an error message is displayed */
-		if ($('#contact-number').val().trim() == '') {
+		if (str == '') {
 			$('#contact-number-error').text('Required');
 			$('#contact-number').css('border-color', '#FF0000');
 			$('#contact-number').css('border-width', '2px');
@@ -500,8 +527,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyRegion() {
+		return isEmptyRegionText($('#region').find(':selected').text());
+	}
+
+	function isEmptyRegionText(str) {
 		/* If the region selection field is left empty, an error message is displayed */
-		if ($('#region').find(':selected').text() == '') {
+		if (str == '') {
 			$('#region-error').text('Required');
 			$('#region').css('border-color', '#FF0000');
 			$('#region').css('border-width', '2px');
@@ -516,8 +547,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyProvince() {
+		return isEmptyProvinceText($('#province').find(':selected').text());
+	}
+
+	function isEmptyProvinceText(str) {
 		/* If the region selection field is left empty, an error message is displayed */
-		if ($('#province').find(':selected').text() == '') {
+		if (str == '') {
 			$('#province-error').text('Required');
 			$('#province').css('border-color', '#FF0000');
 			$('#province').css('border-width', '2px');
@@ -532,8 +567,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyCity() {
+		return isEmptyCityText($('#city').find(':selected').text());
+	}
+
+	function isEmptyCityText(str) {
 		/* If the city selection field is left empty, an error message is displayed */
-		if ($('#city').find(':selected').text() == '') {
+		if (str == '') {
 			$('#city-error').text('Required');
 			$('#city').css('border-color', '#FF0000');
 			$('#city').css('border-width', '2px');
@@ -553,8 +592,12 @@ $(document).ready(function() {
 	 * @return true if the user has not placed any input on the field for barangay; false, otherwise
 	 */
 	function isEmptyBarangay() {
+		return isEmptyBarangayText($('#barangay').find(':selected').text());
+	}
+
+	function isEmptyBarangayText(str) {
 		/* If the barangay selection field is left empty, an error message is displayed */
-		if ($('#barangay').find(':selected').text() == '') {
+		if (str == '') {
 			$('#barangay-error').text('Required');
 			$('#barangay').css('border-color', '#FF0000');
 			$('#barangay').css('border-width', '2px');
@@ -570,8 +613,12 @@ $(document).ready(function() {
 
 	
 	function isEmptyZipCode() {
+		return isEmptyZipCodeText($('#zip-code').val().trim());
+	}
+
+	function isEmptyZipCodeText(str) {
 		/* If the ZIP code text field is left empty, an error message is displayed */
-		if ($('#zip-code').val().trim() == '') {
+		if (str == '') {
 			$('#zip-code-error').text('Required');
 			$('#zip-code').css('border-color', '#FF0000');
 			$('#zip-code').css('border-width', '2px');
@@ -586,8 +633,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyAddress() {
+		return isEmptyAddressText($('#address').val().trim());
+	}
+
+	function isEmptyAddressText(str) {
 		/* If the address text field is left empty, an error message is displayed */
-		if ($('#address').val().trim() == '') {
+		if (str == '') {
 			$('#address-error').text('Required');
 			$('#address').css('border-color', '#FF0000');
 			$('#address').css('border-width', '2px');
@@ -602,8 +653,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyEmail() {
+		return isEmptyEmailText($('#create-email').val().trim());		
+	}
+
+	function isEmptyEmailText(str) {
 		/* If the email text field is left empty, an error message is displayed */
-		if ($('#create-email').val().trim() == '') {
+		if (str == '') {
 			$('#email-error').text('Required');
 			$('#create-email').css('border-color', '#FF0000');
 			$('#create-email').css('border-width', '2px');
@@ -618,8 +673,12 @@ $(document).ready(function() {
 	}
 
 	function isEmptyUsername() {
+		return isEmptyUsernameText($('#create-username').val().trim());		
+	}
+
+	function isEmptyUsernameText(str) {
 		/* If the username text field is left empty, an error message is displayed */
-		if ($('#create-username').val().trim() == '') {
+		if (str == '') {
 			$('#username-error').text('Required');
 			$('#create-username').css('border-color', '#FF0000');
 			$('#create-username').css('border-width', '2px');
@@ -634,8 +693,13 @@ $(document).ready(function() {
 	}
 
 	function isEmptyPassword() {
+		/* Do not trim the password */
+		return isEmptyPasswordText($('#create-password').val());
+	}
+
+	function isEmptyPasswordText(str) {
 		/* If the password text field is left empty, an error message is displayed */
-		if ($('#create-password').val().trim() == '') {
+		if (str == '') {
 			$('#password-error').text('Required');
 			$('#create-password').css('border-color', '#FF0000');
 			$('#create-password').css('border-width', '2px');
@@ -650,8 +714,13 @@ $(document).ready(function() {
 	}
 
 	function isEmptyRepeatPassword() {
+		/* Do not trim the confirmatory password */
+		return isEmptyRepeatPasswordText($('#confirm-pass').val());
+	}
+
+	function isEmptyRepeatPasswordText(str) {
 		/* If the confirm password text field is left empty, an error message is displayed */
-		if ($('#confirm-pass').val().trim() == '') {
+		if (str == '') {
 			$('#confirm-password-error').text('Required');
 			$('#confirm-pass').css('border-color', '#FF0000');
 			$('#confirm-pass').css('border-width', '2px');
