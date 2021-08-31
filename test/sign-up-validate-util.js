@@ -1,4 +1,5 @@
 const validator = require('./validator-util.min');
+$ = require('jquery');
 
 const isAdminCredential = function(value) {
     /* Provide the email address and username of the administrator account as constants */
@@ -106,11 +107,28 @@ const isValidConfirmPasswordText = function(field, password, confirmPassword) {
     return validConfirmPassword;
 }
 
+const isEmptyFirstNameText = function(str) {
+    /* If the first name text field is left empty, an error message is displayed */
+    if (str == '') {		
+        $('#firstname-error').text('Required');
+        $('#firstname').css('border-color', '#FF0000');
+        $('#firstname').css('border-width', '2px');
+        return true;
+    }
+
+    /* Otherwise, the entered first name is accepted */
+    $('#firstname-error').text('');
+    $('#firstname').css('border-color', '#CED4DA');
+    $('#firstname').css('border-width', 'thin');
+    return false;
+}
+
 
 module.exports = {
     isAdminCredential,
     isValidContactNumberText,
     isValidZipCodeText,
     isValidPasswordText,
-    isValidConfirmPasswordText
+    isValidConfirmPasswordText,
+    isEmptyFirstNameText
 }
