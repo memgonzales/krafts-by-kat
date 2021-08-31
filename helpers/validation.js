@@ -17,16 +17,14 @@ const validation = {
 	 * @return whether the input on a sign up text field is valid 
 	 */
 	signUpValidation: function() {
-		let validation = [
-
-						  /* Check the contact number */
+		let validation = [/* Check the contact number */
 						  
 						  /* Limit the contact number to 7 to 12 digits */
 						  check('contactNumber', 'Enter a valid contact number').trim().isLength({min: 7, max: 12}),
 						  check('contactNumber').custom(function(value) {
 							 
 							  /* If the input does not contain non-numeric characters, it is valid */
-							  if (value.match(/^\d+$/)) {
+							  if (value.trim().match(/^\d+$/)) {
 								  return true;
 
 							  /* Otherwise, display an error message */
@@ -42,7 +40,7 @@ const validation = {
 						  check('zipCode').custom(function(value) {
 
 						  	  /* If the input does not contain non-numeric characters, it is valid */
-							  if (value.match(/^\d+$/)) {
+							  if (value.trim().match(/^\d+$/)) {
 								  return true;
 
 							  /* Otherwise, display an error message */
@@ -57,7 +55,7 @@ const validation = {
 							  /* If the input is not the same as the username for the administrator account, 
 							   * it is valid
 							   */
-							  if (value != adminUsername) {
+							  if (value.trim() != adminUsername) {
 								  return true;
 
 							  /* Otherwise, display an error message */
@@ -70,7 +68,7 @@ const validation = {
 							  
 							  /* Accept usernames that are not already in use (i.e., in the database) */
 							  return new Promise(function(resolve, reject) {
-								  let query = {username: value};
+								  let query = {username: value.trim()};
 								  
 								  db.findOne(Client, query, 'username', function(error, result) {
 									  if (error || result) {
@@ -88,7 +86,7 @@ const validation = {
 							  /* If the input is not the same as the email address of the administrator account,
 							   * it is valid
 							   */
-							  if (value != adminEmail) {
+							  if (value.trim() != adminEmail) {
 								  return true;
 
 							  /* Otherwise, display an error message */
@@ -101,7 +99,7 @@ const validation = {
 							  
 							  /* Accept email addresses that are not already in use (i.e., in the database) */
 							  return new Promise(function(resolve, reject) {
-								  let query = {emailAddress: value};
+								  let query = {emailAddress: value.trim()};
 								  
 								  db.findOne(Client, query, 'emailAddress', function(error, result) {
 									  if (error || result) {
@@ -117,7 +115,7 @@ const validation = {
 
 						  /* 
 						   * Check that the password contains at least 8 characters.
-						   * Do not trim the password
+						   * Do not trim the password.
 						   */
 						  check('createPassword', 'Should contain at least 8 characters').isLength({min: 8}),
 						  check('createPassword').custom(function(value) {
