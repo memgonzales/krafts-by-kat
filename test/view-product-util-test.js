@@ -1,6 +1,13 @@
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+
 const assert = require('chai').assert;
 const {formatNumberIDText, 
+    formatNumberID,
+    hideAddToOrder,
     getPictures,
+    displayPictures,
+    emphasizeOnLoad,
     isPlaceholder} = require('./view-product-util');
 
 describe('the function to format numbers', function() {
@@ -45,6 +52,46 @@ describe('the function to format numbers', function() {
     });
 });
 
+describe('the function to format a number given the ID of its container', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><div id = "hello">12345</div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+    it('should change the formatting of the number inside the container with the given ID', function() {
+        const result = formatNumberID('#hello');
+        assert.equal($('#hello').text(), '12,345');
+    });
+});
+
+describe('the function to hide the Add to Order button', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><div id = "is-admin">true</div><button id = "add-to-order"></button></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+    it('should hide the Add to Order button if info indicates use of admin account', function() {
+        const result = hideAddToOrder();
+        assert.equal($('#add-to-order').css('display'), 'none');
+    });
+
+    it('should show the Add to Order button if info indicates use of non-admin account', function() {
+        $('#is-admin').text('false');
+        const result = hideAddToOrder();
+        assert.notEqual($('#add-to-order').css('display'), 'none');
+    });
+});
+
 describe('the function to get the paths of the product photos', function() {
     it('should return an array', function() {
         const result = getPictures('');
@@ -69,6 +116,38 @@ describe('the function to get the paths of the product photos', function() {
     it('should return a three-element array if the path string contains three paths', function() {
         const result = getPictures('img1.png,img2.png,img3.png');
         assert.lengthOf(result, 3);
+    });
+});
+
+describe('the function to display the product photos', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><img id = "img1"></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+});
+
+describe('the function to place a border around the first uploaded product photo', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><img id = "img1"></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+    it('should put a red border if the first photo is not a placeholder', function() {
+        const pictures = ['img1.png', 'img2.png'];
+        const placeholder = '/img/placeholder/no-image.png';
+
+        const result = emphasizeOnLoad(pictures, placeholder);
+        assert.notEqual($('#img1').css('background-color'), '#E5D1B8');
     });
 });
 
