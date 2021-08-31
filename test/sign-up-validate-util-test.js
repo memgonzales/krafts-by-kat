@@ -116,11 +116,50 @@ describe('the function to check if a given password is valid', function() {
         assert.equal(result, true);
     });
 
-    it('should return true if the password is at least 8 characters long, and contains a series of numbers and letters', function() {
+    it('should return false if the password is at least 8 characters long, and contains a series of numbers and letters', function() {
         const result = isValidPasswordText('#hello', 'a1b2c3d4e5');
         assert.equal(result, true);
     });
 
+    it('should return false if the password is less than 8 characters long, and contains a number before a sequence of letters', function() {
+        const result = isValidPasswordText('#hello', '1abc');
+        assert.equal(result, false);
+    });
+
+    it('should return false if the password is less than 8 characters long and contains a letter before a sequence of numbers', function() {
+        const result = isValidPasswordText('#hello', 'a1234');
+        assert.equal(result, false);
+    });
+
+    it('should return false if the password is less than 8 characters long, and contains a series of numbers and letters', function() {
+        const result = isValidPasswordText('#hello', 'a1b2c3');
+        assert.equal(result, false);
+    });
+
+    it('should return false if the password is at least 8 characters long, and contains only numbers', function() {
+        const result = isValidPasswordText('#hello', '123456789');
+        assert.equal(result, false);
+    });
+
+    it('should return false if the password is at least 8 characters long, and contains only letters', function() {
+        const result = isValidPasswordText('#hello', 'abcdefghik');
+        assert.equal(result, false);
+    });
+    
+    it('should return false if the password is at least 8 characters long, and contains only special characters', function() {
+        const result = isValidPasswordText('#hello', '!@#$%^&*()');
+        assert.equal(result, false);
+    });
+
+    it('should return false if the password is at least 8 characters long, and contains only numbers and special characters', function() {
+        const result = isValidPasswordText('#hello', '123!@#$%^&*()');
+        assert.equal(result, false);
+    });
+
+    it('should return false if the password is at least 8 characters long, and contains only letters and special characters', function() {
+        const result = isValidPasswordText('#hello', 'abc!@#$%&*()');
+        assert.equal(result, false);
+    });
 });
 
 
