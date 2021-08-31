@@ -17,7 +17,9 @@ const validation = {
 	 * @return whether the input on a sign up text field is valid 
 	 */
 	signUpValidation: function() {
-		let validation = [/* Check the contact number */
+		let validation = [
+
+						  /* Check the contact number */
 						  
 						  /* Limit the contact number to 7 to 12 digits */
 						  check('contactNumber', 'Enter a valid contact number').trim().isLength({min: 7, max: 12}),
@@ -113,8 +115,11 @@ const validation = {
 						  
 						  /* Check the password */
 
-						  /* Check that the password contains at least 8 characters */
-						  check('createPassword', 'Should contain at least 8 characters').trim().isLength({min: 8}),
+						  /* 
+						   * Check that the password contains at least 8 characters.
+						   * Do not trim the password
+						   */
+						  check('createPassword', 'Should contain at least 8 characters').isLength({min: 8}),
 						  check('createPassword').custom(function(value) {
 							  
 							  /* If the password contains at least one numeric character, it is accepted */
@@ -123,7 +128,7 @@ const validation = {
 
 						      /* Otherwise, display an error message */
 							  } else {
-								  throw new Error('Should contain at least one number');
+								  throw new Error('Should contain at least one number and at least one letter');
 							  }
 						  }),
 						  
