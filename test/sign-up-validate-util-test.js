@@ -4,10 +4,39 @@ const { JSDOM } = jsdom;
 const assert = require('chai').assert;
 const {isAdminCredential,
     isValidContactNumberText,
+    isValidContactNumber,
     isValidZipCodeText,
+    isValidZipCode,
     isValidPasswordText,
+    isValidPassword,
     isValidConfirmPasswordText,
-    isEmptyFirstNameText} = require('./sign-up-validate-util');
+    isValidConfirmPassword,
+    isEmptyFirstNameText,
+    isEmptyFirstName,
+    isEmptySurnameText,
+    isEmptySurname,
+    isEmptyContactText,
+    isEmptyContact,
+    isEmptyRegionText,
+    isEmptyRegion,
+    isEmptyProvinceText,
+    isEmptyProvince,
+    isEmptyCityText,
+    isEmptyCity,
+    isEmptyBarangayText,
+    isEmptyBarangay,
+    isEmptyZipCodeText,
+    isEmptyZipCode,
+    isEmptyAddressText,
+    isEmptyAddress,
+    isEmptyEmailText,
+    isEmptyEmail,
+    isEmptyUsernameText,
+    isEmptyUsername,
+    isEmptyPasswordText,
+    isEmptyPassword,
+    isEmptyRepeatPasswordText,
+    isEmptyRepeatPassword} = require('./sign-up-validate-util');
 
 describe('the function to check if the user input is the same as the email address or username of the administrator account', function() {
     it('should return a Boolean', function() {
@@ -37,6 +66,16 @@ describe('the function to check if the user input is the same as the email addre
 });
 
 describe('the function to check if a given contact number is valid', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "text" id = "contact-number"><div id = "contact-number-error"></div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
     it('should return a Boolean', function() {
         const result = isValidContactNumberText('#hello', '09123456789');
         assert.isBoolean(result);
@@ -68,7 +107,31 @@ describe('the function to check if a given contact number is valid', function() 
     });
 });
 
+describe('the function to display the error message related to the contact number', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "text" id = "contact-number"><div id = "contact-number-error"></div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+});
+
+
 describe('the function to check if a given zip code is valid', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "text" id = "zip-code"><div id = "zip-code-error"></div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+
     it('should return a Boolean', function() {
         const result = isValidZipCodeText('#hello', '1234');
         assert.isBoolean(result);
@@ -96,6 +159,17 @@ describe('the function to check if a given zip code is valid', function() {
 });
 
 describe('the function to check if a given password is valid', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "text" id = "create-password"><div id = "password-error"></div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+
     it('should return a Boolean', function() {
         const result = isValidPasswordText('#hello', 'boogiepop');
         assert.isBoolean(result);
@@ -168,6 +242,17 @@ describe('the function to check if a given password is valid', function() {
 });
 
 describe('the function to check whether the password for confirmation is equal to the first entered password', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "password" id = "create-password"><input type = "password" id = "confirm-pass"><div id = "confirm-password-error"></div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+
     it('should return a Boolean', function() {
         const result = isValidConfirmPasswordText('#hello', 'boogiepop1', 'boogiepop1');
         assert.isBoolean(result)

@@ -19,11 +19,11 @@ const isValidContactNumberText = function(field, contactNumber) {
     
     /* If the contact number is between 7 to 12 characters and contains only numeric characters, it is accepted */
     if (isValidLength && isValidCompose) {
-        if (field.is($('#contact-number'))) {
+        // if (field.is($('#contact-number'))) {
             $('#contact-number-error').text('');
             $('#contact-number').css('border-color', '#CED4DA');
             $('#contact-number').css('border-width', 'thin');
-        }
+        // }
         
         validContactNumber = true;
 
@@ -31,11 +31,11 @@ const isValidContactNumberText = function(field, contactNumber) {
         * (if applicable)
         */
     } else {
-        if (field.is($('#contact-number'))) {
+        // if (field.is($('#contact-number'))) {
             $('#contact-number-error').text('Enter a valid contact number');
             $('#contact-number').css('border-color', '#FF0000');
             $('#contact-number').css('border-width', '2px');
-        }
+        // }
     }
 
     return validContactNumber;
@@ -56,21 +56,21 @@ const isValidZipCodeText = function(field, zipCode) {
     
     /* If the input is between 3 to 4 characters and is only composed of numeric characters, it is accepted */
     if (isValidLength && isValidCompose) {
-        if (field.is($('#zip-code'))) {
+        // if (field.is($('#zip-code'))) {
             $('#zip-code-error').text('');
             $('#zip-code').css('border-color', '#CED4DA');
             $('#zip-code').css('border-width', 'thin');
-        }
+        // }
         
         validZipCode = true;
 
     /* Otherwise, display an error message and scroll back to the ZIP code text field (if applicable) */
     } else {
-        if (field.is($('#zip-code'))) {
+        // if (field.is($('#zip-code'))) {
             $('#zip-code-error').text('Enter a valid ZIP code');
             $('#zip-code').css('border-color', '#FF0000');
             $('#zip-code').css('border-width', '2px');
-        }
+        // }
     }
 
     return validZipCode;
@@ -95,11 +95,11 @@ const isValidPasswordText = function(field, password) {
             /* If the entered password is at least 8 characters long and has at least one numeric and literal 
                 * character, it is accepted
                 */
-            if (field.is($('#create-password'))) {
+            // if (field.is($('#create-password'))) {
                 $('#password-error').text('');
                 $('#create-password').css('border-color', '#CED4DA');
                 $('#create-password').css('border-width', 'thin');
-            }
+            // }
             
             validPassword = true;
 
@@ -107,22 +107,22 @@ const isValidPasswordText = function(field, password) {
             * and scroll back to the password text field (if applicable) 
             */
         } else {
-            if (field.is($('#create-password'))) {
+            // if (field.is($('#create-password'))) {
                 $('#password-error').text('Should contain at least one number and at least one letter');
                 $('#create-password').css('border-color', '#FF0000');
                 $('#create-password').css('border-width', '2px');
-            }
+            // }
         }
         
     /* If the password contains less than 8 characters, display an error message
         * and scroll back to the password text field (if applicable)
         */
     } else {
-        if (field.is($('#create-password'))) {
+        // if (field.is($('#create-password'))) {
             $('#password-error').text('Should contain at least 8 characters');
             $('#create-password').css('border-color', '#FF0000');
             $('#create-password').css('border-width', '2px');
-        }
+        // }
     }
     
     return validPassword;
@@ -155,11 +155,11 @@ const isValidConfirmPasswordText = function(field, password, confirmPassword) {
         * (if applicable)
         */
     } else {
-        if (isReachedConfirmPassword) {
+        // if (isReachedConfirmPassword) {
             $('#confirm-password-error').text('Passwords do not match');
             $('#confirm-pass').css('border-color', '#FF0000');
             $('#confirm-pass').css('border-width', '2px');
-        }
+        // }
     }
     
     return validConfirmPassword;
