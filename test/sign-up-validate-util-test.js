@@ -2,7 +2,8 @@ const assert = require('chai').assert;
 const {isAdminCredential,
     isValidContactNumberText,
     isValidZipCodeText,
-    isValidPasswordText} = require('./sign-up-validate-util');
+    isValidPasswordText,
+    isValidConfirmPasswordText} = require('./sign-up-validate-util');
 
 describe('the function to check if the user input is the same as the email address or username of the administrator account', function() {
     it('should return a Boolean', function() {
@@ -161,5 +162,14 @@ describe('the function to check if a given password is valid', function() {
         assert.equal(result, false);
     });
 });
+
+describe('the function to check whether the password for confirmation is equal to the first entered password', function() {
+    it('should return a Boolean', function() {
+        const result = isValidConfirmPasswordText('#hello', 'boogiepop1', 'boogiepop1');
+        assert.isBoolean(result)
+    });
+});
+
+
 
 

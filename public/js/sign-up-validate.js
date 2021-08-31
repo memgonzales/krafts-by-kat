@@ -218,7 +218,8 @@ $(document).ready(function() {
 	 * @param field the text field for entering the password
 	 */
 	function isValidPassword(field) {
-		let password = validator.trim($('#create-password').val());
+		/* Retrieve the entered password, and do not trim */
+		let password = $('#create-password').val();
 		return isValidPasswordText(field, password);
 	}
 		
@@ -283,9 +284,9 @@ $(document).ready(function() {
 	 * @return whether the entered password (for confirmation) is valid
 	 */
 	function isValidConfirmPassword(field) {
-		/* Retrieve the entered passwords */
-		let password = validator.trim($('#create-password').val());
-		let confirmPassword = validator.trim($('#confirm-pass').val());
+		/* Retrieve the entered passwords, and do not trim */
+		let password = $('#create-password').val();
+		let confirmPassword = $('#confirm-pass').val();
 		
 		return isValidConfirmPasswordText(field, password, confirmPassword);
 	}

@@ -83,10 +83,34 @@ const isValidPasswordText = function(field, password) {
     return validPassword;
 }
 
+const isValidConfirmPasswordText = function(field, password, confirmPassword) {
+    /* Assume that the input is invalid */
+    let validConfirmPassword = false;
+    
+    /* 
+     * Omit field.is check since client-side error must be detected even if the focus 
+     * is not on the confirm password field (for example, on the password field instead)
+     */
+
+     /* If the entered passwords match, the password is accepted */
+    if (password == confirmPassword) {
+        validConfirmPassword = true;
+
+    /* Otherwise, display an error message and scroll back to the confirm password text field 
+     * (if applicable)
+     */
+    } else {
+
+    }
+    
+    return validConfirmPassword;
+}
+
 
 module.exports = {
     isAdminCredential,
     isValidContactNumberText,
     isValidZipCodeText,
-    isValidPasswordText
+    isValidPasswordText,
+    isValidConfirmPasswordText
 }
