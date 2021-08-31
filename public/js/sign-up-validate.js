@@ -693,7 +693,8 @@ $(document).ready(function() {
 	}
 
 	function isEmptyPassword() {
-		return isEmptyPasswordText($('#create-password').val().trim());
+		/* Do not trim the password */
+		return isEmptyPasswordText($('#create-password').val());
 	}
 
 	function isEmptyPasswordText(str) {
@@ -713,7 +714,8 @@ $(document).ready(function() {
 	}
 
 	function isEmptyRepeatPassword() {
-		return isEmptyRepeatPasswordText($('#confirm-pass').val().trim())
+		/* Do not trim the confirmatory password */
+		return isEmptyRepeatPasswordText($('#confirm-pass').val());
 	}
 
 	function isEmptyRepeatPasswordText(str) {
