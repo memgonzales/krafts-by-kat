@@ -1,9 +1,13 @@
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+
 const assert = require('chai').assert;
 const {isAdminCredential,
     isValidContactNumberText,
     isValidZipCodeText,
     isValidPasswordText,
-    isValidConfirmPasswordText} = require('./sign-up-validate-util');
+    isValidConfirmPasswordText,
+    isEmptyFirstNameText} = require('./sign-up-validate-util');
 
 describe('the function to check if the user input is the same as the email address or username of the administrator account', function() {
     it('should return a Boolean', function() {
@@ -177,6 +181,28 @@ describe('the function to check whether the password for confirmation is equal t
     it('should return false if the password and the confirmatory password are different', function() {
         const result = isValidConfirmPasswordText('#hello', 'boogiepop1', 'boogiepop2');
         assert.equal(result, false)
+    });
+});
+
+describe('the function to check whether a first name was entered', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "text" id = "firstname"><div id = "firstname-error"></div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+    it('should return false if a first name was entered', function() {
+        const result = isEmptyFirstNameText('gianina');
+        assert.equal(result, false);
+    });
+
+    it('should return true if a first name was not entered', function() {
+        const result = isEmptyFirstNameText('');
+        assert.equal(result, true);
     });
 });
 
