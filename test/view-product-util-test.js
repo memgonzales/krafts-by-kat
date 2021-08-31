@@ -122,12 +122,73 @@ describe('the function to get the paths of the product photos', function() {
 describe('the function to display the product photos', function() {
     beforeEach(function() {
         const dom = new JSDOM(
-            '<html><body><img id = "img1"></body></html>',
+            '<html><body><img src = "pic-big"><img id = "pic-big"><i id = "icon-big"></i><div id = "small-view-pic-container"><div id = "img1"><img id = "pic1"><i id = "icon1"></i></div><div id = "img2"><img id = "pic2"><i id = "icon2"></i></div><div id = "img3"><img id = "pic3"><i id = "icon3"></i></div></div></body></html>',
             {url: 'http://localhost'});
 
         global.window = dom.window;
         global.document = dom.window.document;   
         global.$ = global.jQuery = require('jquery')(window);
+    });
+
+    it('should display the first photo as the large picture if it is not a placeholder', function() {
+        const pictures = ['img1.png', 'img2.png'];
+        const placeholder = '/img/placeholder/no-image.png';
+
+        const result = displayPictures(pictures, placeholder);
+        assert.equal($('#pic-big').attr('src'), 'img1.png');
+        assert.equal($('#pic-big').css('display'), 'block');
+    });
+
+    it('should not display the first photo as the large picture if it is a placeholder', function() {
+        const pictures = ['/img/placeholder/no-image.png'];
+        const placeholder = '/img/placeholder/no-image.png';
+
+        const result = displayPictures(pictures, placeholder);
+        assert.notEqual($('#pic-big').attr('src'), '/img/placeholder/no-image.png');
+    });
+
+    it('should display all the product photos in the small pictue gallery', function() {
+        const pictures = ['img1.png', 'img2.png'];
+        const placeholder = '/img/placeholder/no-image.png';
+
+        const result = displayPictures(pictures, placeholder);
+        assert.equal($('#pic1').attr('src'), 'img1.png');
+        assert.equal($('#pic2').attr('src'), 'img2.png');
+        assert.equal($('#pic1').css('display'), 'inline-block');
+        assert.equal($('#pic2').css('display'), 'inline-block');
+    });
+
+    it('should hide the large icon placeholder', function() {
+        const pictures = ['img1.png', 'img2.png'];
+        const placeholder = '/img/placeholder/no-image.png';
+
+        const result = displayPictures(pictures, placeholder);
+        assert.equal($('#icon-big').css('display'), 'none');
+    });
+
+    it('should hide the large icon placeholder', function() {
+        const pictures = ['img1.png', 'img2.png'];
+        const placeholder = '/img/placeholder/no-image.png';
+
+        const result = displayPictures(pictures, placeholder);
+        assert.equal($('#icon-big').css('display'), 'none');
+    });
+
+    it('should hide the small icon placeholders', function() {
+        const pictures = ['img1.png', 'img2.png'];
+        const placeholder = '/img/placeholder/no-image.png';
+
+        const result = displayPictures(pictures, placeholder);
+        assert.equal($('#icon1').css('display'), 'none');
+        assert.equal($('#icon2').css('display'), 'none');
+    });
+
+    it('should hide the product photo placeholders if the user uploaded less than the maximum', function() {
+        const pictures = ['img1.png', 'img2.png'];
+        const placeholder = '/img/placeholder/no-image.png';
+
+        const result = displayPictures(pictures, placeholder);
+        assert.equal($('#small-view-pic-container').children().length, 2);
     });
 });
 

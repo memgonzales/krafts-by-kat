@@ -204,10 +204,5 @@ describe('the function to check whether a first name was entered', function() {
         const result = isEmptyFirstNameText('');
         assert.equal(result, true);
     });
-
-    it('should display error message if first name was not entered', function() {
-        const result = isEmptyFirstNameText('');
-        assert.equal($('#firstname-error').text(), 'Required');
-    })
 });
 
