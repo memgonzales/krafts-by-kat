@@ -23,7 +23,7 @@ const logInController = {
     postLogIn: function(req, res) {
 
         /* Retrieve the username and password from the user input */
-        let username = req.body.username.trim();
+        let username = req.body.username.trim().toLowerCase();
         let password = req.body.password;
 		
         /* Use administrator account details for database queries */

@@ -73,8 +73,8 @@ const signUpController = {
 		let barangay = req.body.barangay;
 		let zipCode = req.body.zipCode;
 		let address = req.body.address;
-		let email = req.body.createEmail;
-		let username = req.body.createUsername;
+		let email = req.body.createEmail.toLowerCase();
+		let username = req.body.createUsername.toLowerCase();
 		let password = req.body.createPassword;
 		let confirmPassword = req.body.confirmPass;
 		
@@ -129,7 +129,7 @@ const signUpController = {
 	getCheckUsername: function(req, res) {
 
 		/* Retrieve the pertinent user input */
-		let username = req.query.username;
+		let username = req.query.username.toLowerCase();
 
 		/* Use the user input as a query */
 		let query = {username: username};
