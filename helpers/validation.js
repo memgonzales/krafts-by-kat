@@ -17,7 +17,24 @@ const validation = {
 	 * @return whether the input on a sign up text field is valid 
 	 */
 	signUpValidation: function() {
-		let validation = [/* Check the contact number */
+		let validation = [/* Check for empty fields */
+						  check('firstName', 'Required').trim().notEmpty(),
+						  check('surname', 'Required').trim().notEmpty(),
+						  check('contactNumber', 'Required').trim().notEmpty(),
+						  check('region', 'Required').trim().notEmpty(),
+						  check('province', 'Required').trim().notEmpty(),
+						  check('city', 'Required').trim().notEmpty(),
+						  check('barangay', 'Required').trim().notEmpty(),
+						  check('zipCode', 'Required').trim().notEmpty(),
+						  check('address', 'Required').trim().notEmpty(),
+						  check('createEmail', 'Required').trim().notEmpty(),
+						  check('createUsername', 'Required').trim().notEmpty(),
+
+						  /* Do not trim the passwords */
+						  check('createPassword', 'Required').notEmpty(),
+						  check('confirmPass', 'Required').notEmpty(),
+
+						  /* Check the contact number */
 						  
 						  /* Limit the contact number to 7 to 12 digits */
 						  check('contactNumber', 'Enter a valid contact number').trim().isLength({min: 7, max: 12}),
@@ -120,7 +137,7 @@ const validation = {
 						  check('createPassword', 'Should contain at least 8 characters').isLength({min: 8}),
 						  check('createPassword').custom(function(value) {
 							  
-							  /* If the password contains at least one numeric character, it is accepted */
+							  /* If the password contains at least one numeric and literal character, it is accepted */
 							  if (value.match(/^(?=.*[a-zA-Z])(?=.*[0-9])/)) {
 								  return true;
 
@@ -133,7 +150,10 @@ const validation = {
 						  /* Check the confirm password */
 						  check('confirmPass').custom(function(value, {req}) {
 							  
-						  	  /* If the text field has the same input as the password text field, it is accepted */
+						  	  /*
+							   * If the text field has the same input as the password text field, it is accepted.
+							   * Do not trim the password.
+							   */
 							  if (value == req.body.createPassword) {
 								  return true;
 
