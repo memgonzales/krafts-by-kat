@@ -179,3 +179,86 @@
 /* END of Admin Order Tab CSS*/
 
 
+
+/* Messaging System CSS */
+
+#write-message-content{
+    width: 900px;
+}
+
+#write-message-text-area{
+    width: 500px;
+    height:310px;
+
+    border-radius: 10px;
+    resize: none;
+    border:none;
+    overflow:auto;
+}
+
+#send-message:hover{
+    color: var(--white);
+}
+
+#file-upload-row{
+    height:130px;
+    width:500px;
+    border-top: 1px solid #D3D3D3;
+    overflow-x:auto;
+}
+#file-upload-row::-webkit-scrollbar{
+    width: 4px;
+    height: 4px;
+}
+#file-upload-row::-webkit-scrollbar-thumb{
+    background: #000000;
+    border-radius: 0px;
+}
+#file-upload-row::-webkit-scrollbar-thumb:hover{
+    background: #000000;
+}
+#file-upload-row::-webkit-scrollbar-track{
+    background: #C2956E;
+    border-radius: 0px;
+    box-shadow: inset 0px 0px 0px 0px #F0F0F0;
+}
+
+.hidden{
+    visibility:hidden;
+    max-height: 0;
+}
+
+#message-uploaded-file{
+    min-width:100px;
+    min-height:100px;
+    max-width:100px;
+    max-height:100px;
+    margin-left: 5px;
+    margin-right:5px;
+}
+
+#message-thread-dp{
+    width:60px;
+    height: 60px;
+
+    object-fit: contain;
+    border-radius: 100%;
+}
+
+#message-thread-dp img{
+
+    max-width:60px;
+    max-height: 60px;
+    
+}
+
+#message-body-value{
+    font-size: 14pt;
+}
+
+#thread-display{
+    height: 649px;
+    overflow:auto;
+}
+
+/* END of Messaging System CSS */
