@@ -77,6 +77,11 @@ $(document).ready(function() {
 		});
 	});
 
+	/* Redirect the user to the landing page if they choose to cancel the sign up process */
+    $('#cancel-signup').on('click', function() {
+        location.href = '/';
+    });
+
 	/**
 	 * Maps region numbers to their respective region names
 	 * 
