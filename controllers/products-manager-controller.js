@@ -24,7 +24,7 @@ const productsManagerController = {
 
 		db.deleteOne(CatalogItem, conditions, function(err, result) {
 			/* If the deletion is successful, update the products manager page */
-			res.status(200).send();
+			res.sendStatus(200);
 		});
 	},
 
