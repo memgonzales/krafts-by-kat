@@ -64,7 +64,7 @@ label{
 }
 
 /* END of Success Modal CSS */
-#login-btn:hover{
+#login-btn:hover, #signup-submit:hover, #cancel-no:hover{
     text-decoration:none;
     color: var(--white);
 }
