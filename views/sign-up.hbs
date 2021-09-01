@@ -108,7 +108,11 @@
 
             </div>
 
-            <button type = "submit" class = "btn bgc4 align-self-center mt-4" id = "signup-submit">Submit</button>
+            <div class="col-md-3 d-flex justify-content-between mt-4 align-self-center ">
+                <button type = "submit" class = "btn bgc5 cwhite" id = "signup-submit">Submit</button>
+                <button type="button" class="btn bgc4"data-bs-toggle="modal" data-bs-target="#cancel-signup-prompt">Cancel</button>
+            </div>
+         
 
         </form>
 </div>
@@ -122,3 +126,36 @@
 
 
 {{>success}}
+
+<div class = "container">
+    <!-- Modal -->
+    <div class = "modal fade" id="cancel-signup-prompt" tabindex = "-1" aria-hidden = "true">
+
+    <div class = "modal-dialog d-flex justify-content-center">
+
+        <div class = "modal-content d-flex flex-column align-items-center">
+
+            <div class = "col-md-6 bgc4 d-flex justify-content-center align-items-center" id = "success-upper">
+
+                <i class="fas fa-exclamation-triangle fa-7x"></i>
+            </div>
+
+            <div class = "col-md-6 bgc3 d-flex justify-content-center align-items-center flex-column f1 p-5" id = "success-lower">
+               
+                <span class = "text-center bold" id = "success-msg">Are you sure that you want to cancel signing up?</span>  
+
+               
+                <div class="col-md-7 p-2 d-flex justify-content-between align-self-center mt-5">
+                    <a href="/" data-bs-dismiss="modal" class="btn bgc1 btn-anchor">Yes</a>
+                    <a data-bs-dismiss="modal" class="btn bgc5 cwhite" id="cancel-no" >No</a>
+                </div>
+                
+
+            </div>
+        </div>
+
+    </div>
+    
+    </div>
+
+</div>
