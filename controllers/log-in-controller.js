@@ -61,13 +61,13 @@ const logInController = {
                             res.status(200).send();
                         /* If the entered password does not match, display an error message */
                         } else {
-                            res.status(403).send();
+                            res.status(401).send();
                         }
                     });
 
                 /* If the database retrieval is not successful, display an error message */
                 } else {
-                    res.status(403).send();
+                    res.status(401).send();
                 }
             });
 
@@ -104,7 +104,7 @@ const logInController = {
                         
                         /* If the entered password does not match, display an error message */   
                         } else {
-                            res.status(403).send();
+                            res.status(401).send();
                         }
                     });
                     
@@ -139,13 +139,13 @@ const logInController = {
 
                                 /* If the entered password does not match, display an error message */
                                 } else {
-                                    res.status(403).send();
+                                    res.status(401).send();
                                 }
                             });
 
                         /* If both keys did not successfully retrieve the user data, display an error message */
                         } else {
-                            res.status(403).send();
+                            res.status(401).send();
                         }  
                     });
                 }

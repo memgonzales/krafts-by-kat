@@ -20,7 +20,7 @@ $(document).ready(function() {
 				},
 				
 				/* Otherwise, display an error message */
-				403: function() {
+				401: function() {
 					$('#error-text').css('color', '#C70039');
 					$('#password').val('');
 				}
