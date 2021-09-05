@@ -1,17 +1,26 @@
 $(document).ready(function() {
-    /* Format the numbers to use commas to separate groups of three digits. */
-    formatNumber('#units-sold');
-    formatNumber('#units-available');
-    formatNumber('#product-price-num');
+    /* Show warning if navigating away from page */
+    window.onbeforeunload = function() {
+        return true;
+    };
+
+    /* Remove warning if submitting the form */
+    $('#edit-product-form').on('submit', function() {
+        window.onbeforeunload = null;
+    });
+
+    /* Use this placeholder image used when the user did not upload a photo */
+    const placeholder = '/img/placeholder/no-image.png';
 
     /* Load the pictures onto the front-end */
     const pictures = getPictures();
-    displayPictures();
+    displayPictures(pictures, placeholder);
 
     /* The maximum number of pictures is the number of children of the div with the id below. */
     const maxNumPictures = $('#small-view-pic-container').children().length;
 
     /* Call the methods for uploading (editing) a picture */
+    hideRemoveImg(pictures, placeholder, maxNumPictures);
     triggerUpload();
     changePicOnUpload();
     removePic();
@@ -38,6 +47,24 @@ $(document).ready(function() {
     for (let i = 0; i < maxNumPictures; i++) {
         modifiedIndices.push(false);
     }
+
+    /**
+	 * Hides the remove buttons of all the product photos
+	 * 
+	 * Initially, all the remove buttons are hidden from view
+	 */
+	function hideRemoveImg(pictures, placeholder, maxNumPictures) {
+        /* Handle the case if the only picture is the placeholder */
+        if (pictures[0] == placeholder) {
+            for (let i = 1; i <= maxNumPictures; i++) {
+                $('#remove-img' + i).css('visibility', 'hidden');
+            }
+        } else {
+            for (let i = pictures.length + 1; i <= maxNumPictures; i++) {
+                $('#remove-img' + i).css('visibility', 'hidden');
+            }
+        }
+	}
 
     /*
      * Initialize an array to store a Boolean value corresponding to whether a photo has been removed
@@ -66,28 +93,40 @@ $(document).ready(function() {
      * 
      * @param id ID of the HTML element containing the number to be formatted
      */
-    function formatNumber(id) {
+     function formatNumberText(id) {
         let number = $(id).text();
         let formatted = '';
 
         /* Add a null safety check */
         if (number) {
+            formatted = parseFloat(number.trim()).toLocaleString('en-US', {maximumFractionDigits: 0});
+        }
+
+        $(id).text(formatted);
+    }
+
+    /**
+     * Formats the number given the ID of its HTML container so that commas are used to separate groups
+     * of three digits
+     * 
+     * @param id ID of the HTML element containing the number to be formatted
+     */
+    function formatNumberVal(id) {
+        let number = $(id).val();
+        let formatted = '';
+
+        /* Add a null safety check */
+        if (number) {
             /* Ignore the peso sign */
-            if (id == '#product-price-num') {
-                formatted = number.substr(1);
-                formatted = parseFloat(formatted.trim()).toLocaleString('en-US', {maximumFractionDigits: 2});
+            if (id == '#product-price') {
+                formatted = parseFloat(number.trim()).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             } else {
-                formatted = parseFloat(number.trim()).toLocaleString('en-US', {maximumFractionDigits: 2});
+                formatted = parseFloat(number.trim()).toLocaleString('en-US', {maximumFractionDigits: 0});
             }
     
         }
 
-        /* Affix the peso sign */
-        if (id == '#product-price-num') {
-            formatted = '₱' + formatted;
-        }
-
-        $(id).text(formatted);
+        $(id).val(formatted);
     }
 
     /**
@@ -106,10 +145,7 @@ $(document).ready(function() {
     /**
      * Displays the product photos retrieved from the database on the front-end
      */
-    function displayPictures() {
-        /* Use this placeholder image used when the user did not upload a photo */
-        const placeholder = '/img/placeholder/no-image.png';
-
+    function displayPictures(pictures, placeholder) {
         /* Display pictures only if pictures have been uploaded */
         if (pictures[0] != placeholder) {
             /* Update the large picture, and set it to the first picture in the polaroid display */
@@ -187,9 +223,12 @@ $(document).ready(function() {
                         $('#icon-big').css('display', 'none');
                     }
 
+                    /* Display the remove photo button */
+					$('#remove-img' + i).css('visibility', 'visible');
+
                     /* Indicate that the photo has been modified. Subtract 1 from index since array is zero-based */ 
                     modifiedIndices[i - 1] = true;
-                    trackModifiedIndices();
+                    trackModifiedIndices(modifiedIndices, maxNumPictures);
 				}
 				
 				reader.readAsDataURL(input.files[0]);
@@ -210,7 +249,7 @@ $(document).ready(function() {
      * Precondition:
      * - All the indices must be single-digit numbers.
      */
-    function trackModifiedIndices() {
+    function trackModifiedIndices(modifiedIndices, maxNumPictures) {
         /* Initialize to an empty string to prevent duplicates when editing is done repetitively */
         let modifiedIndicesStr = "";
 
@@ -237,11 +276,14 @@ $(document).ready(function() {
 
                 /* Indicate that the photo has been removed. Subtract 1 from index since array is zero-based */ 
                 deletedIndices[i - 1] = true;
-                trackDeletedIndices();
+                trackDeletedIndices(deletedIndices, maxNumPictures);
 
                 /* Remove from the modified indices to signify that no file is to be passed to the server */
                 modifiedIndices[i - 1] = false;
-                trackModifiedIndices();
+                trackModifiedIndices(modifiedIndices, maxNumPictures);
+
+                /* Remove the remove button from view */
+				$('#remove-img' + i).css('visibility', 'hidden');
 
                 /* Clear the input field */
                 $('#product-img-' + i).val('');
@@ -259,7 +301,7 @@ $(document).ready(function() {
      * Precondition:
      * - All the indices must be single-digit numbers.
      */
-    function trackDeletedIndices() {
+    function trackDeletedIndices(deletedIndices, maxNumPictures) {
         /* Initialize to an empty string to prevent duplicates when editing is done repetitively */
         let deletedIndicesStr = "";
 

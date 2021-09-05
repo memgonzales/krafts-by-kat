@@ -17,14 +17,31 @@ const validation = {
 	 * @return whether the input on a sign up text field is valid 
 	 */
 	signUpValidation: function() {
-		let validation = [/* Check the contact number */
+		let validation = [/* Check for empty fields */
+						  check('firstName', 'Required').trim().notEmpty(),
+						  check('surname', 'Required').trim().notEmpty(),
+						  check('contactNumber', 'Required').trim().notEmpty(),
+						  check('region', 'Required').trim().notEmpty(),
+						  check('province', 'Required').trim().notEmpty(),
+						  check('city', 'Required').trim().notEmpty(),
+						  check('barangay', 'Required').trim().notEmpty(),
+						  check('zipCode', 'Required').trim().notEmpty(),
+						  check('address', 'Required').trim().notEmpty(),
+						  check('createEmail', 'Required').trim().notEmpty(),
+						  check('createUsername', 'Required').trim().notEmpty(),
+
+						  /* Do not trim the passwords */
+						  check('createPassword', 'Required').notEmpty(),
+						  check('confirmPass', 'Required').notEmpty(),
+
+						  /* Check the contact number */
 						  
 						  /* Limit the contact number to 7 to 12 digits */
 						  check('contactNumber', 'Enter a valid contact number').trim().isLength({min: 7, max: 12}),
 						  check('contactNumber').custom(function(value) {
 							 
 							  /* If the input does not contain non-numeric characters, it is valid */
-							  if (value.match(/^\d+$/)) {
+							  if (value.trim().match(/^\d+$/)) {
 								  return true;
 
 							  /* Otherwise, display an error message */
@@ -40,7 +57,7 @@ const validation = {
 						  check('zipCode').custom(function(value) {
 
 						  	  /* If the input does not contain non-numeric characters, it is valid */
-							  if (value.match(/^\d+$/)) {
+							  if (value.trim().match(/^\d+$/)) {
 								  return true;
 
 							  /* Otherwise, display an error message */
@@ -55,7 +72,7 @@ const validation = {
 							  /* If the input is not the same as the username for the administrator account, 
 							   * it is valid
 							   */
-							  if (value != adminUsername) {
+							  if (value.trim().toLowerCase() != adminUsername) {
 								  return true;
 
 							  /* Otherwise, display an error message */
@@ -68,7 +85,7 @@ const validation = {
 							  
 							  /* Accept usernames that are not already in use (i.e., in the database) */
 							  return new Promise(function(resolve, reject) {
-								  let query = {username: value};
+								  let query = {username: value.trim().toLowerCase()};
 								  
 								  db.findOne(Client, query, 'username', function(error, result) {
 									  if (error || result) {
@@ -86,7 +103,7 @@ const validation = {
 							  /* If the input is not the same as the email address of the administrator account,
 							   * it is valid
 							   */
-							  if (value != adminEmail) {
+							  if (value.trim().toLowerCase() != adminEmail) {
 								  return true;
 
 							  /* Otherwise, display an error message */
@@ -99,7 +116,7 @@ const validation = {
 							  
 							  /* Accept email addresses that are not already in use (i.e., in the database) */
 							  return new Promise(function(resolve, reject) {
-								  let query = {emailAddress: value};
+								  let query = {emailAddress: value.trim().toLowerCase()};
 								  
 								  db.findOne(Client, query, 'emailAddress', function(error, result) {
 									  if (error || result) {
@@ -113,24 +130,30 @@ const validation = {
 						  
 						  /* Check the password */
 
-						  /* Check that the password contains at least 8 characters */
-						  check('createPassword', 'Should contain at least 8 characters').trim().isLength({min: 8}),
+						  /* 
+						   * Check that the password contains at least 8 characters.
+						   * Do not trim the password.
+						   */
+						  check('createPassword', 'Should contain at least 8 characters').isLength({min: 8}),
 						  check('createPassword').custom(function(value) {
 							  
-							  /* If the password contains at least one numeric character, it is accepted */
-							  if (value.match(/.*[0-9].*/)) {
+							  /* If the password contains at least one numeric and literal character, it is accepted */
+							  if (value.match(/^(?=.*[a-zA-Z])(?=.*[0-9])/)) {
 								  return true;
 
 						      /* Otherwise, display an error message */
 							  } else {
-								  throw new Error('Should contain at least one number');
+								  throw new Error('Should contain at least one number and at least one letter');
 							  }
 						  }),
 						  
 						  /* Check the confirm password */
 						  check('confirmPass').custom(function(value, {req}) {
 							  
-						  	  /* If the text field has the same input as the password text field, it is accepted */
+						  	  /*
+							   * If the text field has the same input as the password text field, it is accepted.
+							   * Do not trim the password.
+							   */
 							  if (value == req.body.createPassword) {
 								  return true;
 

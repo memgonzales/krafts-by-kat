@@ -1,7 +1,9 @@
 /* JavaScript file for handling the front end of the log in page */
 
 $(document).ready(function() {
-	$('#login-form').on('submit', function(e) {		
+	$('#login-form').on('submit', function(e) {
+		/* Remove warning if submitting the form */
+		window.onbeforeunload = null;
 		
 		/* Override the default submit behavior and insert AJAX */
 		e.preventDefault();
@@ -18,11 +20,15 @@ $(document).ready(function() {
 				},
 				
 				/* Otherwise, display an error message */
-				403: function() {
-					$('#error-text').css('color', '#C70039');
-					$('#password').val('');
+				401: function() {
+					logInError()
 				}
 			}
 		});
 	});
+
+	function logInError() {
+		$('#error-text').css('color', '#C70039');
+		$('#password').val('');
+	}
 });

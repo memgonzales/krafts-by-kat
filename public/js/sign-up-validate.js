@@ -17,11 +17,7 @@ $(document).ready(function() {
 	let scrollToUsername = true;
 	let scrollToPassword = true;
 	let scrollToConfirmPassword = true;
-	
-	/* Provide the email address and username of the administrator account as constants */
-	const adminEmail = "krafts.by.kat.webmaster@gmail.com";
-	const adminUsername = "kraftsbykatadmin";
-	
+
 	/**
 	 * Checks if the user input is the same as the email address or username of the administrator account
 	 * 
@@ -29,7 +25,11 @@ $(document).ready(function() {
 	 * @return whether the user input is the same as the email address or username of the administrator account
 	 */
 	function isAdminCredential(value) {
-		return value == adminEmail || value == adminUsername;
+		/* Provide the email address and username of the administrator account as constants */
+		const adminEmail = "krafts.by.kat.webmaster@gmail.com";
+		const adminUsername = "kraftsbykatadmin";
+
+		return value.toString().toLowerCase() == adminEmail || value.toString().toLowerCase() == adminUsername;
 	}
 	
 	/**
@@ -39,12 +39,15 @@ $(document).ready(function() {
 	 * @return whether the entered contact number is valid
 	 */
 	function isValidContactNumber(field) {
+		let contactNumber = validator.trim($('#contact-number').val());
+		return isValidContactNumberText(field, contactNumber);
+	}
 
+	function isValidContactNumberText(field, contactNumber) {
 		/* Assume that the input is invalid */
 		let validContactNumber = false;
 		
 		/* Specify restrictions for the contact number */
-		let contactNumber = validator.trim($('#contact-number').val());
 		let isValidLength = validator.isLength(contactNumber, {min: 7, max: 12});
 		let isValidCompose = validator.matches(contactNumber, /^\d+$/);
 		
@@ -82,12 +85,15 @@ $(document).ready(function() {
 	 * @return whether the entered ZIP code is valid
 	 */
 	function isValidZipCode(field) {
+		let zipCode = validator.trim($('#zip-code').val());
+		return isValidZipCodeText(field, zipCode);
+	}
 
+	function isValidZipCodeText(field, zipCode) {
 		/* Assume that the input is invalid */
 		let validZipCode = false;
 		
 		/* Specify restrictions for the ZIP code*/
-		let zipCode = validator.trim($('#zip-code').val());
 		let isValidLength = validator.isLength(zipCode, {min: 3, max: 4});
 		let isValidCompose = validator.matches(zipCode, /^\d+$/);
 		
@@ -126,7 +132,7 @@ $(document).ready(function() {
 	function isUniqueEmail(field, callback) {
 
 		/* Use the entered email address in a database query */
-		let emailAddress = validator.trim($('#create-email').val());
+		let emailAddress = validator.trim($('#create-email').val().toLowerCase());
 		let data = {emailAddress: emailAddress};
 		
 		$.get('/getCheckEmail', data, function(result) {
@@ -172,7 +178,7 @@ $(document).ready(function() {
 	function isUniqueUsername(field, callback) {
 		
 		/* Use the entered username in a database query */
-		let username = validator.trim($('#create-username').val());
+		let username = validator.trim($('#create-username').val().toLowerCase());
 		let data = {username: username};
 		
 		$.get('/getCheckUsername', data, function(result) {
@@ -199,6 +205,7 @@ $(document).ready(function() {
 				}
 				
 				isValidUsername = false;
+				scrollToUsername = true;
 				
 				return callback(false);
 			}
@@ -211,20 +218,25 @@ $(document).ready(function() {
 	 * @param field the text field for entering the password
 	 */
 	function isValidPassword(field) {
+		/* Retrieve the entered password, and do not trim */
+		let password = $('#create-password').val();
+		return isValidPasswordText(field, password);
+	}
 		
+
+	function isValidPasswordText(field, password) {
 		/* Assume that the input is invalid */
 		let validPassword = false;
 		
 		/* Specify restrictions for the password */
-		let password = validator.trim($('#create-password').val());
 		let isValidLength = validator.isLength(password, {min: 8});
-		let isValidCompose = validator.matches(password, /.*[0-9].*/);
+		let isValidCompose = validator.matches(password, /^(?=.*[a-zA-Z])(?=.*[0-9])/);
 		
 		if (isValidLength) {
 			if (isValidCompose) {
 
-				/* If the entered password is at least 8 characters long and has at least one numeric character, 
-				 * it is accepted
+				/* If the entered password is at least 8 characters long and has at least one numeric and literal 
+				 * character, it is accepted
 				 */
 				if (field.is($('#create-password'))) {
 					$('#password-error').text('');
@@ -240,7 +252,7 @@ $(document).ready(function() {
 			 */
 			} else {
 				if (field.is($('#create-password'))) {
-					$('#password-error').text('Should contain at least one number');
+					$('#password-error').text('Should contain at least one number and at least one letter');
 					$('#create-password').css('border-color', '#FF0000');
 					$('#create-password').css('border-width', '2px');
 				}
@@ -272,13 +284,17 @@ $(document).ready(function() {
 	 * @return whether the entered password (for confirmation) is valid
 	 */
 	function isValidConfirmPassword(field) {
+		/* Retrieve the entered passwords, and do not trim */
+		let password = $('#create-password').val();
+		let confirmPassword = $('#confirm-pass').val();
 		
+		return isValidConfirmPasswordText(field, password, confirmPassword);
+	}
+
+
+	function isValidConfirmPasswordText(field, password, confirmPassword) {
 		/* Assume that the input is invalid */
 		let validConfirmPassword = false;
-		
-		/* Retrieve the entered passwords */
-		let password = validator.trim($('#create-password').val());
-		let confirmPassword = validator.trim($('#confirm-pass').val());
 		
 		/* 
 		 * Omit field.is check since client-side error must be detected even if the focus 
@@ -449,7 +465,275 @@ $(document).ready(function() {
 			}
 		}
 	}
+
+	function isEmptyFirstName() {
+		return isEmptyFirstNameText($('#firstname').val().trim());
+	}
+
+	function isEmptyFirstNameText(str) {
+		/* If the first name text field is left empty, an error message is displayed */
+		if (str == '') {		
+			$('#firstname-error').text('Required');
+			$('#firstname').css('border-color', '#FF0000');
+			$('#firstname').css('border-width', '2px');
+			return true;
+		}
+
+		/* Otherwise, the entered first name is accepted */
+		$('#firstname-error').text('');
+		$('#firstname').css('border-color', '#CED4DA');
+		$('#firstname').css('border-width', 'thin');
+		return false;
+	}
+
+	function isEmptySurname() {
+		return isEmptySurnameText($('#surname').val().trim());
+	}
+
+	function isEmptySurnameText(str) {
+		/* If the surname text field is left empty, an error message is displayed */
+		if (str == '') {
+			$('#surname-error').text('Required');
+			$('#surname').css('border-color', '#FF0000');
+			$('#surname').css('border-width', '2px');
+			return true;
+		}
+
+		/* Otherwise, the entered surname is accepted */
+		$('#surname-error').text('');
+		$('#surname').css('border-color', '#CED4DA');
+		$('#surname').css('border-width', 'thin');
+		return false;
+	}
+
+	function isEmptyContact() {
+		return isEmptyContactText($('#contact-number').val().trim());
+	}
+
+	function isEmptyContactText(str) {
+		/* If the contact number text field is left empty, an error message is displayed */
+		if (str == '') {
+			$('#contact-number-error').text('Required');
+			$('#contact-number').css('border-color', '#FF0000');
+			$('#contact-number').css('border-width', '2px');
+			return true;
+		}
+
+		/* Otherwise, the entered contact number is accepted */
+		$('#contact-number-error').text('');
+		$('#contact-number').css('border-color', '#CED4DA');
+		$('#contact-number').css('border-width', 'thin');
+		return false;
+	}
+
+	function isEmptyRegion() {
+		return isEmptyRegionText($('#region').find(':selected').text());
+	}
+
+	function isEmptyRegionText(str) {
+		/* If the region selection field is left empty, an error message is displayed */
+		if (str == '') {
+			$('#region-error').text('Required');
+			$('#region').css('border-color', '#FF0000');
+			$('#region').css('border-width', '2px');
+			return true;
+		}
+
+		/* Otherwise, the entered region is accepted */
+		$('#region-error').text('');
+		$('#region').css('border-color', '#CED4DA');
+		$('#region').css('border-width', 'thin');
+		return false;
+	}
+
+	function isEmptyProvince() {
+		return isEmptyProvinceText($('#province').find(':selected').text());
+	}
+
+	function isEmptyProvinceText(str) {
+		/* If the region selection field is left empty, an error message is displayed */
+		if (str == '') {
+			$('#province-error').text('Required');
+			$('#province').css('border-color', '#FF0000');
+			$('#province').css('border-width', '2px');
+			return true;
+		}
+
+		/* Otherwise, the entered province is accepted */
+		$('#province-error').text('');
+		$('#province').css('border-color', '#CED4DA');
+		$('#province').css('border-width', 'thin');
+		return false;
+	}
+
+	function isEmptyCity() {
+		return isEmptyCityText($('#city').find(':selected').text());
+	}
+
+	function isEmptyCityText(str) {
+		/* If the city selection field is left empty, an error message is displayed */
+		if (str == '') {
+			$('#city-error').text('Required');
+			$('#city').css('border-color', '#FF0000');
+			$('#city').css('border-width', '2px');
+			return true;
+		}
+
+		/* Otherwise, the entered city is accepted */
+		$('#city-error').text('');
+		$('#city').css('border-color', '#CED4DA');
+		$('#city').css('border-width', 'thin');
+		return false;
+	}
+
+	/**
+	 * Checks if the user has placed any input on the field for barangay
+	 * 
+	 * @return true if the user has not placed any input on the field for barangay; false, otherwise
+	 */
+	function isEmptyBarangay() {
+		return isEmptyBarangayText($('#barangay').find(':selected').text());
+	}
+
+	function isEmptyBarangayText(str) {
+		/* If the barangay selection field is left empty, an error message is displayed */
+		if (str == '') {
+			$('#barangay-error').text('Required');
+			$('#barangay').css('border-color', '#FF0000');
+			$('#barangay').css('border-width', '2px');
+			return true;
+		}
+
+		/* Otherwise, the entered barangay is accepted */
+		$('#barangay-error').text('');
+		$('#barangay').css('border-color', '#CED4DA');
+		$('#barangay').css('border-width', 'thin');
+		return false;
+	}
+
 	
+	function isEmptyZipCode() {
+		return isEmptyZipCodeText($('#zip-code').val().trim());
+	}
+
+	function isEmptyZipCodeText(str) {
+		/* If the ZIP code text field is left empty, an error message is displayed */
+		if (str == '') {
+			$('#zip-code-error').text('Required');
+			$('#zip-code').css('border-color', '#FF0000');
+			$('#zip-code').css('border-width', '2px');
+			return true;
+		}
+
+		/* Otherwise, the entered ZIP code is accepted */
+		$('#zip-code-error').text('');
+		$('#zip-code').css('border-color', '#CED4DA');
+		$('#zip-code').css('border-width', 'thin');
+		return false;
+	}
+
+	function isEmptyAddress() {
+		return isEmptyAddressText($('#address').val().trim());
+	}
+
+	function isEmptyAddressText(str) {
+		/* If the address text field is left empty, an error message is displayed */
+		if (str == '') {
+			$('#address-error').text('Required');
+			$('#address').css('border-color', '#FF0000');
+			$('#address').css('border-width', '2px');
+			return true;
+		}
+
+		/* Otherwise, the entered address is accepted */
+		$('#address-error').text('');
+		$('#address').css('border-color', '#CED4DA');
+		$('#address').css('border-width', 'thin');
+		return false;
+	}
+
+	function isEmptyEmail() {
+		return isEmptyEmailText($('#create-email').val().trim());		
+	}
+
+	function isEmptyEmailText(str) {
+		/* If the email text field is left empty, an error message is displayed */
+		if (str == '') {
+			$('#email-error').text('Required');
+			$('#create-email').css('border-color', '#FF0000');
+			$('#create-email').css('border-width', '2px');
+			return true;
+		}
+
+		/* Otherwise, the entered email is accepted */
+		$('#email-error').text('');
+		$('#create-email').css('border-color', '#CED4DA');
+		$('#create-email').css('border-width', 'thin');
+		return false;
+	}
+
+	function isEmptyUsername() {
+		return isEmptyUsernameText($('#create-username').val().trim());		
+	}
+
+	function isEmptyUsernameText(str) {
+		/* If the username text field is left empty, an error message is displayed */
+		if (str == '') {
+			$('#username-error').text('Required');
+			$('#create-username').css('border-color', '#FF0000');
+			$('#create-username').css('border-width', '2px');
+			return true;
+		}
+
+		/* Otherwise, the entered username is accepted */
+		$('#username-error').text('');
+		$('#create-username').css('border-color', '#CED4DA');
+		$('#create-username').css('border-width', 'thin');
+		return false;
+	}
+
+	function isEmptyPassword() {
+		/* Do not trim the password */
+		return isEmptyPasswordText($('#create-password').val());
+	}
+
+	function isEmptyPasswordText(str) {
+		/* If the password text field is left empty, an error message is displayed */
+		if (str == '') {
+			$('#password-error').text('Required');
+			$('#create-password').css('border-color', '#FF0000');
+			$('#create-password').css('border-width', '2px');
+			return true;
+		}
+
+		/* Otherwise, the entered password is accepted */
+		$('#password-error').text('');
+		$('#create-password').css('border-color', '#CED4DA');
+		$('#create-password').css('border-width', 'thin');
+		return false;
+	}
+
+	function isEmptyRepeatPassword() {
+		/* Do not trim the confirmatory password */
+		return isEmptyRepeatPasswordText($('#confirm-pass').val());
+	}
+
+	function isEmptyRepeatPasswordText(str) {
+		/* If the confirm password text field is left empty, an error message is displayed */
+		if (str == '') {
+			$('#confirm-password-error').text('Required');
+			$('#confirm-pass').css('border-color', '#FF0000');
+			$('#confirm-pass').css('border-width', '2px');
+			return true;
+		}
+
+		/* Otherwise, the entered confirm password is accepted */
+		$('#confirm-password-error').text('');
+		$('#confirm-pass').css('border-color', '#CED4DA');
+		$('#confirm-pass').css('border-width', 'thin');
+		return false;
+	}
+
 	/* Validate the contact number for every key press */
 	$('#contact-number').keyup(function() {
 		validateField($('#contact-number'), $('#contact-number-error'));
@@ -490,35 +774,139 @@ $(document).ready(function() {
 
 	/* Scroll to the text field with an erroneous input if applicable */
 	$('#signup-submit').on('click', function(e) {
+		if (isEmptyFirstName()) {
+			$('html, body').animate({
+				scrollTop: $('#firstname-label').offset().top
+			});
+
+		} else if (isEmptySurname()) {
+			$('html, body').animate({
+				scrollTop: $('#surname-label').offset().top
+			});
+ 
+		} else if (isEmptyContact()) {
+			$('html, body').animate({
+				scrollTop: $('#contact-number-label').offset().top
+			});
+
+		} else if (scrollToContact) {
+			$('html, body').animate({
+				scrollTop: $('#contact-number-label').offset().top
+			});
+
+			$('#contact-number-error').text('Enter a valid contact number');
+			$('#contact-number').css('border-color', '#FF0000');
+			$('#contact-number').css('border-width', '2px');
+
+		} else if (isEmptyRegion()) {
+			$('html, body').animate({
+				scrollTop: $('#region-label').offset().top
+			});
+
+		} else if (isEmptyProvince()) {
+			$('html, body').animate({
+				scrollTop: $('#province-label').offset().top
+			});
+
+		} else if (isEmptyCity()) {
+			$('html, body').animate({
+				scrollTop: $('#city-label').offset().top
+			});
+
+		} else if (isEmptyBarangay()) {
+			$('html, body').animate({
+				scrollTop: $('#barangay-label').offset().top
+			});
+
+		} else if (isEmptyZipCode()) {
+			$('html, body').animate({
+				scrollTop: $('#zip-code-label').offset().top
+			});
+
+		} else if (scrollToZip) {
+			$('html, body').animate({
+				scrollTop: $('#zip-code-label').offset().top
+			});
+
+			$('#zip-code-error').text('Enter a valid ZIP code');
+			$('#zip-code').css('border-color', '#FF0000');
+			$('#zip-code').css('border-width', '2px');
+
+		} else if (isEmptyAddress()) {
+			$('html, body').animate({
+				scrollTop: $('#address-label').offset().top
+			});
+
+		} else if (isEmptyEmail()) {
+			$('html, body').animate({
+				scrollTop: $('#create-email-label').offset().top
+			});
+
+		} else if (scrollToEmail) {
+			$('html, body').animate({
+				scrollTop: $('#create-email-label').offset().top
+			});
+
+			$('#email-error').text('Email is already in use');
+			$('#create-email').css('border-color', '#FF0000');
+			$('#create-email').css('border-width', '2px');
+
+		} else if (isEmptyUsername()) {
+			$('html, body').animate({
+				scrollTop: $('#create-username-label').offset().top
+			});
+
+		} else if (scrollToUsername) {
+			$('html, body').animate({
+				scrollTop: $('#create-username-label').offset().top
+			});
+
+			$('#username-error').text('Username has already been taken');
+			$('#create-username').css('border-color', '#FF0000');
+			$('#create-username').css('border-width', '2px');
+
+		} else if (isEmptyPassword()) {
+			$('html, body').animate({
+				scrollTop: $('#create-password-label').offset().top
+			});
+
+		} else if (scrollToPassword) {
+			$('html, body').animate({
+				scrollTop: $('#create-password-label').offset().top
+			});
+
+			if ($('#create-password').val().length < 8) {
+				$('#password-error').text('Should contain at least 8 characters');
+				$('#create-password').css('border-color', '#FF0000');
+				$('#create-password').css('border-width', '2px');
+
+			} else {
+				$('#password-error').text('Should contain at least one number and at least one letter');
+				$('#create-password').css('border-color', '#FF0000');
+				$('#create-password').css('border-width', '2px');
+			}
+
+		} else if (isEmptyRepeatPassword()) {
+			$('html, body').animate({
+				scrollTop: $('#confirm-pass-label').offset().top
+			});
+
+		} else if (scrollToConfirmPassword) {
+			$('html, body').animate({
+				scrollTop: $('#confirm-pass-label').offset().top
+			});
+			
+			$('#confirm-password-error').text('Passwords do not match');
+			$('#confirm-pass').css('border-color', '#FF0000');
+			$('#confirm-pass').css('border-width', '2px');
+		}
+ 
+		/* Necessary to carry out client-side validation */
 		if (isSubmitButtonDisabled) {
 			e.preventDefault();
-
-			/* Scroll to error */
-			if (scrollToContact) {
-				$('html, body').animate({
-					scrollTop: $('#contact-number-label').offset().top
-				});
-			} else if (scrollToZip) {
-				$('html, body').animate({
-					scrollTop: $('#zip-code-label').offset().top
-				});
-			} else if (scrollToEmail) {
-				$('html, body').animate({
-					scrollTop: $('#create-email-label').offset().top
-				});
-			} else if (scrollToUsername) {
-				$('html, body').animate({
-					scrollTop: $('#create-username-label').offset().top
-				});
-			} else if (scrollToPassword) {
-				$('html, body').animate({
-					scrollTop: $('#create-password-label').offset().top
-				});
-			} else if (scrollToConfirmPassword) {
-				$('html, body').animate({
-					scrollTop: $('#confirm-pass-label').offset().top
-				});
-			}
+		} else {
+			/* Disable warning if navigating away from page */
+			window.onbeforeunload = null;
 		}
 	});
 });

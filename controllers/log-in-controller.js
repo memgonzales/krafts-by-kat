@@ -23,7 +23,7 @@ const logInController = {
     postLogIn: function(req, res) {
 
         /* Retrieve the username and password from the user input */
-        let username = req.body.username.trim();
+        let username = req.body.username.trim().toLowerCase();
         let password = req.body.password;
 		
         /* Use administrator account details for database queries */
@@ -58,16 +58,16 @@ const logInController = {
                             req.session.username = businessOwner.username;
                             req.session.isAdmin = true;
                             
-                            res.status(200).send();
+                            res.sendStatus(200);
                         /* If the entered password does not match, display an error message */
                         } else {
-                            res.status(403).send();
+                            res.sendStatus(401);
                         }
                     });
 
                 /* If the database retrieval is not successful, display an error message */
                 } else {
-                    res.status(403).send();
+                    res.sendStatus(401);
                 }
             });
 
@@ -100,11 +100,11 @@ const logInController = {
                             req.session.username = client.username;
                             req.session.isAdmin = false;
 
-                            res.status(200).send();
+                            res.sendStatus(200)
                         
                         /* If the entered password does not match, display an error message */   
                         } else {
-                            res.status(403).send();
+                            res.sendStatus(401);
                         }
                     });
                     
@@ -135,17 +135,17 @@ const logInController = {
                                     req.session.username = client.username;
                                     req.session.isAdmin = false;
 
-                                    res.status(200).send();
+                                    res.sendStatus(200);
 
                                 /* If the entered password does not match, display an error message */
                                 } else {
-                                    res.status(403).send();
+                                    res.sendStatus(401);
                                 }
                             });
 
                         /* If both keys did not successfully retrieve the user data, display an error message */
                         } else {
-                            res.status(403).send();
+                            res.sendStatus(401);
                         }  
                     });
                 }

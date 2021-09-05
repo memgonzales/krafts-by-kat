@@ -24,7 +24,7 @@ const productsManagerController = {
 
 		db.deleteOne(CatalogItem, conditions, function(err, result) {
 			/* If the deletion is successful, update the products manager page */
-			res.status(200).send();
+			res.sendStatus(200);
 		});
 	},
 
@@ -357,7 +357,7 @@ const productsManagerController = {
 
 		/*
 		 * If the user originally uploaded less than the maximum number of pictures, ensure that the number
-		 * of elements in the array is the equal to the maximum	by placing empty strings.
+		 * of elements in the array is equal to the maximum	by placing empty strings.
 		 * 
 		 * This is to prevent complications related to editing paths to existing images and adding paths 
 		 * to newly uploaded images.
@@ -386,6 +386,11 @@ const productsManagerController = {
 		editedPics = editedPics.filter(function(element) {
 			return element != '';
 		});
+
+		/* Remove every instance of placeholder */
+		if (editedPics[0] == imagePlaceholder && editedPics.length != 0) {
+			editedPics.shift();
+		}
 
 		/* Use the placeholder image if all product photos have been removed */
 		if (editedPics.length == 0) {
