@@ -9,11 +9,6 @@ $(document).ready(function() {
         window.onbeforeunload = null;
     });
 
-    /* Format the numbers to use commas to separate groups of three digits. */
-    formatNumberText('#units-sold');
-    formatNumberVal('#units-available');
-    formatNumberVal('#product-price');
-
     /* Use this placeholder image used when the user did not upload a photo */
     const placeholder = '/img/placeholder/no-image.png';
 
