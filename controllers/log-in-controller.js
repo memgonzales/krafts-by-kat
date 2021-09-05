@@ -58,16 +58,19 @@ const logInController = {
                             req.session.username = businessOwner.username;
                             req.session.isAdmin = true;
                             
-                            res.sendStatus(200);
+                            res.status(200).json(password);
+                            res.send();
                         /* If the entered password does not match, display an error message */
                         } else {
-                            res.sendStatus(401);
+                            res.status(401).json("Passwords do not match");
+                            res.send();
                         }
                     });
 
                 /* If the database retrieval is not successful, display an error message */
                 } else {
-                    res.sendStatus(401);
+                    res.status(401).json("Database retrival is not successful");
+                    res.send();
                 }
             });
 
@@ -100,11 +103,13 @@ const logInController = {
                             req.session.username = client.username;
                             req.session.isAdmin = false;
 
-                            res.sendStatus(200)
+                            res.status(200).json(password);
+                            res.send();
                         
                         /* If the entered password does not match, display an error message */   
                         } else {
-                            res.sendStatus(401);
+                            res.status(401).json("Passwords do not match");
+                            res.send();
                         }
                     });
                     
@@ -135,17 +140,20 @@ const logInController = {
                                     req.session.username = client.username;
                                     req.session.isAdmin = false;
 
-                                    res.sendStatus(200);
+                                    res.status(200).json(password);
+                                    res.send();
 
                                 /* If the entered password does not match, display an error message */
                                 } else {
-                                    res.sendStatus(401);
+                                    res.status(401).json("Passwords do not match");
+                                    res.send();
                                 }
                             });
 
                         /* If both keys did not successfully retrieve the user data, display an error message */
                         } else {
-                            res.sendStatus(401);
+                            res.status(401).json("Invalid credentials");
+                            res.send();
                         }  
                     });
                 }
