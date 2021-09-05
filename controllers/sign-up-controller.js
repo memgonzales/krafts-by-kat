@@ -116,7 +116,7 @@ const signUpController = {
 		else {
 			console.log("Error: Passwords do not match");
 			res.redirect('/signup');
-			res.sendStatus(403);
+			res.sendStatus(401);
 		}	
     },
 	
