@@ -4,7 +4,7 @@ const hideRemoveImg = function(maxNumPictures) {
     }
 }
 
-const previewPictures = function(imgTargetResultsOrig) {
+const previewPictures = function(imgTargetResultsOrig, placeholder, maxNumPictures) {
     let imgTargetResults = [];
 
     /* Push only uploaded images */
@@ -94,12 +94,12 @@ const imgFilter = function(extension) {
         case 'svg':
             return true;
         default:
-            alert('This file type is not supported. Please upload a valid image.');
+            // alert('This file type is not supported. Please upload a valid image.');
             return false;
     }
 }
 
-modules.exports = {
+module.exports = {
     hideRemoveImg,
     previewPictures,
     previewText,

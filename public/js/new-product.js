@@ -110,7 +110,7 @@ $(document).ready(function() {
 	 */ 
 	function preview() {
 		$('#preview-polaroid').click(function() {
-			previewPictures(imgTargetResultsOrig);
+			previewPictures(imgTargetResultsOrig, placeholder, maxNumPictures);
 			previewText();
 		});
 	}
@@ -118,7 +118,7 @@ $(document).ready(function() {
 	/**
 	 * Display the uploaded images on the polaroid preview
 	 */
-	function previewPictures(imgTargetResultsOrig) {
+	function previewPictures(imgTargetResultsOrig, placeholder, maxNumPictures) {
 		let imgTargetResults = [];
 
 		/* Push only uploaded images */

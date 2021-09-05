@@ -8,7 +8,7 @@ const {hideRemoveImg,
     trackModifiedIndices,
     trackDeletedIndices} = require('./edit-product-util');
 
-describe('the function to hide removed product photos from view', function() {
+describe('the function to hide Remove buttons', function() {
     beforeEach(function() {
         const dom = new JSDOM(
             '<html><body><button id = "remove-img1"></button><button id = "remove-img2"></button><button id = "remove-img3"></button><button id = "remove-img4"></button><button id = "remove-img5"></button></body></html>',
