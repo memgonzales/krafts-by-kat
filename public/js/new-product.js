@@ -29,7 +29,7 @@ $(document).ready(function() {
 	}
 
 	/* Call the triggerUpload(), changePicOnUpoad(), preview(), and cancel() methods */
-	hideRemoveImg();
+	hideRemoveImg(maxNumPictures);
 	triggerUpload();
 	changePicOnUpload();
 	preview();
@@ -41,7 +41,7 @@ $(document).ready(function() {
 	 * 
 	 * Initially, all the remove buttons are hidden from view
 	 */
-	function hideRemoveImg() {
+	function hideRemoveImg(maxNumPictures) {
 		for (let i = 1; i <= maxNumPictures; i++) {
 			$('#remove-img' + i).css('visibility', 'hidden');
 		}
@@ -110,7 +110,7 @@ $(document).ready(function() {
 	 */ 
 	function preview() {
 		$('#preview-polaroid').click(function() {
-			previewPictures();
+			previewPictures(imgTargetResultsOrig);
 			previewText();
 		});
 	}
@@ -118,7 +118,7 @@ $(document).ready(function() {
 	/**
 	 * Display the uploaded images on the polaroid preview
 	 */
-	function previewPictures() {
+	function previewPictures(imgTargetResultsOrig) {
 		let imgTargetResults = [];
 
 		/* Push only uploaded images */
