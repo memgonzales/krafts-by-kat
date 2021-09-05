@@ -19,13 +19,13 @@ $(document).ready(function() {
 
     /* Load the pictures onto the front-end */
     const pictures = getPictures();
-    displayPictures();
+    displayPictures(pictures, placeholder);
 
     /* The maximum number of pictures is the number of children of the div with the id below. */
     const maxNumPictures = $('#small-view-pic-container').children().length;
 
     /* Call the methods for uploading (editing) a picture */
-    hideRemoveImg();
+    hideRemoveImg(pictures, placeholder, maxNumPictures);
     triggerUpload();
     changePicOnUpload();
     removePic();
@@ -58,7 +58,7 @@ $(document).ready(function() {
 	 * 
 	 * Initially, all the remove buttons are hidden from view
 	 */
-	function hideRemoveImg() {
+	function hideRemoveImg(pictures, placeholder, maxNumPictures) {
         /* Handle the case if the only picture is the placeholder */
         if (pictures[0] == placeholder) {
             for (let i = 1; i <= maxNumPictures; i++) {
@@ -150,7 +150,7 @@ $(document).ready(function() {
     /**
      * Displays the product photos retrieved from the database on the front-end
      */
-    function displayPictures() {
+    function displayPictures(pictures, placeholder) {
         /* Display pictures only if pictures have been uploaded */
         if (pictures[0] != placeholder) {
             /* Update the large picture, and set it to the first picture in the polaroid display */
@@ -233,7 +233,7 @@ $(document).ready(function() {
 
                     /* Indicate that the photo has been modified. Subtract 1 from index since array is zero-based */ 
                     modifiedIndices[i - 1] = true;
-                    trackModifiedIndices();
+                    trackModifiedIndices(maxNumPictures);
 				}
 				
 				reader.readAsDataURL(input.files[0]);
@@ -254,7 +254,7 @@ $(document).ready(function() {
      * Precondition:
      * - All the indices must be single-digit numbers.
      */
-    function trackModifiedIndices() {
+    function trackModifiedIndices(maxNumPictures) {
         /* Initialize to an empty string to prevent duplicates when editing is done repetitively */
         let modifiedIndicesStr = "";
 
@@ -281,11 +281,11 @@ $(document).ready(function() {
 
                 /* Indicate that the photo has been removed. Subtract 1 from index since array is zero-based */ 
                 deletedIndices[i - 1] = true;
-                trackDeletedIndices();
+                trackDeletedIndices(maxNumPictures);
 
                 /* Remove from the modified indices to signify that no file is to be passed to the server */
                 modifiedIndices[i - 1] = false;
-                trackModifiedIndices();
+                trackModifiedIndices(maxNumPictures);
 
                 /* Remove the remove button from view */
 				$('#remove-img' + i).css('visibility', 'hidden');
@@ -306,7 +306,7 @@ $(document).ready(function() {
      * Precondition:
      * - All the indices must be single-digit numbers.
      */
-    function trackDeletedIndices() {
+    function trackDeletedIndices(maxNumPictures) {
         /* Initialize to an empty string to prevent duplicates when editing is done repetitively */
         let deletedIndicesStr = "";
 
