@@ -11,36 +11,6 @@ const hideRemoveImg = function(pictures, placeholder, maxNumPictures) {
     }
 }
 
-const formatNumberText = function(id) {
-    let number = $(id).text();
-    let formatted = '';
-
-    /* Add a null safety check */
-    if (number) {
-        formatted = parseFloat(number.trim()).toLocaleString('en-US', {maximumFractionDigits: 0});
-    }
-
-    $(id).text(formatted);
-}
-
-const formatNumberVal = function(id) {
-    let number = $(id).val();
-    let formatted = '';
-
-    /* Add a null safety check */
-    if (number) {
-        /* Ignore the peso sign */
-        if (id == '#product-price') {
-            formatted = parseFloat(number.trim()).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        } else {
-            formatted = parseFloat(number.trim()).toLocaleString('en-US', {maximumFractionDigits: 0});
-        }
-
-    }
-
-    $(id).val(formatted);
-}
-
 const getPictures = function() {
     const pathsString = $('#picturePaths').text();
     /* A comma is used to delimit the file paths */
