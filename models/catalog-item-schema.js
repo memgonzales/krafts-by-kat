@@ -30,7 +30,7 @@ const catalogItemSchema = new mongoose.Schema({
 
     /* ObjectIDs of customer comments regarding the item */
     commentIds: {
-        type: [Number],
+        type: [String],
         required: false
     },
 
