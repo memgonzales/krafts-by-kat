@@ -21,10 +21,14 @@ $(document).ready(function() {
 				
 				/* Otherwise, display an error message */
 				401: function() {
-					$('#error-text').css('color', '#C70039');
-					$('#password').val('');
+					logInError()
 				}
 			}
 		});
 	});
+
+	function logInError() {
+		$('#error-text').css('color', '#C70039');
+		$('#password').val('');
+	}
 });
