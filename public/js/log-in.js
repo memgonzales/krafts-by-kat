@@ -20,11 +20,15 @@ $(document).ready(function() {
 				},
 				
 				/* Otherwise, display an error message */
-				403: function() {
-					$('#error-text').css('color', '#C70039');
-					$('#password').val('');
+				401: function() {
+					logInError()
 				}
 			}
 		});
 	});
+
+	function logInError() {
+		$('#error-text').css('color', '#C70039');
+		$('#password').val('');
+	}
 });

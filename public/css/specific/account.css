@@ -261,4 +261,19 @@
     overflow:auto;
 }
 
+#conversation-list{
+    height: 649px;
+    overflow: auto;
+}
+
+#conversation-card{
+    border-radius:10px;
+}
+
+#conversation-anchor:hover{
+    text-decoration:none;
+}
+
 /* END of Messaging System CSS */
+
+
