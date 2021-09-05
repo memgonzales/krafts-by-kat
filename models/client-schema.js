@@ -84,13 +84,18 @@ const clientSchema = new mongoose.Schema({
 
     /* ObjectIDs of orders made by the user */
     orderIds: {
-        type: [Number],
+        type: [String],
+        required: false
+    },
+
+    currentOrder: {
+        type: String,
         required: false
     },
 
     /* ObjectID of the user's message thread with the business owner */
     threadId: {
-        type: Number,
+        type: String,
         required: false
     },
 
