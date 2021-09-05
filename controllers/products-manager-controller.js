@@ -24,7 +24,8 @@ const productsManagerController = {
 
 		db.deleteOne(CatalogItem, conditions, function(err, result) {
 			/* If the deletion is successful, update the products manager page */
-			res.sendStatus(200);
+			res.status(200).json(conditions);
+			res.send();
 		});
 	},
 
@@ -420,6 +421,8 @@ const productsManagerController = {
 
 		/* Insert the new product into the database and redirect the user to the landing page */
 		db.updateOne(CatalogItem, filter, update, function(error, result) {
+			res.status(200).json(update);
+			res.send();
 			res.redirect('/account/admin/productsManager');
 		});
 	}

@@ -103,6 +103,8 @@ const newProductController = {
 
 		/* Insert the new product into the database and redirect the user to the landing page */
 		db.insertOne(CatalogItem, product, function(flag) {
+			res.status(200).send(product);
+			res.send();
 			res.redirect('/');
 		});
 	}
