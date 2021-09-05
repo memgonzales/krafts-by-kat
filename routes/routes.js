@@ -17,6 +17,7 @@ const logOutController = require('../controllers/log-out-controller.js');
 const newProductController = require('../controllers/new-product-controller.js');
 const accountController = require('../controllers/account-controller.js');
 const productsManagerController = require('../controllers/products-manager-controller.js');
+const orderController = require('../controllers/order-controller.js');
 
 /* Call the validation file */
 const validation = require('../helpers/validation.js');
@@ -75,6 +76,9 @@ krafts.get('/viewItem/:id', productsManagerController.getViewItem);
 /* For toggling visibility of product */
 krafts.get('/toggleVisibility/:id', productsManagerController.getToggleVisibility);
 
+/* For placing orders */
+krafts.get('/getOrder', orderController.getOrder);
+
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
 krafts.get('/uploadsTest', uploadsTestController.displayPage);
@@ -90,15 +94,6 @@ krafts.get('/partials-test', function(req,res){
     }
     res.render('partials-test',obj);
 });
-
-
-krafts.get('/order', function(req,res){
-    var obj = {
-        style: 'order-product'
-    }
-    res.render('order-product', obj);
-});
-
 
 /* TEMP Orders Nav Tabs*/ 
 
