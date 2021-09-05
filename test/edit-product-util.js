@@ -38,7 +38,7 @@ const displayPictures = function(pictures, placeholder) {
     }
 }
 
-const trackModifiedIndices = function(maxNumPictures) {
+const trackModifiedIndices = function(modifiedIndices, maxNumPictures) {
     /* Initialize to an empty string to prevent duplicates when editing is done repetitively */
     let modifiedIndicesStr = "";
 
@@ -53,7 +53,7 @@ const trackModifiedIndices = function(maxNumPictures) {
     $('#modified-indices').val(modifiedIndicesStr);
 }
 
-const trackDeletedIndices = function(maxNumPictures) {
+const trackDeletedIndices = function(deletedIndices, maxNumPictures) {
     /* Initialize to an empty string to prevent duplicates when editing is done repetitively */
     let deletedIndicesStr = "";
 
@@ -70,8 +70,6 @@ const trackDeletedIndices = function(maxNumPictures) {
 
 module.exports = {
     hideRemoveImg,
-    formatNumberText,
-    formatNumberVal,
     getPictures,
     displayPictures,
     trackModifiedIndices,

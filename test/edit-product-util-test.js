@@ -3,8 +3,6 @@ const { JSDOM } = jsdom;
 
 const assert = require('chai').assert;
 const {hideRemoveImg,
-    formatNumberText,
-    formatNumberVal,
     getPictures,
     displayPictures,
     trackModifiedIndices,
@@ -158,5 +156,77 @@ describe('the function to display the product photos', function() {
 
         const result = displayPictures(pictures, placeholder);
         assert.equal($('#small-view-pic-container').children().length, 3);
+    });
+});
+
+describe('the function to track the indices of the modified product photos', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "hidden" id = "modified-indices"></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+    it('should place an empty string if there are no modified product photos', function() {
+        const modifiedIndices = [false, false, false, false, false];
+        const result = trackModifiedIndices(modifiedIndices, 5);
+        assert.equal($('#modified-indices').val(), '');
+    });
+
+    it('should place the correct single-character string if there is exactly one modified product photo', function() {
+        const modifiedIndices = [false, true, false, false, false];
+        const result = trackModifiedIndices(modifiedIndices, 5);
+        assert.equal($('#modified-indices').val(), '1');
+    });
+
+    it('should place the correct two-character string if there are exactly two modified product photos', function() {
+        const modifiedIndices = [false, true, false, false, true];
+        const result = trackModifiedIndices(modifiedIndices, 5);
+        assert.equal($('#modified-indices').val(), '14');
+    });
+
+    it('should place the correct three-character string if there are exactly three modified product photos', function() {
+        const modifiedIndices = [false, true, false, true, true];
+        const result = trackModifiedIndices(modifiedIndices, 5);
+        assert.equal($('#modified-indices').val(), '134');
+    });
+});
+
+describe('the function to track the indices of the deleted product photos', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><input type = "hidden" id = "deleted-indices"></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+
+    it('should place an empty string if there are no deleted product photos', function() {
+        const deletedIndices = [false, false, false, false, false];
+        const result = trackDeletedIndices(deletedIndices, 5);
+        assert.equal($('#deleted-indices').val(), '');
+    });
+
+    it('should place the correct single-character string if there is exactly one deleted product photo', function() {
+        const deletedIndices = [false, true, false, false, false];
+        const result = trackDeletedIndices(deletedIndices, 5);
+        assert.equal($('#deleted-indices').val(), '1');
+    });
+
+    it('should place the correct two-character string if there are exactly two deleted product photos', function() {
+        const deletedIndices = [false, true, false, false, true];
+        const result = trackDeletedIndices(deletedIndices, 5);
+        assert.equal($('#deleted-indices').val(), '14');
+    });
+
+    it('should place the correct three-character string if there are exactly three deleted product photos', function() {
+        const deletedIndices = [false, true, false, true, true];
+        const result = trackDeletedIndices(deletedIndices, 5);
+        assert.equal($('#deleted-indices').val(), '134');
     });
 });
