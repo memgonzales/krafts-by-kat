@@ -17,10 +17,59 @@ const orderSchema = new mongoose.Schema({
 	},
 
     /* ObjectIDs of the order items */
-    orderItemIds: {
-        type: [String],
-        required: true
-    },
+    orderItemIds: [
+        {
+            productName: {
+                type: String,
+                required: true
+            },
+
+            quantity: {
+                type: Number,
+                required: true
+            },
+
+            packaging: {
+                type: String,
+                required: true
+            },
+
+            packagingColor: {
+                type: String,
+                required: true
+            },
+
+            packagingMessage: {
+                type: String,
+                required: false
+            },
+
+            itemColor: {
+                type: String,
+                required: true
+            },
+
+            itemText: {
+                type: String,
+                required: false
+            },
+
+            companyLogo: {
+                type: String,
+                required: true
+            },
+
+            companyLogoLocation: {
+                type: [String],
+                required: false
+            },
+
+            additionalInstructions: {
+                type: String,
+                required: false
+            }
+        }
+    ],
 
     /* Delivery mode of the order */
     deliveryMode: {
