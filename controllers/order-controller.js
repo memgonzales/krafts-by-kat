@@ -3,8 +3,9 @@
 /* The db file, display schema, client schema, and order schema are used for the order page */
 const db = require('../models/db.js');
 const Display = require('../models/display-schema.js');
-const Client = require('../models/client-schema.js');
 const Order = require('../models/order-schema.js');
+const OrderItem = require('../models/order-item-schema.js');
+const CatalogItem = require('../models/catalog-item-schema.js');
 
 const orderController = {
 
@@ -24,6 +25,7 @@ const orderController = {
 			
 			/* If the data retrieval was successful, display the new product page */
 			if (result) {
+				let appLogo = result;
 
 				/* If the user is using an administrator account, redirect them to the landing page;
                  * the administrator cannot place orders
@@ -39,16 +41,118 @@ const orderController = {
                     /* If the user is registered, display the page accordingly */
                     } else {
 
-                        let details = {
-                            style: 'order-product',
-                            logo: appLogo.logo,
-                            userFlag: false,
-                            adminFlag: false,
-                            username: req.session.username,
-                            isAdmin: req.session.isAdmin,
-                        }
+						/* Retrieve the data of the order to be displayed */
+						let query = {_id: db.convertToObjectId(req.params.id)};
+						let projection = '_id name companyName orderItemIds deliveryMode preferredDeliveryDate paymentType price status';
 
-                        res.render('order-product', details);
+						db.findOne(Order, query, projection, function(result) {
+							let order = result;
+
+							/* Retrieve the data of each of the order items */
+							let orderItemQuery = {_id: {$in: order.orderItemIds}};
+							let orderItemProjection = '_id productId quantity packaging packagingColor packagingMessage itemColor itemText includeCompanyLogo companyLogoImage additionalInstructions orderItemPrice';
+
+							db.findMany(OrderItem, orderItemQuery, orderItemProjection, function(result) {
+								let orderItemDetails = result;
+
+								/* Store the retrieved data in parallel arrays */
+								let orderItemIds = [];
+								let productIds = [];
+								let quantities = [];
+								let packagingOptions = [];
+								let packagingColors = [];
+								let packagingMessages = [];
+								let itemColors = [];
+								let itemTexts = [];
+								let includeCompanyLogoOptions = [];
+								let companyLogoImages = [];
+								let additionalInstructionsPassages = [];
+								let orderItemPrices = [];
+
+								/* Store the data related to the products of each of the order items in parallel arrays */
+								let productNames = [];
+								let productQuantities = [];
+								let productPrices = [];
+
+								/* Store the data from the database query in the initialized arrays */
+								for (let i = 0; i < orderItemDetails.length; i++) {
+									orderItemIds[i] = orderItemDetails[i].orderItemId;
+									productIds[i] = orderItemDetails[i].productId;
+									quantities[i] = orderItemDetails[i].quantity;
+								    packagingOptions[i] = orderItemDetails[i].packaging;
+									packagingColors[i] = orderItemDetails[i].packagingColor;
+									packagingMessages[i] = orderItemDetails[i].packagingMessage;
+									itemColors[i] = orderItemDetails[i].itemColor;
+									itemTexts[i] = orderItemDetails[i].itemText;
+									includeCompanyLogoOptions[i] = orderItemDetails[i].includeCompanyLogo;
+									companyLogoImages[i] = orderItemDetails[i].companyLogoImage;
+									additionalInstructionsPassages[i] = orderItemDetails[i].additionalInstructions;
+									orderItemPrices[i] = orderItemDetails[i].orderItemPrice;
+								}
+
+								/* Retrieve the data of the products being ordered in each of the order items */
+								let productQuery = {_id: {$in: productIds}};
+								let productProjection = '_id name quantity price';
+
+								db.findMany(CatalogItem, productQuery, productProjection, function(result) {
+									let productData = result;
+
+									/* For each order item, match its product ID with the ObjectIDs of the retrieved
+									 * catalog items. If the IDs match, store the pertinent data of the product in 
+									 * the initialized arrays. 
+									 * 
+									 * This approach was used as the findMany() function only returns single instances
+									 * of matching documents; thus, the number of retrieved documents may be less than
+									 * the number of order items.
+									 */
+									for (let i = 0; i < orderItemDetails.length; i++) {
+										for (let j = 0; j < productData.length; j++) {
+											if (productIds[i] == productData[j]._id) {
+												productNames[i] = productData[j].name;
+												productQuantities[i] = productData[j].quantity;
+												productPrices[i] = productData[j].price;
+											}
+										}
+									}
+
+									/* Store the needed data in the details variable and display the page accordingly */
+									let details = {
+										style: 'order-product',
+										logo: appLogo.logo,
+										userFlag: false,
+										adminFlag: false,
+										username: req.session.username,
+										isAdmin: req.session.isAdmin,
+		
+										orderName: order.name,
+										companyName: order.companyName,
+
+										orderItemIds: orderItemIds,
+										quantities: quantities, 
+										packagingOptions: packagingOptions,
+										packagingColors: packagingColors,
+										packagingMessages: packagingMessages,
+										itemColors: itemColors,
+										itemTexts: itemTexts,
+										includeCompanyLogoOptions: includeCompanyLogoOptions,
+										companyLogoImages: companyLogoImages,
+										additionalInstructionsPassages: additionalInstructionsPassages,
+										orderItemPrices: orderItemPrices,
+
+										deliverMode: order.deliveryMode,
+										productNames: productNames,
+										productQuantities: productQuantities,
+										productPrices: productPrices,
+
+										preferredDeliveryDate: order.preferredDeliveryDate,
+										paymentType: order.paymentType,
+										price: order.price
+									}
+		
+									res.render('order-product', details);
+								});								
+							});
+						});
                     }
 					
 				}	

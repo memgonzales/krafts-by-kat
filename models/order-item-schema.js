@@ -6,8 +6,8 @@ const mongoose = require('mongoose');
 const orderItemSchema = new mongoose.Schema({
     /* Order name (optional) */
 
-        /* Name of the product */
-        productName: {
+        /* ObjectID of the product*/
+        productId: {
             type: String,
             required: true
         },
