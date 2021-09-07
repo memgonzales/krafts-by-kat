@@ -49,5 +49,11 @@ krafts.listen(port, hostname, function() {
 	console.log('http://' + hostname + ':' + port);
 });
 
+hbs.handlebars.registerHelper('select', function( value, options ){
+	var $element = $('<select />').html( options.fn(this) );
+	$element.find('[value="' + value + '"]').attr({'selected':'selected'});
+	return $element.html();
+});
+
 /* For unit testing of REST API */
 module.exports = krafts;

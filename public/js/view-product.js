@@ -139,7 +139,12 @@ $(document).ready(function() {
 		$.ajax({
 			url: '/postViewItem',
 			method: 'POST',
-			data: $('#add-to-order-form').serialize()
+			data: $('#add-to-order-form').serialize(),
+            statusCode: {
+				200: function(data) {
+					location.href = '/getOrder/' + data;
+				}
+			}
 		});
 	});
 });
