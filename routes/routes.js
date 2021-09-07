@@ -78,7 +78,7 @@ krafts.post('/postViewItem', productsManagerController.postViewItem);
 krafts.get('/toggleVisibility/:id', productsManagerController.getToggleVisibility);
 
 /* For placing orders */
-krafts.get('/getOrder', orderController.getOrder);
+krafts.get('/getOrder/:id', orderController.getOrder);
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');

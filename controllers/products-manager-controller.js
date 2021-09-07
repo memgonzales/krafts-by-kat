@@ -312,7 +312,7 @@ const productsManagerController = {
 							/* Create a new order item for the chosen product */
 							let orderItem = {
 								orderItemId: "",
-								productName: item.name,
+								productId: item._id,
 								quantity: 0,
 								packaging: "",
 								packagingColor: "",
@@ -358,46 +358,27 @@ const productsManagerController = {
 											let orderId = flag._id;
 
 											let filter = {username: req.session.username};
-											let update = {currentOrder: orderId};
+											let update = {currentOrder: orderId,
+														  $push: {orderIds: orderId}};
 											
 											/* Set the current order as the user's open order */
 											db.updateOne(Client, filter, update, function(error, result) {
-
-												/* Redirect the user to the order page displaying their current open order */
-												let details = {
-													style: 'order-product',
-													logo: appLogo.logo,
-													userFlag: true,
-													adminFlag: false,
-													username: req.session.username,
-													isAdmin: req.session.isAdmin,
-						
-													id: orderId,
-													name: order.name,
-													companyName: order.companyName,
-													orderItems: orderItem,
-													deliveryMode: order.deliveryMode,
-													preferredDeliveryDate: order.preferredDeliveryDate,
-													paymentType: order.paymentType,
-													price: order.price
-												}
-
-												res.render('order-product', details);
+												
+												/* Send the ObjectID of the created order to open it on the Order page */
+												res.status(200).json(orderId);
+												res.send();
 											});
 										});
 									
 									/* If the user has an open order, add the product to their open order */
 									} else {
-										let details = {
-											style: 'order-product',
-											logo: appLogo.logo,
-											userFlag: true,
-											adminFlag: false,
-											username: req.session.username,
-											isAdmin: req.session.isAdmin,
-										}
+										let filter = {_id: client.currentOrder};
+										let update = {$push: {orderItemIds: orderItem.orderItemId}};
 
-										res.render('order-product', details);
+										db.updateOne(Order, filter, update, function(error, result) {
+											res.status(200).json(client.currentOrder);
+											res.send();
+										})
 									};
 								});
 							});
