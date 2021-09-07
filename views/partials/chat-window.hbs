@@ -50,11 +50,7 @@
         <form id="write-message-form" >
             <textarea id="write-message-text-area" rows="4"></textarea>
 
-            <div class="container p-2 d-flex justify-content-start flex-row hidden" id="file-upload-row">
-                <div class="debug1 hidden" id="message-uploaded-file">
-                    content
-                </div>
-            </div>
+            {{>chat-uploaded-file}}
         
       </div>
       <div class="modal-footer d-flex justify-content-between">

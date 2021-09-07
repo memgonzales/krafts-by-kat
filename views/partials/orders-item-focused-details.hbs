@@ -2,6 +2,20 @@
     <h2 class="accordion-header" id="headingOne">
     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
         Product Name Here
+
+        
+        {{!-- This serves no purpose sa mismong website BESIDES na pam pa check list lang siya sa admin... can be removed tho --}}
+        {{#if isAdmin}}
+            {{#if orderAccepted}}
+                <div class="form-check mx-4">
+                        <input class="form-check-input" type="checkbox" value="" id="product-prep-status">
+                        <label class="form-check-label" for="product-prep-status">
+                            Product Prepared!
+                        </label>
+                </div>
+            {{/if}}
+        {{/if}}
+        
     </button>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -50,14 +64,8 @@
         </div>
     </div>
     
-    {{#if orderAccepted}}
-        <div class="form-check mx-4">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                Product Preparation Complete!
-            </label>
-        </div>
-    {{/if}}
+    
+    
     
             
 </div>
