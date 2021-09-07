@@ -1,4 +1,4 @@
-/* Schema for the catalog items */
+/* Schema for the orders */
 
 /* Mongoose is used for database functions */
 const mongoose = require('mongoose');
@@ -13,85 +13,36 @@ const orderSchema = new mongoose.Schema({
     /* Company name */
 	companyName: {
 		type: String,
-		required: true
+		required: false
 	},
 
     /* ObjectIDs of the order items */
-    orderItemIds: [
-        {
-            productName: {
-                type: String,
-                required: true
-            },
-
-            quantity: {
-                type: Number,
-                required: true
-            },
-
-            packaging: {
-                type: String,
-                required: true
-            },
-
-            packagingColor: {
-                type: String,
-                required: true
-            },
-
-            packagingMessage: {
-                type: String,
-                required: false
-            },
-
-            itemColor: {
-                type: String,
-                required: true
-            },
-
-            itemText: {
-                type: String,
-                required: false
-            },
-
-            companyLogo: {
-                type: String,
-                required: true
-            },
-
-            companyLogoLocation: {
-                type: [String],
-                required: false
-            },
-
-            additionalInstructions: {
-                type: String,
-                required: false
-            }
-        }
-    ],
+    orderItemIds: {
+        type: [String],
+        required: true
+    },
 
     /* Delivery mode of the order */
     deliveryMode: {
         type: String,
-        required: true
+        required: false
     },
 
     /* Preferred delivery date of the order */
     preferredDeliveryDate: {
         type: Date,
-        required: true
+        required: false
     },
 
     /* Payment type for the order */
     paymentType: {
         type: String,
-        required: true
+        required: false
     },
 
-    /* Whether the order has been placed */
-    orderPlaced: {
-        type: Boolean,
+    /* Total price of the order */
+    price: {
+        type: Number,
         required: true
     },
 

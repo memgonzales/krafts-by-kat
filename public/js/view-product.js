@@ -131,4 +131,15 @@ $(document).ready(function() {
     function isPlaceholder(pictures, placeholder) {
         return pictures[0] == placeholder;
     }
+
+    /* Ajax for adding the product to a client's order */
+	$('#add-to-order-form').on('submit', function(e) {		
+		e.preventDefault();
+			
+		$.ajax({
+			url: '/postViewItem',
+			method: 'POST',
+			data: $('#add-to-order-form').serialize()
+		});
+	});
 });

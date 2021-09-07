@@ -72,6 +72,7 @@ krafts.post('/postEditItem/:id', db.connect().fields(editProductFields), product
 
 /* For viewing product */
 krafts.get('/viewItem/:id', productsManagerController.getViewItem);
+krafts.post('/postViewItem', productsManagerController.postViewItem);
 
 /* For toggling visibility of product */
 krafts.get('/toggleVisibility/:id', productsManagerController.getToggleVisibility);
