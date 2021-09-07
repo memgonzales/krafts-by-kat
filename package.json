@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --exit"
+    "test": "mocha --exit --timeout 100000"
   },
   "repository": {
     "type": "git",
@@ -43,6 +43,7 @@
     "jsdom": "^17.0.0",
     "mocha": "^9.1.1",
     "mocha-jsdom": "^2.0.0",
+    "mockgoose": "^8.0.4",
     "nyc": "^15.1.0"
   }
 }
