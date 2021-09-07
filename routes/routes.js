@@ -17,6 +17,7 @@ const logOutController = require('../controllers/log-out-controller.js');
 const newProductController = require('../controllers/new-product-controller.js');
 const accountController = require('../controllers/account-controller.js');
 const productsManagerController = require('../controllers/products-manager-controller.js');
+const orderController = require('../controllers/order-controller.js');
 
 /* Call the validation file */
 const validation = require('../helpers/validation.js');
@@ -75,6 +76,9 @@ krafts.get('/viewItem/:id', productsManagerController.getViewItem);
 /* For toggling visibility of product */
 krafts.get('/toggleVisibility/:id', productsManagerController.getToggleVisibility);
 
+/* For placing orders */
+krafts.get('/getOrder', orderController.getOrder);
+
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
 krafts.get('/uploadsTest', uploadsTestController.displayPage);
@@ -91,52 +95,61 @@ krafts.get('/partials-test', function(req,res){
     res.render('partials-test',obj);
 });
 
-
-krafts.get('/order', function(req,res){
-    var obj = {
-        style: 'order-product'
-    }
-    res.render('order-product', obj);
-});
-
-
 /* TEMP Orders Nav Tabs*/ 
 
+
+//ADMIN ORDER NAVIGATION
 krafts.get('/account/admin/orders/pending', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('admin-orders-pending',obj);
+    var obj = {style: 'account', isAdmin: true}
+    res.render('orders-pending',obj);
 });
 
 krafts.get('/account/admin/orders/accepted', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('admin-orders-accepted',obj);
+    var obj = {style: 'account', isAdmin: true}
+    res.render('orders-accepted',obj);
 });
 
 krafts.get('/account/admin/orders/enRoute', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('admin-orders-en-route',obj);
+    var obj = {style: 'account', isAdmin: true}
+    res.render('orders-en-route',obj);
 
 });
 
 krafts.get('/account/admin/orders/delivered', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('admin-orders-delivered',obj);
+    var obj = {style: 'account', isAdmin: true}
+    res.render('orders-delivered',obj);
 
 });
 
-krafts.get('/account/admin/orders/view/orderID', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('admin-orders-item-focused',obj);
+
+
+// USER ORDER NAVIGATION
+krafts.get('/account/myOrders/pending', function(req,res){
+    var obj = {style: 'account', isAdmin: false}
+    res.render('orders-pending',obj);
+});
+
+krafts.get('/account/myOrders/accepted', function(req,res){
+    var obj = {style: 'account', isAdmin: false}
+    res.render('orders-accepted',obj);
+});
+
+krafts.get('/account/myOrders/enRoute', function(req,res){
+    var obj = {style: 'account', isAdmin: false}
+    res.render('orders-en-route',obj);
+
+});
+
+krafts.get('/account/myOrders/delivered', function(req,res){
+    var obj = {style: 'account', isAdmin: false}
+    res.render('orders-delivered',obj);
+
+});
+
+
+krafts.get('/view/orderID', function(req,res){
+    var obj = {style: 'account', isAdmin: false}
+    res.render('orders-item-focused',obj);
 });
 
 krafts.get('/account/contactMerchant', function(req,res){

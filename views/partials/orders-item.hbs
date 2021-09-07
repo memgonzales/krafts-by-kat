@@ -1,0 +1,55 @@
+<div class="container bgc3 one-order p-3 d-flex flex-row mt-3" >
+   
+    <div class="col-md-11">
+        <a href="/view/orderID" class="order-anchor">
+
+            <div class = "container">
+                <h4>Matamis na Patis</h4>
+            </div>
+
+            <div class="container d-flex flex-row">
+                <span class="me-3">
+                    <span class="bold">Order ID:</span> 
+                    <span>AgG3tzP</span>
+                </span>
+
+
+                <span class="mx-3">
+                    <span class="bold">Status: </span> 
+                    <span>Pending</span>
+                </span>
+
+                <span class="mx-3">
+                    <span class="bold">Delivery Date: </span>
+                    {{!-- Format is MM/DD/YYYY --}}
+                    <span>01/22/2021</span>
+                </span>
+
+                <span class="mx-3">
+                    <span class="bold">Invoice: </span>
+                    {{!-- Format is MM/DD/YYYY --}}
+                    <span>₱ <span>9,999,999</span></span>
+                </span>
+
+            </div>
+        </a>     
+    </div>
+  
+    <div class="col-md-1 d-flex justify-content-end pe-2">
+       
+        <div class="dropdown">
+            <button class="btn" type="button" id="opt-order" data-bs-toggle="dropdown" aria-expanded="false">
+                 <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="opt-order">
+                <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
+
+                {{#if isAdmin}}
+                    <li><a class="dropdown-item" href="#">Set Accepted or Set En Route</a></li>
+                {{/if}}
+                
+            </ul>
+        </div>
+    </div>
+    
+</div>

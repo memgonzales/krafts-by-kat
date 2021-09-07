@@ -34,6 +34,7 @@ bcrypt.hash("ASDFGHJKL123;", saltRounds, function (err, hash) {
 		zipCode: "1004",
 		address: "928 Cong. A. Francisco St.",
 		orderIds: [],
+		currentOrder: "",
 		threadId: "",
 		picture: ""
 	};
@@ -53,6 +54,7 @@ bcrypt.hash("ASDFGHJKL123;", saltRounds, function (err, hash) {
 		zipCode: "1005",
 		address: "109 Burgos St., Ayala Southvale Sonera",
 		orderIds: [],
+		currentOrder: "",
 		threadId: "",
 		picture: ""
 	};
