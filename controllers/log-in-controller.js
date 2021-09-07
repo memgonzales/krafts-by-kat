@@ -56,7 +56,6 @@ const logInController = {
                     bcrypt.compare(password, result.password, function (err, equal) {
                         if (equal) {
                             req.session.username = businessOwner.username;
-                            req.session.isAdmin = true;
                             
                             res.status(200).json(password);
                             res.send();
@@ -101,7 +100,6 @@ const logInController = {
                     bcrypt.compare(password, result.password, function (err, equal) {
                         if (equal) {
                             req.session.username = client.username;
-                            req.session.isAdmin = false;
 
                             res.status(200).json(password);
                             res.send();
@@ -138,7 +136,6 @@ const logInController = {
                             bcrypt.compare(password, result.password, function (err, equal) {
                                 if (equal) {
                                     req.session.username = client.username;
-                                    req.session.isAdmin = false;
 
                                     res.status(200).json(password);
                                     res.send();
