@@ -113,7 +113,7 @@
 /* END of Delete Modal CSS */
 
 
-/* Admin Orders Tab CSS*/
+/* Orders Tab CSS*/
 
 .start-active{
     border-radius: 20px 0px 0px 20px;
@@ -135,37 +135,41 @@
 }
 
 
-.admin-orders-link:hover{
+.order-link:hover{
     background-color: var(--c4);
     text-decoration:none;
     color: var(--black);
 }
 
-.admin-orders-link-start:hover{
+.order-link-start:hover{
     border-radius: 20px 0px 0px 20px;
     text-decoration:none;
     background-color: var(--c4);
     color: var(--black);
 }
 
-.admin-orders-link-end:hover{
+.order-link-end:hover{
     border-radius: 0px 20px 20px 0px;
     text-decoration:none;
     background-color: var(--c4);
     color: var(--black);
 }
 
-.admin-orders-link-start:not(:hover){
+.order-link-start:not(:hover){
     border-radius: 20px 0px 0px 20px;
 }
 
-.admin-orders-link-end:not(:hover){
+.order-link-end:not(:hover){
     border-radius: 0px 20px 20px 0px;
   
 } 
 
 .one-order{
     border-radius:20px;
+}
+
+.order-anchor:hover{
+    text-decoration:none;
 }
 
 #orders-collection{
@@ -176,7 +180,11 @@
 #order-focused{
     border-radius: 15px;
 }
-/* END of Admin Order Tab CSS*/
+
+.back-order-anchor:hover{
+    text-decoration: none;
+}
+/* END of Order Tab CSS*/
 
 
 

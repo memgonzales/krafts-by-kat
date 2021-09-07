@@ -1,9 +1,21 @@
 {{>navbar}}
 
 <div class="container-fluid content d-flex flex-row f1" id="account-container" >
-    {{>account-sidebar isAdmin = isAdmin  myOrdersTab = true}}
+    {{>account-sidebar isAdmin = isAdmin myOrdersTab = true}}
 
-    <div class="col-md-9" id="sidebar-content">
+    <div class="col-md-9">
+        {{>orders-nav isAdmin = isAdmin allOrdersTab = true}}
+
+        <div class="container" id="orders-collection">
+
+            {{>orders-item}}
+            {{>orders-item}}
+            {{>orders-item}}
+            {{>orders-item}}
+            {{>orders-item}}
+            {{>orders-item}}
+
+        </div>
         
     </div>
 </div>

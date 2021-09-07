@@ -97,41 +97,59 @@ krafts.get('/partials-test', function(req,res){
 
 /* TEMP Orders Nav Tabs*/ 
 
+
+//ADMIN ORDER NAVIGATION
 krafts.get('/account/admin/orders/pending', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('admin-orders-pending',obj);
+    var obj = {style: 'account', isAdmin: true}
+    res.render('orders-pending',obj);
 });
 
 krafts.get('/account/admin/orders/accepted', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('admin-orders-accepted',obj);
+    var obj = {style: 'account', isAdmin: true}
+    res.render('orders-accepted',obj);
 });
 
 krafts.get('/account/admin/orders/enRoute', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('admin-orders-en-route',obj);
+    var obj = {style: 'account', isAdmin: true}
+    res.render('orders-en-route',obj);
 
 });
 
 krafts.get('/account/admin/orders/delivered', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('admin-orders-delivered',obj);
+    var obj = {style: 'account', isAdmin: true}
+    res.render('orders-delivered',obj);
 
 });
 
-krafts.get('/account/admin/orders/view/orderID', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('admin-orders-item-focused',obj);
+
+
+// USER ORDER NAVIGATION
+krafts.get('/account/myOrders/pending', function(req,res){
+    var obj = {style: 'account', isAdmin: false}
+    res.render('orders-pending',obj);
+});
+
+krafts.get('/account/myOrders/accepted', function(req,res){
+    var obj = {style: 'account', isAdmin: false}
+    res.render('orders-accepted',obj);
+});
+
+krafts.get('/account/myOrders/enRoute', function(req,res){
+    var obj = {style: 'account', isAdmin: false}
+    res.render('orders-en-route',obj);
+
+});
+
+krafts.get('/account/myOrders/delivered', function(req,res){
+    var obj = {style: 'account', isAdmin: false}
+    res.render('orders-delivered',obj);
+
+});
+
+
+krafts.get('/view/orderID', function(req,res){
+    var obj = {style: 'account', isAdmin: false}
+    res.render('orders-item-focused',obj);
 });
 
 krafts.get('/account/contactMerchant', function(req,res){
