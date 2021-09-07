@@ -235,6 +235,22 @@
     max-height:100px;
     margin-left: 5px;
     margin-right:5px;
+
+    position:absolute;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+}
+
+#delete-chat-uploaded-file{
+    position:relative;
+    top:-4px;
+    right: -75px;
+    height:35px;
+    width:35px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #message-thread-dp{
@@ -273,6 +289,8 @@
 #conversation-anchor:hover{
     text-decoration:none;
 }
+
+
 
 /* END of Messaging System CSS */
 
