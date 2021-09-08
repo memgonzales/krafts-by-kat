@@ -195,17 +195,75 @@ const orderController = {
 
 					/* If the user is registered, save the order accordingly */
 					} else {
+
+						/* Store the order data from the order page */
 						let removedOrderItemIds = req.body.removedOrderItemIds;
 						let orderId = req.body.orderId;
 						let orderName = req.body.orderName;
 						let companyName = req.body.companyName;
-						let deliveryType = req.body.deliveryType;
+						let deliveryMode = req.body.deliveryModeValue;
 						let preferredDeliveryDate = req.body.preferredDeliveryDate;
 						let paymentType = req.body.paymentType;
+						let orderPrice = req.body.orderTotalPrice;
 
+						/* Split the list of ObjectIDs of the removed order items and store them in an array*/
 						let removedOrderItemArray = removedOrderItemIds.split(",");
+						removedOrderItemArray.shift();
 
-						
+						let removedOrderItemObjects = [];
+
+						/* Convert the array of IDs from strings to ObjectIDs to enable database comparisons */
+						for (let i = 0; i < removedOrderItemArray.length; i++) {
+							removedOrderItemObjects[i] = db.convertToObjectId(removedOrderItemArray[i]);
+						}
+
+						/* Delete the removed order items from the database */
+						let conditions = {_id: {$in: removedOrderItemObjects}};
+
+						db.deleteMany(OrderItem, conditions, function(flag) {
+							
+							/* Retrieve the user's order from the database */
+							let query = {_id: orderId};
+							let projection = '_id orderItemIds name companyName deliveryMode preferredDeliveryDate paymentType price';
+
+							db.findOne(Order, query, projection, function(result) {
+								let order = result;
+								
+								/* Create an array to store the updated order item IDs (i.e., having removed
+								 * the ObjectIDs of order items the user removed from the order)
+								 */
+								let updatedOrderItemIds = [];
+
+								/* If the ObjectID of an order item is in the list of removed order item IDs,
+								 * exclude it from the list of updated order item IDs
+								 */
+								let j = 0;
+								for (let i = 0; i < order.orderItemIds.length; i++) {
+									if (removedOrderItemArray.includes(order.orderItemIds[i]) == false) {
+										updatedOrderItemIds[j] = order.orderItemIds[i];
+										j++;
+									}
+								}
+
+								let filter = {_id: orderId};
+								let update = {
+									name: orderName,
+									companyName:companyName,
+									orderItemIds:updatedOrderItemIds,
+									deliveryMode:deliveryMode,
+									preferredDeliveryDate:preferredDeliveryDate,
+									paymentType:paymentType,
+									price: orderPrice
+								}
+								
+								db.updateOne(Order, filter, update, function(flag) {
+									res.status(200).json(orderId);
+									res.send();
+								});
+							});
+
+							// edit remaining order item details
+						});
 					}
 				}	
 

@@ -30,7 +30,7 @@
                 <h2 class = "cblack bold">Order List</h2>
 
                 <button type = "button" class = "btn bgc3 mx-4 d-flex justify-content-center align-items-center mb-2 py-2 pe-3 " id = "add-cart">
-                    <a href = "/"><i class = "fas fa-cart-plus fa-lg my-2" data-bs-toggle = "tooltip" data-bs-placement = "right" title = "Return to item catalog"></i></a>
+                    <i class = "fas fa-cart-plus fa-lg my-2" data-bs-toggle = "tooltip" data-bs-placement = "right" title = "Return to item catalog"></i>
                 </button>
             
             </div>
@@ -67,14 +67,15 @@
 
                 <div class="container ps-4 pt-4">
                     <h5>How will you get your order?</h5>
+                    <input type = "hidden" name = "deliveryModeValue" id = "delivery-mode-value">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="deliveryType" id="pickup">
+                            <input class="form-check-input" id = "delivery-mode-pickup" type="radio" name="deliveryType" id="pickup">
                             <label class="form-check-label" for="pickup">
                                 Pick-up
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="deliveryType" id="delivery" checked>
+                            <input class="form-check-input" id = "delivery-mode-delivery" type="radio" name="deliveryType" id="delivery" checked>
                             <label class="form-check-label" for="delivery">
                                 Delivery
                             </label>
@@ -101,7 +102,7 @@
                 <label for="#payment-type"><h5>Payment Type</h5></label>
                 <select class="form-select w-25" aria-label="Payment Type Select" id="payment-type" name = "paymentType">
 
-                    <option value="cash" selected>Cash on Delivery</option>
+                    <option value="cash" selected>Cash or Check</option>
                     <option value="gcash">GCash</option> 
                     <option value="bank_transfer">Bank Transfer</option>
             
