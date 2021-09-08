@@ -21,6 +21,16 @@
             <input class = "cblack" type = "text" id = "company-name" name = "companyName" value = {{companyName}}>
             <div id = "company-name-error" class = "form text fc3"></div>
 
+            <br>
+
+            <div class="d-flex flex-column">
+                <label for="company-logo" class="form-label">
+                    <h7>
+                        Upload Company Logo (Recommended Size 512 x 800)
+                    </h7>
+                </label>
+                <input class="form-control" type="file" id="company-logo" name="cover" accept="image/*">
+            </div>
         </div>
 
         <div class = " f1 d-flex p-5 justify-content-center flex-column mt-5 mx-5 bgc4" id = "order-details">
@@ -109,21 +119,16 @@
                 </select>
             </div>
 
-            <div>{{orderItemIds}}</div>
+            <div id = "order-item-id-list" class = "invisible">{{orderItemIds}}</div>
 
             <div class="mt-4 ms-4">
                 <h5 class="f1">Order Overview</h5>
-                <div class="container d-flex flex-row">
-                    <div class="col-md-9 ">
-                        <h7>Product Name</h7>
-                    </div>
-                    <div class="col-md-1">
-                        <h7>(x<span>9,999</span>)</h7>
-                    </div>
-                    <div class="col-md-2 d-flex justify-content-end">
-                        <h7>₱<span>9,999,999</span></h7>
-                    </div>
-                </div>
+                
+                {{#each orderItemIds}}
+                    {{>order-product-summary-item orderId = orderId
+                                                  orderItemId = this
+                                                  productName = (lookup ../productNames @index)}}
+                {{/each}}
 
                 <div class="dropdown-divider"></div>
                 <div class="d-flex justify-content-between flex-row">
@@ -133,9 +138,7 @@
                 </div>
             </div>
 
-            <button type = "button" id = "boop">Boop</button>
-            
-            <input type = "text" id = "order-total-price" name = "orderTotalPrice">
+            <input type = "hidden" id = "order-total-price" name = "orderTotalPrice">
          
         </div>
 
@@ -200,7 +203,7 @@
     </div>
 </div>
 
-<script src = "/js/order-specific.js"></script>
 <script src = "/js/order-product.js"></script>
+<script src = "/js/order-specific.js"></script>
 
                  
