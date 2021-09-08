@@ -5,7 +5,7 @@
 <div class = "container-fluid d-flex justify-content-center align-items-center flex-column mb-5 ">
 
 
-    <form method = "POST" class = "container bgc5 p-5" id = "order-form">
+    <form method = "POST" class = "container bgc5 p-5" id = "order-form" enctype = "multipart/form-data">
 
         <input type = "hidden" id = "removed-order-items" name = "removedOrderItemIds">
 
@@ -29,8 +29,10 @@
                         Upload Company Logo (Recommended Size 512 x 800)
                     </h7>
                 </label>
-                <input class="form-control" type="file" id="company-logo" name="cover" accept="image/*">
+                <img id = "company-logo-img" src = "{{companyLogo}}">
+                <input class="form-control" type="file" id="company-logo" name="companyLogo" accept="image/*">
             </div>
+
         </div>
 
         <div class = " f1 d-flex p-5 justify-content-center flex-column mt-5 mx-5 bgc4" id = "order-details">

@@ -16,6 +16,11 @@ const orderSchema = new mongoose.Schema({
 		required: false
 	},
 
+    companyLogo: {
+        type: String,
+        required: false
+    },
+
     /* ObjectIDs of the order items */
     orderItemIds: {
         type: [String],
