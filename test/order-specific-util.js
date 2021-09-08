@@ -1,5 +1,5 @@
-const hideProduct = function(productId) {
-    $('#accordion-item-' + productId).hide();
+const hideProduct = function(orderItemId) {
+    $('#accordion-item-' + orderItemId).hide();
 }
 
 module.exports = {

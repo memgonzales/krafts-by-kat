@@ -161,6 +161,12 @@ const orderController = {
 				console.log("Missing graphics elements");
 			}
 		});
+	},
+
+	postRemoveOrderItem: function(req, res) {
+		console.log("Removed from order item list");
+		res.status(200).json();
+		res.send();
 	}
 }
 

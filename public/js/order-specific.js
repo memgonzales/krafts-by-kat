@@ -3,29 +3,18 @@ $(document).ready(function() {
         $(this).on('click', function() {
             const id = $(this).attr('id');
             const idTokens = id.split('-');
-            const productId = idTokens[idTokens.length - 1];
+            const orderItemId = idTokens[idTokens.length - 1];
 
-            hideProduct(productId);
+            hideProduct(orderItemId);
+            trackRemovedOrderItems(orderItemId);
         });
     });
 
-    function hideProduct(productId) {
-        $('#accordion-item-' + productId).hide();
+    function hideProduct(orderItemId) {
+        $('#accordion-item-' + orderItemId).hide();
     }
 
-    /* Ajax for removing an order item from a client's order */
-	$('#remove-order-item-form').on('submit', function(e) {		
-		e.preventDefault();
-			
-		$.ajax({
-			url: '/postRemoveOrderItem',
-			method: 'POST',
-			data: $('#remove-order-item-form').serialize(),
-            statusCode: {
-				200: function(data) {
-					location.href = '/getOrder/' + data;
-				}
-			}
-		});
-	});
+    function trackRemovedOrderItems(orderItemId) {
+        $('#removed-order-items').val($('#removed-order-items').val() + ',' + orderItemId);
+    }
 })
