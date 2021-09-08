@@ -74,14 +74,9 @@ const orderController = {
 								let productQuantities = [];
 								let productPrices = [];
 
-								/* Store the ObjectIDs, names, and pictures of all available products in parallel arrays */
-								let allProductIds = [];
-								let allProductNames = [];
-								let allProductPictures = [];
-
 								/* Store the data from the database query in the initialized arrays */
 								for (let i = 0; i < orderItemDetails.length; i++) {
-									orderItemIds[i] = orderItemDetails[i].orderItemId;
+									orderItemIds[i] = orderItemDetails[i]._id;
 									productIds[i] = orderItemDetails[i].productId;
 									quantities[i] = orderItemDetails[i].quantity;
 								    packagingOptions[i] = orderItemDetails[i].packaging;
@@ -127,6 +122,7 @@ const orderController = {
 										adminFlag: false,
 										username: req.session.username,
 		
+										orderId: order._id,
 										orderName: order.name,
 										companyName: order.companyName,
 
