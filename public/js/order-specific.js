@@ -94,7 +94,9 @@ $(document).ready(function() {
 		$.ajax({
 			url: '/postSaveOrder',
 			method: 'POST',
-			data: $('#order-form').serialize(),
+			data: new FormData(document.getElementById('order-form')),
+            processData: false,
+            contentType: false,
             statusCode: {
 				200: function(data) {
                     location.href = '/';

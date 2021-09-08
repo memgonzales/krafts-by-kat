@@ -346,7 +346,8 @@ const productsManagerController = {
 											preferredDeliveryDate: 0,
 											paymentType: "",
 											price: 0,
-											status: "Unsubmitted"
+											status: "Unsubmitted",
+											isCompanyLogoUploaded: "false"
 										}
 
 										/* Add the order and retrieve its ObjectID from the database */
