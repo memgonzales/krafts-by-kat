@@ -1,8 +1,8 @@
 {{>navbar userFlag = userFlag adminFlag = adminFlag}}
 
-<div class="container-fluid d-flex justify-content-center align-items-center flex-column p-5 h-100">
+<div class="container-fluid d-flex justify-content-center align-items-center flex-column p-5 mt-2">
 
-    <div class = "d-flex justify-content-center" id = "product-focused">
+    <div class = "d-flex justify-content-center mt-1 mb-5" id = "product-focused">
 
         <div class = "col-md-4 py-4 d-flex justify-content-center align-items-center flex-column bgc1 " id = "product-images">
             
@@ -102,8 +102,84 @@
 
     </div>
 
-    <div class="container bgc3 mt-5" id="product-reviews">
-        Product Reviews Here
+    <div class="bgc3 p-4 f1 d-flex flex-column" id="product-reviews-card">
+        <h4 class="bold align-self-start">Reviews</h4>
+        <div class="d-flex flex-row">
+            
+            <a class="btn btn-anchor d-flex justify-content-center align-items-center flex-column bgc4 px-3 pt-3 pb-2" id="show-5star">
+                <div class="d-flex flex-row"> 
+                    <i class="fas fa-star fa-sm"></i>
+                    <i class="fas fa-star fa-sm"></i>
+                    <i class="fas fa-star fa-sm"></i>
+                    <i class="fas fa-star fa-sm"></i>
+                    <i class="fas fa-star fa-sm"></i>
+                </div>
+               
+                <span>[<span>23</span>]</span>
+           
+            </a>
+
+            <a class="btn btn-anchor d-flex justify-content-center align-items-center flex-column px-3 pt-3 pb-2" id="show-4star">
+                <div class="d-flex flex-row"> 
+                    <i class="fas fa-star fa-sm"></i>
+                    <i class="fas fa-star fa-sm"></i>
+                    <i class="fas fa-star fa-sm"></i>
+                    <i class="fas fa-star fa-sm"></i>
+                </div>
+               
+                <span>[<span>12</span>]</span>
+            </a>
+
+            <a class="btn btn-anchor d-flex justify-content-center align-items-center flex-column px-3 pt-3 pb-2" id="show-3star">
+                <div class="d-flex flex-row"> 
+                    <i class="fas fa-star fa-sm"></i>
+                    <i class="fas fa-star fa-sm"></i>
+                    <i class="fas fa-star fa-sm"></i>
+                </div>
+               
+                <span>[<span>10</span>]</span>
+            </a>
+
+            <a class="btn btn-anchor d-flex justify-content-center align-items-center flex-column px-3 pt-3 pb-2" id="show-2star">
+                <div class="d-flex flex-row"> 
+                    <i class="fas fa-star fa-sm"></i>
+                    <i class="fas fa-star fa-sm"></i>
+                </div>
+                <span>[<span>3</span>]</span>
+            </a>
+
+            <a class="btn btn-anchor d-flex justify-content-center align-items-center flex-column px-3 pt-3 pb-2 " id="show-1star">
+                <div class="d-flex flex-row"> 
+                    <i class="fas fa-star fa-sm"></i>
+                
+                </div>
+               
+                <span>[<span>0</span>]</span>
+           
+            </a>
+            
+            
+            
+            
+        </div>
+        
+
+        
+    
+        <div class="dropdown-divider col-md-12"></div>
+
+        <div class="container px-3 pt-3" id="reviews-container">
+            {{>one-review}}
+
+        </div>
+
+        
+{{!--         
+        {{#each one-review}}
+
+        {{else}}
+            <h6 class="bold align-self-center my-4">There hasn't been any reviews for this product. You could be the first!</h6>
+        {{/each}} --}}
     </div>
 
 </div>

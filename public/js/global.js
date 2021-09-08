@@ -14,7 +14,7 @@ $(document).ready(function() {
     });
 
 
-
+    // JQuery for star sa leaving a review
     $('.rate1, .rate2, .rate3, .rate4, .rate5').each(function(){
         $(this).click(function(){
 
@@ -108,6 +108,64 @@ $(document).ready(function() {
          
         });
     });
+
+    //JQuery for picking a review rating for viewing the product
+    $('#show-1star, #show-2star, #show-3star, #show-4star, #show-5star').each(function(){
+        $(this).click(function(){
+
+            var btn = $(this).attr('id');
+            var show1, show2, show3, show4, show5;
+            show1 = $('#show-1star');
+            show2 = $('#show-2star');
+            show3 = $('#show-3star');
+            show4 = $('#show-4star');
+            show5 = $('#show-5star');
+
+            switch(btn){
+                case "show-1star":
+                    show1.addClass('bgc4').removeClass('bgc3');
+                    show2.addClass('bgc3').removeClass('bgc4');
+                    show3.addClass('bgc3').removeClass('bgc4');
+                    show4.addClass('bgc3').removeClass('bgc4');
+                    show5.addClass('bgc3').removeClass('bgc4');
+
+                break;
+
+                case "show-2star":
+                    show2.addClass('bgc4').removeClass('bgc3');
+                    show1.addClass('bgc3').removeClass('bgc4');
+                    show3.addClass('bgc3').removeClass('bgc4');
+                    show4.addClass('bgc3').removeClass('bgc4');
+                    show5.addClass('bgc3').removeClass('bgc4');
+                break;
+
+                case "show-3star":                
+                    show3.addClass('bgc4').removeClass('bgc3');
+                    show1.addClass('bgc3').removeClass('bgc4');
+                    show2.addClass('bgc3').removeClass('bgc4');
+                    show4.addClass('bgc3').removeClass('bgc4');
+                    show5.addClass('bgc3').removeClass('bgc4');
+                break;
+
+                case "show-4star":
+                    show4.addClass('bgc4').removeClass('bgc3');
+                    show1.addClass('bgc3').removeClass('bgc4');
+                    show2.addClass('bgc3').removeClass('bgc4');
+                    show3.addClass('bgc3').removeClass('bgc4');
+                    show5.addClass('bgc3').removeClass('bgc4');
+                break;
+
+                case "show-5star":
+                    show5.addClass('bgc4').removeClass('bgc3');
+                    show1.addClass('bgc3').removeClass('bgc4');
+                    show2.addClass('bgc3').removeClass('bgc4');
+                    show3.addClass('bgc3').removeClass('bgc4');
+                    show4.addClass('bgc3').removeClass('bgc4');
+                break;
+
+            }
+        });
+    })
 
  
 });
