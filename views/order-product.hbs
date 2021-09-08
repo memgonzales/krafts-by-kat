@@ -39,7 +39,8 @@
             <div class = "accordion mt-2" id = "order-list">
 
                 {{#each orderItemIds}}
-                    {{>order-specific orderItemId = this 
+                    {{>order-specific orderId = orderId
+                                      orderItemId = this 
                                       quantity = (lookup ../quantities @index) 
                                       packaging = (lookup ../packagingOptions @index) 
                                       packagingColor = (lookup ../packagingColors @index)
