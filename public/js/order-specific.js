@@ -59,6 +59,29 @@ $(document).ready(function() {
         alert(price);
     }
 
+    $('#add-cart').on('click', function(e) {
+        e.preventDefault();
+
+		$.ajax({
+			url: '/postSaveOrder',
+			method: 'POST',
+			data: $('#order-form').serialize(),
+            statusCode: {
+				200: function(data) {
+                    location.href = '/';
+				}
+			}
+		});
+    });
+
+    $('#delivery-mode-pickup').on('click', function() {
+        $('#delivery-mode-value').val('pickup');
+    });
+
+    $('#delivery-mode-delivery').on('click', function() {
+        $('#delivery-mode-value').val('delivery');
+    });
+
     $('#save-order').on('click', function(e) {
         e.preventDefault();
 
@@ -68,7 +91,7 @@ $(document).ready(function() {
 			data: $('#order-form').serialize(),
             statusCode: {
 				200: function(data) {
-                    // location.href = '/getOrder/' + data;
+                    location.href = '/getOrder/' + data;
 				}
 			}
 		});
