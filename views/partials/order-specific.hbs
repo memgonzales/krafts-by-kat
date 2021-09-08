@@ -12,17 +12,18 @@
     <div id = "productId_collapse-{{orderItemId}}" class = "accordion-collapse collapse show" aria-labelledby = "productId_heading" data-bs-parent = "#order-list">
         
         <div class = "accordion-body bgc3">
-            
-            <button id = "remove-{{orderItemId}}" type="button" class="btn bgc2 remove-order-item"><i class="fas fa-trash me-2"></i>Remove Product</i></button>
+            <form method = "POST" id = "remove-order-item-form">
+                <button id = "remove-{{orderItemId}}" type="button" class="btn bgc2 remove-order-item"><i class="fas fa-trash me-2"></i>Remove Product</i></button>
 
-            <div class="mt-4">
-                <input type="hidden" min = 0 step = "0" id = "quantity" class="ms-3" value = {{orderItemId}}>
+                <div class="mt-4">
+                    <input type="hidden" id = "order-item-id" name = "orderItemId" value = {{orderItemId}}>
+                    <input type="hidden" id = "order-id" name = "orderId" value = {{orderId}}>
 
-                <label for="quantity"><h5>Quantity</h5></label>
-                <input type="number" min = 0 step = "0" id = "quantity" class="ms-3" value = {{quantity}}>
-                <input type="hidden" value = {{productQuantity}}>
-            </div>
-          
+                    <label for="quantity"><h5>Quantity</h5></label>
+                    <input type="number" min = 0 step = "0" id = "quantity" class="ms-3" value = {{quantity}}>
+                    <input type="hidden" value = {{productQuantity}}>
+                </div>
+            </form>
 
             <div class="mt-3" id="customization">
 
