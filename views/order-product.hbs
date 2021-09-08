@@ -5,20 +5,20 @@
 <div class = "container-fluid d-flex justify-content-center align-items-center flex-column mb-5 ">
 
 
-    <form class = "container bgc5 p-5" id = "order-form">
+    <form method = "POST" class = "container bgc5 p-5" id = "order-form">
 
-        <input type = "text" id = "removed-order-items">
+        <input type = "hidden" id = "removed-order-items" name = "removedOrderItemIds">
 
         <div class = "f1 d-flex p-5 justify-content-center cwhite flex-column m-5 bgc4" id = "order-header">
   
-            <input class = "cblack" type = "hidden" id = "order-id" value = {{orderId}}>
+            <input class = "cblack" type = "hidden" id = "order-id" name = "orderId" value = {{orderId}}>
 
-            <input class = "cblack" type = "text" id = "order-name" placeholder = "Order Name" value = {{orderName}}>
+            <input class = "cblack" type = "text" id = "order-name" name = "orderName" placeholder = "Order Name" value = {{orderName}}>
             <div id = "order-name-error" class = "form-text cblack fc3">Why you're ordering, maybe an event perhaps.</div>
 
             
             <label class = "mt-4 cblack bold" for = "company-name">Company Name</label>
-            <input class = "cblack" type = "text" id = "company-name" value = {{companyName}}>
+            <input class = "cblack" type = "text" id = "company-name" name = "companyName" value = {{companyName}}>
             <div id = "company-name-error" class = "form text fc3"></div>
 
         </div>
@@ -68,13 +68,13 @@
                 <div class="container ps-4 pt-4">
                     <h5>How will you get your order?</h5>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="deliverytype" id="pickup">
+                            <input class="form-check-input" type="radio" name="deliveryType" id="pickup">
                             <label class="form-check-label" for="pickup">
                                 Pick-up
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="deliverytype" id="delivery" checked>
+                            <input class="form-check-input" type="radio" name="deliveryType" id="delivery" checked>
                             <label class="form-check-label" for="delivery">
                                 Delivery
                             </label>
@@ -83,7 +83,7 @@
 
                 <div class="container ps-4 mt-4">
                     <label for="orderID_prefDate"><h5>Preferred Delivery Date</h5></label>
-                    <input type="date" class="ms-3" id="orderID_prefDate">
+                    <input type="date" class="ms-3" id="orderID_prefDate" name = "preferredDeliveryDate">
                     <div class="form-text">We will send you an estimate after we've reviewed your order</div>
                 </div>
 
@@ -99,7 +99,7 @@
 
             <div class="mt-3 ms-4">
                 <label for="#payment-type"><h5>Payment Type</h5></label>
-                <select class="form-select w-25" aria-label="Payment Type Select" id="payment-type">
+                <select class="form-select w-25" aria-label="Payment Type Select" id="payment-type" name = "paymentType">
 
                     <option value="cash" selected>Cash on Delivery</option>
                     <option value="gcash">GCash</option> 
@@ -120,7 +120,7 @@
                 <div class="dropdown-divider"></div>
                 <div class="d-flex justify-content-between flex-row">
                     <h7>Order Total: </h7>
-                    <h7>₱ <span>9,999,999</span></h7>
+                    <h7>₱ <span>{{price}}</span></h7>
                 
                 </div>
             </div>
@@ -130,8 +130,8 @@
         </div>
 
         <div class="d-flex justify-content-center mt-5">
-            <button type="button" class="btn bgc2 mx-3">Save Order</button>
-            <button type="button" class="btn bgc3 mx-3" data-bs-toggle="modal" data-bs-target="#place-order-success-modal">Place Order</button>
+            <button type="button" id = "save-order" class="btn bgc2 mx-3">Save Order</button>
+            <button type="button" id = "place-order" class="btn bgc3 mx-3" data-bs-toggle="modal" data-bs-target="#place-order-success-modal">Place Order</button>
             <button type="button" class="btn bgc4 mx-3" data-bs-toggle="modal" data-bs-target="#save-prompt">Cancel</button>
         </div>
 

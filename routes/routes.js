@@ -94,7 +94,7 @@ krafts.get('/toggleVisibility/:id', productsManagerController.getToggleVisibilit
 
 /* For placing orders */
 krafts.get('/getOrder/:id', orderController.getOrder);
-krafts.get('/postRemoveOrderItem', orderController.postRemoveOrderItem);
+krafts.post('/postSaveOrder', orderController.postSaveOrder);
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
@@ -180,6 +180,13 @@ krafts.get('/account/contactMerchant', function(req,res){
     }
     res.render('user-contact-merchant',obj);
 });
+
+krafts.get('/rate/orderID', function(req,res){
+    var obj = {
+        style: 'account'
+    }
+    res.render('rate-order', obj);
+})
 
 /*END of TEMP Orders Nav Tabs*/ 
 
