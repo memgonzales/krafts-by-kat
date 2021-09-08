@@ -184,6 +184,23 @@
 .back-order-anchor:hover{
     text-decoration: none;
 }
+
+#rate-order{
+    border-radius: 10px;
+}
+
+#rate-header{
+    font-size: 43pt;
+}
+
+#review-div{
+    border-radius:10px;
+}
+
+#submit-review:hover{
+    text-decoration: none;
+    color: var(--white);
+}
 /* END of Order Tab CSS*/
 
 

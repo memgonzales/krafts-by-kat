@@ -181,6 +181,13 @@ krafts.get('/account/contactMerchant', function(req,res){
     res.render('user-contact-merchant',obj);
 });
 
+krafts.get('/rate/orderID', function(req,res){
+    var obj = {
+        style: 'account'
+    }
+    res.render('rate-order', obj);
+})
+
 /*END of TEMP Orders Nav Tabs*/ 
 
 
