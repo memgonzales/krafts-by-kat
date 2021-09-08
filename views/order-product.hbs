@@ -108,24 +108,33 @@
                 </select>
             </div>
 
+            <div>{{orderItemIds}}</div>
+
             <div class="mt-4 ms-4">
                 <h5 class="f1">Order Overview</h5>
-                {{>order-product-summary-item}}
-                {{>order-product-summary-item}}
-                {{>order-product-summary-item}}
-                {{>order-product-summary-item}}
-                {{>order-product-summary-item}}
-                {{>order-product-summary-item}}
+                <div class="container d-flex flex-row">
+                    <div class="col-md-9 ">
+                        <h7>Product Name</h7>
+                    </div>
+                    <div class="col-md-1">
+                        <h7>(x<span>9,999</span>)</h7>
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-end">
+                        <h7>₱<span>9,999,999</span></h7>
+                    </div>
+                </div>
 
                 <div class="dropdown-divider"></div>
                 <div class="d-flex justify-content-between flex-row">
                     <h7>Order Total: </h7>
-                    <h7>₱ <span>{{price}}</span></h7>
+                    <h7>₱<span id = "order-total-price-display">{{price}}</span></h7>
                 
                 </div>
             </div>
+
+            <button type = "button" id = "boop">Boop</button>
             
-          
+            <input type = "text" id = "order-total-price" name = "orderTotalPrice">
          
         </div>
 
@@ -191,6 +200,6 @@
 </div>
 
 <script src = "/js/order-specific.js"></script>
-
+<script src = "/js/order-product.js"></script>
 
                  
