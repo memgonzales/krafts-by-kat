@@ -203,96 +203,9 @@ const orderController = {
 						let preferredDeliveryDate = req.body.preferredDeliveryDate;
 						let paymentType = req.body.paymentType;
 
-						console.log(removedOrderItemIds);
-						console.log(orderId);
-						console.log(orderName);
-						console.log(companyName);
-						console.log(deliveryType);
-						console.log(preferredDeliveryDate);
-						console.log(paymentType);
+						let removedOrderItemArray = removedOrderItemIds.split(",");
 
-
-						// /* Retrieve the data corresponding to the ID of the selected product */
-						// let query = {_id: db.convertToObjectId(id)};
-						// let projection = '_id name quantity price pictures';
-
-						// db.findOne(CatalogItem, query, projection, function(result) {
-						// 	let item = result;
-
-						// 	/* Create a new order item for the chosen product */
-						// 	let orderItem = {
-						// 		orderItemId: "",
-						// 		productId: item._id,
-						// 		quantity: 0,
-						// 		packaging: "",
-						// 		packagingColor: "",
-						// 		packagingMessage: "",
-						// 		itemColor: "",
-						// 		itemText: "",
-						// 		includeCompanyLogo: false,
-						// 		companyLogoImage: "",
-						// 		companyLogoLocation: [],
-						// 		additionalInstructions: "",
-						// 		price: item.price,
-						// 		orderItemPrice: 0
-						// 	}
-
-						// 	/* Add the order item and retrieve its ObjectID from the database */
-						// 	db.insertOne(OrderItem, orderItem, function(flag) {
-						// 		orderItem.orderItemId = flag._id;
-								
-						// 		/* Retrieve the user data to check whether they have an open order */
-						// 		let query = {username: req.session.username};
-						// 		let projection = 'username currentOrder';
-
-						// 		db.findOne(Client, query, projection, function(result) {
-						// 			let client = result;
-
-						// 			/* If the user does not have an open order, create a new order containing the selected product */
-						// 			if (client.currentOrder == "") {
-										
-						// 				/* Create a new order containing the order item */
-						// 				let order = {
-						// 					name: "",
-						// 					companyName: "",
-						// 					orderItemIds: [orderItem.orderItemId],
-						// 					deliveryMode: "",
-						// 					preferredDeliveryDate: 0,
-						// 					paymentType: "",
-						// 					price: 0,
-						// 					status: "Unsubmitted"
-						// 				}
-
-						// 				/* Add the order and retrieve its ObjectID from the database */
-						// 				db.insertOne(Order, order, function(flag) {
-						// 					let orderId = flag._id;
-
-						// 					let filter = {username: req.session.username};
-						// 					let update = {currentOrder: orderId,
-						// 								  $push: {orderIds: orderId}};
-											
-						// 					/* Set the current order as the user's open order */
-						// 					db.updateOne(Client, filter, update, function(error, result) {
-												
-						// 						/* Send the ObjectID of the created order to open it on the Order page */
-						// 						res.status(200).json(orderId);
-						// 						res.send();
-						// 					});
-						// 				});
-									
-						// 			/* If the user has an open order, add the product to their open order */
-						// 			} else {
-						// 				let filter = {_id: client.currentOrder};
-						// 				let update = {$push: {orderItemIds: orderItem.orderItemId}};
-
-						// 				db.updateOne(Order, filter, update, function(error, result) {
-						// 					res.status(200).json(client.currentOrder);
-						// 					res.send();
-						// 				})
-						// 			};
-						// 		});
-						// 	});
-						// });
+						
 					}
 				}	
 
