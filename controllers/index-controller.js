@@ -170,6 +170,7 @@ const indexController = {
 									logo: appLogo.logo,
 									userFlag: true,
 									adminFlag: true,
+
 									productIds: ids,
 									productNames: names,
 									productQuantities: quantities,
@@ -192,6 +193,7 @@ const indexController = {
 									logo: appLogo.logo,
 									userFlag: true,
 									adminFlag: false,
+									
 									productIds: ids,
 									productNames: names,
 									productQuantities: quantities,

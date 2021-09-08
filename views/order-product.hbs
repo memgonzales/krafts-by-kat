@@ -1,4 +1,4 @@
-{{>navbar}}
+{{>navbar userFlag = userFlag adminFlag = adminFlag username = username}}
 
 <span class = "f1 text-start ms-5 mt-5 form-header">Make an Order</span>
 
@@ -26,8 +26,8 @@
 
                 <h2 class = "cblack bold">Order List</h2>
 
-                <button type = "button" class = "btn bgc3 mx-4 d-flex justify-content-center align-items-center mb-2 py-2 pe-3 " id = "add-cart" data-bs-toggle="modal" data-bs-target="#pick-product">
-                    <i class = "fas fa-cart-plus fa-lg my-2" data-bs-toggle = "tooltip" data-bs-placement = "right" title = "Add to Order List"></i>
+                <button type = "button" class = "btn bgc3 mx-4 d-flex justify-content-center align-items-center mb-2 py-2 pe-3 " id = "add-cart">
+                    <a href = "/"><i class = "fas fa-cart-plus fa-lg my-2" data-bs-toggle = "tooltip" data-bs-placement = "right" title = "Return to item catalog"></i></a>
                 </button>
             
             </div>
