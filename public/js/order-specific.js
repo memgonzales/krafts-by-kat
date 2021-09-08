@@ -17,4 +17,19 @@ $(document).ready(function() {
     function trackRemovedOrderItems(orderItemId) {
         $('#removed-order-items').val($('#removed-order-items').val() + ',' + orderItemId);
     }
+
+    $('#save-order').on('click', function(e) {
+        e.preventDefault();
+
+		$.ajax({
+			url: '/postSaveOrder',
+			method: 'POST',
+			data: $('#order-form').serialize(),
+            statusCode: {
+				200: function(data) {
+                    // location.href = '/getOrder/' + data;
+				}
+			}
+		});
+    });
 })

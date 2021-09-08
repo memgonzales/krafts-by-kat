@@ -163,11 +163,58 @@ const orderController = {
 		});
 	},
 
-	postRemoveOrderItem: function(req, res) {
-		console.log("Removed from order item list");
-		res.status(200).json();
-		res.send();
-	}
+	/**
+	 * Saves the user's order details
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
+	 postSaveOrder: function(req, res) {
+		/* Prepare a query for the web application logo */
+		let query = {id: 0};
+		
+		/* Retrieve the web application logo from the database */
+		db.findOne(Display, query, '', function(result) {
+			
+			/* If the data retrieval was successful, display the account page */
+			if (result) {
+
+				appLogo = result;
+
+				/* If the user is using an administrator account, redirect to the landing page;
+				 * the administrator cannot make orders
+				 */
+				if (req.session.isAdmin == true) {
+					
+					res.redirect('/');
+
+				/* If the user is unregistered, redirect to the landing page */
+				} else {
+					if (req.session.username == undefined) {
+
+						res.redirect('/');
+
+					/* If the user is registered, save the order accordingly */
+					} else {
+						let removedOrderItemIds = req.body.removedOrderItemIds;
+						let orderId = req.body.orderId;
+						let orderName = req.body.orderName;
+						let companyName = req.body.companyName;
+						let deliveryType = req.body.deliveryType;
+						let preferredDeliveryDate = req.body.preferredDeliveryDate;
+						let paymentType = req.body.paymentType;
+
+						let removedOrderItemArray = removedOrderItemIds.split(",");
+
+						
+					}
+				}	
+
+			/* If the data retrieval was not successful, display an error message */			
+			} else {
+				console.log("Missing graphics elements");
+			}
+		});
+	},
 }
 
 module.exports = orderController;
