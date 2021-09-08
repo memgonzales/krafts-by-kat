@@ -22,6 +22,19 @@ $(document).ready(function() {
         });
     });
 
+    $('.item-quantity').each(function() {
+        $(this).on('input', function() {
+            const orderItemId = getOrderItemId(this);
+
+            if (parseInt($(this).val()) > parseInt($(this).attr('max'))) {
+                $(this).val($(this).attr('max'));
+                $('#quantity-exceed-' + orderItemId).text('We only have ' + $(this).attr('max') + ' units available');
+            } else {
+                $('#quantity-exceed-' + orderItemId).text('');
+            }
+        });
+    });
+
     function getOrderItemId(element) {
         const id = element.id;
         const idTokens = id.split('-');
