@@ -1,4 +1,4 @@
-<div class = "accordion-item bgc3">    
+<div class = "accordion-item bgc3" id = "accordion-item-{{orderItemId}}">    
 
     <h2 class = "accordion-header " id = "productId_heading">
         <button class = "accordion-button bold bgc3" type = "button" data-bs-toggle = "collapse" data-bs-target = "#productId_collapse-{{orderItemId}}" aria-expanded = "true" aria-controls = "productId_collapse">
@@ -13,7 +13,7 @@
         
         <div class = "accordion-body bgc3">
             
-            <button type="button" class="btn bgc2"><i class="fas fa-trash me-2"></i>Remove Product</i></button>
+            <button id = "remove-{{orderItemId}}" type="button" class="btn bgc2 remove-order-item"><i class="fas fa-trash me-2"></i>Remove Product</i></button>
 
             <div class="mt-4">
                 <input type="hidden" min = 0 step = "0" id = "quantity" class="ms-3" value = {{orderItemId}}>
@@ -139,3 +139,5 @@
 
 
 </div>
+
+<script src = "/js/order-specific.js"></script>
