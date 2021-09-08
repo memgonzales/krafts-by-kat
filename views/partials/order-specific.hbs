@@ -17,8 +17,10 @@
                 <input type="hidden" id = "order-item-id" name = "orderItemId" value = {{orderItemId}}>
 
                 <label for="quantity"><h5>Quantity</h5></label>
-                <input type="number" min = 0 step = "0" id = "quantity-{{orderItemId}}" class="ms-3 item-quantity" value = {{quantity}}>
+                <input type="number" min = "0" max = "{{productQuantity}}" step = "1" id = "quantity-{{orderItemId}}" class="ms-3 item-quantity" value = {{quantity}}>
                 <input type="hidden" value = {{productQuantity}}>
+
+                <span id = "quantity-exceed-{{orderItemId}}">STYLE ME (IF EXCEEDING ORDER QUANTITY)</span>
             </div>
 
             <div class="mt-3" id="customization">
