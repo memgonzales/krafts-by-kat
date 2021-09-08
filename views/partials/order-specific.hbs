@@ -1,7 +1,7 @@
 <div class = "accordion-item bgc3">    
 
     <h2 class = "accordion-header " id = "productId_heading">
-        <button class = "accordion-button bold bgc3" type = "button" data-bs-toggle = "collapse" data-bs-target = "#productId_collapse" aria-expanded = "true" aria-controls = "productId_collapse">
+        <button class = "accordion-button bold bgc3" type = "button" data-bs-toggle = "collapse" data-bs-target = "#productId_collapse-{{orderItemId}}" aria-expanded = "true" aria-controls = "productId_collapse">
             {{productName}}
                
     
@@ -9,7 +9,7 @@
         </button>
     </h2>
 
-    <div id = "productId_collapse" class = "accordion-collapse collapse show" aria-labelledby = "productId_heading" data-bs-parent = "#order-list">
+    <div id = "productId_collapse-{{orderItemId}}" class = "accordion-collapse collapse show" aria-labelledby = "productId_heading" data-bs-parent = "#order-list">
         
         <div class = "accordion-body bgc3">
             
