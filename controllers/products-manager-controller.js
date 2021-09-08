@@ -78,7 +78,6 @@ const productsManagerController = {
 							userFlag: true,
 							adminFlag: true,
 							username: req.session.username,
-							isAdmin: req.session.isAdmin,
 
 							id: item._id,
 							name: item.name,
@@ -152,7 +151,6 @@ const productsManagerController = {
 							userFlag: true,
 							adminFlag: true,
 							username: req.session.username,
-							isAdmin: req.session.isAdmin,
 
 							id: item._id,
 							name: item.name,
@@ -198,7 +196,6 @@ const productsManagerController = {
 								userFlag: false,
 								adminFlag: false,
 								username: req.session.username,
-								isAdmin: req.session.isAdmin,
 
 								id: item._id,
 								name: item.name,
@@ -243,7 +240,6 @@ const productsManagerController = {
 								userFlag: true,
 								adminFlag: false,
 								username: req.session.username,
-								isAdmin: req.session.isAdmin,
 
 								id: item._id,
 								name: item.name,

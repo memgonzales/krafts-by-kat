@@ -74,6 +74,11 @@ const orderController = {
 								let productQuantities = [];
 								let productPrices = [];
 
+								/* Store the ObjectIDs, names, and pictures of all available products in parallel arrays */
+								let allProductIds = [];
+								let allProductNames = [];
+								let allProductPictures = [];
+
 								/* Store the data from the database query in the initialized arrays */
 								for (let i = 0; i < orderItemDetails.length; i++) {
 									orderItemIds[i] = orderItemDetails[i].orderItemId;
@@ -90,7 +95,6 @@ const orderController = {
 									orderItemPrices[i] = orderItemDetails[i].orderItemPrice;
 								}
 
-								/* Retrieve the data of the products being ordered in each of the order items */
 								let productQuery = {_id: {$in: productIds}};
 								let productProjection = '_id name quantity price';
 
@@ -119,10 +123,9 @@ const orderController = {
 									let details = {
 										style: 'order-product',
 										logo: appLogo.logo,
-										userFlag: false,
+										userFlag: true,
 										adminFlag: false,
 										username: req.session.username,
-										isAdmin: req.session.isAdmin,
 		
 										orderName: order.name,
 										companyName: order.companyName,
