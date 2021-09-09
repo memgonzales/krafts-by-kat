@@ -204,7 +204,7 @@ const orderController = {
 						let orderId = req.body.orderId;
 						let orderName = req.body.orderName;
 						let companyName = req.body.companyName;
-						let deliveryMode = req.body.deliveryModeValue;
+						let deliveryMode = req.body.deliveryModeFinal;
 						let preferredDeliveryDate = req.body.preferredDeliveryDate;
 						let paymentType = req.body.paymentType;
 						let orderPrice = req.body.orderTotalPrice;
@@ -238,19 +238,6 @@ const orderController = {
 							orderItemPrices = [orderItemPrices];
 						}
 
-						console.log(orderItemIds);
-						console.log(orderItemQuantities);
-						console.log(orderItemPackagingTypes);
-						console.log(orderItemPackagingColors);
-						console.log(orderItemPackagingMessages);
-						console.log(orderItemColors);
-						console.log(orderItemTexts);
-						console.log(orderItemCompanyLogos);
-						console.log(orderItemLogoLocations);
-						console.log(orderItemAdditionalInstructions);
-						console.log(orderItemPrices);
-
-
 						/* Assign the data from the above arrays into an array of order item details */
 						let orderItemDetails = [];
 
@@ -264,7 +251,7 @@ const orderController = {
 									itemColor: orderItemColors[i],
 									itemText: orderItemTexts[i],
 									includeCompanyLogo: orderItemCompanyLogos[i],
-									companyLogoLocation: orderItemLogoLocations[i],
+									companyLogoLocation: orderItemLogoLocations[i].split("|"),
 									additionalInstructions: orderItemAdditionalInstructions[i],
 									orderItemPrice: orderItemPrices[i]
 								}
