@@ -50,7 +50,7 @@ const orderController = {
 
 							/* Retrieve the data of each of the order items */
 							let orderItemQuery = {_id: {$in: order.orderItemIds}};
-							let orderItemProjection = '_id productId quantity packaging packagingColor packagingMessage itemColor itemText includeCompanyLogo companyLogoImage additionalInstructions orderItemPrice';
+							let orderItemProjection = '_id productId quantity packaging packagingColor packagingMessage itemColor itemText includeCompanyLogo companyLogoLocation additionalInstructions orderItemPrice';
 
 							db.findMany(OrderItem, orderItemQuery, orderItemProjection, function(result) {
 								let orderItemDetails = result;
@@ -65,7 +65,7 @@ const orderController = {
 								let itemColors = [];
 								let itemTexts = [];
 								let includeCompanyLogoOptions = [];
-								let companyLogoImages = [];
+								let companyLogoLocations = [];
 								let additionalInstructionsPassages = [];
 								let orderItemPrices = [];
 
@@ -85,7 +85,7 @@ const orderController = {
 									itemColors[i] = orderItemDetails[i].itemColor;
 									itemTexts[i] = orderItemDetails[i].itemText;
 									includeCompanyLogoOptions[i] = orderItemDetails[i].includeCompanyLogo;
-									companyLogoImages[i] = orderItemDetails[i].companyLogoImage;
+									companyLogoLocations[i] = orderItemDetails[i].companyLogoLocation;
 									additionalInstructionsPassages[i] = orderItemDetails[i].additionalInstructions;
 									orderItemPrices[i] = orderItemDetails[i].orderItemPrice;
 								}
@@ -137,11 +137,11 @@ const orderController = {
 										itemColors: itemColors,
 										itemTexts: itemTexts,
 										includeCompanyLogoOptions: includeCompanyLogoOptions,
-										companyLogoImages: companyLogoImages,
+										companyLogoLocations: companyLogoLocations,
 										additionalInstructionsPassages: additionalInstructionsPassages,
 										orderItemPrices: orderItemPrices,
 
-										deliverMode: order.deliveryMode,
+										deliveryMode: order.deliveryMode,
 										productNames: productNames,
 										productQuantities: productQuantities,
 										productPrices: productPrices,
