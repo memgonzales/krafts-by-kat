@@ -40,6 +40,14 @@ $(document).ready(function() {
         });
     });
 
+    /* Update the price per order item in the payment overview. */
+    for (let orderItemId of orderItemIds) {
+        updateOrderSummary(orderItemId);
+        if (isNaN(getOrderTotalPrice())) {
+            $('#order-total-price-display').text(formatNumber('0'));
+        }
+    }
+
     function getOrderItemId(element) {
         const id = element.id;
         const idTokens = id.split('-');
@@ -61,11 +69,6 @@ $(document).ready(function() {
 
     function trackRemovedOrderItems(orderItemId) {
         $('#removed-order-items').val($('#removed-order-items').val() + ',' + orderItemId);
-    }
-
-    function updateTotal(orderItemId) {
-        const price = $('#order-item-price-' + orderItemId).text();
-        alert(price);
     }
 
     function updateOrderSummary(orderItemId) {
