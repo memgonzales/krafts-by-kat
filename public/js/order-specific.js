@@ -127,6 +127,12 @@ $(document).ready(function() {
     });
 
     /* Reflect fetched data about item color */
+    $('.item-color').each(function() {
+        const orderItemId = getOrderItemId(this);
+        const data = $(this).text();
+
+        $('#item-color-select-' + orderItemId).val(data);
+    });
 
     /* Reflect fetched data about location of company logo */
 

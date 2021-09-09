@@ -81,7 +81,9 @@
                     <h6 class="bold">Item</h6>
 
                     <div class="d-flex flex-row justify-content-between mt-2">
-                        <select class="form-select w-50 mx-3" aria-label="Item Color Select" name = "orderItemColor">
+                        <div id = "item-color-{{orderItemId}}" class = "hidden item-color">{{itemColor}}</div>
+
+                        <select class="form-select w-50 mx-3" id = "item-color-select-{{orderItemId}}" aria-label="Item Color Select" name = "orderItemColor">
                             <option value="item_color_1" selected>Item Color 1</option>
                             <option value="item_color_2">Item Color 2</option> 
                             <option value="item_color_3">Item Color 3</option> 
