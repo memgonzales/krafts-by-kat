@@ -35,26 +35,26 @@
                     <div  class="d-flex flex-row mt-3" id="packaging-radio">
 
                         {{!-- INPUT FOR PACKAGING TYPE RADIO BUTTON --}}
-                        <input type = "text" id = "packaging-type-{{orderItemId}}" name = "orderItemPackagingType" value = "dummy">
-                        <div id = "packaging-{{orderItemId}}" class = "packaging-data">{{packaging}}</div>
+                        <input type = "hidden" id = "packaging-type-{{orderItemId}}" name = "orderItemPackagingType" value = "kraft_box">
+                        <div id = "packaging-{{orderItemId}}" class = "packaging-data hidden">{{packaging}}</div>
 
                         <div class=" mx-2 form-check">
-                            <input class="form-check-input" type="radio"  name="packaging_radio-{{orderItemId}}" id="packaging_kraft_box-{{orderItemId}}" value="kraft_box" checked>
+                            <input class="form-check-input packaging-radio" type="radio"  name="packaging_radio-{{orderItemId}}" id="packaging_kraft_box-{{orderItemId}}" value="kraft_box" checked>
                             <label class="form-check-label" for="packaging_kraft_box">Kraft Box</label>
                         </div>
 
                         <div class="mx-2 form-check">
-                            <input class="form-check-input" type="radio"  name="packaging_radio-{{orderItemId}}" id="packaging_mailer_box-{{orderItemId}}" value="mailer_box">
+                            <input class="form-check-input packaging-radio" type="radio"  name="packaging_radio-{{orderItemId}}" id="packaging_mailer_box-{{orderItemId}}" value="mailer_box">
                             <label class="form-check-label" for="packaging_mailer_box">Mailer Box</label>
                         </div>
 
                         <div class="mx-2 form-check">
-                            <input class="form-check-input" type="radio"  name="packaging_radio-{{orderItemId}}" id="packaging_silk_pouch-{{orderItemId}}" value="silk_pouch">
+                            <input class="form-check-input packaging-radio" type="radio"  name="packaging_radio-{{orderItemId}}" id="packaging_silk_pouch-{{orderItemId}}" value="silk_pouch">
                             <label class="form-check-label" for="packaging_silk_pouch">Silk Pouch</label>
                         </div>
 
                         <div class="mx-2 form-check">
-                            <input class="form-check-input" type="radio"  name="packaging_radio-{{orderItemId}}" id="packaging_canvas-{{orderItemId}}" value="packaging_canvas">
+                            <input class="form-check-input packaging-radio" type="radio"  name="packaging_radio-{{orderItemId}}" id="packaging_canvas-{{orderItemId}}" value="packaging_canvas">
                             <label class="form-check-label" for="packaging_canvas">Packaging Canvas</label>
                         </div>
 
@@ -87,7 +87,6 @@
                             <option value="item_color_5">Item Color 5</option> 
                         </select>
 
-                        {{!-- Pweds palagay na limit ung text dito, parang mga 10-15 characters lang for now.. clarify ko lang kay Sab n Cheska kung pano itong part  --}}
                         <input type="text" class="mx-3" id="item-text-{{orderItemId}}" name = "orderItemText" placeholder="You can also add text here (Optional)"
                                value={{itemText}}>
                     </div>                        
@@ -100,15 +99,16 @@
                     <div  class="d-flex flex-row mt-3" id="logo_radio">
 
                         {{!-- INPUT FOR COMPANY LOGO RADIO BUTTON --}}
-                        <input type = "hidden" id = "company-logo-{{orderItemId}}" name = "orderItemCompanyLogo" value = "dummy">
+                        <input type = "hidden" id = "company-logo-{{orderItemId}}" name = "orderItemCompanyLogo" value = "true">
+                        <div id = "company-logo-{{orderItemId}}" class = "company-logo-data hidden">{{includeCompanyLogo}}</div>
 
                         <div class=" mx-2 form-check">
-                            <input class="form-check-input" type="radio"  name="logo_radio-{{orderItemId}}" id="logo_with-{{orderItemId}}" value="true" checked>
+                            <input class="form-check-input company-logo-radio" type="radio"  name="logo_radio-{{orderItemId}}" id="logo_with-{{orderItemId}}" value="true" checked>
                             <label class="form-check-label" for="logo_with">With</label>
                         </div>
 
                         <div class=" mx-2 form-check">
-                            <input class="form-check-input" type="radio"  name="logo_radio-{{orderItemId}}" id="logo_without-{{orderItemId}}" value="false">
+                            <input class="form-check-input company-logo-radio" type="radio"  name="logo_radio-{{orderItemId}}" id="logo_without-{{orderItemId}}" value="false">
                             <label class="form-check-label" for="logo_without">Without</label>
                         </div>
 

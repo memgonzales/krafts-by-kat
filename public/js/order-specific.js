@@ -56,7 +56,46 @@ $(document).ready(function() {
             case 'silk_pouch':
                 $('#packaging_silk_box-' + orderItemId).attr('checked', true);
                 break;
+            default:
+                break;
         }
+    });
+
+    /* Transfer input about packaging to hidden text field */
+    $('.packaging-radio').each(function() {
+        $(this).on('change', function() {
+            const orderItemId = getOrderItemId(this);
+            const data = $(this).val();
+
+            $('#packaging-type-' + orderItemId).val(data);
+        })
+    });
+
+    /* Reflect fetched data about inclusion of company logo */
+    $('.company-logo-data').each(function() {
+        const orderItemId = getOrderItemId(this);
+        const data = $(this).text();
+
+        switch (data) {
+            case 'true':
+                $('#logo_with-' + orderItemId).attr('checked', true);
+                break;
+            case 'false':
+                $('#logo_without-' + orderItemId).attr('checked', true);
+                break;
+            default:
+                break;
+        }
+    });
+
+    /* Transfer input about inclusion of company logo to hidden text field */
+    $('.company-logo-radio').each(function() {
+        $(this).on('change', function() {
+            const orderItemId = getOrderItemId(this);
+            const data = $(this).val();
+
+            $('#company-logo-' + orderItemId).val(data);
+        })
     });
 
     /* Update the price per order item in the payment overview. */
