@@ -66,7 +66,10 @@ $(document).ready(function() {
                 $('#packaging_mailer_box-' + orderItemId).attr('checked', true);
                 break;
             case 'silk_pouch':
-                $('#packaging_silk_box-' + orderItemId).attr('checked', true);
+                $('#packaging_silk_pouch-' + orderItemId).attr('checked', true);
+                break;
+            case 'packaging_canvas':
+                $('#packaging_canvas-' + orderItemId).attr('checked', true);
                 break;
             default:
                 break;
@@ -118,6 +121,18 @@ $(document).ready(function() {
                     break;
             }
         })
+    });
+
+    /* Control display of checklist when the page loads */
+    $('.logo-location-div').each(function() {
+        const orderItemId = getOrderItemId(this);
+
+        /* Control display of checklist about location of logo */
+        if ($('#company-logo-' + orderItemId).val() == 'true') {
+            $('#logo-location-div-' + orderItemId).show();
+        } else {
+            $('#logo-location-div-' + orderItemId).hide();
+        }
     });
 
     /* Update the price per order item in the payment overview. */

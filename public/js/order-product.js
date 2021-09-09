@@ -72,6 +72,13 @@ $(document).ready(function() {
         $('#delivery-mode-value').val('delivery');
     });
 
+    /* Restrict date to today onwards */
+    const today = new Date();
+    $('#orderID_prefDate').attr('min', formatDate(today.toString()));
+
+    /* Reflect fetched data about preferred delivery date */
+    $('#orderID_prefDate').val(formatDate($('#pref_date').text()));
+
     $('#save-order').on('click', function(e) {
         e.preventDefault();
         
@@ -90,9 +97,80 @@ $(document).ready(function() {
 		});
     });
 
+    /* Reflect fetched data about delivery mode */
+    const deliveryModeData = $('#delivery-mode-data').text();
+    
+    switch(deliveryModeData) {
+        case 'pickup':
+            $('#pickup').attr('checked', true);
+            break;
+        case 'delivery':
+            $('#delivery').attr('checked', true);
+            break;
+        default:
+            $('#pickup').attr('checked', true);
+            break;
+    }
+
+    /* Transfer input about delivery mode */
+    $('.delivery-mode-radio').each(function() {
+        $(this).on('change', function() {
+            const data = $(this).val();
+
+            switch(data) {
+                case 'pickup':
+                    $('#delivery-mode-value').val('pickup');
+                    break;
+                case 'delivery':
+                    $('#delivery-mode-value').val('delivery');
+                    break;
+            }
+        });
+    });
+
+    /* Reflect fetched data about payment type */
+    const paymentTypeData = $('#payment-type-data').text();
+
+    switch(paymentTypeData) {
+        case 'cash':
+            $('#payment-type').val('cash');
+            break;
+        case 'gcash':
+            $('#payment-type').val('gcash');
+            break;
+        case 'bank_transfer':
+            $('#payment-type').val('bank_transfer');
+            break;
+        default:
+            $('#payment-type').val('cash');
+            break; 
+    }
+
+
     $('#cancel-order').on('click', function(e) {
         window.onbeforeunload = function() {
             return null;
         };
     });
+
+    function formatDate(date) {
+        if (date.length > 0) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+        
+            if (month.length < 2) {
+                month = '0' + month;
+            }
+
+            if (day.length < 2) {
+                day = '0' + day;
+            }
+        
+            return [year, month, day].join('-');
+        } else {
+            return '';
+        }
+    }
 })
