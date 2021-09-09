@@ -94,7 +94,11 @@ krafts.get('/toggleVisibility/:id', productsManagerController.getToggleVisibilit
 
 /* For placing orders */
 krafts.get('/getOrder/:id', orderController.getOrder);
-krafts.post('/postSaveOrder', orderController.postSaveOrder);
+if (process.env.NODE_ENV === 'test') {
+    krafts.post('/postSaveOrder', orderController.postSaveOrder);
+} else {
+    krafts.post('/postSaveOrder', db.connect().single('companyLogo'), orderController.postSaveOrder);
+}
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');

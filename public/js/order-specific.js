@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    const orderItemIdsStr = $('#order-item-id-list').text();
+    const orderItemIds = getOrderItemIds(orderItemIdsStr)
+
     $('.order-item-price').each(function() {
         $(this).text(formatNumber($(this).text()));
     });
@@ -19,6 +22,8 @@ $(document).ready(function() {
             const totalPrice = parseFloat(unitPrice) * parseFloat($(this).val());
 
             $('#order-item-price-' + orderItemId).text(formatNumber(totalPrice));
+
+            updateOrderSummary(orderItemId);
         });
     });
 
@@ -46,6 +51,10 @@ $(document).ready(function() {
         return parseFloat(price).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
     }
 
+    function unformatNumber(price) {
+        return price.replace(',', '');
+    }
+
     function hideProduct(orderItemId) {
         $('#accordion-item-' + orderItemId).hide();
     }
@@ -59,15 +68,38 @@ $(document).ready(function() {
         alert(price);
     }
 
+    function updateOrderSummary(orderItemId) {
+        $('#order-summary-item-quantity-' + orderItemId).text($('#quantity-' + orderItemId).val());
+        $('#order-summary-item-price-' + orderItemId).text($('#order-item-price-' + orderItemId).text());
+
+        $('#order-total-price-display').text(formatNumber(getOrderTotalPrice()));
+    }
+
+    function getOrderTotalPrice() {
+        let total = 0;
+        for (let orderItemId of orderItemIds) {
+            total += parseFloat(unformatNumber($('#order-item-price-' + orderItemId).text()));
+        }
+
+        return total;
+    }
+
+    function getOrderItemIds(orderItemIdsStr) {
+        return orderItemIdsStr.split(',');
+    }
+
     $('#add-cart').on('click', function(e) {
         e.preventDefault();
 
 		$.ajax({
 			url: '/postSaveOrder',
 			method: 'POST',
-			data: $('#order-form').serialize(),
+			data: new FormData(document.getElementById('order-form')),
+            processData: false,
+            contentType: false,
             statusCode: {
 				200: function(data) {
+                    window.onbeforeunload = null;
                     location.href = '/';
 				}
 			}
@@ -84,13 +116,16 @@ $(document).ready(function() {
 
     $('#save-order').on('click', function(e) {
         e.preventDefault();
-
-		$.ajax({
+        
+        $.ajax({
 			url: '/postSaveOrder',
 			method: 'POST',
-			data: $('#order-form').serialize(),
+			data: new FormData(document.getElementById('order-form')),
+            processData: false,
+            contentType: false,
             statusCode: {
 				200: function(data) {
+                    window.onbeforeunload = null;
                     location.href = '/getOrder/' + data;
 				}
 			}

@@ -43,7 +43,7 @@ const orderController = {
 
 						/* Retrieve the data of the order to be displayed */
 						let query = {_id: db.convertToObjectId(req.params.id)};
-						let projection = '_id name companyName orderItemIds deliveryMode preferredDeliveryDate paymentType price status';
+						let projection = '_id name companyName companyLogo isCompanyLogoUploaded orderItemIds deliveryMode preferredDeliveryDate paymentType price status';
 
 						db.findOne(Order, query, projection, function(result) {
 							let order = result;
@@ -126,6 +126,9 @@ const orderController = {
 										orderName: order.name,
 										companyName: order.companyName,
 
+										companyLogo: order.companyLogo,
+										isCompanyLogoUploaded: order.isCompanyLogoUploaded,
+
 										orderItemIds: orderItemIds,
 										quantities: quantities, 
 										packagingOptions: packagingOptions,
@@ -206,6 +209,19 @@ const orderController = {
 						let paymentType = req.body.paymentType;
 						let orderPrice = req.body.orderTotalPrice;
 
+						let isCompanyLogoUploaded = req.body.isCompanyLogoUploaded;
+						let origCompanyLogo = req.body.origCompanyLogo;
+
+						let companyLogo = "";
+						if (req.file != null) {
+							companyLogo = "/files/" + req.file.filename;
+							isCompanyLogoUploaded = "true";
+						} else {
+							if (isCompanyLogoUploaded == "true") {
+								companyLogo = origCompanyLogo;
+							}
+						}
+
 						/* Split the list of ObjectIDs of the removed order items and store them in an array*/
 						let removedOrderItemArray = removedOrderItemIds.split(",");
 						removedOrderItemArray.shift();
@@ -253,7 +269,10 @@ const orderController = {
 									deliveryMode:deliveryMode,
 									preferredDeliveryDate:preferredDeliveryDate,
 									paymentType:paymentType,
-									price: orderPrice
+									price: orderPrice,
+
+									companyLogo: companyLogo,
+									isCompanyLogoUploaded: isCompanyLogoUploaded
 								}
 								
 								db.updateOne(Order, filter, update, function(flag) {
