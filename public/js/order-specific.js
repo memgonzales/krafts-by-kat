@@ -135,8 +135,66 @@ $(document).ready(function() {
     });
 
     /* Reflect fetched data about location of company logo */
+    $('.company-logo-location-data').each(function() {
+        const orderItemId = getOrderItemId(this);
+        const data = $(this).text();
+        
+        switch(data) {
+            case '':
+                $('#logo_on_items-' + orderItemId).prop('checked', false);
+                $('#logo_on_packaging-' + orderItemId).prop('checked', false);
+                break;
+            case 'items,packaging':
+                $('#logo_on_items-' + orderItemId).prop('checked', true);
+                $('#logo_on_packaging-' + orderItemId).prop('checked', true);
+                break;
+            case 'items':
+                $('#logo_on_items-' + orderItemId).prop('checked', true);
+                $('#logo_on_packaging-' + orderItemId).prop('checked', false);
+                break;
+            case 'packaging':
+                $('#logo_on_items-' + orderItemId).prop('checked', false);
+                $('#logo_on_packaging-' + orderItemId).prop('checked', true);
+                break;
+        }
+    });
 
     /* Transfer input about location of company logo onto the hidden input field */
+    $('.items-checkbox').each(function() {
+        $(this).on('change', function() {
+            const orderItemId = getOrderItemId(this);
+            const itemsChecked = $('#logo_on_items-' + orderItemId).prop('checked');
+            const packagingChecked = $('#logo_on_packaging-' + orderItemId).prop('checked');
+
+            if (itemsChecked && packagingChecked) {
+                $('#logo-location-' + orderItemId).val('items|packaging');
+            } else if (itemsChecked && !packagingChecked) {
+                $('#logo-location-' + orderItemId).val('items');
+            } else if (!itemsChecked && packagingChecked) {
+                $('#logo-location-' + orderItemId).val('packaging');
+            } else {
+                $('#logo-location-' + orderItemId).val('');
+            }
+        });
+    });
+
+    $('.packaging-checkbox').each(function() {
+        $(this).on('change', function() {
+            const orderItemId = getOrderItemId(this);
+            const itemsChecked = $('#logo_on_items-' + orderItemId).prop('checked');
+            const packagingChecked = $('#logo_on_packaging-' + orderItemId).prop('checked');
+
+            if (itemsChecked && packagingChecked) {
+                $('#logo-location-' + orderItemId).val('items|packaging');
+            } else if (itemsChecked && !packagingChecked) {
+                $('#logo-location-' + orderItemId).val('items');
+            } else if (!itemsChecked && packagingChecked) {
+                $('#logo-location-' + orderItemId).val('packaging');
+            } else {
+                $('#logo-location-' + orderItemId).val('');
+            }
+        });
+    });
 
     function getOrderItemId(element) {
         const id = element.id;

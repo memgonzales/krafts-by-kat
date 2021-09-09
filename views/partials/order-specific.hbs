@@ -104,7 +104,7 @@
 
                         {{!-- INPUT FOR COMPANY LOGO RADIO BUTTON --}}
                         <input type = "hidden" id = "company-logo-{{orderItemId}}" name = "orderItemCompanyLogo" value = "true">
-                        <div id = "company-logo-{{orderItemId}}" class = "company-logo-data hidden">{{includeCompanyLogo}}</div>
+                        <div id = "company-logo-{{orderItemId}}" class = "company-logo-data hidden"></div>
 
                         <div class=" mx-2 form-check">
                             <input class="form-check-input company-logo-radio" type="radio"  name="logo_radio-{{orderItemId}}" id="logo_with-{{orderItemId}}" value="true" checked>
@@ -121,7 +121,8 @@
 
                     {{#if true}}
                         {{>order-with-logo orderId = orderId
-                                           orderItemId = orderItemId}}
+                                           orderItemId = orderItemId
+                                           companyLogoLocation = companyLogoLocation}}
                     {{/if}}
                     
 

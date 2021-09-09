@@ -5,16 +5,17 @@
         <h6>Where do you want to put the logo?</h6>
 
         {{!-- INPUT FOR COMPANY LOGO LOCATION CHECKBOX --}}
-        <input type = "hidden" id = "logo-location-{{orderItemId}}" name = "logoLocation" value = "['items', 'packaging']">
+        <input type = "hidden" id = "logo-location-{{orderItemId}}" name = "logoLocation" value = "">
+        <div id = "company-logo-location-{{orderItemId}}" class = "company-logo-location-data hidden"></div>
 
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="items" id="logo_on_items-{{orderItemId}}">
+            <input class="form-check-input items-checkbox" type="checkbox" value="items" id="logo_on_items-{{orderItemId}}">
             <label class="form-check-label" for="logo_on_items">
                 Items
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="packaging" id="logo_on_packaging-{{orderItemId}}">
+            <input class="form-check-input packaging-checkbox" type="checkbox" value="packaging" id="logo_on_packaging-{{orderItemId}}">
             <label class="form-check-label" for="logo_on_packaging">
                 Packaging
             </label>
