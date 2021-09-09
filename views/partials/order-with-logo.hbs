@@ -4,6 +4,9 @@
     <div class="mt-4">
         <h6>Where do you want to put the logo?</h6>
 
+        {{!-- INPUT FOR COMPANY LOGO LOCATION CHECKBOX --}}
+        <input type = "hidden" id = "logo-location-{{orderItemId}}" name = "logoLocation" value = "['items', 'packaging']">
+
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="items" id="logo_on_items-{{orderItemId}}">
             <label class="form-check-label" for="logo_on_items">
