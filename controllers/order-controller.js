@@ -222,7 +222,19 @@ const orderController = {
 						let orderItemCompanyLogos = req.body.orderItemCompanyLogo;
 						let orderItemLogoLocations = req.body.logoLocation;
 						let orderItemAdditionalInstructions = req.body.orderItemAdditionalInstructions;
-						let orderItemPrices = req.body.orderItemPrice;
+						let orderItemPrices = req.body.orderItemFinalPrice;
+
+						console.log(orderItemIds);
+						console.log(orderItemQuantities);
+						console.log(orderItemPackagingTypes);
+						console.log(orderItemPackagingColors);
+						console.log(orderItemPackagingMessages);
+						console.log(orderItemColors);
+						console.log(orderItemTexts);
+						console.log(orderItemCompanyLogos);
+						console.log(orderItemLogoLocations);
+						console.log(orderItemAdditionalInstructions);
+						console.log(orderItemPrices);
 
 						/* Assign the data from the above arrays into an array of order item details */
 						let orderItemDetails = [];
@@ -238,8 +250,8 @@ const orderController = {
 									itemText: orderItemTexts[i],
 									includeCompanyLogo: orderItemCompanyLogos[i],
 									companyLogoLocation: orderItemLogoLocations[i],
-									additionalInstructions: orderItemAdditionalInstructions[i].trim(),
-								//	orderItemPrice: orderItemPrices[i]
+									additionalInstructions: orderItemAdditionalInstructions[i],
+									orderItemPrice: orderItemPrices[i]
 								}
 							}
 						}

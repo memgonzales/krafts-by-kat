@@ -34,7 +34,6 @@
 
                     <div  class="d-flex flex-row mt-3" id="packaging-radio">
 
-                        {{!-- INPUT FOR PACKAGING TYPE RADIO BUTTON --}}
                         <input type = "hidden" id = "packaging-type-{{orderItemId}}" name = "orderItemPackagingType" value = "kraft_box">
                         <div id = "packaging-{{orderItemId}}" class = "packaging-data hidden">{{packaging}}</div>
 
@@ -102,7 +101,6 @@
 
                     <div  class="d-flex flex-row mt-3" id="logo_radio">
 
-                        {{!-- INPUT FOR COMPANY LOGO RADIO BUTTON --}}
                         <input type = "hidden" id = "company-logo-{{orderItemId}}" name = "orderItemCompanyLogo" value = "true">
                         <div id = "company-logo-{{orderItemId}}" class = "company-logo-data hidden"></div>
 
@@ -124,7 +122,6 @@
                     <div class="mt-4" id = "logo-location-div-{{orderItemId}}">
                         <h6>Where do you want to put the logo?</h6>
 
-                        {{!-- INPUT FOR COMPANY LOGO LOCATION CHECKBOX --}}
                         <input type = "hidden" id = "logo-location-{{orderItemId}}" name = "logoLocation" value = "">
                         <div id = "company-logo-location-{{orderItemId}}" class = "company-logo-location-data hidden"></div>
 
@@ -154,8 +151,7 @@
                 </div>
 
                 <div class="container ps-4 mt-4">
-                    {{!-- INPUT FOR ORDER ITEM PRICE --}}
-                    <input type = "hidden" id = "order-item-price-hidden-{{orderItemId}}" name = "orderItemPrice">
+                    <input type = "hidden" id = "order-item-price-hidden-{{orderItemId}}" name = "orderItemFinalPrice">
 
                     <h4><span class="bold">Total:</span> ₱<span id = "order-item-price-{{orderItemId}}" class = "order-item-price">{{orderItemPrice}}</span></h4>
                 </div>
