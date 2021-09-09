@@ -224,6 +224,20 @@ const orderController = {
 						let orderItemAdditionalInstructions = req.body.orderItemAdditionalInstructions;
 						let orderItemPrices = req.body.orderItemFinalPrice;
 
+						if (!(orderItemIds instanceof Array)) {
+							orderItemIds = [orderItemIds];
+							orderItemQuantities = [orderItemQuantities];
+							orderItemPackagingTypes = [orderItemPackagingTypes];
+							orderItemPackagingColors = [orderItemPackagingColors];
+							orderItemPackagingMessages = [orderItemPackagingMessages];
+							orderItemColors = [orderItemColors];
+							orderItemTexts = [orderItemTexts];
+							orderItemCompanyLogos = [orderItemCompanyLogos];
+							orderItemLogoLocations = [orderItemLogoLocations];
+							orderItemAdditionalInstructions = [orderItemAdditionalInstructions];
+							orderItemPrices = [orderItemPrices];
+						}
+
 						console.log(orderItemIds);
 						console.log(orderItemQuantities);
 						console.log(orderItemPackagingTypes);
@@ -235,6 +249,7 @@ const orderController = {
 						console.log(orderItemLogoLocations);
 						console.log(orderItemAdditionalInstructions);
 						console.log(orderItemPrices);
+
 
 						/* Assign the data from the above arrays into an array of order item details */
 						let orderItemDetails = [];

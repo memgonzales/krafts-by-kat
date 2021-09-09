@@ -133,7 +133,12 @@ $(document).ready(function() {
         const orderItemId = getOrderItemId(this);
         const data = $(this).text();
 
-        $('#packaging-color-select-' + orderItemId).val(data);
+        if (data == '') {
+            $('#packaging-color-select-' + orderItemId).val('packaging_color_1');
+        } else {
+            $('#packaging-color-select-' + orderItemId).val(data);
+        }
+        
     });
 
     /* Reflect fetched data about item color */
@@ -141,7 +146,12 @@ $(document).ready(function() {
         const orderItemId = getOrderItemId(this);
         const data = $(this).text();
 
-        $('#item-color-select-' + orderItemId).val(data);
+        if (data == '') {
+            $('#item-color-select-' + orderItemId).val('item_color_1');
+        } else {
+            $('#item-color-select-' + orderItemId).val(data);
+        }
+        
     });
 
     /* Reflect fetched data about location of company logo */
