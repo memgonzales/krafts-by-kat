@@ -72,6 +72,13 @@ $(document).ready(function() {
         $('#delivery-mode-value').val('delivery');
     });
 
+    /* Restrict date to today onwards */
+    const today = new Date();
+    $('#orderID_prefDate').attr('min', formatDate(today.toString()));
+
+    /* Reflect fetched data about preferred delivery date */
+    $('#orderID_prefDate').val(formatDate($('#pref_date').text()));
+
     $('#save-order').on('click', function(e) {
         e.preventDefault();
         
@@ -95,4 +102,25 @@ $(document).ready(function() {
             return null;
         };
     });
+
+    function formatDate(date) {
+        if (date.length > 0) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+        
+            if (month.length < 2) {
+                month = '0' + month;
+            }
+
+            if (day.length < 2) {
+                day = '0' + day;
+            }
+        
+            return [year, month, day].join('-');
+        } else {
+            return '';
+        }
+    }
 })
