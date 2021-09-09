@@ -119,8 +119,18 @@ $(document).ready(function() {
     }
 
     /* Reflect fetched data about packaging color */
+    $('.packaging-color').each(function() {
+        const orderItemId = getOrderItemId(this);
+        const data = $(this).text();
+
+        $('#packaging-color-select-' + orderItemId).val(data);
+    });
 
     /* Reflect fetched data about item color */
+
+    /* Reflect fetched data about location of company logo */
+
+    /* Transfer input about location of company logo onto the hidden input field */
 
     function getOrderItemId(element) {
         const id = element.id;
