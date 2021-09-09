@@ -128,6 +128,25 @@ $(document).ready(function() {
         });
     });
 
+    /* Reflect fetched data about payment type */
+    const paymentTypeData = $('#payment-type-data').text();
+
+    switch(paymentTypeData) {
+        case 'cash':
+            $('#payment-type').val('cash');
+            break;
+        case 'gcash':
+            $('#payment-type').val('gcash');
+            break;
+        case 'bank_transfer':
+            $('#payment-type').val('bank_transfer');
+            break;
+        default:
+            $('#payment-type').val('cash');
+            break; 
+    }
+
+
     $('#cancel-order').on('click', function(e) {
         window.onbeforeunload = function() {
             return null;
