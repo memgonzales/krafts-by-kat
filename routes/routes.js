@@ -99,6 +99,11 @@ if (process.env.NODE_ENV === 'test') {
 } else {
     krafts.post('/postSaveOrder', db.connect().single('companyLogo'), orderController.postSaveOrder);
 }
+if (process.env.NODE_ENV === 'test') {
+    krafts.post('/postPlaceOrder', orderController.postPlaceOrder);
+} else {
+    krafts.post('/postPlaceOrder', db.connect().single('companyLogo'), orderController.postPlaceOrder);
+}
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');

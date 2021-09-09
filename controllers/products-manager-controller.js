@@ -343,7 +343,7 @@ const productsManagerController = {
 											user: req.session.username,
 											orderItemIds: [orderItem.orderItemId],
 											deliveryMode: "pickup",
-											preferredDeliveryDate: null,
+											preferredDeliveryDate: new Date(),
 											paymentType: "cash",
 											price: 0,
 											status: "Unsubmitted",
