@@ -275,8 +275,8 @@ $(document).ready(function() {
     }
 
     function removeProductFromSummary(orderItemId) {
-        const priceRemoved = parseFloat($('#order-summary-item-price-' + orderItemId).text());
-        const total = parseFloat($('#order-total-price-display').text());
+        const priceRemoved = parseFloat(unformatNumber($('#order-summary-item-price-' + orderItemId).text()));
+        const total = parseFloat(unformatNumber($('#order-total-price-display').text()));
 
         $('#order-summary-item-' + orderItemId).remove();
         $('#order-total-price-display').text(formatNumber(total - priceRemoved));
