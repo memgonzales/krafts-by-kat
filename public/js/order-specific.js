@@ -41,6 +41,24 @@ $(document).ready(function() {
         });
     });
 
+    /* Reflect fetched data about packaging */
+    $('.packaging-data').each(function() {
+        const orderItemId = getOrderItemId(this);
+        const data = $(this).text();
+
+        switch (data) {
+            case 'kraft_box':
+                $('#packaging_kraft_box-' + orderItemId).attr('checked', true);
+                break;
+            case 'mailer_box':
+                $('#packaging_mailer_box-' + orderItemId).attr('checked', true);
+                break;
+            case 'silk_pouch':
+                $('#packaging_silk_box-' + orderItemId).attr('checked', true);
+                break;
+        }
+    });
+
     /* Update the price per order item in the payment overview. */
     for (let orderItemId of orderItemIds) {
         updateOrderSummary(orderItemId);

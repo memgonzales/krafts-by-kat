@@ -35,7 +35,8 @@
                     <div  class="d-flex flex-row mt-3" id="packaging-radio">
 
                         {{!-- INPUT FOR PACKAGING TYPE RADIO BUTTON --}}
-                        <input type = "hidden" id = "packaging-type-{{orderItemId}}" name = "orderItemPackagingType" value = "dummy">
+                        <input type = "text" id = "packaging-type-{{orderItemId}}" name = "orderItemPackagingType" value = "dummy">
+                        <div id = "packaging-{{orderItemId}}" class = "packaging-data">{{packaging}}</div>
 
                         <div class=" mx-2 form-check">
                             <input class="form-check-input" type="radio"  name="packaging_radio-{{orderItemId}}" id="packaging_kraft_box-{{orderItemId}}" value="kraft_box" checked>
