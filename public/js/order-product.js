@@ -97,6 +97,23 @@ $(document).ready(function() {
 		});
     });
 
+    $('#place-order').on('click', function(e) {
+        e.preventDefault();
+        
+        $.ajax({
+			url: '/postPlaceOrder',
+			method: 'POST',
+			data: new FormData(document.getElementById('order-form')),
+            processData: false,
+            contentType: false,
+            statusCode: {
+				200: function(data) {
+                    
+				}
+			}
+		});
+    });
+
     /* Reflect fetched data about delivery mode */
     const deliveryModeData = $('#delivery-mode-data').text();
     
