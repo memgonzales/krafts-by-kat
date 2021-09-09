@@ -208,9 +208,39 @@ const orderController = {
 						let preferredDeliveryDate = req.body.preferredDeliveryDate;
 						let paymentType = req.body.paymentType;
 						let orderPrice = req.body.orderTotalPrice;
-
 						let isCompanyLogoUploaded = req.body.isCompanyLogoUploaded;
 						let origCompanyLogo = req.body.origCompanyLogo;
+
+						/* Store the order item data from the order page */
+						let orderItemIds = req.body.orderItemId;
+						let orderItemQuantities = req.body.orderItemQuantity;
+						let orderItemPackagingTypes = req.body.orderItemPackagingType;
+						let orderItemPackagingColors = req.body.orderItemPackagingColor;
+						let orderItemPackagingMessages = req.body.orderItemPackagingMessage;
+						let orderItemColors = req.body.orderItemColor;
+						let orderItemTexts = req.body.orderItemText;
+						let orderItemCompanyLogos = req.body.orderItemCompanyLogo;
+						let orderItemLogoLocations = req.body.logoLocation;
+						let orderItemAdditionalInstructions = req.body.orderItemAdditionalInstructions;
+						let orderItemPrices = req.body.orderItemPrice;
+
+						/* Assign the data from the above arrays into an array of order item details */
+						let orderItemDetails = [];
+
+						for (let i = 0; i < orderItemIds.length; i++) {
+							orderItemDetails[i] = {
+							    quantity: orderItemQuantities[i],
+								packaging: orderItemPackagingTypes[i],
+								packagingColor: orderItemPackagingColors[i],
+								packagingMessage: orderItemPackagingMessages[i],
+								itemColor: orderItemColors[i],
+								itemText: orderItemTexts[i],
+								includeCompanyLogo: orderItemCompanyLogos[i],
+								companyLogoLocation: orderItemLogoLocations[i],
+								additionalInstructions: orderItemAdditionalInstructions[i].trim(),
+							//	orderItemPrice: orderItemPrices[i]
+							}
+						}
 
 						let companyLogo = "";
 						if (req.file != null) {
@@ -250,13 +280,18 @@ const orderController = {
 								 */
 								let updatedOrderItemIds = [];
 
+								/* Create another array to store the updated order item details */
+								let updatedOrderItemDetails = [];
+
 								/* If the ObjectID of an order item is in the list of removed order item IDs,
-								 * exclude it from the list of updated order item IDs
+								 * exclude it from the list of updated order item IDs; similarly, exclude its
+								 * details from the list of updated order item details
 								 */
 								let j = 0;
 								for (let i = 0; i < order.orderItemIds.length; i++) {
 									if (removedOrderItemArray.includes(order.orderItemIds[i]) == false) {
 										updatedOrderItemIds[j] = order.orderItemIds[i];
+										updatedOrderItemDetails[j] = orderItemDetails[i];
 										j++;
 									}
 								}
@@ -277,12 +312,18 @@ const orderController = {
 								}
 								
 								db.updateOne(Order, filter, update, function(flag) {
+									
+									for (let i = 0; i < updatedOrderItemIds.length; i++) {
+										orderItemFilter = {_id: updatedOrderItemIds[i]};
+										orderItemUpdate = updatedOrderItemDetails[i];
+
+										db.updateOneIterative(OrderItem, orderItemFilter, orderItemUpdate);
+									}
+									
 									res.status(200).json(orderId);
 									res.send();
 								});
 							});
-
-							// edit remaining order item details
 						});
 					}
 				}	

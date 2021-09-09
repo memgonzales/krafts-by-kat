@@ -323,7 +323,18 @@ const database = {
      */
     convertToObjectId: function(id) {
         return mongoose.Types.ObjectId(id);
-    }
+    },
+
+    updateOneIterative: function(model, filter, update) {
+        model.updateOne (filter, update, function(error, result) {
+            if (error) {
+                console.log('Error');
+            } else {
+                console.log('Document modified: ' + result.nModified);
+                console.log(result);
+            }
+        });
+    },
 }
 
 module.exports = database;
