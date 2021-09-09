@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    /* Show warning if navigating away from page */
+	window.onbeforeunload = function() {
+		return true;
+	};
+
+
     /* Set the hidden input pertaining to the total price of the order right when the page is loaded */
     $('#order-total-price').val(unformatNumber($('#order-total-price-display').text()));
 
