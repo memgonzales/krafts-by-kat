@@ -90,8 +90,7 @@ $(document).ready(function() {
             contentType: false,
             statusCode: {
 				200: function(data) {
-                    window.onbeforeunload = null;
-                    location.href = '/getOrder/' + data;
+                    window.location.href = '/account/myOrders';
 				}
 			}
 		});
