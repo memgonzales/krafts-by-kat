@@ -107,6 +107,16 @@ $(document).ready(function() {
             const data = $(this).val();
 
             $('#company-logo-' + orderItemId).val(data);
+
+            /* Control display of checklist about location of logo */
+            switch(data) {
+                case 'true':
+                    $('#logo-location-div-' + orderItemId).show();
+                    break;
+                case 'false':
+                    $('#logo-location-div-' + orderItemId).hide();
+                    break;
+            }
         })
     });
 
