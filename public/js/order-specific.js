@@ -12,9 +12,21 @@ $(document).ready(function() {
 
             hideProduct(orderItemId);
             trackRemovedOrderItems(orderItemId);
+            removeProductFromSummary(orderItemId);
         });
     });
 
+    /* Update the order item prices on page load. */
+    $('.item-quantity').each(function() {
+        const orderItemId = getOrderItemId(this);
+        const unitPrice = $('#product-price-' + orderItemId).text();
+        const totalPrice = parseFloat(unitPrice) * parseFloat($(this).val());
+
+        $('#order-item-price-' + orderItemId).text(formatNumber(totalPrice));
+        $('#order-item-price-hidden-' + orderItemId).val(totalPrice);
+    });
+
+    /* Update the order item prices when the quantity changes. */
     $('.item-quantity').each(function() {
         $(this).on('change', function() {
             const orderItemId = getOrderItemId(this);
@@ -22,6 +34,7 @@ $(document).ready(function() {
             const totalPrice = parseFloat(unitPrice) * parseFloat($(this).val());
 
             $('#order-item-price-' + orderItemId).text(formatNumber(totalPrice));
+            $('#order-item-price-hidden-' + orderItemId).val(totalPrice);
 
             updateOrderSummary(orderItemId);
         });
@@ -40,6 +53,63 @@ $(document).ready(function() {
         });
     });
 
+    /* Reflect fetched data about packaging */
+    $('.packaging-data').each(function() {
+        const orderItemId = getOrderItemId(this);
+        const data = $(this).text();
+
+        switch (data) {
+            case 'kraft_box':
+                $('#packaging_kraft_box-' + orderItemId).attr('checked', true);
+                break;
+            case 'mailer_box':
+                $('#packaging_mailer_box-' + orderItemId).attr('checked', true);
+                break;
+            case 'silk_pouch':
+                $('#packaging_silk_box-' + orderItemId).attr('checked', true);
+                break;
+            default:
+                break;
+        }
+    });
+
+    /* Transfer input about packaging to hidden text field */
+    $('.packaging-radio').each(function() {
+        $(this).on('change', function() {
+            const orderItemId = getOrderItemId(this);
+            const data = $(this).val();
+
+            $('#packaging-type-' + orderItemId).val(data);
+        })
+    });
+
+    /* Reflect fetched data about inclusion of company logo */
+    $('.company-logo-data').each(function() {
+        const orderItemId = getOrderItemId(this);
+        const data = $(this).text();
+
+        switch (data) {
+            case 'true':
+                $('#logo_with-' + orderItemId).attr('checked', true);
+                break;
+            case 'false':
+                $('#logo_without-' + orderItemId).attr('checked', true);
+                break;
+            default:
+                break;
+        }
+    });
+
+    /* Transfer input about inclusion of company logo to hidden text field */
+    $('.company-logo-radio').each(function() {
+        $(this).on('change', function() {
+            const orderItemId = getOrderItemId(this);
+            const data = $(this).val();
+
+            $('#company-logo-' + orderItemId).val(data);
+        })
+    });
+
     /* Update the price per order item in the payment overview. */
     for (let orderItemId of orderItemIds) {
         updateOrderSummary(orderItemId);
@@ -47,6 +117,26 @@ $(document).ready(function() {
             $('#order-total-price-display').text(formatNumber('0'));
         }
     }
+
+    /* Reflect fetched data about packaging color */
+    $('.packaging-color').each(function() {
+        const orderItemId = getOrderItemId(this);
+        const data = $(this).text();
+
+        $('#packaging-color-select-' + orderItemId).val(data);
+    });
+
+    /* Reflect fetched data about item color */
+    $('.item-color').each(function() {
+        const orderItemId = getOrderItemId(this);
+        const data = $(this).text();
+
+        $('#item-color-select-' + orderItemId).val(data);
+    });
+
+    /* Reflect fetched data about location of company logo */
+
+    /* Transfer input about location of company logo onto the hidden input field */
 
     function getOrderItemId(element) {
         const id = element.id;
@@ -89,5 +179,13 @@ $(document).ready(function() {
 
     function getOrderItemIds(orderItemIdsStr) {
         return orderItemIdsStr.split(',');
+    }
+
+    function removeProductFromSummary(orderItemId) {
+        const priceRemoved = parseFloat($('#order-summary-item-price-' + orderItemId).text());
+        const total = parseFloat($('#order-total-price-display').text());
+
+        $('#order-summary-item-' + orderItemId).remove();
+        $('#order-total-price-display').text(formatNumber(total - priceRemoved));
     }
 })
