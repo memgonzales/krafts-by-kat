@@ -261,6 +261,7 @@ const orderController = {
 									}
 								}
 
+								/* Update the order based on the details entered by the user */
 								let filter = {_id: orderId};
 								let update = {
 									name: orderName,

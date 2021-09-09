@@ -48,14 +48,8 @@ const orderItemSchema = new mongoose.Schema({
             required: false
         },
 
-        /* Whether the company logo of the customer is to be printed on the product */
+        /* Whether the company logo will be placed on the order item */
         includeCompanyLogo: {
-            type: Boolean,
-            required: true
-        },
-
-        /* File path of the company logo (if a company logo is to be printed on the product) */
-        companyLogoImage: {
             type: String,
             required: false
         },
