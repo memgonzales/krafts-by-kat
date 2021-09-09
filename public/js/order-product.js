@@ -13,7 +13,7 @@ $(document).ready(function() {
          * data type issues with Mongoose.
          */
         $('#order-total-price').val(unformatNumber($('#order-total-price-display').text()));
-    });
+    });    
 
     const orderItemIdsStr = $('#order-item-id-list').text();
     const orderItemIds = getOrderItemIds(orderItemIdsStr);
@@ -23,6 +23,10 @@ $(document).ready(function() {
     for (let orderItemId of orderItemIds) {
         $('#order-summary-item-price-' + orderItemId).text(formatNumber($('#order-summary-item-price-' + orderItemId).text()));
     }
+
+    /* Open the accordion pertaining to the last item */
+    const mostRecentOrderId = orderItemIds[orderItemIds.length - 1];
+    $('#productId_collapse-' + mostRecentOrderId).addClass('show');
 
 
     function formatNumber(price) {
