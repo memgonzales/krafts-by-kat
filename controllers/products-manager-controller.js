@@ -344,7 +344,7 @@ const productsManagerController = {
 											user: req.session.username,
 											orderItemIds: [orderItem.orderItemId],
 											deliveryMode: "",
-											preferredDeliveryDate: 0,
+											preferredDeliveryDate: null,
 											paymentType: "",
 											price: 0,
 											status: "Unsubmitted",
