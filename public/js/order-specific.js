@@ -12,6 +12,7 @@ $(document).ready(function() {
 
             hideProduct(orderItemId);
             trackRemovedOrderItems(orderItemId);
+            removeProductFromSummary(orderItemId);
         });
     });
 
@@ -89,5 +90,13 @@ $(document).ready(function() {
 
     function getOrderItemIds(orderItemIdsStr) {
         return orderItemIdsStr.split(',');
+    }
+
+    function removeProductFromSummary(orderItemId) {
+        const priceRemoved = parseFloat($('#order-summary-item-price-' + orderItemId).text());
+        const total = parseFloat($('#order-total-price-display').text());
+
+        $('#order-summary-item-' + orderItemId).remove();
+        $('#order-total-price-display').text(formatNumber(total - priceRemoved));
     }
 })
