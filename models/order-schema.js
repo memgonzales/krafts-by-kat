@@ -16,6 +16,11 @@ const orderSchema = new mongoose.Schema({
 		required: false
 	},
 
+    user: {
+        type: String,
+        required: true
+    },
+
     /* Company logo the user wants to be placed on the order items */
     companyLogo: {
         type: String,

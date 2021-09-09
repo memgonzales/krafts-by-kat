@@ -315,7 +315,7 @@ const productsManagerController = {
 								packagingMessage: "",
 								itemColor: "",
 								itemText: "",
-								includeCompanyLogo: false,
+								includeCompanyLogo: "without",
 								companyLogoImage: "",
 								companyLogoLocation: [],
 								additionalInstructions: "",
@@ -341,6 +341,7 @@ const productsManagerController = {
 										let order = {
 											name: "",
 											companyName: "",
+											user: req.session.username,
 											orderItemIds: [orderItem.orderItemId],
 											deliveryMode: "",
 											preferredDeliveryDate: 0,
