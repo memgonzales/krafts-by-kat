@@ -108,7 +108,7 @@ $(document).ready(function() {
             contentType: false,
             statusCode: {
 				200: function(data) {
-                    
+                    window.onbeforeunload = null;
 				}
 			}
 		});

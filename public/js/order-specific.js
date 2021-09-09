@@ -47,6 +47,9 @@ $(document).ready(function() {
             if (parseInt($(this).val()) > parseInt($(this).attr('max'))) {
                 $(this).val($(this).attr('max'));
                 $('#quantity-exceed-' + orderItemId).text('We only have ' + $(this).attr('max') + ' units available');
+            } else if (parseInt($(this).val()) < parseInt($(this).attr('min'))) {
+                $(this).val($(this).attr('min'));
+                $('#quantity-exceed-' + orderItemId).text('You have to order at least one item');
             } else {
                 $('#quantity-exceed-' + orderItemId).text('');
             }
