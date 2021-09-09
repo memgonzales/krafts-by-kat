@@ -97,6 +97,37 @@ $(document).ready(function() {
 		});
     });
 
+    /* Reflect fetched data about delivery mode */
+    const deliveryModeData = $('#delivery-mode-data').text();
+    
+    switch(deliveryModeData) {
+        case 'pickup':
+            $('#pickup').attr('checked', true);
+            break;
+        case 'delivery':
+            $('#delivery').attr('checked', true);
+            break;
+        default:
+            $('#pickup').attr('checked', true);
+            break;
+    }
+
+    /* Transfer input about delivery mode */
+    $('.delivery-mode-radio').each(function() {
+        $(this).on('change', function() {
+            const data = $(this).val();
+
+            switch(data) {
+                case 'pickup':
+                    $('#delivery-mode-value').val('pickup');
+                    break;
+                case 'delivery':
+                    $('#delivery-mode-value').val('delivery');
+                    break;
+            }
+        });
+    });
+
     $('#cancel-order').on('click', function(e) {
         window.onbeforeunload = function() {
             return null;
