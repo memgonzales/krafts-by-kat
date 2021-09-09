@@ -309,7 +309,7 @@ const productsManagerController = {
 							let orderItem = {
 								orderItemId: "",
 								productId: item._id,
-								quantity: 0,
+								quantity: 1,
 								packaging: "",
 								packagingColor: "",
 								packagingMessage: "",
@@ -320,7 +320,7 @@ const productsManagerController = {
 								companyLogoLocation: [],
 								additionalInstructions: "",
 								price: item.price,
-								orderItemPrice: 0
+								orderItemPrice: item.price
 							}
 
 							/* Add the order item and retrieve its ObjectID from the database */

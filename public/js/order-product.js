@@ -35,4 +35,48 @@ $(document).ready(function() {
         $('#order-summary-item-quantity-' + orderItemId).text($('#quantity-' + orderItemId).val());
         $('#order-summary-item-price-' + orderItemId).text($('#order-item-price-' + orderItemId).text());
     }
+
+    $('#add-cart').on('click', function(e) {
+        e.preventDefault();
+
+		$.ajax({
+			url: '/postSaveOrder',
+			method: 'POST',
+			data: new FormData(document.getElementById('order-form')),
+            processData: false,
+            contentType: false,
+            statusCode: {
+				200: function(data) {
+                    window.onbeforeunload = null;
+                    location.href = '/';
+				}
+			}
+		});
+    });
+
+    $('#pickup').on('click', function() {
+        $('#delivery-mode-value').val('pickup');
+    });
+
+    $('#delivery').on('click', function() {
+        $('#delivery-mode-value').val('delivery');
+    });
+
+    $('#save-order').on('click', function(e) {
+        e.preventDefault();
+        
+        $.ajax({
+			url: '/postSaveOrder',
+			method: 'POST',
+			data: new FormData(document.getElementById('order-form')),
+            processData: false,
+            contentType: false,
+            statusCode: {
+				200: function(data) {
+                    window.onbeforeunload = null;
+                    location.href = '/getOrder/' + data;
+				}
+			}
+		});
+    });
 })

@@ -16,11 +16,13 @@ const orderSchema = new mongoose.Schema({
 		required: false
 	},
 
+    /* Company logo the user wants to be placed on the order items */
     companyLogo: {
         type: String,
         required: false
     },
 
+    /* Whether the user uploaded a company logo */
     isCompanyLogoUploaded: {
         type: String,
         required: false
