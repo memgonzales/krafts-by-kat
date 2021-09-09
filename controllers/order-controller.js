@@ -227,18 +227,20 @@ const orderController = {
 						/* Assign the data from the above arrays into an array of order item details */
 						let orderItemDetails = [];
 
-						for (let i = 0; i < orderItemIds.length; i++) {
-							orderItemDetails[i] = {
-							    quantity: orderItemQuantities[i],
-								packaging: orderItemPackagingTypes[i],
-								packagingColor: orderItemPackagingColors[i],
-								packagingMessage: orderItemPackagingMessages[i],
-								itemColor: orderItemColors[i],
-								itemText: orderItemTexts[i],
-								includeCompanyLogo: orderItemCompanyLogos[i],
-								companyLogoLocation: orderItemLogoLocations[i],
-								additionalInstructions: orderItemAdditionalInstructions[i].trim(),
-							//	orderItemPrice: orderItemPrices[i]
+						if (orderItemIds != undefined) {
+							for (let i = 0; i < orderItemIds.length; i++) {
+								orderItemDetails[i] = {
+									quantity: orderItemQuantities[i],
+									packaging: orderItemPackagingTypes[i],
+									packagingColor: orderItemPackagingColors[i],
+									packagingMessage: orderItemPackagingMessages[i],
+									itemColor: orderItemColors[i],
+									itemText: orderItemTexts[i],
+									includeCompanyLogo: orderItemCompanyLogos[i],
+									companyLogoLocation: orderItemLogoLocations[i],
+									additionalInstructions: orderItemAdditionalInstructions[i].trim(),
+								//	orderItemPrice: orderItemPrices[i]
+								}
 							}
 						}
 
