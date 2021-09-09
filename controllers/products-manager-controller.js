@@ -1,9 +1,12 @@
 /* Controller for handling the products manager page */
 
-/* The db file, display schema, and catalog schema are used for the account page */
+/* The db file, display schema, and catalog, client, order, and order item schemas are used for the account page */
 const db = require('../models/db.js');
 const Display = require('../models/display-schema.js');
 const CatalogItem = require('../models/catalog-item-schema.js');
+const Client = require('../models/client-schema.js');
+const Order = require('../models/order-schema.js');
+const OrderItem = require('../models/order-item-schema.js');
 
 const maxNumItems = 5;
 const imagePlaceholder = '/img/placeholder/no-image.png';
@@ -24,7 +27,8 @@ const productsManagerController = {
 
 		db.deleteOne(CatalogItem, conditions, function(err, result) {
 			/* If the deletion is successful, update the products manager page */
-			res.sendStatus(200);
+			res.status(200).json(conditions);
+			res.send();
 		});
 	},
 
@@ -74,7 +78,6 @@ const productsManagerController = {
 							userFlag: true,
 							adminFlag: true,
 							username: req.session.username,
-							isAdmin: req.session.isAdmin,
 
 							id: item._id,
 							name: item.name,
@@ -148,7 +151,6 @@ const productsManagerController = {
 							userFlag: true,
 							adminFlag: true,
 							username: req.session.username,
-							isAdmin: req.session.isAdmin,
 
 							id: item._id,
 							name: item.name,
@@ -194,7 +196,6 @@ const productsManagerController = {
 								userFlag: false,
 								adminFlag: false,
 								username: req.session.username,
-								isAdmin: req.session.isAdmin,
 
 								id: item._id,
 								name: item.name,
@@ -239,7 +240,6 @@ const productsManagerController = {
 								userFlag: true,
 								adminFlag: false,
 								username: req.session.username,
-								isAdmin: req.session.isAdmin,
 
 								id: item._id,
 								name: item.name,
@@ -253,6 +253,132 @@ const productsManagerController = {
 							}
 
 							res.render('view-product', details);
+						});
+					}
+				}	
+
+			/* If the data retrieval was not successful, display an error message */			
+			} else {
+				console.log("Missing graphics elements");
+			}
+		});
+	},
+
+	/**
+	 * Adds the selected product to an order
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
+	 postViewItem: function(req, res) {
+		/* Prepare a query for the web application logo */
+		let query = {id: 0};
+		
+		/* Retrieve the web application logo from the database */
+		db.findOne(Display, query, '', function(result) {
+			
+			/* If the data retrieval was successful, display the account page */
+			if (result) {
+
+				appLogo = result;
+
+				/* If the user is using an administrator account, redirect to the landing page;
+				 * the administrator cannot make orders
+				 */
+				if (req.session.isAdmin == true) {
+					
+					res.redirect('/');
+
+				/* If the user is unregistered, redirect to the landing page */
+				} else {
+					if (req.session.username == undefined) {
+
+						res.redirect('/');
+
+					/* If the user is registered, display the order page accordingly */
+					} else {
+						let id = req.body.orderProductId;
+
+						/* Retrieve the data corresponding to the ID of the selected product */
+						let query = {_id: db.convertToObjectId(id)};
+						let projection = '_id name quantity price pictures';
+
+						db.findOne(CatalogItem, query, projection, function(result) {
+							let item = result;
+
+							/* Create a new order item for the chosen product */
+							let orderItem = {
+								orderItemId: "",
+								productId: item._id,
+								quantity: 1,
+								packaging: "kraft_box",
+								packagingColor: "packaging_color_1",
+								packagingMessage: "",
+								itemColor: "item_color_1",
+								itemText: "",
+								includeCompanyLogo: "false",
+								companyLogoLocation: [],
+								additionalInstructions: "",
+								price: item.price,
+								orderItemPrice: item.price
+							}
+
+							/* Add the order item and retrieve its ObjectID from the database */
+							db.insertOne(OrderItem, orderItem, function(flag) {
+								orderItem.orderItemId = flag._id;
+								
+								/* Retrieve the user data to check whether they have an open order */
+								let query = {username: req.session.username};
+								let projection = 'username currentOrder';
+
+								db.findOne(Client, query, projection, function(result) {
+									let client = result;
+
+									/* If the user does not have an open order, create a new order containing the selected product */
+									if (client.currentOrder == "") {
+										
+										/* Create a new order containing the order item */
+										let order = {
+											name: "",
+											companyName: "",
+											user: req.session.username,
+											orderItemIds: [orderItem.orderItemId],
+											deliveryMode: "pickup",
+											preferredDeliveryDate: new Date(),
+											paymentType: "cash",
+											price: 0,
+											status: "Unsubmitted",
+											isCompanyLogoUploaded: "false"
+										}
+
+										/* Add the order and retrieve its ObjectID from the database */
+										db.insertOne(Order, order, function(flag) {
+											let orderId = flag._id;
+
+											let filter = {username: req.session.username};
+											let update = {currentOrder: orderId,
+														  $push: {orderIds: orderId}};
+											
+											/* Set the current order as the user's open order */
+											db.updateOne(Client, filter, update, function(error, result) {
+												
+												/* Send the ObjectID of the created order to open it on the Order page */
+												res.status(200).json(orderId);
+												res.send();
+											});
+										});
+									
+									/* If the user has an open order, add the product to their open order */
+									} else {
+										let filter = {_id: client.currentOrder};
+										let update = {$push: {orderItemIds: orderItem.orderItemId}};
+
+										db.updateOne(Order, filter, update, function(error, result) {
+											res.status(200).json(client.currentOrder);
+											res.send();
+										})
+									};
+								});
+							});
 						});
 					}
 				}	
@@ -420,6 +546,8 @@ const productsManagerController = {
 
 		/* Insert the new product into the database and redirect the user to the landing page */
 		db.updateOne(CatalogItem, filter, update, function(error, result) {
+			res.status(200).json(update);
+			res.send();
 			res.redirect('/account/admin/productsManager');
 		});
 	}

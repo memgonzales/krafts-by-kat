@@ -1,7 +1,7 @@
 {{>navbar}}
 
 <div class="container-fluid content d-flex flex-row f1" id="account-container" >
-    {{>account-sidebar isAdmin = isAdmin ordersTab = true }}
+    {{>account-sidebar isAdmin = adminFlag ordersTab = true }}
 
     <div class="col-md-9">
         {{>orders-nav isAdmin = isAdmin allOrdersTab = true}}

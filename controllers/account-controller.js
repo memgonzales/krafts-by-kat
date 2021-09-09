@@ -32,8 +32,7 @@ const accountController = {
 						logo: result.logo,
 						userFlag: true,
 						adminFlag: true,
-						username: req.session.username,
-						isAdmin: req.session.isAdmin
+						username: req.session.username
 					}
 
 					res.render('user-account', details);
@@ -88,8 +87,7 @@ const accountController = {
 						logo: result.logo,
 						userFlag: true,
 						adminFlag: true,
-						username: req.session.username,
-						isAdmin: req.session.isAdmin
+						username: req.session.username
 					}
 
 					res.render('user-purchase-history', details);
@@ -144,8 +142,7 @@ const accountController = {
 						logo: result.logo,
 						userFlag: true,
 						adminFlag: true,
-						username: req.session.username,
-						isAdmin: req.session.isAdmin
+						username: req.session.username
 					}
 
 					res.render('user-my-orders', details);
@@ -200,8 +197,7 @@ const accountController = {
 						logo: result.logo,
 						userFlag: true,
 						adminFlag: true,
-						username: req.session.username,
-						isAdmin: req.session.isAdmin
+						username: req.session.username
 					}
 
 					res.render('admin-orders', details);
@@ -242,8 +238,7 @@ const accountController = {
 						logo: result.logo,
 						userFlag: true,
 						adminFlag: true,
-						username: req.session.username,
-						isAdmin: req.session.isAdmin
+						username: req.session.username
 					}
 
 					res.render('admin-messages', details);
@@ -428,7 +423,6 @@ const accountController = {
 								userFlag: true,
 								adminFlag: true,
 								username: req.session.username,
-								isAdmin: req.session.isAdmin,
 
 								activeIds: activeIds,
 								activeNames: activeNames,
@@ -507,8 +501,7 @@ const accountController = {
 						logo: result.logo,
 						userFlag: true,
 						adminFlag: true,
-						username: req.session.username,
-						isAdmin: req.session.isAdmin
+						username: req.session.username
 					}
 
 					res.render('admin-clients-manager', details);

@@ -30,101 +30,159 @@ const database = {
      * Connects to the database 
      */
     connect: function() {
-        mongoose.connect(url, options, function(error) {
-            if (error) throw error;
-            console.log('Connected to: ' + url);
-        });
-		
-		var connection = mongoose.createConnection(url);
-		
-		/* Initialize gfs */
-		var gfs;
-		
-		connection.once('open', function() {
-			/* Initialize stream */
-			gfs = grid(connection.db, mongoose.mongo);
-			gfs.collection('uploads');			
-		})
-		
-		/* Create storage engine */
-		const storage = new gridFsStorage({
-			url: url,
-			file: (req, file) => {
-				return new Promise((resolve, reject) => {
-					crypto.randomBytes(16, (err, buf) => {
-						if (err) {
-							return reject(err);
-						}
-						const filename = buf.toString('hex') + path.extname(file.originalname);
-						const fileInfo = {
-							filename: filename,
-							bucketName: 'uploads'
-						};
-						resolve(fileInfo);
-					});
-				});
-			}
-		});
+        if (process.env.NODE_ENV === 'test') {
+            const Mockgoose = require('mockgoose').Mockgoose;
+            const mockgoose = new Mockgoose(mongoose);
 
-        const fileFilter = function(req, file, callback) {
-            /* Exclude the period preceding the file extension, and convert to lowercase */
-            const ext = path.extname(file.originalname).substr(1).toLowerCase();
-            let validExtension = false;
+            mockgoose.prepareStorage()
+                .then(function() {
+                    mongoose.connect(url, options, function(error) {
+                        if (error) throw error;
+                        console.log('Connected to: ' + url);
+                    });
+                    
+                    var connection = mongoose.createConnection(url);
+                    
+                    /* Initialize gfs */
+                    var gfs;
+                    
+                    connection.once('open', function() {
+                        /* Initialize stream */
+                        gfs = grid(connection.db, mongoose.mongo);
+                        gfs.collection('uploads');			
+                    })
+                    
+                    /* Create storage engine */
+                    const storage = new gridFsStorage({
+                        url: url,
+                        file: (req, file) => {
+                            return new Promise((resolve, reject) => {
+                                crypto.randomBytes(16, (err, buf) => {
+                                    if (err) {
+                                        return reject(err);
+                                    }
+                                    const filename = buf.toString('hex') + path.extname(file.originalname);
+                                    const fileInfo = {
+                                        filename: filename,
+                                        bucketName: 'uploads'
+                                    };
+                                    resolve(fileInfo);
+                                });
+                            });
+                        }
+                    });
+        
+                    const fileFilter = function(req, file, callback) {
+                        /* Exclude the period preceding the file extension, and convert to lowercase */
+                        const ext = path.extname(file.originalname).substr(1).toLowerCase();
+                        let validExtension = false;
+        
+                        console.log(ext);
+        
+                        switch(ext) {
+                            /* Fall through in all cases is deliberate */
+                            case 'jpg':
+                            case 'jpeg':
+                            case 'jpe':
+                            case 'jfif':
+                            case 'heic':
+                            case 'png':
+                            case 'gif':
+                            case 'webp':
+                            case 'bmp':
+                            case 'svg':
+                                validExtension = true;
+                                break;
+                            default:
+                                break;
+                        }
+        
+                        if (!validExtension) {
+                            return callback(new Error('This file type is not supported. Please upload a valid image.'))
+                        }
+        
+                        callback(null, true)
+                    }
+                    
+                    const upload = multer({ storage, fileFilter });
+                    
+                    return upload;
+                })
 
-            console.log(ext);
+        } else {
 
-            switch(ext) {
-                /* Fall through in all cases is deliberate */
-                case 'jpg':
-                case 'jpeg':
-                case 'jpe':
-                case 'jif':
-                case 'jfif':
-                case 'jfi':
-                case 'png':
-                case 'gif':
-                case 'webp':
-                case 'tiff':
-                case 'tif':
-                case 'psd':
-                case 'raw':
-                case 'arw':
-                case 'cr2':
-                case 'nrw':
-                case 'k25':
-                case 'bmp':
-                case 'dib':
-                case 'heif':
-                case 'heic':
-                case 'ind':
-                case 'indd':
-                case 'indt':
-                case 'jp2':
-                case 'j2k':
-                case 'jpf':
-                case 'jpx':
-                case 'jpm':
-                case 'mj2':
-                case 'svg':
-                case 'svgz':
-                case 'ai':
-                case 'eps':
-                    validExtension = true;
-                    break;
-                default:
-                    break;
+            mongoose.connect(url, options, function(error) {
+                if (error) throw error;
+                console.log('Connected to: ' + url);
+            });
+            
+            var connection = mongoose.createConnection(url);
+            
+            /* Initialize gfs */
+            var gfs;
+            
+            connection.once('open', function() {
+                /* Initialize stream */
+                gfs = grid(connection.db, mongoose.mongo);
+                gfs.collection('uploads');			
+            })
+            
+            /* Create storage engine */
+            const storage = new gridFsStorage({
+                url: url,
+                file: (req, file) => {
+                    return new Promise((resolve, reject) => {
+                        crypto.randomBytes(16, (err, buf) => {
+                            if (err) {
+                                return reject(err);
+                            }
+                            const filename = buf.toString('hex') + path.extname(file.originalname);
+                            const fileInfo = {
+                                filename: filename,
+                                bucketName: 'uploads'
+                            };
+                            resolve(fileInfo);
+                        });
+                    });
+                }
+            });
+
+            const fileFilter = function(req, file, callback) {
+                /* Exclude the period preceding the file extension, and convert to lowercase */
+                const ext = path.extname(file.originalname).substr(1).toLowerCase();
+                let validExtension = false;
+
+                console.log(ext);
+
+                switch(ext) {
+                    /* Fall through in all cases is deliberate */
+                    case 'jpg':
+                    case 'jpeg':
+                    case 'jpe':
+                    case 'jfif':
+                    case 'heic':
+                    case 'png':
+                    case 'gif':
+                    case 'webp':
+                    case 'bmp':
+                    case 'svg':
+                        validExtension = true;
+                        break;
+                    default:
+                        break;
+                }
+
+                if (!validExtension) {
+                    return callback(new Error('This file type is not supported. Please upload a valid image.'))
+                }
+
+                callback(null, true)
             }
-
-            if (!validExtension) {
-                return callback(new Error('This file type is not supported. Please upload a valid image.'))
-            }
-
-            callback(null, true)
+            
+            const upload = multer({ storage, fileFilter });
+            
+            return upload;
         }
-		
-		const upload = multer({ storage, fileFilter });
-		
-		return upload;
     },
 
     /** 
@@ -139,7 +197,7 @@ const database = {
         model.create (doc, function(error, result) {
             if (error) return callback(false);
             console.log('Added ' + result);
-            return callback(true);
+            return callback(result);
         });
     },
 
@@ -265,7 +323,18 @@ const database = {
      */
     convertToObjectId: function(id) {
         return mongoose.Types.ObjectId(id);
-    }
+    },
+
+    updateOneIterative: function(model, filter, update) {
+        model.updateOne (filter, update, function(error, result) {
+            if (error) {
+                console.log('Error');
+            } else {
+                console.log('Document modified: ' + result.nModified);
+                console.log(result);
+            }
+        });
+    },
 }
 
 module.exports = database;

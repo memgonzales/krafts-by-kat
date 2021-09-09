@@ -107,7 +107,8 @@ const signUpController = {
 				/* Insert the user data into the database and open a session for the user */
 				db.insertOne(Client, client, function(flag) {
 					req.session.username = client.username;
-					res.sendStatus(200);
+					res.status(200).json(client);
+					res.send();
 				});
 			})
 		} 
@@ -116,7 +117,8 @@ const signUpController = {
 		else {
 			console.log("Error: Passwords do not match");
 			res.redirect('/signup');
-			res.sendStatus(401);
+			res.status(401).json({error: 'Passwords do not match'});
+			res.send();
 		}	
     },
 	

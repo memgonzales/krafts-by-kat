@@ -1,5 +1,8 @@
 /* Javascript file routing the redirect strings to their respective controllers */
 
+/* Dotenv file used to access constants */
+const dotenv = require('dotenv');
+
 /* Use the express web application framework*/
 const express = require('express');
 
@@ -21,6 +24,8 @@ const orderController = require('../controllers/order-controller.js');
 
 /* Call the validation file */
 const validation = require('../helpers/validation.js');
+
+dotenv.config();
 
 /* For file uploads */
 krafts.get('/files/:filename', filesController.getFile);
@@ -47,7 +52,12 @@ const newProductFields = [{name: 'productImg1', maxCount: 1},
                           {name: 'productImg3', maxCount: 1},
                           {name: 'productImg4', maxCount: 1},
                           {name: 'productImg5', maxCount: 1}];
-krafts.post('/postNewProduct', db.connect().fields(newProductFields), newProductController.postNewProduct);
+
+if (process.env.NODE_ENV === 'test') {
+    krafts.post('/postNewProduct', newProductController.postNewProduct);
+} else {
+    krafts.post('/postNewProduct', db.connect().fields(newProductFields), newProductController.postNewProduct);
+}
 
 /* For account page */
 krafts.get('/account', accountController.getAccount);
@@ -68,21 +78,42 @@ const editProductFields = [{name: 'productImg1', maxCount: 1},
                            {name: 'productImg3', maxCount: 1},
                            {name: 'productImg4', maxCount: 1},
                            {name: 'productImg5', maxCount: 1}];
-krafts.post('/postEditItem/:id', db.connect().fields(editProductFields), productsManagerController.postEditItem);
+
+if (process.env.NODE_ENV === 'test') {
+    krafts.post('/postEditItem/:id', productsManagerController.postEditItem);
+} else {
+    krafts.post('/postEditItem/:id', db.connect().fields(editProductFields), productsManagerController.postEditItem);
+}
 
 /* For viewing product */
 krafts.get('/viewItem/:id', productsManagerController.getViewItem);
+krafts.post('/postViewItem', productsManagerController.postViewItem);
 
 /* For toggling visibility of product */
 krafts.get('/toggleVisibility/:id', productsManagerController.getToggleVisibility);
 
 /* For placing orders */
-krafts.get('/getOrder', orderController.getOrder);
+krafts.get('/getOrder/:id', orderController.getOrder);
+if (process.env.NODE_ENV === 'test') {
+    krafts.post('/postSaveOrder', orderController.postSaveOrder);
+} else {
+    krafts.post('/postSaveOrder', db.connect().single('companyLogo'), orderController.postSaveOrder);
+}
+if (process.env.NODE_ENV === 'test') {
+    krafts.post('/postPlaceOrder', orderController.postPlaceOrder);
+} else {
+    krafts.post('/postPlaceOrder', db.connect().single('companyLogo'), orderController.postPlaceOrder);
+}
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
 krafts.get('/uploadsTest', uploadsTestController.displayPage);
-krafts.post('/uploadLogo', db.connect().single('upload-test'), displayController.postEditLogo);
+
+if (process.env.NODE_ENV === 'test') {
+    krafts.post('/uploadLogo', displayController.postEditLogo);
+} else {
+    krafts.post('/uploadLogo', db.connect().single('upload-test'), displayController.postEditLogo);
+}
 /* END -- REMOVE ON DEPLOYMENT */
 
 // FOR CLEANING

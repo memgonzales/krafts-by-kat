@@ -1,4 +1,4 @@
-/* Schema for the catalog items */
+/* Schema for the orders */
 
 /* Mongoose is used for database functions */
 const mongoose = require('mongoose');
@@ -13,8 +13,25 @@ const orderSchema = new mongoose.Schema({
     /* Company name */
 	companyName: {
 		type: String,
-		required: true
+		required: false
 	},
+
+    user: {
+        type: String,
+        required: true
+    },
+
+    /* Company logo the user wants to be placed on the order items */
+    companyLogo: {
+        type: String,
+        required: false
+    },
+
+    /* Whether the user uploaded a company logo */
+    isCompanyLogoUploaded: {
+        type: String,
+        required: false
+    },
 
     /* ObjectIDs of the order items */
     orderItemIds: {
@@ -25,24 +42,24 @@ const orderSchema = new mongoose.Schema({
     /* Delivery mode of the order */
     deliveryMode: {
         type: String,
-        required: true
+        required: false
     },
 
     /* Preferred delivery date of the order */
     preferredDeliveryDate: {
         type: Date,
-        required: true
+        required: false
     },
 
     /* Payment type for the order */
     paymentType: {
         type: String,
-        required: true
+        required: false
     },
 
-    /* Whether the order has been placed */
-    orderPlaced: {
-        type: Boolean,
+    /* Total price of the order */
+    price: {
+        type: Number,
         required: true
     },
 

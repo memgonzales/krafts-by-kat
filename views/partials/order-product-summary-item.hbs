@@ -1,11 +1,11 @@
-<div class="container d-flex flex-row">
+<div class="container d-flex flex-row" id = "order-summary-item-{{orderItemId}}">
     <div class="col-md-9 ">
-        <h7>Product Name</h7>
+        <h7 id = "order-summary-item-name-{{orderItemId}}">{{productName}}</h7>
     </div>
     <div class="col-md-1">
-        <h7>(x<span>9,999</span>)</h7>
+        <h7>(x<span id = "order-summary-item-quantity-{{orderItemId}}">9,999</span>)</h7>
     </div>
     <div class="col-md-2 d-flex justify-content-end">
-        <h7>₱ <span>9,999,999</span></h7>
+        <h7>₱<span id = "order-summary-item-price-{{orderItemId}}">9,999,999</span></h7>
     </div>
 </div>

@@ -80,7 +80,10 @@
                 </div>
 
                 <div class="mt-3" id = "add-to-order">
-                    <a class="btn bgc1" href = "/getOrder"><i class="fas fa-cart-plus"> <span class="f1">Add to Order</span></i></a>
+                    <form method = "POST" id = "add-to-order-form">
+                        <input type = "hidden" value = {{id}} id = "order-product-id" name = "orderProductId">
+                        <button class="btn bgc1" type = "submit" id = "add-to-order"><i class="fas fa-cart-plus"> <span class="f1">Add to Order</span></i></button>
+                    </form>
                 </div>
 
             </div>
