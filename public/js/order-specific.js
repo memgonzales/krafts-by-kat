@@ -16,6 +16,17 @@ $(document).ready(function() {
         });
     });
 
+    /* Update the order item prices on page load. */
+    $('.item-quantity').each(function() {
+        const orderItemId = getOrderItemId(this);
+        const unitPrice = $('#product-price-' + orderItemId).text();
+        const totalPrice = parseFloat(unitPrice) * parseFloat($(this).val());
+
+        $('#order-item-price-' + orderItemId).text(formatNumber(totalPrice));
+        $('#order-item-price-hidden-' + orderItemId).val(totalPrice);
+    });
+
+    /* Update the order item prices when the quantity changes. */
     $('.item-quantity').each(function() {
         $(this).on('change', function() {
             const orderItemId = getOrderItemId(this);
@@ -23,6 +34,7 @@ $(document).ready(function() {
             const totalPrice = parseFloat(unitPrice) * parseFloat($(this).val());
 
             $('#order-item-price-' + orderItemId).text(formatNumber(totalPrice));
+            $('#order-item-price-hidden-' + orderItemId).val(totalPrice);
 
             updateOrderSummary(orderItemId);
         });
@@ -105,6 +117,10 @@ $(document).ready(function() {
             $('#order-total-price-display').text(formatNumber('0'));
         }
     }
+
+    /* Reflect fetched data about packaging color */
+
+    /* Reflect fetched data about item color */
 
     function getOrderItemId(element) {
         const id = element.id;
