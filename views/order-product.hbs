@@ -64,7 +64,7 @@
                                       itemColor = (lookup ../itemColors @index)
                                       itemText = (lookup ../itemTexts @index)
                                       includeCompanyLogo = (lookup ../includeCompanyLogoOptions @index)
-                                      companyLogoImage = (lookup ../companyLogoImages @index)
+                                      companyLogoLocation = (lookup ../companyLogoLocations @index)
                                       additionalInstructions = (lookup ../additionalInstructionsPassages @index)
                                       orderItemPrice = (lookup ../orderItemPrices @index)
                                       productName = (lookup ../productNames @index)
@@ -150,7 +150,7 @@
         <div class="d-flex justify-content-center mt-5">
             <button type="button" id = "save-order" class="btn bgc2 mx-3">Save Order</button>
             <button type="button" id = "place-order" class="btn bgc3 mx-3" data-bs-toggle="modal" data-bs-target="#place-order-success-modal">Place Order</button>
-            <button type="button" class="btn bgc4 mx-3" data-bs-toggle="modal" data-bs-target="#save-prompt">Cancel</button>
+            <button type="button" id = "cancel-order" class="btn bgc4 mx-3" data-bs-toggle="modal" data-bs-target="#save-prompt">Cancel</button>
         </div>
 
     </form>

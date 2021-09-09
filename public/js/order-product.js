@@ -89,4 +89,10 @@ $(document).ready(function() {
 			}
 		});
     });
+
+    $('#cancel-order').on('click', function(e) {
+        window.onbeforeunload = function() {
+            return null;
+        };
+    });
 })
