@@ -326,8 +326,8 @@ const orderController = {
 
 								db.updateOneIterative(OrderItem, orderItemFilter, orderItemUpdate);
 							}
-							
-							res.status(200).json(orderId);
+
+							res.status(200).json(update);
 							res.send();
 						});
 					});

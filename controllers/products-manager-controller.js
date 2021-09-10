@@ -546,8 +546,6 @@ const productsManagerController = {
 
 		/* Insert the new product into the database and redirect the user to the landing page */
 		db.updateOne(CatalogItem, filter, update, function(error, result) {
-			res.status(200).json(update);
-			res.send();
 			res.redirect('/account/admin/productsManager');
 		});
 	}

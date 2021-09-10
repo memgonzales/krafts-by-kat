@@ -21,6 +21,7 @@ const newProductController = require('../controllers/new-product-controller.js')
 const accountController = require('../controllers/account-controller.js');
 const productsManagerController = require('../controllers/products-manager-controller.js');
 const orderController = require('../controllers/order-controller.js');
+const orderTrackerController = require('../controllers/order-tracker-controller.js');
 
 /* Call the validation file */
 const validation = require('../helpers/validation.js');
@@ -105,6 +106,18 @@ if (process.env.NODE_ENV === 'test') {
     krafts.post('/postPlaceOrder', db.connect().single('companyLogo'), orderController.postPlaceOrder);
 }
 
+/* For viewing and keeping track of orders from the admin side */
+krafts.get('/account/admin/orders/pending', orderTrackerController.getAccountAdminOrdersPending);
+krafts.get('/account/admin/orders/accepted', orderTrackerController.getAccountAdminOrdersAccepted);
+krafts.get('/account/admin/orders/enRoute', orderTrackerController.getAccountAdminOrdersEnRoute);
+krafts.get('/account/admin/orders/delivered', orderTrackerController.getAccountAdminOrdersDelivered);
+
+/* For updating the statuses of orders */
+krafts.get('/cancelOrder/:id', orderTrackerController.getCancelOrder);
+krafts.get('/setOrderAccepted/:id', orderTrackerController.getSetOrderAccepted);
+krafts.get('/setOrderEnRoute/:id', orderTrackerController.getSetOrderEnRoute);
+krafts.get('/setOrderDelivered/:id', orderTrackerController.getSetOrderDelivered);
+
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
 krafts.get('/uploadsTest', uploadsTestController.displayPage);
@@ -127,32 +140,6 @@ krafts.get('/partials-test', function(req,res){
 });
 
 /* TEMP Orders Nav Tabs*/ 
-
-
-//ADMIN ORDER NAVIGATION
-krafts.get('/account/admin/orders/pending', function(req,res){
-    var obj = {style: 'account', isAdmin: true}
-    res.render('orders-pending',obj);
-});
-
-krafts.get('/account/admin/orders/accepted', function(req,res){
-    var obj = {style: 'account', isAdmin: true}
-    res.render('orders-accepted',obj);
-});
-
-krafts.get('/account/admin/orders/enRoute', function(req,res){
-    var obj = {style: 'account', isAdmin: true}
-    res.render('orders-en-route',obj);
-
-});
-
-krafts.get('/account/admin/orders/delivered', function(req,res){
-    var obj = {style: 'account', isAdmin: true}
-    res.render('orders-delivered',obj);
-
-});
-
-
 
 // USER ORDER NAVIGATION
 krafts.get('/account/myOrders/pending', function(req,res){

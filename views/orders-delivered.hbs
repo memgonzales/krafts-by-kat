@@ -1,10 +1,24 @@
-{{>navbar}}
+{{>navbar userFlag = userFlag adminFlag = adminFlag username = username}}
 
 <div class="container-fluid content d-flex flex-row f1" id="account-container" >
-    {{>account-sidebar isAdmin = isAdmin ordersTab = true }}
+    {{>account-sidebar isAdmin = adminFlag ordersTab = true }}
 
     <div class="col-md-9">
-        {{>orders-nav isAdmin = isAdmin deliveredTab = true}}
+        {{>orders-nav isAdmin = adminFlag deliveredTab = true}}
+
+         <div class="container" id="orders-collection">
+
+            {{#each orderIds}}
+                {{>orders-item isAdmin = ../adminFlag
+                               orderId = this 
+                               orderName = (lookup ../orderNames @index)
+                               orderStatus = (lookup ../orderStatuses @index)
+                               preferredDeliveryDate = (lookup ../preferredDeliveryDates @index)
+                               orderPrice = (lookup ../orderPrices @index)
+                               deliveredOrder = (lookup ../deliveredOrders @index)}}
+            {{/each}}
+
+        </div>
 
     </div>
 </div>

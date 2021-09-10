@@ -4,31 +4,29 @@
         <a href="/view/orderID" class="order-anchor">
 
             <div class = "container">
-                <h4>Matamis na Patis</h4>
+                <h4>{{orderName}}</h4>
             </div>
 
             <div class="container d-flex flex-row">
                 <span class="me-3">
                     <span class="bold">Order ID:</span> 
-                    <span>AgG3tzP</span>
+                    <span>{{orderId}}</span>
                 </span>
 
 
                 <span class="mx-3">
                     <span class="bold">Status: </span> 
-                    <span>Pending</span>
+                    <span>{{orderStatus}}</span>
                 </span>
 
                 <span class="mx-3">
                     <span class="bold">Delivery Date: </span>
-                    {{!-- Format is MM/DD/YYYY --}}
-                    <span>01/22/2021</span>
+                    <span>{{preferredDeliveryDate}}</span>
                 </span>
 
                 <span class="mx-3">
                     <span class="bold">Invoice: </span>
-                    {{!-- Format is MM/DD/YYYY --}}
-                    <span>₱ <span>9,999,999</span></span>
+                    <span>₱ <span>{{orderPrice}}</span></span>
                 </span>
 
             </div>
@@ -42,11 +40,31 @@
                  <i class="fas fa-ellipsis-v"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="opt-order">
-                <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
-                <li><a class="dropdown-item" href="/cancel/OrderID">Cancel Order</a></li>
-
                 {{#if isAdmin}}
-                    <li><a class="dropdown-item" href="#">Set Accepted or Set En Route</a></li>
+                    {{#if pendingOrder}}
+                        <li><a class="dropdown-item" href="/setOrderAccepted/{{orderId}}">Set Accepted</a></li>
+                        <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
+                        <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
+                    {{/if}}
+
+                    {{#if acceptedOrder}}
+                        <li><a class="dropdown-item" href="/setOrderEnRoute/{{orderId}}">Set En Route</a></li>
+                        <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
+                        <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
+                    {{/if}}
+
+                    {{#if enRouteOrder}}
+                        <li><a class="dropdown-item" href="/setOrderDelivered/{{orderId}}">Set Delivered</a></li>
+                        <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
+                        <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
+                    {{/if}}
+
+                    {{#if deliveredOrder}}
+                        <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
+                    {{/if}}
+
+                {{else}}
+                    <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
                 {{/if}}
                 
             </ul>
