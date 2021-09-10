@@ -112,7 +112,11 @@ krafts.get('/account/admin/orders/accepted', orderTrackerController.getAccountAd
 krafts.get('/account/admin/orders/enRoute', orderTrackerController.getAccountAdminOrdersEnRoute);
 krafts.get('/account/admin/orders/delivered', orderTrackerController.getAccountAdminOrdersDelivered);
 
+/* For updating the statuses of orders */
 krafts.get('/cancelOrder/:id', orderTrackerController.getCancelOrder);
+krafts.get('/setOrderAccepted/:id', orderTrackerController.getSetOrderAccepted);
+krafts.get('/setOrderEnRoute/:id', orderTrackerController.getSetOrderEnRoute);
+krafts.get('/setOrderDelivered/:id', orderTrackerController.getSetOrderDelivered);
 
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');

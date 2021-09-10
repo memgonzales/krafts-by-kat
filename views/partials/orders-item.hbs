@@ -42,19 +42,19 @@
             <ul class="dropdown-menu" aria-labelledby="opt-order">
                 {{#if isAdmin}}
                     {{#if pendingOrder}}
-                        <li><a class="dropdown-item" href="#">Set Accepted</a></li>
+                        <li><a class="dropdown-item" href="/setOrderAccepted/{{orderId}}">Set Accepted</a></li>
                         <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
                         <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
                     {{/if}}
 
                     {{#if acceptedOrder}}
-                        <li><a class="dropdown-item" href="#">Set En Route</a></li>
+                        <li><a class="dropdown-item" href="/setOrderEnRoute/{{orderId}}">Set En Route</a></li>
                         <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
                         <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
                     {{/if}}
 
                     {{#if enRouteOrder}}
-                        <li><a class="dropdown-item" href="#">Set Delivered</a></li>
+                        <li><a class="dropdown-item" href="/setOrderDelivered/{{orderId}}">Set Delivered</a></li>
                         <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
                         <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
                     {{/if}}
@@ -62,7 +62,7 @@
                     {{#if deliveredOrder}}
                         <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
                     {{/if}}
-                    
+
                 {{else}}
                     <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
                 {{/if}}
