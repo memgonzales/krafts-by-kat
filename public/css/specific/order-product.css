@@ -40,6 +40,10 @@
 }
 
 
+.qty-exceed{
+    color: var(--error);
+}
+
 input, textarea{
     border: none;
     border-radius: 5px;
