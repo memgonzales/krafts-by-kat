@@ -5,6 +5,7 @@ const db = require('../models/db.js');
 const Display = require('../models/display-schema.js');
 const Client = require('../models/client-schema.js');
 const CatalogItem = require('../models/catalog-item-schema.js');
+const Order = require('../models/order-schema.js');
 
 const accountController = {
 	
@@ -187,20 +188,115 @@ const accountController = {
 		/* Retrieve the web application logo from the database */
 		db.findOne(Display, query, '', function(result) {
 			
-			/* If the data retrieval was successful, display the account page */
+			/* If the data retrieval was successful, display the admin orders page */
 			if (result) {
+				appLogo = result;
 
 				/* If the user is using an administrator account, display the nav bar accordingly */
 				if (req.session.isAdmin == true) {
-					let details = {
-						style: 'account',
-						logo: result.logo,
-						userFlag: true,
-						adminFlag: true,
-						username: req.session.username
-					}
+					
+					/* Store the order data in parallel arrays */
+					let orderIds = [];
+					let orderNames = [];
+					let orderStatuses = [];
+					let preferredDeliveryDates = [];
+					let orderPrices = [];
 
-					res.render('admin-orders', details);
+					/* Use boolean arrays to indicate the statuses of orders; these are used as flags 
+					 * for the hbs rendering of the page
+					 */
+					let pendingOrders = [];
+					let acceptedOrders = [];
+					let enRouteOrders = [];
+					let deliveredOrders = [];
+
+					/* Retrieve all orders that have been submitted */
+					let acceptedStatuses = ['Pending', 'Accepted', 'En Route', 'Delivered'];
+					let query = {status: {$in: acceptedStatuses}};
+					let projection = '_id name status preferredDeliveryDate price';
+
+					db.findMany(Order, query, projection, function(result) {
+						
+						/* Store the retrieved data in the prepared parallel arrays */
+						for (let i = 0; i < result.length; i++) {
+							orderIds[i] = result[i]._id;
+
+							/* Display the order name as "Unnamed Order" if the user did not enter an order name */
+							if (result[i].name == "") {
+								orderNames[i] = "Unnamed Order";
+							} else {
+								orderNames[i] = result[i].name;
+							}
+							
+							orderStatuses[i] = result[i].status;
+
+							/* Assign the boolean values of the order status arrays depending on the retrieved order status */
+							if (orderStatuses[i] == "Pending") {
+								pendingOrders[i] = true;
+								acceptedOrders[i] = false;
+								enRouteOrders[i] = false;
+								deliveredOrders[i] = false;
+							} else if (orderStatuses[i] == "Accepted") {
+								pendingOrders[i] = false;
+								acceptedOrders[i] = true;
+								enRouteOrders[i] = false;
+								deliveredOrders[i] = false;
+							} else if (orderStatuses[i] == "En Route") {
+								pendingOrders[i] = false;
+								acceptedOrders[i] = false;
+								enRouteOrders[i] = true;
+								deliveredOrders[i] = false;
+							} else {
+								pendingOrders[i] = false;
+								acceptedOrders[i] = false;
+								enRouteOrders[i] = false;
+								deliveredOrders[i] = true;
+							}
+
+							orderPrices[i] = result[i].price;
+
+							/* Format the display of the preferred delivery date from the Date object
+							 * stored in the database
+							 */
+							let month = result[i].preferredDeliveryDate.getMonth() + 1;
+							let formattedMonth = month;
+							if (month.toString().length < 2) {
+								formattedMonth = "0" + month.toString();
+							}
+
+							let date = result[i].preferredDeliveryDate.getDate();
+							let formattedDate = date;
+							if (date.toString().length < 2) {
+								formattedDate = "0" + date.toString();
+							}
+
+							let year = result[i].preferredDeliveryDate.getFullYear();
+
+							preferredDeliveryDates[i] = formattedMonth + "/" + formattedDate + "/" + year;
+						}
+
+						let details = {
+							style: 'account',
+							logo: appLogo.logo,
+							userFlag: true,
+							adminFlag: true,
+							username: req.session.username,
+
+							orderIds: orderIds,
+							orderNames: orderNames,
+							orderStatuses: orderStatuses,
+							preferredDeliveryDates: preferredDeliveryDates,
+							orderPrices: orderPrices,
+
+							pendingOrders: pendingOrders,
+							acceptedOrders: acceptedOrders,
+							enRouteOrders: enRouteOrders,
+							deliveredOrders: deliveredOrders
+						}
+	
+						res.render('admin-orders', details);
+					});
+					
 
 				/* If the user is not the admin, redirect them to the landing page */
 				} else {
