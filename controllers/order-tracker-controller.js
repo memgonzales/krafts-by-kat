@@ -457,6 +457,284 @@ const orderTrackerController = {
 	},
 
     /**
+	 * Gets the details of a submitted order
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
+	getViewSubmittedOrder: function(req, res) {
+
+		/* Prepare a query for the web application logo */
+		let query = {id: 0};
+		
+		/* Retrieve the web application logo from the database */
+		db.findOne(Display, query, '', function(result) {
+			
+			/* If the data retrieval was successful, display the admin delivered orders page */
+			if (result) {
+				appLogo = result;
+
+				/* If the user is registered, display the order details accordingly */
+				if (req.session.username != undefined) {
+
+					/* Retrieve the order details of the selected order */
+					let query = {_id: db.convertToObjectId(req.params.id)};
+					let projection = '_id name user companyName price status orderItemIds companyLogo preferredDeliveryDate';
+
+					db.findOne(Order, query, projection, function(result) {
+
+						/* Store the retrieved data in the order variable */
+						let order = result;
+
+						/* Display "Unnamed Order" if the user did not specify an order name */
+						if (order.name == "") {
+							order.name = "Unnamed Order";
+						}
+
+						/* Display "Unspecified Company" if the user did not specify a company */
+						if (order.companyName == "") {
+							order.companyName = "Unspecified Company";
+						}
+
+						/* Format the display of the preferred delivery date from the Date object
+						 * stored in the database
+						 */
+						let month = order.preferredDeliveryDate.getMonth() + 1;
+						let formattedMonth = month;
+						if (month.toString().length < 2) {
+							formattedMonth = "0" + month.toString();
+						}
+
+						let date = order.preferredDeliveryDate.getDate();
+						let formattedDate = date;
+						if (date.toString().length < 2) {
+							formattedDate = "0" + date.toString();
+						}
+
+						let year = order.preferredDeliveryDate.getFullYear();
+
+						let preferredDeliveryDate = formattedMonth + "/" + formattedDate + "/" + year;
+
+						/* Retrieve the data for each of the order items in the order */
+						let orderItemQuery = {_id: {$in: order.orderItemIds}};
+						let orderItemProjection = '_id productId quantity packaging packagingColor packagingMessage itemColor itemText companyLogoLocation additionalInstructions orderItemPrice';
+
+						db.findMany(OrderItem, orderItemQuery, orderItemProjection, function(result) {
+
+							/* Store the retrieved data in the variable orderItems */
+							let orderItems = result;
+
+							/* Reassign the retrieved data to parallel arrays */
+							let orderItemIds = [];
+							let productIds = [];
+							let quantities = [];
+							let packagings = [];
+							let packagingColors = [];
+							let packagingMessages = [];
+							let itemColors = [];
+							let itemTexts = [];
+							let companyLogoLocations = [];
+							let additionalInstructions = [];
+							let orderItemPrices = [];
+
+							/* Store the product names corresponding to each of the product IDs in another array */
+							let productNames = [];
+
+							/* Store the order item data in the prepared parallel arrays */
+							for (let i = 0; i < orderItems.length; i++) {
+								orderItemIds[i] = orderItems[i]._id;
+								productIds[i] = orderItems[i].productId;
+								quantities[i] = orderItems[i].quantity;
+
+								/* Format the packaging value based on the data stored in the database */
+								switch(orderItems[i].packaging) {
+									default:
+										packagings[i] = "Kraft Box";
+										break;
+									case "mailer_box":
+										packagings[i] = "Mailer Box";
+										break;
+									case "silk_pouch":
+										packagings[i] = "Silk Pouch";
+										break;
+									case "packaging_canvas":
+										packagings[i] = "packaging_canvas";
+										break;
+								}
+
+								/* Format the packaging color value based on the data stored in the database */
+								switch(orderItems[i].packagingColor) {
+									default:
+										packagingColors[i] = "Packaging Color 1";
+										break;
+									case "packaging_color_2":
+										packagingColors[i] = "Packaging Color 2";
+										break;
+									case "packaging_color_3":
+										packagingColors[i] = "Packaging Color 3";
+										break;
+									case "packaging_color_4":
+										packagingColors[i] = "Packaging Color 4";
+										break;
+									case "packaging_color_5":
+										packagingColors[i] = "Packaging Color 5";
+										break;
+								}
+
+								/* Display "None" if the user did not enter a packaging message */
+								if (orderItems[i].packagingMessage == "") {
+									packagingMessages[i] = "None";
+								} else {
+									packagingMessages[i] = orderItems[i].packagingMessage;
+								}
+								
+								/* Format the item color value based on the data stored in the database */
+								switch(orderItems[i].itemColor) {
+									default:
+										itemColors[i] = "Item Color 1";
+										break;
+									case "item_color_2":
+										itemColors[i] = "Item Color 2";
+										break;
+									case "item_color_3":
+										itemColors[i] = "Item Color 3";
+										break;
+									case "item_color_4":
+										itemColors[i] = "Item Color 4";
+										break;
+									case "item_color_5":
+										itemColors[i] = "Item Color 5";
+										break;
+								}
+
+								/* Display "None" if the user did not enter an item text */
+								if (orderItems[i].itemText == "") {
+									itemTexts[i] = "None";
+								} else {
+									itemTexts[i] = orderItems[i].itemText;
+								}
+
+								/* Format the company logo location value based on the data stored in the database;
+								 * if the retrieved data is comprised of multiple entries, the user chose both packaging
+								 * and item
+								 */
+								if (orderItems[i].companyLogoLocation.length > 1) {
+									companyLogoLocations[i] = "Packaging and Item";
+
+								/* Otherwise, format the company logo location value based on the values of the 
+								 * retrieved data 
+								 */
+								} else if (orderItems[i].companyLogoLocation == "item") {
+									companyLogoLocations[i] = "Item";
+								} else if (orderItems[i].companyLogoLocation == "packaging") {
+									companyLogoLocations[i] = "Packaging";
+								} else {
+									companyLogoLocations[i] = "None";
+								}
+
+								/* Display "None" if the user did not enter an additional instructions */
+								if (orderItems[i].additionalInstructions == "") {
+									additionalInstructions[i] = "None";
+								} else {
+									additionalInstructions[i] = orderItems[i].additionalInstructions;
+								}
+
+								orderItemPrices[i] = orderItems[i].orderItemPrice;
+							}
+
+							let productQuery = {_id: {$in: productIds}};
+							let productProjection = '_id name';
+
+							db.findMany(CatalogItem, productQuery, productProjection, function(result) {
+								let productData = result;
+
+								/* For each order item, match its product ID with the ObjectIDs of the retrieved
+									* catalog items. If the IDs match, store the product name in the prepared array.
+									* 
+									* This approach was used as the findMany() function only returns single instances
+									* of matching documents; thus, the number of retrieved documents may be less than
+									* the number of order items.
+									*/
+								for (let i = 0; i < orderItemIds.length; i++) {
+									for (let j = 0; j < productData.length; j++) {
+										if (productIds[i] == productData[j]._id) {
+											productNames[i] = productData[j].name;
+										}
+									}
+								}
+
+								/* Retrieve the data of the user who made the order from the database */
+								let userQuery = {username: order.user};
+								let userProjection = 'username address';
+
+								db.findOne(Client, userQuery, userProjection, function(result) {
+									
+									/* Store their address as the delivery address of the order */
+									let deliveryAddress = result.address;
+
+									/* The order items of an order are not reviewable until the order has
+									 * been completed (i.e., delivered to the customer); after an order has
+									 * been completed, the customer can then leave comments and ratings for
+									 * the products corresponding to their order items
+									 */
+									let reviewable = false;
+									if (order.status == "Delivered") {
+										reviewable = true;
+									}
+
+									let details = {
+										style: 'account',
+										logo: appLogo.logo,
+										userFlag: true,
+										adminFlag: true,
+										username: req.session.username,
+			
+										orderId: order._id,
+										name: order.name,
+										user: order.user,
+										companyName: order.companyName,
+										price: order.price,
+										status: order.status,
+										companyLogo: order.companyLogo,
+										preferredDeliveryDate: preferredDeliveryDate,
+										deliveryAddress: deliveryAddress,
+		
+										orderItemIds: orderItemIds,
+										productIds: productIds,
+										quantities: quantities,
+										packagings: packagings,
+										packagingColors: packagingColors,
+										packagingMessages: packagingMessages,
+										itemColors: itemColors,
+										itemTexts: itemTexts,
+										companyLogoLocations: companyLogoLocations,
+										additionalInstructions: additionalInstructions,
+										orderItemPrices: orderItemPrices,
+
+										productNames: productNames,
+										reviewable: reviewable
+									}
+				
+									res.render('orders-item-focused', details);
+								});
+							});
+						});
+					});
+					
+
+				/* If the user is not registered, redirect them to the landing page */
+				} else {
+					res.redirect('/');
+				}	
+
+			/* If the data retrieval was not successful, display an error message */			
+			} else {
+				console.log("Missing graphics elements");
+			}
+		});
+	},
+
+    /**
 	 * Sets the status of an order to "Unsubmitted"
 	 * 
 	 * @param req object that contains information on the HTTP request from the client

@@ -1,8 +1,8 @@
-{{>navbar}}
+{{>navbar userFlag = userFlag adminFlag = adminFlag username = username}}
 
 <div class="container-fluid bgc5 ps-4 py-3 f1">
     
-    {{#if isAdmin}}
+    {{#if adminFlag}}
         <a href="/account/admin/orders" class="back-order-anchor">
 
             <div class="d-flex flex-row justify-content-start col-md-3 ">
@@ -27,23 +27,34 @@
     
 </div>
 <div class="container bgc3 my-5 p-5 f1" id="order-focused">
-    <h2>Order Name Here</h2>
-    <h6><span class="bold">Order ID:</span> <span>AgG3tzP</span></h6>
-    <h6><span class="bold">Placed by: </span> <span>Username Here</span></h6>
-    <h6><span class="bold">Company:</span> <span>Company Name Here</span></h6>
-    <h6><span class="bold">Invoice: </span>₱ <span>9,999,999</span></h6>
-    <h6><span class="bold">Status: </span><span>Pending</span></h6>
-
-    {{#if reviewable}}{{/if}}
-    <a href="/rate/orderID" class="bgc1 f1 p-2 btn-anchor"  id="rate-order"><i class="fas fa-star"></i> Rate Order</a>
-    
+    <h2>{{name}}</h2>
+    <h6><span class="bold">Order ID:</span> <span>{{orderId}}</span></h6>
+    <h6><span class="bold">Placed by: </span> <span>{{user}}</span></h6>
+    <h6><span class="bold">Company:</span> <span>{{companyName}}</span></h6>
+    <h6><span class="bold">Invoice: </span>₱ <span>{{price}}</span></h6>
+    <h6><span class="bold">Status: </span><span>{{status}}</span></h6>
+    <h6><span class="bold">Company Logo: </span><span>{{companyLogo}}</span></h6>
     
     <h5 class="mt-4 bold">Order Details</h5>
     <div class="dropdown-divider"></div>
 
     <div class="accordion" id="products-accordion">
         
-        {{>orders-item-focused-details}}
+        {{#each orderItemIds}}
+            {{>orders-item-focused-details productId = (lookup ../productIds @index)
+                                           productName = (lookup ../productNames @index)  
+                                           quantity = (lookup ../quantities @index)
+                                           packaging = (lookup ../packagings @index)
+                                           packagingColor = (lookup ../packagingColors @index)
+                                           packagingMessage = (lookup ../packagingMessages @index)
+                                           itemColor = (lookup ../itemColors @index)
+                                           itemText = (lookup ../itemTexts @index)
+                                           companyLogoLocation = (lookup ../companyLogoLocations @index)
+                                           additionalInstructions = (lookup ../additionalInstructions @index)
+                                           orderItemPrice = (lookup ../orderItemPrices @index)
+                                           reviewable = ../reviewable
+                                           isAdmin = ../adminFlag}}
+        {{/each}}
 
     </div>
 
@@ -51,29 +62,14 @@
     <div class="dropdown-divider"></div>
 
     <h6 class="mt-3"><span class="bold">Delivery Address:</span> <span>Delivery Address Here</span></h6>
-    <h6 class="mt-3"> <span class="bold">Preferred Delivery Date: </span> <span>1/22/2021</span></h6>
-    {{#if isAdmin}}
-        <form class="mt-3" id="set-delivery-date-form">
-            <div class="d-flex flex-row justify-content-start align-items-start">
-                <h6 class="mt-1"><span class="bold">Set Delivery Date:</span> </h6>
-                <input type="date" class="ms-2" id="set-delivery-date">
+    <h6 class="mt-3"> <span class="bold">Preferred Delivery Date: </span> <span>{{preferredDeliveryDate}}</span></h6>
+
+    {{#unless adminFlag}}
+        {{#if reviewable}}
+            <div class="d-flex justify-content-center mt-5">
+                <button type="submit" class="btn bgc5 cwhite" id="submit-review">Submit Product Reviews</button>
             </div>
-        </form>
-    {{/if}}
-    
-
-    <div class="d-flex justify-content-center">
-
-        {{!-- Balik to Order Collection upon completion --}}
-        {{!-- var for first #if is supposed to be orderPending --}}
-        {{#if isAdmin}}   
-            {{#if orderPending}}<button type="button" class="btn bgc4" id="date-suggestion">Suggest Delivery Date to Client</button>{{/if}}
-            {{#if orderPaid}}<button type="button" class="btn bgc4" id="set-accepted">Set Order to Accepted</button>{{/if}}
         {{/if}}
-        
-
-       
-    </div>
-    
+    {{/unless}}
 
 </div>

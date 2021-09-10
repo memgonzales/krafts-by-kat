@@ -112,6 +112,9 @@ krafts.get('/account/admin/orders/accepted', orderTrackerController.getAccountAd
 krafts.get('/account/admin/orders/enRoute', orderTrackerController.getAccountAdminOrdersEnRoute);
 krafts.get('/account/admin/orders/delivered', orderTrackerController.getAccountAdminOrdersDelivered);
 
+/* For viewing the details of a submitted order */
+krafts.get('/viewSubmittedOrder/:id', orderTrackerController.getViewSubmittedOrder);
+
 /* For updating the statuses of orders */
 krafts.get('/cancelOrder/:id', orderTrackerController.getCancelOrder);
 krafts.get('/setOrderAccepted/:id', orderTrackerController.getSetOrderAccepted);

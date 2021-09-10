@@ -1,7 +1,7 @@
 <div class="container bgc3 one-order p-3 d-flex flex-row mt-3" >
    
     <div class="col-md-11">
-        <a href="/view/orderID" class="order-anchor">
+        <a href="/viewSubmittedOrder/{{orderId}}" class="order-anchor">
 
             <div class = "container">
                 <h4>{{orderName}}</h4>
@@ -43,28 +43,28 @@
                 {{#if isAdmin}}
                     {{#if pendingOrder}}
                         <li><a class="dropdown-item" href="/setOrderAccepted/{{orderId}}">Set Accepted</a></li>
-                        <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
+                        <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
                         <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
                     {{/if}}
 
                     {{#if acceptedOrder}}
                         <li><a class="dropdown-item" href="/setOrderEnRoute/{{orderId}}">Set En Route</a></li>
-                        <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
+                        <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
                         <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
                     {{/if}}
 
                     {{#if enRouteOrder}}
                         <li><a class="dropdown-item" href="/setOrderDelivered/{{orderId}}">Set Delivered</a></li>
-                        <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
+                        <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
                         <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
                     {{/if}}
 
                     {{#if deliveredOrder}}
-                        <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
+                        <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
                     {{/if}}
 
                 {{else}}
-                    <li><a class="dropdown-item" href="/view/orderID">View Order</a></li>
+                    <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
                 {{/if}}
                 
             </ul>
