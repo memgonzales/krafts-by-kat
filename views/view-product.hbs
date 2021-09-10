@@ -83,6 +83,11 @@
                     <form method = "POST" id = "add-to-order-form">
                         <input type = "hidden" value = {{id}} id = "order-product-id" name = "orderProductId">
                         <button class="btn bgc1" type = "submit" id = "add-to-order"><i class="fas fa-cart-plus"> <span class="f1">Add to Order</span></i></button>
+                   
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#choose-order">
+                            button trigger for choose order modal
+                        </button>
+
                     </form>
                 </div>
 
@@ -185,6 +190,41 @@
         {{/each}} --}}
     </div>
 
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="choose-order" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog d-flex justify-content-center">
+    <div class="modal-content bgc3">
+      <div class="modal-header">
+        <h5 class="modal-title">Choose an Order</h5>
+      </div>
+      <div class="modal-body">
+        
+        <div class="container bgc4 p-2 mb-2 br10 " id="one-order">
+            <button type="button" class="btn " id="new-order">
+                <i class="fas fa-plus-square"></i>
+                <h7 class="bold ms-2 new-order">New Order</h7>
+            </button>
+        </div>
+
+        {{!-- Only orders na di pa nabobook otherwise dapat wala sila sa list na ito --}}
+        <div class="pe-2 mt-2 br10" id="modal-order-list">
+            {{>order}}
+            {{>order}}
+            {{>order}}
+            {{>order}}
+            {{>order}}
+            {{>order}}
+            {{>order}}
+
+        </div>
+       
+   
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class = "hidden" id = "picturePaths">{{pictures}}</div>
