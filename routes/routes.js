@@ -106,17 +106,28 @@ if (process.env.NODE_ENV === 'test') {
     krafts.post('/postPlaceOrder', db.connect().single('companyLogo'), orderController.postPlaceOrder);
 }
 
+/* For deleting orders */
+krafts.get('/deleteOrder/:id', orderController.getDeleteOrder);
+
 /* For viewing and keeping track of orders from the admin side */
 krafts.get('/account/admin/orders/pending', orderTrackerController.getAccountAdminOrdersPending);
 krafts.get('/account/admin/orders/accepted', orderTrackerController.getAccountAdminOrdersAccepted);
 krafts.get('/account/admin/orders/enRoute', orderTrackerController.getAccountAdminOrdersEnRoute);
 krafts.get('/account/admin/orders/delivered', orderTrackerController.getAccountAdminOrdersDelivered);
 
+/* For viewing and keeping track of orders from the user side */
+krafts.get('/account/myOrders/unsubmitted', orderTrackerController.getAccountOrdersUnsubmitted);
+krafts.get('/account/myOrders/pending', orderTrackerController.getAccountOrdersPending);
+krafts.get('/account/myOrders/accepted', orderTrackerController.getAccountOrdersAccepted);
+krafts.get('/account/myOrders/enRoute', orderTrackerController.getAccountOrdersEnRoute);
+krafts.get('/account/myOrders/delivered', orderTrackerController.getAccountOrdersDelivered);
+
 /* For viewing the details of a submitted order */
 krafts.get('/viewSubmittedOrder/:id', orderTrackerController.getViewSubmittedOrder);
 
 /* For updating the statuses of orders */
 krafts.get('/cancelOrder/:id', orderTrackerController.getCancelOrder);
+krafts.get('/setOrderPending/:id', orderTrackerController.getSetOrderPending);
 krafts.get('/setOrderAccepted/:id', orderTrackerController.getSetOrderAccepted);
 krafts.get('/setOrderEnRoute/:id', orderTrackerController.getSetOrderEnRoute);
 krafts.get('/setOrderDelivered/:id', orderTrackerController.getSetOrderDelivered);
@@ -143,49 +154,12 @@ krafts.get('/partials-test', function(req,res){
 });
 
 /* TEMP Orders Nav Tabs*/ 
-
-// USER ORDER NAVIGATION
-krafts.get('/account/myOrders/pending', function(req,res){
-    var obj = {style: 'account', isAdmin: false}
-    res.render('orders-pending',obj);
-});
-
-krafts.get('/account/myOrders/accepted', function(req,res){
-    var obj = {style: 'account', isAdmin: false}
-    res.render('orders-accepted',obj);
-});
-
-krafts.get('/account/myOrders/enRoute', function(req,res){
-    var obj = {style: 'account', isAdmin: false}
-    res.render('orders-en-route',obj);
-
-});
-
-krafts.get('/account/myOrders/delivered', function(req,res){
-    var obj = {style: 'account', isAdmin: false}
-    res.render('orders-delivered',obj);
-
-});
-
-
-krafts.get('/view/orderID', function(req,res){
-    var obj = {style: 'account', isAdmin: false}
-    res.render('orders-item-focused',obj);
-});
-
 krafts.get('/account/contactMerchant', function(req,res){
     var obj = {
         style: 'account'
     }
     res.render('user-contact-merchant',obj);
 });
-
-krafts.get('/rate/orderID', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('rate-order', obj);
-})
 
 /*END of TEMP Orders Nav Tabs*/ 
 

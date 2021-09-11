@@ -8,7 +8,7 @@
             <div class="d-flex flex-row justify-content-start col-md-3 ">
 
                 <i class="fas fa-arrow-circle-left fa-2x fc3"></i>
-                <h5 class="cwhite ms-3 mt-1">Back to Orders</h5>
+                <h5 class="cwhite ms-3 mt-1">Orders</h5>
             </div>
         </a>
     {{else}}
@@ -17,7 +17,7 @@
             <div class="d-flex flex-row justify-content-start col-md-3 ">
 
                 <i class="fas fa-arrow-circle-left fa-2x fc3"></i>
-                <h5 class="cwhite ms-3 mt-1">Back to Orders</h5>
+                <h5 class="cwhite ms-3 mt-1">My Orders</h5>
             </div>
         </a>
     {{/if}}
@@ -61,7 +61,7 @@
     <h5 class="mt-4 bold">Delivery Details</h5>
     <div class="dropdown-divider"></div>
 
-    <h6 class="mt-3"><span class="bold">Delivery Address:</span> <span>Delivery Address Here</span></h6>
+    <h6 class="mt-3"><span class="bold">Delivery Address:</span> <span>{{deliveryAddress}}</span></h6>
     <h6 class="mt-3"> <span class="bold">Preferred Delivery Date: </span> <span>{{preferredDeliveryDate}}</span></h6>
 
     {{#unless adminFlag}}

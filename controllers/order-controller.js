@@ -521,6 +521,66 @@ const orderController = {
 				});
 			}
 		}	
+	},
+
+	/**
+	 * Deletes the order of a user from the database
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
+	 getDeleteOrder: function(req, res) {
+
+        /* If the user is the admin, redirect them to the admin page; the admin is not allowed to delete orders */
+        if (req.session.isAdmin == true) {
+			res.redirect('/');
+
+        /* If the user is unregistered, redirect them to the landing page */
+        } else {
+			if (req.session.username == undefined) {
+				res.redirect('/');
+
+			/* If the user is registered, delete the selected order accordingly */
+			} else {
+				let orderId = req.params.id;
+
+				/* Delete the order with the specified ObjectID from the database */
+				let conditions = {_id: db.convertToObjectId(orderId)};
+				
+				db.deleteOne(Order, conditions, function(flag) {
+					
+					/* Retrieve the user's current order */
+					let query = {username: req.session.username};
+					let projection = 'username currentOrder';
+
+					db.findOne(Client, query, projection, function(result) {
+						let currentOrder = result.currentOrder;
+
+						/* Delete the specified ObjectID from the user's list of order IDs*/
+						let filter = {username: req.session.username};
+						let update = {};
+
+						/* If the order to be deleted is the user's current order, reset their current order */
+						if (orderId == currentOrder) {
+							update = {
+								$pull: {orderIds: orderId},
+								currentOrder: ""
+							};
+
+						/* Otherwise, simply delete the specified ObjectID from the user's list of order IDs*/
+						} else {
+							update = {$pull: {orderIds: orderId}};
+						}
+
+						db.updateOne(Client, filter, update, function(flag) {
+							
+							/* Redirect the user to their list of orders */
+							res.redirect('/account/myOrders');
+						});
+					});
+				});
+			}       
+        }	
 	}
 }
 

@@ -4,150 +4,54 @@
         <ul class="nav justify-content-start cwhite">
 
             {{#if allOrdersTab}}
-
-                {{#if isAdmin}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link-start cblack start-active" aria-current="page" href="/account/admin/orders">All Orders</a>
-                    </li>
-                {{else}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link-start cblack start-active" aria-current="page" href="/account/myOrders">All Orders</a>
-                    </li>
-                {{/if}}
-
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link-start cblack start-active" aria-current="page" href="/account/admin/orders">All Orders</a>
+                </li>
             {{else}}
-
-                {{#if isAdmin}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link-start cwhite" aria-current="page" href="/account/admin/orders">All Orders</a>
-                    </li>
-                {{else}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link-start cwhite" aria-current="page" href="/account/myOrders">All Orders</a>
-                    </li>
-                {{/if}}
-                
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link-start cwhite" aria-current="page" href="/account/admin/orders">All Orders</a>
+                </li>     
             {{/if}}
-
-
 
             {{#if pendingTab}}
-
-                {{#if isAdmin}}
-
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link cblack between-active" href="/account/admin/orders/pending">Pending</a>
-                    </li>
-                {{else}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link cblack between-active" href="/account/myOrders/pending">Pending</a>
-                    </li>
-                {{/if}}  
-
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link cblack between-active" href="/account/admin/orders/pending">Pending</a>
+                </li>
             {{else}}
-
-                {{#if isAdmin}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link cwhite" href="/account/admin/orders/pending">Pending</a>
-                    </li>
-                {{else}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link cwhite" href="/account/myOrders/pending">Pending</a>
-                    </li>
-                {{/if}}
-                
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link cwhite" href="/account/admin/orders/pending">Pending</a>
+                </li>
             {{/if}}
-
-
 
             {{#if acceptedTab}}
-
-                {{#if isAdmin}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link cblack between-active" href="/account/admin/orders/accepted">Accepted</a>
-                    </li>
-                {{else}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link cblack between-active" href="/account/myOrders/accepted">Accepted</a>
-                    </li>
-                {{/if}}
-                
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link cblack between-active" href="/account/admin/orders/accepted">Accepted</a>
+                </li>
             {{else}}
-                {{#if isAdmin}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link cwhite" href="/account/admin/orders/accepted">Accepted</a>
-                    </li>
-                {{else}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link cwhite" href="/account/myOrders/accepted">Accepted</a>
-                    </li>
-                {{/if}}
-                
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link cwhite" href="/account/admin/orders/accepted">Accepted</a>
+                </li>
             {{/if}}
-
-
 
             {{#if enRouteTab}}
-
-                {{#if isAdmin}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link cblack between-active" href="/account/admin/orders/enRoute">En Route</a>
-                    </li>
-                {{else}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link cblack between-active" href="/account/myOrders/enRoute">En Route</a>
-                    </li>
-                {{/if}}
-                
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link cblack between-active" href="/account/admin/orders/enRoute">En Route</a>
+                </li>
             {{else}}
-
-                {{#if isAdmin}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link cwhite" href="/account/admin/orders/enRoute">En Route</a>
-                    </li>
-                
-                {{else}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link cwhite" href="/account/myOrders/enRoute">En Route</a>
-                    </li>
-                {{/if}}
-                
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link cwhite" href="/account/admin/orders/enRoute">En Route</a>
+                </li>
             {{/if}}
 
-
-
             {{#if deliveredTab}}
-                {{#if isAdmin}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link-end cblack end-active" href="/account/admin/orders/delivered">Delivered</a>
-                    </li>  
-                {{else}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link-end cblack end-active" href="/account/myOrders/delivered">Delivered</a>
-                    </li>  
-                {{/if}}
-                     
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link-end cblack end-active" href="/account/admin/orders/delivered">Delivered</a>
+                </li>  
             {{else}}
-                {{#if isAdmin}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link-end cwhite" href="/account/admin/orders/delivered">Delivered</a>
-                    </li>
-                {{else}}
-                    <li class="nav-item admin-orders-item">
-                        <a class="nav-link order-link-end cwhite" href="/account/myOrders/delivered">Delivered</a>
-                    </li>
-                {{/if}}
-               
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link-end cwhite" href="/account/admin/orders/delivered">Delivered</a>
+                </li>
             {{/if}}
         </ul>
     </div>
-        
-
-    <div class="container">
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search">
-            <button class="btn bgc2" type="submit"><i class="fas fa-search"></i></button>
-        </form> 
-    </div>
-           
 </div>
