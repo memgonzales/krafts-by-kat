@@ -19,7 +19,7 @@
                 <label for="quantity"><h5>Quantity</h5></label>
                 <input type="number" min = "1" max = "{{productQuantity}}" step = "1" id = "quantity-{{orderItemId}}" name = "orderItemQuantity" class="ms-3 item-quantity" value = {{quantity}}>
 
-                <span id = "quantity-exceed-{{orderItemId}}">STYLE ME (IF EXCEEDING ORDER QUANTITY)</span>
+                <span id = "quantity-exceed-{{orderItemId}}" class="qty-exceed mx-3 bold"></span>
             </div>
 
             <div class="mt-3" id="customization">
@@ -69,7 +69,7 @@
                             <option value="packaging_color_4">Packaging Color 4</option> 
                             <option value="packaging_color_5">Packaging Color 5</option> 
                         </select>
-                        <input type="text" class="mx-3" id="package-text-{{orderItemId}}" name = "orderItemPackagingMessage" placeholder="Want to add a message? (Optional)"
+                        <input type="text" class="addl-msg" id="package-text-{{orderItemId}}" name = "orderItemPackagingMessage" placeholder="Want to add a message? (Optional)"
                                value={{packagingMessage}}>
                     </div>
                    
@@ -90,7 +90,7 @@
                             <option value="item_color_5">Item Color 5</option> 
                         </select>
 
-                        <input type="text" class="mx-3" id="item-text-{{orderItemId}}" name = "orderItemText" placeholder="You can also add text here (Optional)"
+                        <input type="text" class="addl-msg" id="item-text-{{orderItemId}}" name = "orderItemText" placeholder="You can also add text here (Optional)"
                                value={{itemText}}>
                     </div>                        
                 </div>

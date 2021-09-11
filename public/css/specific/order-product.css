@@ -1,6 +1,7 @@
 :root{
     --black: black;
     --white: white;
+    --error: #C70039;
 }
 
 #order-form{
@@ -30,6 +31,18 @@
 
 }
 
+.addl-msg{
+    width: 400px;
+}
+
+.qty-exceed{
+    color: var(--error);
+}
+
+
+.qty-exceed{
+    color: var(--error);
+}
 
 input, textarea{
     border: none;
