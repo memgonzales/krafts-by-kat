@@ -457,6 +457,615 @@ const orderTrackerController = {
 	},
 
     /**
+	 * Gets the user unsubmitted orders page
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
+	  getAccountOrdersUnsubmitted: function(req, res) {
+
+		/* Prepare a query for the web application logo */
+		let query = {id: 0};
+		
+		/* Retrieve the web application logo from the database */
+		db.findOne(Display, query, '', function(result) {
+			
+			/* If the data retrieval was successful, display the admin pending orders page */
+			if (result) {
+				appLogo = result;
+
+				/* If the user is using an administrator account, redirect them to the landing page; the
+				 * administrator cannot view the unsubmitted orders of users
+				 */
+				if (req.session.isAdmin == true) {
+					res.redirect('/');
+
+				/* If the user is not registered, redirect them to the landing page */
+				} else {
+					if (req.session.username == undefined) {
+						res.redirect('/');
+
+					} else {
+						/* Store the order data in parallel arrays */
+						let orderIds = [];
+						let orderNames = [];
+						let orderStatuses = [];
+						let preferredDeliveryDates = [];
+						let orderPrices = [];
+
+						/* Use boolean arrays to indicate the statuses of orders; these are used as flags 
+						 * for the hbs rendering of the page
+						 */
+						let unsubmittedOrders = [];
+
+						/* Retrieve the current order of the user */
+						let query = {username: req.session.username};
+						let projection = 'username currentOrder';
+
+						db.findOne(Client, query, projection, function(result) {
+							let currentOrder = result.currentOrder;
+
+							/* Retrieve all the unsubmitted orders of the user */
+							let orderQuery = {
+								user: req.session.username,
+								status: 'Unsubmitted'
+							};
+				
+							let orderProjection = '_id name status preferredDeliveryDate price';
+
+							db.findMany(Order, orderQuery, orderProjection, function(result) {
+								
+								/* Store the retrieved data in the prepared parallel arrays */
+								for (let i = 0; i < result.length; i++) {
+									orderIds[i] = result[i]._id;
+
+									/* Display the order name as "Unnamed Order" if the user did not enter an order name */
+									if (result[i].name == "") {
+										orderNames[i] = "Unnamed Order";
+									} else {
+										orderNames[i] = result[i].name;
+									}
+
+									/* Append the string "(Current Order)" to the order name of the user's current order */
+									if (orderIds[i] == currentOrder) {
+										orderNames[i] = orderNames[i] + " (Current Order)";
+									}
+									
+									orderStatuses[i] = result[i].status;
+
+									/* As all of the retrieved orders from the database are unsubmitted orders, assign the
+									 * statuses of all retrieved orders accordingly 
+									 */
+									unsubmittedOrders[i] = true;
+
+									orderPrices[i] = result[i].price;
+
+									/* Format the display of the preferred delivery date from the Date object
+									 * stored in the database
+									 */
+									let month = result[i].preferredDeliveryDate.getMonth() + 1;
+									let formattedMonth = month;
+									if (month.toString().length < 2) {
+										formattedMonth = "0" + month.toString();
+									}
+
+									let date = result[i].preferredDeliveryDate.getDate();
+									let formattedDate = date;
+									if (date.toString().length < 2) {
+										formattedDate = "0" + date.toString();
+									}
+
+									let year = result[i].preferredDeliveryDate.getFullYear();
+
+									preferredDeliveryDates[i] = formattedMonth + "/" + formattedDate + "/" + year;
+								}
+
+								let details = {
+									style: 'account',
+									logo: appLogo.logo,
+									userFlag: true,
+									adminFlag: false,
+									username: req.session.username,
+
+									orderIds: orderIds,
+									orderNames: orderNames,
+									orderStatuses: orderStatuses,
+									preferredDeliveryDates: preferredDeliveryDates,
+									orderPrices: orderPrices,
+
+									unsubmittedOrders: unsubmittedOrders
+								}
+			
+								res.render('orders-unsubmitted-user', details);
+							});
+						});
+					}
+				}	
+
+			/* If the data retrieval was not successful, display an error message */			
+			} else {
+				console.log("Missing graphics elements");
+			}
+		});
+	},
+
+	/**
+	 * Gets the user pending orders page
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
+	 getAccountOrdersPending: function(req, res) {
+
+		/* Prepare a query for the web application logo */
+		let query = {id: 0};
+		
+		/* Retrieve the web application logo from the database */
+		db.findOne(Display, query, '', function(result) {
+			
+			/* If the data retrieval was successful, display the admin pending orders page */
+			if (result) {
+				appLogo = result;
+
+				/* If the user is using an administrator account, redirect them to the admin view
+				 */
+				if (req.session.isAdmin == true) {
+					res.redirect('/account/admin/orders/pending');
+
+				/* If the user is not registered, redirect them to the landing page */
+				} else {
+					if (req.session.username == undefined) {
+						res.redirect('/');
+
+					} else {
+						/* Store the order data in parallel arrays */
+						let orderIds = [];
+						let orderNames = [];
+						let orderStatuses = [];
+						let preferredDeliveryDates = [];
+						let orderPrices = [];
+
+						/* Use boolean arrays to indicate the statuses of orders; these are used as flags 
+						 * for the hbs rendering of the page
+						 */
+						let pendingOrders = [];
+
+						/* Retrieve all the pending orders of the user */
+						let orderQuery = {
+							user: req.session.username,
+							status: 'Pending'
+						};
+			
+						let orderProjection = '_id name status preferredDeliveryDate price';
+
+						db.findMany(Order, orderQuery, orderProjection, function(result) {
+							
+							/* Store the retrieved data in the prepared parallel arrays */
+							for (let i = 0; i < result.length; i++) {
+								orderIds[i] = result[i]._id;
+
+								/* Display the order name as "Unnamed Order" if the user did not enter an order name */
+								if (result[i].name == "") {
+									orderNames[i] = "Unnamed Order";
+								} else {
+									orderNames[i] = result[i].name;
+								}
+
+								orderStatuses[i] = result[i].status;
+
+								/* As all of the retrieved orders from the database are pending orders, assign the
+								 * statuses of all retrieved orders accordingly 
+								 */
+								pendingOrders[i] = true;
+
+								orderPrices[i] = result[i].price;
+
+								/* Format the display of the preferred delivery date from the Date object
+								 * stored in the database
+								 */
+								let month = result[i].preferredDeliveryDate.getMonth() + 1;
+								let formattedMonth = month;
+								if (month.toString().length < 2) {
+									formattedMonth = "0" + month.toString();
+								}
+
+								let date = result[i].preferredDeliveryDate.getDate();
+								let formattedDate = date;
+								if (date.toString().length < 2) {
+									formattedDate = "0" + date.toString();
+								}
+
+								let year = result[i].preferredDeliveryDate.getFullYear();
+
+								preferredDeliveryDates[i] = formattedMonth + "/" + formattedDate + "/" + year;
+							}
+
+							let details = {
+								style: 'account',
+								logo: appLogo.logo,
+								userFlag: true,
+								adminFlag: false,
+								username: req.session.username,
+
+								orderIds: orderIds,
+								orderNames: orderNames,
+								orderStatuses: orderStatuses,
+								preferredDeliveryDates: preferredDeliveryDates,
+								orderPrices: orderPrices,
+
+								pendingOrders: pendingOrders
+							}
+		
+							res.render('orders-pending-user', details);
+						});
+					}
+				}	
+
+			/* If the data retrieval was not successful, display an error message */			
+			} else {
+				console.log("Missing graphics elements");
+			}
+		});
+	},
+
+	/**
+	 * Gets the user accepted orders page
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
+	 getAccountOrdersAccepted: function(req, res) {
+
+		/* Prepare a query for the web application logo */
+		let query = {id: 0};
+		
+		/* Retrieve the web application logo from the database */
+		db.findOne(Display, query, '', function(result) {
+			
+			/* If the data retrieval was successful, display the admin pending orders page */
+			if (result) {
+				appLogo = result;
+
+				/* If the user is using an administrator account, redirect them to the admin view
+				 */
+				if (req.session.isAdmin == true) {
+					res.redirect('/account/admin/orders/accepted');
+
+				/* If the user is not registered, redirect them to the landing page */
+				} else {
+					if (req.session.username == undefined) {
+						res.redirect('/');
+
+					} else {
+						/* Store the order data in parallel arrays */
+						let orderIds = [];
+						let orderNames = [];
+						let orderStatuses = [];
+						let preferredDeliveryDates = [];
+						let orderPrices = [];
+
+						/* Use boolean arrays to indicate the statuses of orders; these are used as flags 
+						 * for the hbs rendering of the page
+						 */
+						let acceptedOrders = [];
+
+						/* Retrieve all the accepted orders of the user */
+						let orderQuery = {
+							user: req.session.username,
+							status: 'Accepted'
+						};
+			
+						let orderProjection = '_id name status preferredDeliveryDate price';
+
+						db.findMany(Order, orderQuery, orderProjection, function(result) {
+							
+							/* Store the retrieved data in the prepared parallel arrays */
+							for (let i = 0; i < result.length; i++) {
+								orderIds[i] = result[i]._id;
+
+								/* Display the order name as "Unnamed Order" if the user did not enter an order name */
+								if (result[i].name == "") {
+									orderNames[i] = "Unnamed Order";
+								} else {
+									orderNames[i] = result[i].name;
+								}
+
+								orderStatuses[i] = result[i].status;
+
+								/* As all of the retrieved orders from the database are accepted orders, assign the
+								 * statuses of all retrieved orders accordingly 
+								 */
+								acceptedOrders[i] = true;
+
+								orderPrices[i] = result[i].price;
+
+								/* Format the display of the preferred delivery date from the Date object
+								 * stored in the database
+								 */
+								let month = result[i].preferredDeliveryDate.getMonth() + 1;
+								let formattedMonth = month;
+								if (month.toString().length < 2) {
+									formattedMonth = "0" + month.toString();
+								}
+
+								let date = result[i].preferredDeliveryDate.getDate();
+								let formattedDate = date;
+								if (date.toString().length < 2) {
+									formattedDate = "0" + date.toString();
+								}
+
+								let year = result[i].preferredDeliveryDate.getFullYear();
+
+								preferredDeliveryDates[i] = formattedMonth + "/" + formattedDate + "/" + year;
+							}
+
+							let details = {
+								style: 'account',
+								logo: appLogo.logo,
+								userFlag: true,
+								adminFlag: false,
+								username: req.session.username,
+
+								orderIds: orderIds,
+								orderNames: orderNames,
+								orderStatuses: orderStatuses,
+								preferredDeliveryDates: preferredDeliveryDates,
+								orderPrices: orderPrices,
+
+								acceptedOrders: acceptedOrders
+							}
+		
+							res.render('orders-accepted-user', details);
+						});
+					}
+				}	
+
+			/* If the data retrieval was not successful, display an error message */			
+			} else {
+				console.log("Missing graphics elements");
+			}
+		});
+	},
+
+	/**
+	 * Gets the user en route orders page
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
+	 getAccountOrdersEnRoute: function(req, res) {
+
+		/* Prepare a query for the web application logo */
+		let query = {id: 0};
+		
+		/* Retrieve the web application logo from the database */
+		db.findOne(Display, query, '', function(result) {
+			
+			/* If the data retrieval was successful, display the admin pending orders page */
+			if (result) {
+				appLogo = result;
+
+				/* If the user is using an administrator account, redirect them to the admin view
+				 */
+				if (req.session.isAdmin == true) {
+					res.redirect('/account/admin/orders/enRoute');
+
+				/* If the user is not registered, redirect them to the landing page */
+				} else {
+					if (req.session.username == undefined) {
+						res.redirect('/');
+
+					} else {
+						/* Store the order data in parallel arrays */
+						let orderIds = [];
+						let orderNames = [];
+						let orderStatuses = [];
+						let preferredDeliveryDates = [];
+						let orderPrices = [];
+
+						/* Use boolean arrays to indicate the statuses of orders; these are used as flags 
+						 * for the hbs rendering of the page
+						 */
+						let enRouteOrders = [];
+
+						/* Retrieve all the en route orders of the user */
+						let orderQuery = {
+							user: req.session.username,
+							status: 'En Route'
+						};
+			
+						let orderProjection = '_id name status preferredDeliveryDate price';
+
+						db.findMany(Order, orderQuery, orderProjection, function(result) {
+							
+							/* Store the retrieved data in the prepared parallel arrays */
+							for (let i = 0; i < result.length; i++) {
+								orderIds[i] = result[i]._id;
+
+								/* Display the order name as "Unnamed Order" if the user did not enter an order name */
+								if (result[i].name == "") {
+									orderNames[i] = "Unnamed Order";
+								} else {
+									orderNames[i] = result[i].name;
+								}
+
+								orderStatuses[i] = result[i].status;
+
+								/* As all of the retrieved orders from the database are accepted orders, assign the
+								 * statuses of all retrieved orders accordingly 
+								 */
+								enRouteOrders[i] = true;
+
+								orderPrices[i] = result[i].price;
+
+								/* Format the display of the preferred delivery date from the Date object
+								 * stored in the database
+								 */
+								let month = result[i].preferredDeliveryDate.getMonth() + 1;
+								let formattedMonth = month;
+								if (month.toString().length < 2) {
+									formattedMonth = "0" + month.toString();
+								}
+
+								let date = result[i].preferredDeliveryDate.getDate();
+								let formattedDate = date;
+								if (date.toString().length < 2) {
+									formattedDate = "0" + date.toString();
+								}
+
+								let year = result[i].preferredDeliveryDate.getFullYear();
+
+								preferredDeliveryDates[i] = formattedMonth + "/" + formattedDate + "/" + year;
+							}
+
+							let details = {
+								style: 'account',
+								logo: appLogo.logo,
+								userFlag: true,
+								adminFlag: false,
+								username: req.session.username,
+
+								orderIds: orderIds,
+								orderNames: orderNames,
+								orderStatuses: orderStatuses,
+								preferredDeliveryDates: preferredDeliveryDates,
+								orderPrices: orderPrices,
+
+								enRouteOrders: enRouteOrders
+							}
+		
+							res.render('orders-en-route-user', details);
+						});
+					}
+				}	
+
+			/* If the data retrieval was not successful, display an error message */			
+			} else {
+				console.log("Missing graphics elements");
+			}
+		});
+	},
+
+	/**
+	 * Gets the user delivered orders page
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
+	 getAccountOrdersDelivered: function(req, res) {
+
+		/* Prepare a query for the web application logo */
+		let query = {id: 0};
+		
+		/* Retrieve the web application logo from the database */
+		db.findOne(Display, query, '', function(result) {
+			
+			/* If the data retrieval was successful, display the admin pending orders page */
+			if (result) {
+				appLogo = result;
+
+				/* If the user is using an administrator account, redirect them to the admin view
+				 */
+				if (req.session.isAdmin == true) {
+					res.redirect('/account/admin/orders/delivered');
+
+				/* If the user is not registered, redirect them to the landing page */
+				} else {
+					if (req.session.username == undefined) {
+						res.redirect('/');
+
+					} else {
+						/* Store the order data in parallel arrays */
+						let orderIds = [];
+						let orderNames = [];
+						let orderStatuses = [];
+						let preferredDeliveryDates = [];
+						let orderPrices = [];
+
+						/* Use boolean arrays to indicate the statuses of orders; these are used as flags 
+						 * for the hbs rendering of the page
+						 */
+						let deliveredOrders = [];
+
+						/* Retrieve all the delivered orders of the user */
+						let orderQuery = {
+							user: req.session.username,
+							status: 'Delivered'
+						};
+			
+						let orderProjection = '_id name status preferredDeliveryDate price';
+
+						db.findMany(Order, orderQuery, orderProjection, function(result) {
+							
+							/* Store the retrieved data in the prepared parallel arrays */
+							for (let i = 0; i < result.length; i++) {
+								orderIds[i] = result[i]._id;
+
+								/* Display the order name as "Unnamed Order" if the user did not enter an order name */
+								if (result[i].name == "") {
+									orderNames[i] = "Unnamed Order";
+								} else {
+									orderNames[i] = result[i].name;
+								}
+
+								orderStatuses[i] = result[i].status;
+
+								/* As all of the retrieved orders from the database are accepted orders, assign the
+								 * statuses of all retrieved orders accordingly 
+								 */
+								deliveredOrders[i] = true;
+
+								orderPrices[i] = result[i].price;
+
+								/* Format the display of the preferred delivery date from the Date object
+								 * stored in the database
+								 */
+								let month = result[i].preferredDeliveryDate.getMonth() + 1;
+								let formattedMonth = month;
+								if (month.toString().length < 2) {
+									formattedMonth = "0" + month.toString();
+								}
+
+								let date = result[i].preferredDeliveryDate.getDate();
+								let formattedDate = date;
+								if (date.toString().length < 2) {
+									formattedDate = "0" + date.toString();
+								}
+
+								let year = result[i].preferredDeliveryDate.getFullYear();
+
+								preferredDeliveryDates[i] = formattedMonth + "/" + formattedDate + "/" + year;
+							}
+
+							let details = {
+								style: 'account',
+								logo: appLogo.logo,
+								userFlag: true,
+								adminFlag: false,
+								username: req.session.username,
+
+								orderIds: orderIds,
+								orderNames: orderNames,
+								orderStatuses: orderStatuses,
+								preferredDeliveryDates: preferredDeliveryDates,
+								orderPrices: orderPrices,
+
+								deliveredOrders: deliveredOrders
+							}
+		
+							res.render('orders-delivered-user', details);
+						});
+					}
+				}	
+
+			/* If the data retrieval was not successful, display an error message */			
+			} else {
+				console.log("Missing graphics elements");
+			}
+		});
+	},
+
+    /**
 	 * Gets the details of a submitted order
 	 * 
 	 * @param req object that contains information on the HTTP request from the client
@@ -686,7 +1295,7 @@ const orderTrackerController = {
 										style: 'account',
 										logo: appLogo.logo,
 										userFlag: true,
-										adminFlag: true,
+										adminFlag: req.session.isAdmin,
 										username: req.session.username,
 			
 										orderId: order._id,
@@ -764,6 +1373,40 @@ const orderTrackerController = {
         /* If the user is not registered, redirect them to the landing page */
         } else {
             res.redirect('/');
+        }	
+	},
+
+	/**
+	 * Sets the status of an order to "Pending"; this is equivalent to the "Place Order" functionality
+	 * when the client does not add any order details before placing the order
+	 * 
+	 * @param req object that contains information on the HTTP request from the client
+	 * @param res object that contains information on the HTTP response from the server 
+	 */
+	 getSetOrderPending: function(req, res) {
+
+        /* If the user is the admin, redirect them to the admin page; the admin is not allowed to place orders */
+        if (req.session.isAdmin == true) {
+			res.redirect('/');
+
+        /* If the user is unregistered, redirect them to the landing page */
+        } else {
+			if (req.session.username == undefined) {
+				res.redirect('/');
+
+			/* If the user is registered, update the status of the selected order accordingly */
+			} else {
+				/* Set the status of the order with the corresponding ObjectID to "Pending" */
+				let filter = {_id: db.convertToObjectId(req.params.id)};
+				let update = {status: "Pending"};
+				
+				db.updateOne(Order, filter, update, function(flag) {
+					
+					/* Redirect the user to the pending orders page */
+					res.redirect('/account/myOrders/pending');
+				});
+			}
+            
         }	
 	},
 
@@ -923,7 +1566,7 @@ const orderTrackerController = {
         } else {
             res.redirect('/');
         }	
-	},
+	}
 }
 
 module.exports = orderTrackerController;

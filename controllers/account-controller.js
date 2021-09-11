@@ -135,35 +135,145 @@ const accountController = {
 			
 			/* If the data retrieval was successful, display the account page */
 			if (result) {
+				appLogo = result;
 
-				/* If the user is using an administrator account, display the nav bar accordingly */
+				/* If the user is using an administrator account, redirect them to the admin view */
 				if (req.session.isAdmin == true) {
-					let details = {
-						style: 'account',
-						logo: result.logo,
-						userFlag: true,
-						adminFlag: true,
-						username: req.session.username
-					}
-
-					res.render('user-my-orders', details);
+					res.redirect('/account/admin/orders');
 
 				/* If the user is not registered, redirect them to the landing page */
 				} else {
 					if (req.session.username == undefined) {
 						res.redirect('/');
 
-					/* If the user is using a regular account, display the nav bar accordingly */	
+					/* If the user is using a regular account, display the orders page accordingly */	
 					} else {
-						let details = {
-							style: 'account',
-							logo: result.logo,
-							userFlag: true,
-							adminFlag: false,
-							username: req.session.username
-						}
+					
+						/* Store the order data in parallel arrays */
+						let orderIds = [];
+						let orderNames = [];
+						let orderStatuses = [];
+						let preferredDeliveryDates = [];
+						let orderPrices = [];
 
-						res.render('user-my-orders', details);
+						/* Use boolean arrays to indicate the statuses of orders; these are used as flags 
+						 * for the hbs rendering of the page
+						 */
+						let unsubmittedOrders = [];
+						let pendingOrders = [];
+						let acceptedOrders = [];
+						let enRouteOrders = [];
+						let deliveredOrders = [];
+
+						/* Retrieve the ObjectID of the user's current order */
+						let query = {username: req.session.username};
+						let projection = 'username currentOrder';
+
+						db.findOne(Client, query, projection, function(result) {
+							let currentOrder = result.currentOrder;
+
+							/* Retrieve all orders made by the user */
+							let orderQuery = {user: req.session.username};
+							let orderProjection = '_id name status preferredDeliveryDate price';
+
+							db.findMany(Order, orderQuery, orderProjection, function(result) {
+								
+								/* Store the retrieved data in the prepared parallel arrays */
+								for (let i = 0; i < result.length; i++) {
+									orderIds[i] = result[i]._id;
+
+									/* Display the order name as "Unnamed Order" if the user did not enter an order name */
+									if (result[i].name == "") {
+										orderNames[i] = "Unnamed Order";
+									} else {
+										orderNames[i] = result[i].name;
+									}
+
+									/* Append the string "(Current Order)" to the order name of the user's current order */
+									if (orderIds[i] == currentOrder) {
+										orderNames[i] = orderNames[i] + " (Current Order)";
+									}
+									
+									orderStatuses[i] = result[i].status;
+
+									/* Assign the boolean values of the order status arrays depending on the retrieved order status */
+									if (orderStatuses[i] == "Unsubmitted") {
+										unsubmittedOrders[i] = true;
+										pendingOrders[i] = false;
+										acceptedOrders[i] = false;
+										enRouteOrders[i] = false;
+										deliveredOrders[i] = false;
+									} else if (orderStatuses[i] == "Pending") {
+										unsubmittedOrders[i] = false;
+										pendingOrders[i] = true;
+										acceptedOrders[i] = false;
+										enRouteOrders[i] = false;
+										deliveredOrders[i] = false;
+									} else if (orderStatuses[i] == "Accepted") {
+										unsubmittedOrders[i] = false;
+										pendingOrders[i] = false;
+										acceptedOrders[i] = true;
+										enRouteOrders[i] = false;
+										deliveredOrders[i] = false;
+									} else if (orderStatuses[i] == "En Route") {
+										unsubmittedOrders[i] = false;
+										pendingOrders[i] = false;
+										acceptedOrders[i] = false;
+										enRouteOrders[i] = true;
+										deliveredOrders[i] = false;
+									} else {
+										unsubmittedOrders[i] = false;
+										pendingOrders[i] = false;
+										acceptedOrders[i] = false;
+										enRouteOrders[i] = false;
+										deliveredOrders[i] = true;
+									}
+
+									orderPrices[i] = result[i].price;
+
+									/* Format the display of the preferred delivery date from the Date object
+									 * stored in the database
+									 */
+									let month = result[i].preferredDeliveryDate.getMonth() + 1;
+									let formattedMonth = month;
+									if (month.toString().length < 2) {
+										formattedMonth = "0" + month.toString();
+									}
+
+									let date = result[i].preferredDeliveryDate.getDate();
+									let formattedDate = date;
+									if (date.toString().length < 2) {
+										formattedDate = "0" + date.toString();
+									}
+
+									let year = result[i].preferredDeliveryDate.getFullYear();
+
+									preferredDeliveryDates[i] = formattedMonth + "/" + formattedDate + "/" + year;
+								}
+
+								let details = {
+									style: 'account',
+									logo: appLogo.logo,
+									userFlag: true,
+									adminFlag: false,
+									username: req.session.username,
+
+									orderIds: orderIds,
+									orderNames: orderNames,
+									orderStatuses: orderStatuses,
+									preferredDeliveryDates: preferredDeliveryDates,
+									orderPrices: orderPrices,
+
+									unsubmittedOrders: unsubmittedOrders,
+									pendingOrders: pendingOrders,
+									acceptedOrders: acceptedOrders,
+									enRouteOrders: enRouteOrders,
+									deliveredOrders: deliveredOrders
+								}
+
+								res.render('user-my-orders', details);
+							});
+						});
 					}
 				}	
 

@@ -1,10 +1,10 @@
 {{>navbar userFlag = userFlag adminFlag = adminFlag username = username}}
 
 <div class="container-fluid content d-flex flex-row f1" id="account-container" >
-    {{>account-sidebar isAdmin = adminFlag myOrdersTab = true}}
+    {{>account-sidebar isAdmin = adminFlag myOrdersTab = true }}
 
     <div class="col-md-9">
-        {{>orders-nav-user allOrdersTab = true}}
+        {{>orders-nav-user isAdmin = adminFlag pendingTab = true}}
 
         <div class="container" id="orders-collection">
 
@@ -15,14 +15,10 @@
                                orderStatus = (lookup ../orderStatuses @index)
                                preferredDeliveryDate = (lookup ../preferredDeliveryDates @index)
                                orderPrice = (lookup ../orderPrices @index)
-                               unsubmittedOrder = (lookup ../unsubmittedOrders @index)
-                               pendingOrder = (lookup ../pendingOrders @index)
-                               acceptedOrder = (lookup ../acceptedOrders @index)
-                               enRouteOrder = (lookup ../enRouteOrders @index)
-                               deliveredOrder = (lookup ../deliveredOrders @index)}}
+                               pendingOrder = (lookup ../pendingOrders @index)}}
             {{/each}}
 
         </div>
-        
+
     </div>
 </div>
