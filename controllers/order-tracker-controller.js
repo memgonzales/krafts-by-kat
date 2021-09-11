@@ -1557,9 +1557,14 @@ const orderTrackerController = {
             let update = {status: "Delivered"};
             
             db.updateOne(Order, filter, update, function(flag) {
-                
-                /* Redirect the user to the en route orders page */
-                res.redirect('/account/admin/orders/delivered');
+                /* If the user is the admin, redirect them to the admin view of the delivered orders page */
+				if (req.session.isAdmin == true) {
+					res.redirect('/account/admin/orders/delivered');
+
+				/* Otherwise, direct them to the user view of the delivered orders page */
+				} else {
+					res.redirect('/account/myOrders/delivered');
+				}
             });
 
         /* If the user is not registered, redirect them to the landing page */
