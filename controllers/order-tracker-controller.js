@@ -1397,16 +1397,40 @@ const orderTrackerController = {
 			/* If the user is registered, update the status of the selected order accordingly */
 			} else {
 				/* Set the status of the order with the corresponding ObjectID to "Pending" */
-				let filter = {_id: db.convertToObjectId(req.params.id)};
+				let orderId = req.params.id;
+				
+				let filter = {_id: db.convertToObjectId(orderId)};
 				let update = {status: "Pending"};
 				
 				db.updateOne(Order, filter, update, function(flag) {
 					
-					/* Redirect the user to the pending orders page */
-					res.redirect('/account/myOrders/pending');
+					/* Retrieve the ObjectID of the user's current order */
+					let query = {username: req.session.username};
+					let projection = 'username currentOrder';
+
+					db.findOne(Client, query, projection, function(result) {
+						let currentOrder = result.currentOrder;
+
+						/* If the user submitted their current order, set their current order to blank
+						 * before redirecting them to the pending orders page 
+						 */
+						if (currentOrder == orderId) {
+							let clientFilter = {username: req.session.username};
+							let clientUpdate = {currentOrder: ""};
+
+							db.updateOne(Client, clientFilter, clientUpdate, function(flag) {
+								/* Redirect the user to the pending orders page */
+								res.redirect('/account/myOrders/pending');
+							});
+
+						/* Otherwise, immediately redirect them to the pending orders page */
+						} else {
+							/* Redirect the user to the pending orders page */
+							res.redirect('/account/myOrders/pending');
+						}
+					});	
 				});
-			}
-            
+			}      
         }	
 	},
 
