@@ -1,10 +1,10 @@
-<div class="accordion-item">
+<div class="accordion-item" id = "accordion-item-{{productId}}">
     <h2 class="accordion-header" id="productID_heading">
-    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#productID_collapse" aria-expanded="true" aria-controls="productID_collapse">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#productID_collapse-{{productId}}" aria-expanded="true" aria-controls="productID_collapse">
         {{productName}}       
     </button>
     </h2>
-    <div id="productID_collapse" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    <div id="productID_collapse-{{productId}}" class="accordion-collapse collapse" aria-labelledby="productID_heading" data-bs-parent="#productID_heading">
         <div class="accordion-body">
 
             <div>

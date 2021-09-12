@@ -33,8 +33,11 @@
     <h6><span class="bold">Company:</span> <span>{{companyName}}</span></h6>
     <h6><span class="bold">Invoice: </span>₱ <span>{{price}}</span></h6>
     <h6><span class="bold">Status: </span><span>{{status}}</span></h6>
-    <h6><span class="bold">Company Logo: </span><span>{{companyLogo}}</span></h6>
+    <h6><span class="bold">Company Logo: </span><span><a href="{{companyLogo}}" id  = "company-logo-download" download>
+        <span id = "company-logo-filename">{{companyName}}</span></a> <i class="fas fa-download"></i></span></h6>
     
+    <img id = "company-logo-photo" src = {{companyLogo}}>
+
     <h5 class="mt-4 bold">Order Details</h5>
     <div class="dropdown-divider"></div>
 
@@ -73,3 +76,5 @@
     {{/unless}}
 
 </div>
+
+<script src = "/js/orders-item-focused.js"></script>
