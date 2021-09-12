@@ -131,6 +131,7 @@ const orderController = {
 										isCompanyLogoUploaded: order.isCompanyLogoUploaded,
 
 										orderItemIds: orderItemIds,
+										productIds: productIds,
 										quantities: quantities, 
 										packagingOptions: packagingOptions,
 										packagingColors: packagingColors,
