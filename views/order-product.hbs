@@ -57,6 +57,7 @@
                 {{#each orderItemIds}}
                     {{>order-specific orderId = orderId
                                       orderItemId = this 
+                                      productId = (lookup ../productIds @index)
                                       quantity = (lookup ../quantities @index) 
                                       packaging = (lookup ../packagingOptions @index) 
                                       packagingColor = (lookup ../packagingColors @index)

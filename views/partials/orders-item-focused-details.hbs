@@ -1,99 +1,76 @@
-<div class="accordion-item">
+<div class="accordion-item" id = "accordion-item-{{productId}}">
     <h2 class="accordion-header" id="productID_heading">
-    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#productID_collapse" aria-expanded="true" aria-controls="productID_collapse">
-        Product Name Here
-
-        
-        {{!-- This serves no purpose sa mismong website BESIDES na pam pa check list lang siya sa admin... can be removed tho --}}
-        {{#if isAdmin}}
-            {{#if orderAccepted}}
-                <div class="form-check mx-4">
-                        <input class="form-check-input" type="checkbox" value="" id="product-prep-status">
-                        <label class="form-check-label" for="product-prep-status">
-                            Product Prepared!
-                        </label>
-                </div>
-            {{/if}}
-        {{/if}}
-        
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#productID_collapse-{{productId}}" aria-expanded="true" aria-controls="productID_collapse">
+        {{productName}}       
     </button>
     </h2>
-    <div id="productID_collapse" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+    <div id="productID_collapse-{{productId}}" class="accordion-collapse collapse" aria-labelledby="productID_heading" data-bs-parent="#productID_heading">
         <div class="accordion-body">
 
             <div>
-                <h6><span class="bold">Quantity: </span> <span>50</span></h5>
+                <h6><span class="bold">Quantity: </span> <span>{{quantity}}</span></h5>
             </div>
             
             <div class="mt-3">
                 <h6>
                     <span class="bold">Packaging: </span> 
-                    <span>Kraft Box</span> 
+                    <span>{{packaging}}</span> 
                     <span class="ms-2">|</span>
-                    <span class="bold ms-2">Color: </span> Packaging Color 1</span>
+                    <span class="bold ms-2">Color: </span> {{packagingColor}}</span>
                     <span class="ms-2">|</span>
-                    <span class="bold ms-2">Packaging Message: </span><span>None</span>
+                    <span class="bold ms-2">Packaging Message: </span><span>{{packagingMessage}}</span>
                 
                 </h6>
             </div>
             
             <div class="mt-3">   
                 <h6>
-                    <span class="bold">Item Color:</span> <span>Item Color 3</span>
+                    <span class="bold">Item Color:</span> <span>{{itemColor}}</span>
                     <span class="ms-2">|</span>
-                    <span class="bold ms-2">Item Message: </span><span>None</span>
+                    <span class="bold ms-2">Item Message: </span><span>{{itemText}}</span>
                 </h6>
             </div>
 
             <div class="mt-3">
                 <h6> 
-                    {{!-- File Provided IF meron image provided --}}
-                    <span class="bold">Company Logo:</span> <span><a href="#">file.png <i class="fas fa-download"></i></a></span>
-                    <span class="ms-2">|</span>
-                    <span class="bold ms-2">On: </span><span>Packaging [or] Item [or] Packaging and Item</span>
+                    <span class="bold">Company Logo On: </span><span>{{companyLogoLocation}}</span>
+                </h6>
+            </div>
+
+            <div class="mt-3">
+                <h6> 
+                    <span class="bold">Subtotal: </span>₱ <span>{{orderItemPrice}}</span>
                 </h6>
             </div>
 
             <div class="mt-3">
                 <h6 class="bold">Additional Instructions</h6>
                 <div class="dropdown-divider"></div>
-                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus a vitae, deserunt consequatur eligendi error quia, architecto tempora cum ad amet quaerat non est soluta, iste autem. Aut, cum culpa.</span>
+                <span>{{additionalInstructions}}</span>
             </div>
 
+        {{#unless isAdmin}}
             {{#if reviewable}}
-                {{!-- Pasok here ung review tab --}}
-            {{/if}}
-            <form>
+                <div class="mt-3 bgc1 pb-4 px-4 pt-3" id="review-div">
+                    <h5 class="bold">Leave a Review</h5>
+                    <div class="dropdown-divider"></div>
 
+                
+                    <div class="d-flex flex-row mb-2">
+
+                        <a class="btn rate1" id="productID_rate1"><i class="far fa-star fa-lg fc5" id="star1"></i></a>
+                        <a class="btn rate2" id="productID_rate2"><i class="far fa-star fa-lg fc5" id="star2"></i></a>
+                        <a class="btn rate3" id="productID_rate3"><i class="far fa-star fa-lg fc5" id="star3"></i></a>
+                        <a class="btn rate4" id="productID_rate4"><i class="far fa-star fa-lg fc5" id="star4"></i></a>
+                        <a class="btn rate5" id="productID_rate5"><i class="far fa-star fa-lg fc5" id="star5"></i></a>
             
-             <div class="mt-3 bgc1 pb-4 px-4 pt-3" id="review-div">
-                <h5 class="bold">Leave a Review</h5>
-                <div class="dropdown-divider"></div>
+                    </div>
 
-            
-                <div class="d-flex flex-row mb-2">
+                    <textarea class="bgc3" rows="5" name = "description" cols="139" placeholder="Leave us a message so we know what you thought of us..." id="productID-rating-msg" style="resize: none;"></textarea>
 
-                    <a class="btn rate1" id="productID_rate1"><i class="far fa-star fa-lg fc5" id="star1"></i></a>
-                    <a class="btn rate2" id="productID_rate2"><i class="far fa-star fa-lg fc5" id="star2"></i></a>
-                    <a class="btn rate3" id="productID_rate3"><i class="far fa-star fa-lg fc5" id="star3"></i></a>
-                    <a class="btn rate4" id="productID_rate4"><i class="far fa-star fa-lg fc5" id="star4"></i></a>
-                    <a class="btn rate5" id="productID_rate5"><i class="far fa-star fa-lg fc5" id="star5"></i></a>
-        
                 </div>
-
-                <textarea class="bgc3" rows="5" name = "description" cols="139" placeholder="Leave us a message so we know what you thought of us..." id="productID-rating-msg" style="resize: none;"></textarea>
-
-
-            </div>
-            
-
+            {{/if}}
+        {{/unless}}
         </div>
-
-    
-    </div>
-    
-    
-    
-    
-            
+    </div>           
 </div>

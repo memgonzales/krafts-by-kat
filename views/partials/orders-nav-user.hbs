@@ -1,0 +1,67 @@
+<div class="container-fluid bgc5 p-3 d-flex flex-row justify-content between">
+
+    <div class="container">
+        <ul class="nav justify-content-start cwhite">
+
+            {{#if allOrdersTab}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link-start cblack start-active" aria-current="page" href="/account/myOrders">All Orders</a>
+                </li>
+            {{else}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link-start cwhite" aria-current="page" href="/account/myOrders">All Orders</a>
+                </li>
+            {{/if}}
+
+           {{#if unsubmittedTab}}
+                    <li class="nav-item admin-orders-item">
+                        <a class="nav-link order-link cblack between-active" href="/account/myOrders/unsubmitted">Unsubmitted</a>
+                    </li>
+            {{else}}
+                    <li class="nav-item admin-orders-item">
+                        <a class="nav-link order-link cwhite" href="/account/myOrders/unsubmitted">Unsubmitted</a>
+                    </li>
+            {{/if}}
+
+            {{#if pendingTab}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link cblack between-active" href="/account/myOrders/pending">Pending</a>
+                </li> 
+            {{else}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link cwhite" href="/account/myOrders/pending">Pending</a>
+                </li>
+            {{/if}}
+
+            {{#if acceptedTab}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link cblack between-active" href="/account/myOrders/accepted">Accepted</a>
+                </li>
+            {{else}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link cwhite" href="/account/myOrders/accepted">Accepted</a>
+                </li>
+            {{/if}}
+
+            {{#if enRouteTab}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link cblack between-active" href="/account/myOrders/enRoute">En Route</a>
+                </li> 
+            {{else}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link cwhite" href="/account/myOrders/enRoute">En Route</a>
+                </li>
+            {{/if}}
+
+            {{#if deliveredTab}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link-end cblack end-active" href="/account/myOrders/delivered">Delivered</a>
+                </li>   
+            {{else}}
+                <li class="nav-item admin-orders-item">
+                    <a class="nav-link order-link-end cwhite" href="/account/myOrders/delivered">Delivered</a>
+                </li>
+            {{/if}}
+        </ul>
+    </div>
+</div>

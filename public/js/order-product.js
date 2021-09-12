@@ -79,6 +79,11 @@ $(document).ready(function() {
     /* Reflect fetched data about preferred delivery date */
     $('#orderID_prefDate').val(formatDate($('#pref_date').text()));
 
+    /* Update company logo based on file uploaded */
+    $('#company-logo').on('change', function() {
+        readURL(this);
+    });
+
     $('#save-order').on('click', function(e) {
         e.preventDefault();
         
@@ -190,4 +195,50 @@ $(document).ready(function() {
             return '';
         }
     }
+
+    function readURL(input) {
+        /* Get the file extension using regex */
+		let extension = input.value.match(/\.([^\.]+)$/)[1];
+		let isImage = imgFilter(extension.toLowerCase());
+
+		/* The uploaded file is recognized as a valid image file type */
+		if (isImage) {
+			if (input.files && input.files[0]) {
+				let reader = new FileReader();
+				reader.onload = function(e) {
+					$('#company-logo-img').attr('src', e.target.result);
+				}
+				
+				reader.readAsDataURL(input.files[0]);
+			}
+		} else {
+			/* The uploaded file is not recognized as a valid image file type */
+			input.value = '';
+		}
+    }
+
+    /**
+	 * Prevents the uploading of non-image files on the client-side by displaying an alert
+	 * 
+	 * @param extension extension of the file uploaded (all letters in lowercase)
+	 */
+	function imgFilter(extension) {
+		switch(extension) {
+			/* Fall through in all cases is deliberate */
+			case 'jpg':
+			case 'jpeg':
+			case 'jpe':
+			case 'jfif':
+			case 'heic':
+			case 'png':
+			case 'gif':
+			case 'webp':
+			case 'bmp':
+			case 'svg':
+				return true;
+			default:
+				alert('This file type is not supported. Please upload a valid image.');
+				return false;
+		}
+	}
 })

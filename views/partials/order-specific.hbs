@@ -17,7 +17,8 @@
                 <input type="hidden" id = "order-item-id-{{orderItemId}}" name = "orderItemId" value = {{orderItemId}}>
 
                 <label for="quantity"><h5>Quantity</h5></label>
-                <input type="number" min = "1" max = "{{productQuantity}}" step = "1" id = "quantity-{{orderItemId}}" name = "orderItemQuantity" class="ms-3 item-quantity" value = {{quantity}}>
+                <input type="hidden" value = {{productId}} id = "product-{{orderItemId}}" class = "product-id">
+                <input type="number" min = "1" max = "{{productQuantity}}" step = "1" id = "quantity-{{orderItemId}}" name = "orderItemQuantity" class="ms-3 item-quantity product-quantity-{{productId}}" value = {{quantity}}>
 
                 <span id = "quantity-exceed-{{orderItemId}}" class="qty-exceed mx-3 bold"></span>
             </div>
