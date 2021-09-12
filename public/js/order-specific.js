@@ -40,25 +40,30 @@ $(document).ready(function() {
         });
     });
 
-    // $('.item-quantity').each(function() {
-    //     $(this).on('input', function() {
-    //         const orderItemId = getOrderItemId(this);
+    $('.item-quantity').each(function() {
+        $(this).on('input', function() {
+            const orderItemId = getOrderItemId(this);
+            const productItemId = $('#product-' + orderItemId).val();
 
-    //         if (parseInt($(this).val()) > parseInt($(this).attr('max'))) {
-    //             $(this).val($(this).attr('max'));
-    //             $('#quantity-exceed-' + orderItemId).text('We only have ' + $(this).attr('max') + ' units available');
-    //         } else if (parseInt($(this).val()) < parseInt($(this).attr('min'))) {
-    //             $(this).val($(this).attr('min'));
-    //             $('#quantity-exceed-' + orderItemId).text('You have to order at least one item');
-    //         } else {
-    //             $('#quantity-exceed-' + orderItemId).text('');
-    //         }
-    //     });
-    // });
+            /* Get the total number of ordered quantities for all items that are of the same product */
+            let totalOrdered = 0;
+            $('.product-quantity-' + productItemId).each(function() {
+                totalOrdered += parseInt($(this).val());
+            });          
 
-    $('.item-quantity').each(function()) {
-        
-    }
+            if (totalOrdered > parseInt($(this).attr('max'))) {
+                const excess = totalOrdered - parseInt($(this).attr('max'));
+                const left = $(this).val() - excess
+                $(this).val(left);
+                $('#quantity-exceed-' + orderItemId).text('Only ' + left + ' more units are available');
+            } else if (parseInt($(this).val()) < parseInt($(this).attr('min'))) {
+                $(this).val($(this).attr('min'));
+                $('#quantity-exceed-' + orderItemId).text('You have to order at least one item');
+            } else {
+                $('#quantity-exceed-' + orderItemId).text('');
+            }
+        });
+    });
 
     /* Reflect fetched data about packaging */
     $('.packaging-data').each(function() {
