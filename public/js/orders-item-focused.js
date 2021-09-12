@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    /* Check if the client uploaded a company logo */
+    if ($('#company-logo-presence').text().trim().length == 0) {
+        $('#company-logo-section').remove();
+        $('#company-logo-photo').remove();
+    }
+
     const logo = $('#company-logo-photo').attr('src');
     const logoTokens = logo.split('.');
     const extension = logoTokens[logoTokens.length - 1];
