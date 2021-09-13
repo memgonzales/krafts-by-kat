@@ -4,9 +4,10 @@ const { JSDOM } = jsdom;
 const assert = require('chai').assert;
 const {getOrderItemId,
     formatNumber,
+    unformatNumber,
     hideProduct,
     trackRemovedOrderItems,
-    updateTotal} = require('./order-specific-util');
+    removeProductFromSummary} = require('./order-specific-util');
 
 describe('the function to extract the ID of an order item', function(){
     beforeEach(function() {
