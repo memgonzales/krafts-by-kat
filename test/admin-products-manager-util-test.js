@@ -16,7 +16,7 @@ describe('the function to format numbers', function() {
         global.$ = global.jQuery = require('jquery')(window);
     });
 
-    it('should not place any commas on digits with less than or equal to 3 digits', function() {
+    it('should not place any commas on numbers with less than or equal to 3 digits', function() {
         const result = formatNumberIDText('.units-sold', $('#sample-div'), '123');
         assert.equal($('#sample-div').text(), '123');
     });

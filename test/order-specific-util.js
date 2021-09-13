@@ -10,7 +10,7 @@ const formatNumber = function(price) {
 }
 
 const unformatNumber = function(price) {
-    return price.replace(',', '');
+    return price.replace(/,/g, '');;
 }
 
 const hideProduct = function(orderItemId) {
