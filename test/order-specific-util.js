@@ -55,5 +55,6 @@ module.exports = {
     unformatNumber,
     hideProduct,
     trackRemovedOrderItems,
+    getOrderItemIds,
     removeProductFromSummary
 }

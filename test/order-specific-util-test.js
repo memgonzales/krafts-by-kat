@@ -7,6 +7,7 @@ const {getOrderItemId,
     unformatNumber,
     hideProduct,
     trackRemovedOrderItems,
+    getOrderItemIds,
     removeProductFromSummary} = require('./order-specific-util');
 
 describe('the function to extract the ID of an order item', function() {
@@ -143,4 +144,43 @@ describe('the function to keep track of the order item IDs of the removed items'
         trackRemovedOrderItems('a3b3');
         assert.equal($('#removed-order-items').val(), ',a1b1,a2b2,a3b3');
     });
-})
+});
+
+describe('the function to extract the IDs of the orders', function() {
+    it('should return an array', function() {
+        const result = getOrderItemIds('01,02,03');
+        assert.typeOf(result, 'array');
+    });
+
+    it('should return a single-element array if there is only a single order ID', function() {
+        const result = getOrderItemIds('01');
+        assert.sameMembers(result, ['01']);
+    });
+
+    it('should return an array with length equal to the number of order IDs', function() {
+        const result = getOrderItemIds('01,02,03');
+        assert.lengthOf(result, 3);
+    });
+
+    it('should return an array with the correct order IDs', function() {
+        const result = getOrderItemIds('01,02,03');
+        assert.sameMembers(result, ['01', '02', '03']);
+    });
+});
+
+describe('the function to remove an item from the order summary', function() {
+    beforeEach(function() {
+        const dom = new JSDOM(
+            '<html><body><div id = "order-summary-item-01">1,987.57</div><div id = "order-total-price-display">9,999.76</div></body></html>',
+            {url: 'http://localhost'});
+
+        global.window = dom.window;
+        global.document = dom.window.document;   
+        global.$ = global.jQuery = require('jquery')(window);
+    });
+    
+    it('should remove the item from the order summary', function() {
+        const result = removeProductFromSummary('01');
+        assert.equal($('#order-summary-item-01').length, 0);
+    });
+});
