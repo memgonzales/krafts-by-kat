@@ -34,7 +34,7 @@ $(document).ready(function() {
     }
 
     function unformatNumber(price) {
-        return price.replace(',', '');
+        return price.replace(/,/g, '');;
     }
 
     function getOrderItemIds(orderItemIdsStr) {
