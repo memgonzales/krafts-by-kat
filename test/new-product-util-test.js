@@ -136,7 +136,7 @@ describe('the function to include product information in the preview', function(
         assert.equal(($('#item-price').text())[0], '₱');
     });
 
-    it('should not place any commas on digits with less than or equal to 3 digits', function() {
+    it('should not place any commas on numbers with less than or equal to 3 digits', function() {
         $('#product-price').val('123');
         const result = previewText();
         assert.equal($('#item-price').text(), '₱123.00');

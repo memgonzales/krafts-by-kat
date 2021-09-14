@@ -16,7 +16,7 @@ describe('the function to format numbers', function() {
         assert.typeOf(result, 'string');
     });
 
-    it('should not place any commas on digits with less than or equal to 3 digits', function() {
+    it('should not place any commas on numbers with less than or equal to 3 digits', function() {
         const result = formatNumberIDText('#units-sold', '123');
         assert.equal(result, '123');
     });

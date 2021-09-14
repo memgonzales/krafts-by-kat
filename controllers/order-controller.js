@@ -234,6 +234,13 @@ const orderController = {
 
 				if (orderItemIds != undefined) {
 					for (let i = 0; i < orderItemIds.length; i++) {
+						var locations;
+						if (orderItemLogoLocations[i] == undefined) {
+							locations = orderItemLogoLocations[i];
+						} else {
+							locations = orderItemLogoLocations[i].split('|');
+						}
+
 						orderItemDetails[i] = {
 							quantity: orderItemQuantities[i],
 							packaging: orderItemPackagingTypes[i],
@@ -242,7 +249,7 @@ const orderController = {
 							itemColor: orderItemColors[i],
 							itemText: orderItemTexts[i],
 							includeCompanyLogo: orderItemCompanyLogos[i],
-							companyLogoLocation: orderItemLogoLocations[i].split("|"),
+							companyLogoLocation: locations,
 							additionalInstructions: orderItemAdditionalInstructions[i],
 							orderItemPrice: orderItemPrices[i]
 						}
