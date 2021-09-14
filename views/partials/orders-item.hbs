@@ -1,8 +1,8 @@
-<div class="container bgc3 one-order p-3 d-flex flex-row mt-3" >
+<div class="container bgc3 one-order p-3 d-flex flex-row mt-3"  id = "order-div-{{orderId}}">
    
     <div class="col-md-11">
             <div class = "container">
-                <h4>{{orderName}}</h4>
+                <h4 id = "order-name-{{orderId}}" class = "order-name">{{orderName}}</h4>
             </div>
 
             <div class="container d-flex flex-row">
@@ -14,7 +14,7 @@
 
                 <span class="mx-3">
                     <span class="bold">Status: </span> 
-                    <span>{{orderStatus}}</span>
+                    <span id = "order-status-{{orderId}}">{{orderStatus}}</span>
                 </span>
 
                 <span class="mx-3">
