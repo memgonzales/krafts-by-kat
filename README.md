@@ -17,7 +17,7 @@ The minimum criteria for a pull request to be accepted and merged are as follows
 ***In the event of a pull request failing the third criterion, the steps to be taken are outlined in Part 4 of the [Repository Guidelines</a>](https://drive.google.com/file/d/1A2j9fJXZhsOGueIhA-M15-NI1kC95bYn/view?usp=sharing).***
 
 ## Testing
-The developers used <a href = "https://code.visualstudio.com/">Visual Studio Code</a> as their integrated development environment. It was also used for the purposes of checking syntax errors, refactoring code, and stepping it through a debugger prior to checking in the code. 
+The software development team used <a href = "https://code.visualstudio.com/">Visual Studio Code</a> as its integrated development environment. It was also employed by the developers for the purposes of checking syntax errors, refactoring code, and stepping it through a debugger prior to checking in the code. 
 
 ### Automated Testing
 Aside from manual integration testing, automated unit tests were also performed in light of the test-driven development methodology. The steps for running the automated unit tests are as follows:
@@ -40,3 +40,11 @@ Aside from manual integration testing, automated unit tests were also performed 
 ## Dependencies
 
 ## Software Development Team
+
+- <b>Julianne Felice G. Cruz</b>, Quality Assurance
+- <b>Sabrina Mykel C. Dela Cruz</b>, Product Owner <br/>
+- <b>Mark Edward M. Gonzales</b>, Developer <br/>
+- <b>Hylene Jules G. Lee</b>, Developer <br/>
+- <b>Francesca Yzabel A. Mendoza</b>, Quality Assurance <br/>
+- <b>Francheska A. Roque</b>, Scrum Master <br/>
+- <b>Ralph Matthew H. Sanson</b>, Designer
