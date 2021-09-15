@@ -1,7 +1,5 @@
 # Krafts by Kat
 
-## Task
-
 ## Project Structure
 
 ## Contributing to the Repository
@@ -19,16 +17,26 @@ The minimum criteria for a pull request to be accepted and merged are as follows
 In the event of a pull request failing the third criterion, the steps to be taken are outlined in Part 4 of the Repository Guidelines.
 
 ## Testing
+The developers used <a href = "https://code.visualstudio.com/">Visual Studio Code</a> as their integrated development environment. It was also used for the purposes of checking syntax errors, refactoring code, and stepping it through a debugger prior to checking in the code. 
 
-1. Before running the automated unit tests, ensure that the necessary development dependencies have been installed:
+### Automated Testing
+Aside from manual integration testing, automated unit tests were also performed in light of the test-driven development methodology. The steps for running the automated unit tests are as follows:
 
+1. Ensure that the necessary development dependencies (enumerated in the **Dependencies** section) have been installed. Otherwise, run the following command to install them:
+   ```
+   npm install --dev
+   ```
 
-2. Run the following command in the terminal:
+2. Before running the automated tests, terminate the server, alongside any running instance of the app.
+
+4. Run the following command in the terminal to begin the automated testing:
 
    ```
    npm run test
    ```
-
+   
 ## Built Using
+
+## Dependencies
 
 ## Software Development Team
