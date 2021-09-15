@@ -27,6 +27,13 @@
                     <span>₱ <span>{{orderPrice}}</span></span>
                 </span>
 
+                {{#if isAdmin}}
+                    <span class="mx-3">
+                        <span class="bold">Order by: </span>
+                        <span>₱ <span>{{user}}</span></span>
+                    </span>
+                {{/if}}
+
             </div>
         </a>     
     </div>
