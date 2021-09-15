@@ -7,8 +7,8 @@
 ## Contributing to the Repository
 Before submitting a pull request, kindly refer to the following documents and comply with the guidelines stated therein:
 - [Coding Standard](https://drive.google.com/file/d/1qY0xDRB7LBT7OQdyI0mgObhROHyMf7Hh/view?usp=sharing)
-- Repository Guidelines
-- Integration Procedure
+- [Repository Guidelines](https://drive.google.com/file/d/1A2j9fJXZhsOGueIhA-M15-NI1kC95bYn/view?usp=sharing)
+- [Integration Procedure](https://drive.google.com/file/d/1ZbcjjiV-8-rQRPRsG1Rd2LlAnfbLDjAD/view?usp=sharing)
 
 The minimum criteria for a pull request to be accepted and merged are as follows:
 - The code changes should be inspected by a developer.
