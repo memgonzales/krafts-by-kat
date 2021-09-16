@@ -56,7 +56,7 @@ Aside from manual integration testing, automated unit tests were also performed 
 
 1. Ensure that the necessary development dependencies (enumerated in the **Dependencies** section) have been installed. Otherwise, run the following command to install them:
    ```
-   npm install --dev
+   npm install --only=dev
    ```
 
 2. Before running the automated tests, terminate the server, alongside any running instance of the app.
