@@ -39,17 +39,17 @@ The **entity relationship diagram** to illustrate the schemas can be viewed [her
 
 ### Credentials (For Testing Only)
 To log in as an administrator, enter the following credentials:
-- Username: `kraftsbykatadmin`
-- Email Address: `krafts.by.kat.webmaster@gmail.com`
-- Password: `ASDFGHJKL123;`
+- **Username:** `kraftsbykatadmin`
+- **Email Address:** `krafts.by.kat.webmaster@gmail.com`
+- **Password:** `ASDFGHJKL123;`
 
 To log in as a customer, enter the following credentials:
-- Username: `shibaichi` (or `akitani`)
-- Email Address: `kentaroshiba@gmail.com` (or `wolfdog@gmail.com`)
-- Password: `ASDFGHJKL123;` (same password for both test accounts)
+- **Username:** `shibaichi` (or `akitani`)
+- **Email Address:** `kentaroshiba@gmail.com` (or `wolfdog@gmail.com`)
+- **Password:** `ASDFGHJKL123;` (same password for both test accounts)
 
 ## Testing the Application
-The software development team used <a href = "https://code.visualstudio.com/">Visual Studio Code</a> as its integrated development environment. It was also employed by the developers for the purposes of checking syntax errors, refactoring code, and stepping it through a debugger prior to checking in to the repository. 
+The software development team uses <a href = "https://code.visualstudio.com/">Visual Studio Code</a> as its integrated development environment. It is also employed by the developers for the purposes of addressing syntax errors, refactoring code, and stepping it through a debugger prior to checking into the repository. 
 
 ### Automated Testing
 Aside from manual integration testing, automated unit tests were also performed in light of the test-driven development methodology. The steps for running the automated unit tests are as follows:
@@ -66,9 +66,6 @@ Aside from manual integration testing, automated unit tests were also performed 
    ```
    npm run test
    ```
-   
-## Contributing to the Repository
-Kindly refer to this [page](https://github.com/memgonzales/krafts-by-kat/blob/master/CONTRIBUTING.md) for the reference documents and the guidelines on contributing to this project.
 
 ## Dependencies
 This project uses the following production dependencies, which can be installed via the <code>npm install</code> command:
@@ -94,6 +91,17 @@ This project uses the following production dependencies, which can be installed 
 | [<code>nodemailer</code>](https://www.npmjs.com/package/nodemailer) | 6.6.0 | Package for sending emails with Node.js | MIT License | 
 
 ## Built Using
+This project follows the Model-View-Controller (MVC) architectural pattern. In light of separation of concerns, the key technologies used are:
+- **Database**: <a href = "https://www.mongodb.com/">MongoDB</a> as the database program and <a href = "https://mongoosejs.com/">Mongoose</a> as the object data modeling tool
+- **Back-end**: <a href = "https://nodejs.org/en/">Node.js</a> as the server environment and <a href = "https://expressjs.com/">Express.js</a> as the back-end framework
+- **Front-end**: <a href = "https://handlebarsjs.com/">Handlebars</a> as the template engine
+
+Server-side validation is performed via [`express-validator`](https://www.npmjs.com/package/express-validator) and [`multer`](https://www.npmjs.com/package/multer) (for files).
+
+This web application is deployed on the cloud platform <a href = "https://dashboard.heroku.com/">Heroku</a>. Since Heroku has an ephemeral filesystem, <a href = "https://docs.mongodb.com/manual/core/gridfs/">GridFS</a> is used for the persistent storage of image and audio files.
+   
+## Contributing
+Kindly refer to this [page](https://github.com/memgonzales/krafts-by-kat/blob/master/CONTRIBUTING.md) for the reference documents and the guidelines on contributing to this repository.
 
 ## Software Development Team
 
