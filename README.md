@@ -29,6 +29,8 @@ It also includes the following files:
 | [<code>package-lock.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package-lock.json) and [<code>package.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package.json) | Store information on the project dependencies |
 | [<code>index.js</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/index.js) | Entry point of the web application |
 
+The **entity relationship diagram** to illustrate the schemas can be viewed [here]().
+
 ## Running the Application
 
 ### Running on the Web
