@@ -90,6 +90,13 @@ This project uses the following production dependencies, which can be installed 
 | [<code>no-cache</code>](https://www.npmjs.com/package/nocache) | 3.0.1 | Middleware for setting some HTTP response headers to try to disable client-side caching | MIT License
 | [<code>nodemailer</code>](https://www.npmjs.com/package/nodemailer) | 6.6.0 | Package for sending emails with Node.js | MIT License | 
 
+This project also imports the following design-related toolkits:
+
+| Toolkit | Version | Description | License |
+| --- | --- | --- | --- |
+| [Bootstrap](https://getbootstrap.com/) | 5.0.2 | Front-end toolkit featuring Sass variables and mixins, responsive grid system, prebuilt components, and JavaScript plugins | MIT License |
+| [Font Awesome](https://fontawesome.com/) | 5.15 | Front-end toolkit featuring vector icons and social logos | CC BY 4.0 License (Icons) <br> SIL OFL 1.1 License (Fonts) <br> MIT License (Code)
+
 ## Built Using
 This project follows the Model-View-Controller (MVC) architectural pattern. In light of separation of concerns, the key technologies used are:
 - **Database**: <a href = "https://www.mongodb.com/">MongoDB</a> as the database program and <a href = "https://mongoosejs.com/">Mongoose</a> as the object data modeling tool
