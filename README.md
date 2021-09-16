@@ -96,7 +96,7 @@ This project follows the Model-View-Controller (MVC) architectural pattern. In l
 - **Back-end**: <a href = "https://nodejs.org/en/">Node.js</a> as the server environment and <a href = "https://expressjs.com/">Express.js</a> as the back-end framework
 - **Front-end**: <a href = "https://handlebarsjs.com/">Handlebars</a> as the template engine
 
-Server-side validation is performed via [`express-validator`](https://www.npmjs.com/package/express-validator) and [`multer`](https://www.npmjs.com/package/multer) (for files).
+Server-side validation is performed via [Express Validator](https://www.npmjs.com/package/express-validator) and [Multer](https://www.npmjs.com/package/multer) (for files).
 
 This web application is deployed on the cloud platform <a href = "https://dashboard.heroku.com/">Heroku</a>. Since Heroku has an ephemeral filesystem, <a href = "https://docs.mongodb.com/manual/core/gridfs/">GridFS</a> is used for the persistent storage of image and audio files.
    
