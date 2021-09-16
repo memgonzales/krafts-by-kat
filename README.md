@@ -82,6 +82,27 @@ The minimum criteria for a pull request to be accepted and merged are as follows
 ***In the event of a pull request failing the third criterion, the steps to be taken are outlined in Part 4 of the [Repository Guidelines</a>](https://drive.google.com/file/d/1A2j9fJXZhsOGueIhA-M15-NI1kC95bYn/view?usp=sharing).***
 
 ## Dependencies
+This project uses the following production dependencies, which can be installed via the <code>npm install</code> command:
+
+| Package | Version | Description | License |
+| --- | --- | --- | --- |
+| [<code>bcrypt</code>](https://www.npmjs.com/package/bcrypt) | 5.0.1 | Package for hashing passwords | Apache License 2.0 |
+| [<code>body-parser</code>](https://www.npmjs.com/package/body-parser) | 1.19.0 | Package for parsing incoming requests in a middleware before the handlers | MIT License |
+| [<code>connect-mongo</code>](https://www.npmjs.com/package/connect-mongo) | 3.2.0 | MongoDB session store for Connect and Express | MIT License |
+| [<code>dotenv</code>](https://www.npmjs.com/package/dotenv) | 10.0.0 | Package for loading environment variables from an <code>.env</code> file | BSD 2-Clause "Simplified" License |
+| [<code>express</code>](https://www.npmjs.com/package/express) | 4.17.1 | Unopinionated and minimalist framework for Node.js | MIT License | 
+| [<code>express-handlebars</code>](https://www.npmjs.com/package/express-handlebars) | 5.3.2 | Handlebars view engine for Express | BSD 3-Clause "New" or "Revised" License
+| [<code>express-session</code>](https://www.npmjs.com/package/express-session) | 1.17.1 | Session middleware for Express | MIT License |
+| [<code>express-validator</code>](https://www.npmjs.com/package/express-validator) | 6.10.1 | Express middleware for validator, a library of string validators and sanitizers | MIT License |
+| [<code>gridfs-stream</code>](https://www.npmjs.com/package/gridfs-stream) | 1.1.1 | Package for streaming files to and from MongoDB GridFS | MIT License |
+| [<code>hbs</code>](https://www.npmjs.com/package/hbs) | 4.1.2 | Express view engine for Handlebars | MIT License |
+| [<code>jquery</code>](https://www.npmjs.com/package/jquery) | 3.6.0 | Fast, small, and feature-rich JavaScript library | MIT License
+| [<code>mongodb</code>](https://www.npmjs.com/package/mongodb) | 3.6.6 | Official MongoDB driver for Node.js | Apache License 2.0 |
+| [<code>mongoose</code>](https://www.npmjs.com/package/mongoose) | 5.6.13 | MongoDB object modeling tool designed to work in an asynchronous environment | MIT License |
+| [<code>multer</code>](https://www.npmjs.com/package/multer) | 1.4.2 | Middleware for handling <code>multipart/form-data</code>, primarily used for file uploads | MIT License |
+| [<code>multer-gridfs-storage</code>](https://www.npmjs.com/package/multer-gridfs-storage) | 4.2.0 | GridFS storage engine for Multer to store uploaded files directly to MongoDB | MIT License |
+| [<code>no-cache</code>](https://www.npmjs.com/package/nocache) | 3.0.1 | Middleware for setting some HTTP response headers to try to disable client-side caching | MIT License
+| [<code>nodemailer</code>](https://www.npmjs.com/package/nodemailer) | 6.6.0 | Package for sending emails with Node.js | MIT License | 
 
 ## Built Using
 
