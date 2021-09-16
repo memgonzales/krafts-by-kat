@@ -1,4 +1,12 @@
 # Krafts by Kat
+![badge][badge-html5]
+![badge][badge-bootstrap]
+![badge][badge-js]
+![badge][badge-jquery]
+![badge][badge-mongodb]
+![badge][badge-express]
+![badge][badge-nodejs]
+![badge][badge-mocha]
 
 ## Project Structure
 
@@ -48,3 +56,12 @@ Aside from manual integration testing, automated unit tests were also performed 
 - <b>Francesca Yzabel A. Mendoza</b>, Quality Assurance <br/>
 - <b>Francheska A. Roque</b>, Scrum Master <br/>
 - <b>Ralph Matthew H. Sanson</b>, Designer
+
+[badge-html5]: https://img.shields.io/badge/html5-%23E34F26.svg?style=flat&logo=html5&logoColor=white
+[badge-bootstrap]: https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=flat&logo=bootstrap&logoColor=white
+[badge-js]: https://img.shields.io/badge/javascript-%23323330.svg?style=flate&logo=javascript&logoColor=%23F7DF1E
+[badge-jquery]: https://img.shields.io/badge/jquery-%230769AD.svg?style=flat&logo=jquery&logoColor=white
+[badge-mongodb]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=flat&logo=mongodb&logoColor=white
+[badge-express]: https://img.shields.io/badge/express.js-%23404d59.svg?style=flat&logo=express&logoColor=%2361DAFB
+[badge-nodejs]: https://img.shields.io/badge/node.js-6DA55F?style=flat&logo=node.js&logoColor=white
+[badge-mocha]: https://img.shields.io/badge/-mocha-%238D6748?style=flat&logo=mocha&logoColor=white
