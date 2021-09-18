@@ -86,37 +86,47 @@ $(document).ready(function() {
 
     $('#save-order').on('click', function(e) {
         e.preventDefault();
-        
-        $.ajax({
-			url: '/postSaveOrder',
-			method: 'POST',
-			data: new FormData(document.getElementById('order-form')),
-            processData: false,
-            contentType: false,
-            statusCode: {
-				200: function(data) {
-                    window.onbeforeunload = null;
-                    window.location.href = '/account/myOrders';
-				}
-			}
-		});
+
+        if ($('#order-name').val().trim() == '') {
+            alert('Please enter an order name');
+            document.documentElement.scrollTop = 0;
+        } else {
+            $.ajax({
+                url: '/postSaveOrder',
+                method: 'POST',
+                data: new FormData(document.getElementById('order-form')),
+                processData: false,
+                contentType: false,
+                statusCode: {
+                    200: function(data) {
+                        window.onbeforeunload = null;
+                        window.location.href = '/account/myOrders';
+                    }
+                }
+            });
+        }
     });
 
     $('#place-order').on('click', function(e) {
         e.preventDefault();
         
-        $.ajax({
-			url: '/postPlaceOrder',
-			method: 'POST',
-			data: new FormData(document.getElementById('order-form')),
-            processData: false,
-            contentType: false,
-            statusCode: {
-				200: function(data) {
-                    window.onbeforeunload = null;
-				}
-			}
-		});
+        if ($('#order-name').val().trim() == '') {
+            alert('Please enter an order name');
+            document.documentElement.scrollTop = 0;
+        } else {
+            $.ajax({
+                url: '/postPlaceOrder',
+                method: 'POST',
+                data: new FormData(document.getElementById('order-form')),
+                processData: false,
+                contentType: false,
+                statusCode: {
+                    200: function(data) {
+                        window.onbeforeunload = null;
+                    }
+                }
+            });
+        }
     });
 
     /* Reflect fetched data about delivery mode */
