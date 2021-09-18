@@ -12,6 +12,7 @@
                 {{>orders-item isAdmin = ../adminFlag
                                orderId = this 
                                orderName = (lookup ../orderNames @index)
+                               orderUsername = (lookup ../orderUsernames @index)
                                orderStatus = (lookup ../orderStatuses @index)
                                preferredDeliveryDate = (lookup ../preferredDeliveryDates @index)
                                orderPrice = (lookup ../orderPrices @index)

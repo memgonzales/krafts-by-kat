@@ -152,6 +152,7 @@ const accountController = {
 						/* Store the order data in parallel arrays */
 						let orderIds = [];
 						let orderNames = [];
+						let orderUsernames = [];
 						let orderStatuses = [];
 						let preferredDeliveryDates = [];
 						let orderPrices = [];
@@ -174,7 +175,7 @@ const accountController = {
 
 							/* Retrieve all orders made by the user */
 							let orderQuery = {user: req.session.username};
-							let orderProjection = '_id name status preferredDeliveryDate price';
+							let orderProjection = '_id name user status preferredDeliveryDate price';
 
 							db.findMany(Order, orderQuery, orderProjection, function(result) {
 								
@@ -194,6 +195,7 @@ const accountController = {
 										orderNames[i] = orderNames[i] + " (Current Order)";
 									}
 									
+									orderUsernames[i] = result[i].user;
 									orderStatuses[i] = result[i].status;
 
 									/* Assign the boolean values of the order status arrays depending on the retrieved order status */
@@ -260,6 +262,7 @@ const accountController = {
 
 									orderIds: orderIds,
 									orderNames: orderNames,
+									orderUsernames: orderUsernames,
 									orderStatuses: orderStatuses,
 									preferredDeliveryDates: preferredDeliveryDates,
 									orderPrices: orderPrices,
@@ -308,6 +311,7 @@ const accountController = {
 					/* Store the order data in parallel arrays */
 					let orderIds = [];
 					let orderNames = [];
+					let orderUsernames = [];
 					let orderStatuses = [];
 					let preferredDeliveryDates = [];
 					let orderPrices = [];
@@ -323,7 +327,7 @@ const accountController = {
 					/* Retrieve all orders that have been submitted */
 					let acceptedStatuses = ['Pending', 'Accepted', 'En Route', 'Delivered'];
 					let query = {status: {$in: acceptedStatuses}};
-					let projection = '_id name status preferredDeliveryDate price';
+					let projection = '_id user name status preferredDeliveryDate price';
 
 					db.findMany(Order, query, projection, function(result) {
 						
@@ -338,6 +342,7 @@ const accountController = {
 								orderNames[i] = result[i].name;
 							}
 							
+							orderUsernames[i] = result[i].user;
 							orderStatuses[i] = result[i].status;
 
 							/* Assign the boolean values of the order status arrays depending on the retrieved order status */
@@ -394,6 +399,7 @@ const accountController = {
 
 							orderIds: orderIds,
 							orderNames: orderNames,
+							orderUsernames: orderUsernames,
 							orderStatuses: orderStatuses,
 							preferredDeliveryDates: preferredDeliveryDates,
 							orderPrices: orderPrices,

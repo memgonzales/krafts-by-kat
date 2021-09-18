@@ -144,15 +144,6 @@ if (process.env.NODE_ENV === 'test') {
 /* END -- REMOVE ON DEPLOYMENT */
 
 // FOR CLEANING
-
-/* TEMPORARY ROUTING FOR FRONT-END EASE */
-krafts.get('/partials-test', function(req,res){
-    var obj = {
-        style: 'order-product'
-    }
-    res.render('partials-test',obj);
-});
-
 /* TEMP Orders Nav Tabs*/ 
 krafts.get('/account/contactMerchant', function(req,res){
     var obj = {

@@ -36,6 +36,7 @@ const orderTrackerController = {
 					/* Store the order data in parallel arrays */
 					let orderIds = [];
 					let orderNames = [];
+					let orderUsernames = [];
 					let orderStatuses = [];
 					let preferredDeliveryDates = [];
 					let orderPrices = [];
@@ -47,7 +48,7 @@ const orderTrackerController = {
 
 					/* Retrieve all orders that have been submitted */
 					let query = {status: 'Pending'};
-					let projection = '_id name status preferredDeliveryDate price';
+					let projection = '_id name user status preferredDeliveryDate price';
 
 					db.findMany(Order, query, projection, function(result) {
 						
@@ -62,6 +63,7 @@ const orderTrackerController = {
 								orderNames[i] = result[i].name;
 							}
 							
+							orderUsernames[i] = result[i].user;
 							orderStatuses[i] = result[i].status;
 
                             /* As all of the retrieved orders from the database are pending orders, assign the
@@ -100,6 +102,7 @@ const orderTrackerController = {
 
 							orderIds: orderIds,
 							orderNames: orderNames,
+							orderUsernames: orderUsernames,
 							orderStatuses: orderStatuses,
 							preferredDeliveryDates: preferredDeliveryDates,
 							orderPrices: orderPrices,
@@ -147,6 +150,7 @@ const orderTrackerController = {
 					/* Store the order data in parallel arrays */
 					let orderIds = [];
 					let orderNames = [];
+					let orderUsernames = [];
 					let orderStatuses = [];
 					let preferredDeliveryDates = [];
 					let orderPrices = [];
@@ -158,7 +162,7 @@ const orderTrackerController = {
 
 					/* Retrieve all orders that have been submitted */
 					let query = {status: 'Accepted'};
-					let projection = '_id name status preferredDeliveryDate price';
+					let projection = '_id name user status preferredDeliveryDate price';
 
 					db.findMany(Order, query, projection, function(result) {
 						
@@ -173,6 +177,7 @@ const orderTrackerController = {
 								orderNames[i] = result[i].name;
 							}
 							
+							orderUsernames[i] = result[i].user;
 							orderStatuses[i] = result[i].status;
 
                             /* As all of the retrieved orders from the database are accepted orders, assign the
@@ -211,6 +216,7 @@ const orderTrackerController = {
 
 							orderIds: orderIds,
 							orderNames: orderNames,
+							orderUsernames: orderUsernames,
 							orderStatuses: orderStatuses,
 							preferredDeliveryDates: preferredDeliveryDates,
 							orderPrices: orderPrices,
@@ -258,6 +264,7 @@ const orderTrackerController = {
 					/* Store the order data in parallel arrays */
 					let orderIds = [];
 					let orderNames = [];
+					let orderUsernames = [];
 					let orderStatuses = [];
 					let preferredDeliveryDates = [];
 					let orderPrices = [];
@@ -269,7 +276,7 @@ const orderTrackerController = {
 
 					/* Retrieve all orders that have been submitted */
 					let query = {status: 'En Route'};
-					let projection = '_id name status preferredDeliveryDate price';
+					let projection = '_id name user status preferredDeliveryDate price';
 
 					db.findMany(Order, query, projection, function(result) {
 						
@@ -284,6 +291,7 @@ const orderTrackerController = {
 								orderNames[i] = result[i].name;
 							}
 							
+							orderUsernames[i] = result[i].user;
 							orderStatuses[i] = result[i].status;
 
                             /* As all of the retrieved orders from the database are en route orders, assign the
@@ -322,6 +330,7 @@ const orderTrackerController = {
 
 							orderIds: orderIds,
 							orderNames: orderNames,
+							orderUsernames: orderUsernames,
 							orderStatuses: orderStatuses,
 							preferredDeliveryDates: preferredDeliveryDates,
 							orderPrices: orderPrices,
@@ -369,6 +378,7 @@ const orderTrackerController = {
 					/* Store the order data in parallel arrays */
 					let orderIds = [];
 					let orderNames = [];
+					let orderUsernames = [];
 					let orderStatuses = [];
 					let preferredDeliveryDates = [];
 					let orderPrices = [];
@@ -380,7 +390,7 @@ const orderTrackerController = {
 
 					/* Retrieve all orders that have been submitted */
 					let query = {status: 'Delivered'};
-					let projection = '_id name status preferredDeliveryDate price';
+					let projection = '_id name user status preferredDeliveryDate price';
 
 					db.findMany(Order, query, projection, function(result) {
 						
@@ -395,6 +405,7 @@ const orderTrackerController = {
 								orderNames[i] = result[i].name;
 							}
 							
+							orderUsernames[i] = result[i].user;
 							orderStatuses[i] = result[i].status;
 
                             /* As all of the retrieved orders from the database are delivered orders, assign the
@@ -433,6 +444,7 @@ const orderTrackerController = {
 
 							orderIds: orderIds,
 							orderNames: orderNames,
+							orderUsernames: orderUsernames,
 							orderStatuses: orderStatuses,
 							preferredDeliveryDates: preferredDeliveryDates,
 							orderPrices: orderPrices,
@@ -489,6 +501,7 @@ const orderTrackerController = {
 						/* Store the order data in parallel arrays */
 						let orderIds = [];
 						let orderNames = [];
+						let orderUsernames = [];
 						let orderStatuses = [];
 						let preferredDeliveryDates = [];
 						let orderPrices = [];
@@ -511,7 +524,7 @@ const orderTrackerController = {
 								status: 'Unsubmitted'
 							};
 				
-							let orderProjection = '_id name status preferredDeliveryDate price';
+							let orderProjection = '_id name user status preferredDeliveryDate price';
 
 							db.findMany(Order, orderQuery, orderProjection, function(result) {
 								
@@ -531,6 +544,7 @@ const orderTrackerController = {
 										orderNames[i] = orderNames[i] + " (Current Order)";
 									}
 									
+									orderUsernames[i] = result[i].user;
 									orderStatuses[i] = result[i].status;
 
 									/* As all of the retrieved orders from the database are unsubmitted orders, assign the
@@ -569,6 +583,7 @@ const orderTrackerController = {
 
 									orderIds: orderIds,
 									orderNames: orderNames,
+									orderUsernames: orderUsernames,
 									orderStatuses: orderStatuses,
 									preferredDeliveryDates: preferredDeliveryDates,
 									orderPrices: orderPrices,
@@ -621,6 +636,7 @@ const orderTrackerController = {
 						/* Store the order data in parallel arrays */
 						let orderIds = [];
 						let orderNames = [];
+						let orderUsernames = [];
 						let orderStatuses = [];
 						let preferredDeliveryDates = [];
 						let orderPrices = [];
@@ -636,7 +652,7 @@ const orderTrackerController = {
 							status: 'Pending'
 						};
 			
-						let orderProjection = '_id name status preferredDeliveryDate price';
+						let orderProjection = '_id name user status preferredDeliveryDate price';
 
 						db.findMany(Order, orderQuery, orderProjection, function(result) {
 							
@@ -651,6 +667,7 @@ const orderTrackerController = {
 									orderNames[i] = result[i].name;
 								}
 
+								orderUsernames[i] = result[i].user;
 								orderStatuses[i] = result[i].status;
 
 								/* As all of the retrieved orders from the database are pending orders, assign the
@@ -689,6 +706,7 @@ const orderTrackerController = {
 
 								orderIds: orderIds,
 								orderNames: orderNames,
+								orderUsernames: orderUsernames,
 								orderStatuses: orderStatuses,
 								preferredDeliveryDates: preferredDeliveryDates,
 								orderPrices: orderPrices,
@@ -740,6 +758,7 @@ const orderTrackerController = {
 						/* Store the order data in parallel arrays */
 						let orderIds = [];
 						let orderNames = [];
+						let orderUsernames = [];
 						let orderStatuses = [];
 						let preferredDeliveryDates = [];
 						let orderPrices = [];
@@ -755,7 +774,7 @@ const orderTrackerController = {
 							status: 'Accepted'
 						};
 			
-						let orderProjection = '_id name status preferredDeliveryDate price';
+						let orderProjection = '_id name user status preferredDeliveryDate price';
 
 						db.findMany(Order, orderQuery, orderProjection, function(result) {
 							
@@ -770,6 +789,7 @@ const orderTrackerController = {
 									orderNames[i] = result[i].name;
 								}
 
+								orderUsernames[i] = result[i].user;
 								orderStatuses[i] = result[i].status;
 
 								/* As all of the retrieved orders from the database are accepted orders, assign the
@@ -808,6 +828,7 @@ const orderTrackerController = {
 
 								orderIds: orderIds,
 								orderNames: orderNames,
+								orderUsernames: orderUsernames,
 								orderStatuses: orderStatuses,
 								preferredDeliveryDates: preferredDeliveryDates,
 								orderPrices: orderPrices,
@@ -859,6 +880,7 @@ const orderTrackerController = {
 						/* Store the order data in parallel arrays */
 						let orderIds = [];
 						let orderNames = [];
+						let orderUsernames = [];
 						let orderStatuses = [];
 						let preferredDeliveryDates = [];
 						let orderPrices = [];
@@ -874,7 +896,7 @@ const orderTrackerController = {
 							status: 'En Route'
 						};
 			
-						let orderProjection = '_id name status preferredDeliveryDate price';
+						let orderProjection = '_id name user status preferredDeliveryDate price';
 
 						db.findMany(Order, orderQuery, orderProjection, function(result) {
 							
@@ -889,6 +911,7 @@ const orderTrackerController = {
 									orderNames[i] = result[i].name;
 								}
 
+								orderUsernames[i] = result[i].user;
 								orderStatuses[i] = result[i].status;
 
 								/* As all of the retrieved orders from the database are accepted orders, assign the
@@ -927,6 +950,7 @@ const orderTrackerController = {
 
 								orderIds: orderIds,
 								orderNames: orderNames,
+								orderUsernames: orderUsernames,
 								orderStatuses: orderStatuses,
 								preferredDeliveryDates: preferredDeliveryDates,
 								orderPrices: orderPrices,
@@ -978,6 +1002,7 @@ const orderTrackerController = {
 						/* Store the order data in parallel arrays */
 						let orderIds = [];
 						let orderNames = [];
+						let orderUsernames = [];
 						let orderStatuses = [];
 						let preferredDeliveryDates = [];
 						let orderPrices = [];
@@ -993,7 +1018,7 @@ const orderTrackerController = {
 							status: 'Delivered'
 						};
 			
-						let orderProjection = '_id name status preferredDeliveryDate price';
+						let orderProjection = '_id name user status preferredDeliveryDate price';
 
 						db.findMany(Order, orderQuery, orderProjection, function(result) {
 							
@@ -1008,6 +1033,7 @@ const orderTrackerController = {
 									orderNames[i] = result[i].name;
 								}
 
+								orderUsernames[i] = result[i].user;
 								orderStatuses[i] = result[i].status;
 
 								/* As all of the retrieved orders from the database are accepted orders, assign the
@@ -1046,6 +1072,7 @@ const orderTrackerController = {
 
 								orderIds: orderIds,
 								orderNames: orderNames,
+								orderUsernames: orderUsernames,
 								orderStatuses: orderStatuses,
 								preferredDeliveryDates: preferredDeliveryDates,
 								orderPrices: orderPrices,
@@ -1397,16 +1424,40 @@ const orderTrackerController = {
 			/* If the user is registered, update the status of the selected order accordingly */
 			} else {
 				/* Set the status of the order with the corresponding ObjectID to "Pending" */
-				let filter = {_id: db.convertToObjectId(req.params.id)};
+				let orderId = req.params.id;
+				
+				let filter = {_id: db.convertToObjectId(orderId)};
 				let update = {status: "Pending"};
 				
 				db.updateOne(Order, filter, update, function(flag) {
 					
-					/* Redirect the user to the pending orders page */
-					res.redirect('/account/myOrders/pending');
+					/* Retrieve the ObjectID of the user's current order */
+					let query = {username: req.session.username};
+					let projection = 'username currentOrder';
+
+					db.findOne(Client, query, projection, function(result) {
+						let currentOrder = result.currentOrder;
+
+						/* If the user submitted their current order, set their current order to blank
+						 * before redirecting them to the pending orders page 
+						 */
+						if (currentOrder == orderId) {
+							let clientFilter = {username: req.session.username};
+							let clientUpdate = {currentOrder: ""};
+
+							db.updateOne(Client, clientFilter, clientUpdate, function(flag) {
+								/* Redirect the user to the pending orders page */
+								res.redirect('/account/myOrders/pending');
+							});
+
+						/* Otherwise, immediately redirect them to the pending orders page */
+						} else {
+							/* Redirect the user to the pending orders page */
+							res.redirect('/account/myOrders/pending');
+						}
+					});	
 				});
-			}
-            
+			}      
         }	
 	},
 

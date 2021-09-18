@@ -24,13 +24,13 @@
 
                 <span class="mx-3">
                     <span class="bold">Invoice: </span>
-                    <span>₱ <span>{{orderPrice}}</span></span>
+                    <span>₱{{orderPrice}}</span>
                 </span>
 
                 {{#if isAdmin}}
                     <span class="mx-3">
                         <span class="bold">Order by: </span>
-                        <span>₱ <span>{{user}}</span></span>
+                        <span>{{orderUsername}}</span>
                     </span>
                 {{/if}}
 
