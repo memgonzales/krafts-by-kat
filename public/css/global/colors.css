@@ -6,6 +6,10 @@
     --c5: #2B2129;
     --black: black;
     --white: white;
+    --pending:#FDFD96;
+    --accepted: #CFF0CC;
+    --enroute:#E6D1F2;
+    --delivered: #C7D9FE;
 }
 
 .fc1{
@@ -54,6 +58,22 @@
 
 .cwhite{
     color: var(--white);
+}
+
+.cPending{
+    color: var(--pending);
+}
+
+.cAccepted{
+    color: var(--accepted);
+}
+
+.cEnRoute{
+    color: var(--enroute);
+}
+
+.cDelivered{
+    color: var(--delivered);
 }
 
 

@@ -2,7 +2,7 @@
    
     <div class="col-md-11">
             <div class = "container">
-                <h4 id = "order-name-{{orderId}}" class = "order-name">{{orderName}}</h4>
+                <a id = "order-link-{{orderId}}"><h4 id = "order-name-{{orderId}}" class = "order-name">{{orderName}}</h4></a>            
             </div>
 
             <div class="container d-flex flex-row">
@@ -26,6 +26,13 @@
                     <span class="bold">Invoice: </span>
                     <span>₱ <span>{{orderPrice}}</span></span>
                 </span>
+
+                {{#if isAdmin}}
+                    <span class="mx-3">
+                        <span class="bold">Order by: </span>
+                        <span>₱ <span>{{user}}</span></span>
+                    </span>
+                {{/if}}
 
             </div>
         </a>     
