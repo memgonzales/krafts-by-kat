@@ -33,7 +33,9 @@ It also includes the following files:
 | [<code>package-lock.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package-lock.json) and [<code>package.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package.json) | Store information on the project dependencies |
 | [<code>index.js</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/index.js) | Entry point of the web application |
 
-The **entity relationship diagram** to illustrate the schemas can be viewed [here](https://drive.google.com/file/d/1dkrmvvhiB5CKofxZo6iT1PgoxlP6JL0j/view?usp=sharing).
+## Entity Relationship Diagram
+
+The entity relationship diagram to illustrate the schemas can be viewed [here](https://drive.google.com/file/d/1dkrmvvhiB5CKofxZo6iT1PgoxlP6JL0j/view?usp=sharing).
 
 ## Running the Application
 
@@ -112,7 +114,7 @@ Server-side validation is performed via [Express Validator](https://www.npmjs.co
 This web application is deployed on the cloud platform <a href = "https://dashboard.heroku.com/">Heroku</a>. Since Heroku has an ephemeral filesystem, <a href = "https://docs.mongodb.com/manual/core/gridfs/">GridFS</a> is used for the persistent storage of image and audio files.
    
 ## Contributing
-Kindly refer to this [page](https://github.com/memgonzales/krafts-by-kat/blob/master/CONTRIBUTING.md) for the reference documents and the guidelines on contributing to this repository.
+Kindly refer to this [page](https://github.com/memgonzales/krafts-by-kat/blob/master/CONTRIBUTING.md) for the documents and the guidelines on contributing to this repository.
 
 ## Software Development Team
 
