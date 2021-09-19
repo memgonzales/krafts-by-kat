@@ -509,6 +509,7 @@ const orderTrackerController = {
 						/* Use boolean arrays to indicate the statuses of orders; these are used as flags 
 						 * for the hbs rendering of the page
 						 */
+						let currentOrders = [];
 						let unsubmittedOrders = [];
 
 						/* Retrieve the current order of the user */
@@ -539,9 +540,14 @@ const orderTrackerController = {
 										orderNames[i] = result[i].name;
 									}
 
-									/* Append the string "(Current Order)" to the order name of the user's current order */
+									/* Append the string "(Current Order)" to the order name of the user's current order 
+									 * and mark it as the current order
+									 */
 									if (orderIds[i] == currentOrder) {
 										orderNames[i] = orderNames[i] + " (Current Order)";
+										currentOrders[i] = true;
+									} else {
+										currentOrders[i] = false;
 									}
 									
 									orderUsernames[i] = result[i].user;
@@ -588,6 +594,7 @@ const orderTrackerController = {
 									preferredDeliveryDates: preferredDeliveryDates,
 									orderPrices: orderPrices,
 
+									currentOrders: currentOrders,
 									unsubmittedOrders: unsubmittedOrders
 								}
 			
@@ -1285,12 +1292,12 @@ const orderTrackerController = {
 								let productData = result;
 
 								/* For each order item, match its product ID with the ObjectIDs of the retrieved
-									* catalog items. If the IDs match, store the product name in the prepared array.
-									* 
-									* This approach was used as the findMany() function only returns single instances
-									* of matching documents; thus, the number of retrieved documents may be less than
-									* the number of order items.
-									*/
+								 * catalog items. If the IDs match, store the product name in the prepared array.
+							     * 
+								 * This approach was used as the findMany() function only returns single instances
+								 * of matching documents; thus, the number of retrieved documents may be less than
+								 * the number of order items.
+								 */
 								for (let i = 0; i < orderItemIds.length; i++) {
 									for (let j = 0; j < productData.length; j++) {
 										if (productIds[i] == productData[j]._id) {

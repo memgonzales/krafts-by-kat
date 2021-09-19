@@ -34,6 +34,24 @@
                     </span>
                 {{/if}}
 
+                {{#if currentOrder}}
+                    <input type = "hidden" id = "order-js-status-{{orderId}}" value = 'Current'>
+                {{/if}}
+                {{#if unsubmittedOrder}}
+                    <input type = "hidden" id = "order-js-status-{{orderId}}" value = 'Unsubmitted'>
+                {{/if}}
+                {{#if pendingOrder}}
+                    <input type = "hidden" id = "order-js-status-{{orderId}}" value = 'Pending'>
+                {{/if}}
+                {{#if acceptedOrder}}
+                    <input type = "hidden" id = "order-js-status-{{orderId}}" value = 'Accepted'>
+                {{/if}}
+                {{#if enRouteOrder}}
+                    <input type = "hidden" id = "order-js-status-{{orderId}}" value = 'En Route'>
+                {{else}}
+                    <input type = "hidden" id = "order-js-status-{{orderId}}" value = 'Delivered'>
+                {{/if}}
+                
             </div>
         </a>     
     </div>
@@ -70,7 +88,11 @@
 
                 {{else}}
                     {{#if unsubmittedOrder}}
-                        <li><a class="dropdown-item" href="/getOrder/{{orderId}}">View Order</a></li>
+                        {{#if currentOrder}}
+                            <li><a class="dropdown-item" href="/getOrder/{{orderId}}">View Order</a></li>
+                        {{else}}
+                            <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
+                        {{/if}}
                         <li><a class="dropdown-item" href="/setOrderPending/{{orderId}}">Place Order</a></li>
                         <li><a class="dropdown-item" href="/deleteOrder/{{orderId}}">Delete Order</a></li>
                     {{/if}}

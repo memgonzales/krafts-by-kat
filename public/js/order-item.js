@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('.order-name').each(function() {
         const id = getOrderItemId(this);
-        const status = $('#order-status-' + id).text();
+        const status = $('#order-js-status-' + id).val();
 
         switch(status) {
             case 'Pending':
@@ -21,6 +21,9 @@ $(document).ready(function() {
                 $('#order-link-' + id).attr('href', '/viewSubmittedOrder/' + id);
                 break;
             case 'Unsubmitted':
+                $('#order-link-' + id).attr('href', '/viewSubmittedOrder/' + id);
+                break;
+            case 'Current':
                 $('#order-link-' + id).attr('href', '/getOrder/' + id);
                 break;
             default:

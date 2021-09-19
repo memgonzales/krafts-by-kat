@@ -160,6 +160,7 @@ const accountController = {
 						/* Use boolean arrays to indicate the statuses of orders; these are used as flags 
 						 * for the hbs rendering of the page
 						 */
+						let currentOrders = [];
 						let unsubmittedOrders = [];
 						let pendingOrders = [];
 						let acceptedOrders = [];
@@ -190,9 +191,14 @@ const accountController = {
 										orderNames[i] = result[i].name;
 									}
 
-									/* Append the string "(Current Order)" to the order name of the user's current order */
+									/* Append the string "(Current Order)" to the order name of the user's current order and 
+									 * mark it as the current order
+									 */
 									if (orderIds[i] == currentOrder) {
 										orderNames[i] = orderNames[i] + " (Current Order)";
+										currentOrders[i] = true;
+									} else {
+										currentOrders[i] = false;
 									}
 									
 									orderUsernames[i] = result[i].user;
@@ -267,6 +273,7 @@ const accountController = {
 									preferredDeliveryDates: preferredDeliveryDates,
 									orderPrices: orderPrices,
 
+									currentOrders: currentOrders,
 									unsubmittedOrders: unsubmittedOrders,
 									pendingOrders: pendingOrders,
 									acceptedOrders: acceptedOrders,
@@ -489,11 +496,15 @@ const accountController = {
 				/* If the user is using an administrator account, display the page accordingly */
 				if (req.session.isAdmin == true) {
 					
+					/* Retrieve all visible and hidden products */
+					let visibleStatuses = ['Visible', 'Hidden'];
+					let query = {visible: {$in: visibleStatuses}};
+
 					/* Assign the needed details of the item catalog documents to the variable projection */
 					let projection = '_id name quantity description price commentIds pictures ratings numberSold visible';
 
 					/* The needed details of all catalog items are retrieved to be displayed on the landing page */
-					db.findMany(CatalogItem, {}, projection, function(result) {
+					db.findMany(CatalogItem, query, projection, function(result) {
 						/* If the data retrieval is successful, the landing page is displayed */
 						if (result != null) {
 							/* Store data in parallel arrays (to allow for processing); the first set of arrays
@@ -545,7 +556,7 @@ const accountController = {
 							 * has been made visible and is not depleted 
 							 */
 							for (let i = 0; i < items.length; i++) {
-								if (items[i].visible == false) {
+								if (items[i].visible == 'Hidden') {
 									hiddenIds.push(items[i]._id);
 									hiddenNames.push(items[i].name);
 									hiddenQuantities.push(items[i].quantity);
@@ -556,7 +567,7 @@ const accountController = {
 									hiddenComments.push(items[i].commentIds);
 									hiddenPictures.push(items[i].pictures[0]);
 									hiddenRatings.push(items[i].ratings);
-									hiddenVisibilities.push(items[i].visible);
+									hiddenVisibilities.push(false);
 
 									/* Average rating is displayed as 0 if there are no ratings yet */
 									if (items[i].ratings.length == 0) {
@@ -583,7 +594,7 @@ const accountController = {
 									depletedComments.push(items[i].commentIds);
 									depletedPictures.push(items[i].pictures[0]);
 									depletedRatings.push(items[i].ratings);
-									depletedVisibilities.push(items[i].visible);
+									depletedVisibilities.push(false);
 
 									/* Average rating is displayed as 0 if there are no ratings yet */
 									if (items[i].ratings.length == 0) {
@@ -610,7 +621,7 @@ const accountController = {
 									activeComments.push(items[i].commentIds);
 									activePictures.push(items[i].pictures[0]);
 									activeRatings.push(items[i].ratings);
-									activeVisibilities.push(items[i].visible);
+									activeVisibilities.push(true);
 
 									/* Average rating is displayed as 0 if there are no ratings yet */
 									if (items[i].ratings.length == 0) {

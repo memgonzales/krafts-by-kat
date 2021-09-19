@@ -98,7 +98,7 @@ const newProductController = {
 			pictures: paths,
 			ratings: [],
 			numberSold: 0,
-			visible: true
+			visible: 'Visible'
 		}
 
 		/* Insert the new product into the database and redirect the user to the landing page */
