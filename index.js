@@ -39,7 +39,7 @@ krafts.use(session({
 	secret: process.env.session_secret,
 	resave: false,
 	saveUninitialized: false,
-	store: new MongoStore({mongooseConnection: mongoose.connection})
+	store: new mongoStore({mongooseConnection: mongoose.connection})
 }));
 
 krafts.use('/',routes);
