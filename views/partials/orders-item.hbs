@@ -73,13 +73,11 @@
                     {{#if acceptedOrder}}
                         <li><a class="dropdown-item" href="/setOrderEnRoute/{{orderId}}">Set En Route</a></li>
                         <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
-                        <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
                     {{/if}}
 
                     {{#if enRouteOrder}}
                         <li><a class="dropdown-item" href="/setOrderDelivered/{{orderId}}">Set Delivered</a></li>
                         <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
-                        <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
                     {{/if}}
 
                     {{#if deliveredOrder}}
