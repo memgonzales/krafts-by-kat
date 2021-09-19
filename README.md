@@ -97,6 +97,9 @@ Open the following website: http://krafts-by-kat.herokuapp.com.
    ```
    http://localhost:3000
    ```
+   
+   <img src="https://github.com/memgonzales/krafts-by-kat/blob/master/public/img/screenshot.PNG?raw=True" alt="Homepage" width = 750> 
+
 
 ### Credentials (For Testing Only)
 To log in as an administrator, enter the following credentials:
