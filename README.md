@@ -183,7 +183,7 @@ This project follows the Model-View-Controller (MVC) architectural pattern. In l
 
 Server-side validation is performed via [Express Validator](https://www.npmjs.com/package/express-validator) and [Multer](https://www.npmjs.com/package/multer) (for files).
 
-This web application is deployed on the cloud platform <a href = "https://dashboard.heroku.com/">Heroku</a>. Since Heroku has an ephemeral filesystem, <a href = "https://docs.mongodb.com/manual/core/gridfs/">GridFS</a> is used for the persistent storage of image and audio files.
+This web application is deployed on the cloud platform <a href = "https://dashboard.heroku.com/">Heroku</a>. Since Heroku has an ephemeral filesystem, <a href = "https://docs.mongodb.com/manual/core/gridfs/">GridFS</a> is used for the persistent storage of files.
    
 ## Contributing
 Kindly refer to this [page](https://github.com/memgonzales/krafts-by-kat/blob/master/CONTRIBUTING.md) for the documents and the guidelines on contributing to this repository. These include the [Coding Standards](https://drive.google.com/file/d/1qY0xDRB7LBT7OQdyI0mgObhROHyMf7Hh/view?usp=sharing), [Repository Guidelines](https://drive.google.com/file/d/1A2j9fJXZhsOGueIhA-M15-NI1kC95bYn/view?usp=sharing), and [Integration Procedure](https://drive.google.com/file/d/1ZbcjjiV-8-rQRPRsG1Rd2LlAnfbLDjAD/view?usp=sharing).
