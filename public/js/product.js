@@ -1,3 +1,5 @@
+/* JavaScript file for handling the deletion of products from the products manager page */
+
 $(document).ready(function() {
     $('.delete-dropdown').on('click', function() {
         let id = $(this).attr('id');

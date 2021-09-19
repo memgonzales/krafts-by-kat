@@ -36,13 +36,20 @@ $(document).ready(function() {
 	 * Checks whether the entered contact number is valid
 	 * 
 	 * @param field the text field for entering the contact number
-	 * @return whether the entered contact number is valid
+	 * @return true if the entered contact number is valid; false, otherwise
 	 */
 	function isValidContactNumber(field) {
 		let contactNumber = validator.trim($('#contact-number').val());
 		return isValidContactNumberText(field, contactNumber);
 	}
 
+	/**
+	 * Implements the algorithm to check whether the entered contact number is valid
+	 * 
+	 * @param field the text field for entering the contact number
+	 * @param contactNumber the contact number entered by the user
+	 * @return true if the entered contact number is valid; false, otherwise
+	 */
 	function isValidContactNumberText(field, contactNumber) {
 		/* Assume that the input is invalid */
 		let validContactNumber = false;
@@ -82,13 +89,20 @@ $(document).ready(function() {
 	 * Checks whether the entered ZIP code is valid
 	 * 
 	 * @param field the text field for entering the ZIP code
-	 * @return whether the entered ZIP code is valid
+	 * @return true if the entered ZIP code is valid; false, otherwise
 	 */
 	function isValidZipCode(field) {
 		let zipCode = validator.trim($('#zip-code').val());
 		return isValidZipCodeText(field, zipCode);
 	}
 
+	/**
+	 * Implements the algorithm to check whether the entered ZIP code is valid
+	 * 
+	 * @param field the text field for entering the ZIP code
+	 * @param zipCode the ZIP code entered by the user
+	 * @return true if the entered ZIP code is valid; false, otherwise
+	 */
 	function isValidZipCodeText(field, zipCode) {
 		/* Assume that the input is invalid */
 		let validZipCode = false;
@@ -127,7 +141,7 @@ $(document).ready(function() {
 	 * 
 	 * @param field the text field for entering the email address
 	 * @param callback callback for querying the database for the uniqueness of the email address 
-	 * @return whether the entered email address is not in use
+	 * @return true if the entered email address is not in use; false, otherwise
 	 */
 	function isUniqueEmail(field, callback) {
 
@@ -173,7 +187,7 @@ $(document).ready(function() {
 	 * 
 	 * @param field the text field for entering the username
 	 * @param callback callback for querying the database for the uniqueness of the username
-	 * @return whether the entered username is not in use
+	 * @return true if the entered username is not in use; false, otherwise
 	 */
 	function isUniqueUsername(field, callback) {
 		
@@ -216,6 +230,7 @@ $(document).ready(function() {
 	 * Checks whether the entered password is valid
 	 * 
 	 * @param field the text field for entering the password
+	 * @return true if the entered password is valid; false, otherwise
 	 */
 	function isValidPassword(field) {
 		/* Retrieve the entered password, and do not trim */
@@ -223,7 +238,13 @@ $(document).ready(function() {
 		return isValidPasswordText(field, password);
 	}
 		
-
+	/**
+	 * Implements the algorithm to check whether the entered password is valid
+	 * 
+	 * @param field the text field for entering the password
+	 * @param password the password entered by the user
+	 * @return true if the entered password is valid; false, otherwise
+	 */
 	function isValidPasswordText(field, password) {
 		/* Assume that the input is invalid */
 		let validPassword = false;
@@ -281,7 +302,7 @@ $(document).ready(function() {
 	 * Checks whether the entered password (for cofirmation) is valid
 	 * 
 	 * @param field the text field for entering the password for confirmation
-	 * @return whether the entered password (for confirmation) is valid
+	 * @return true if the entered password (for confirmation) is valid; false, otherwise
 	 */
 	function isValidConfirmPassword(field) {
 		/* Retrieve the entered passwords, and do not trim */
@@ -291,7 +312,13 @@ $(document).ready(function() {
 		return isValidConfirmPasswordText(field, password, confirmPassword);
 	}
 
-
+	/**
+	 * Implements the algorithm to check whether the entered password (for confirmation) is valid
+	 * 
+	 * @param field the text field for entering the password (for confirmation)
+	 * @param confirmPassword the password (for confirmation) entered by the user
+	 * @return true if the entered password (for confirmation) is valid; false, otherwise
+	 */
 	function isValidConfirmPasswordText(field, password, confirmPassword) {
 		/* Assume that the input is invalid */
 		let validConfirmPassword = false;
@@ -466,10 +493,21 @@ $(document).ready(function() {
 		}
 	}
 
+	/**
+	 * Checks whether the first name text field is empty
+	 * 
+	 * @return true if the first name text field is empty; false, otherwise
+	 */
 	function isEmptyFirstName() {
 		return isEmptyFirstNameText($('#firstname').val().trim());
 	}
 
+	/**
+	 * Implements the algorithm to check whether the first name text field is empty
+	 * 
+	 * @param str the contents of the first name text field
+	 * @return true if the first name text field is empty; false, otherwise
+	 */
 	function isEmptyFirstNameText(str) {
 		/* If the first name text field is left empty, an error message is displayed */
 		if (str == '') {		
@@ -486,10 +524,21 @@ $(document).ready(function() {
 		return false;
 	}
 
+	/**
+	 * Checks whether the last name text field is empty
+	 * 
+	 * @return true if the last name text field is empty; false, otherwise
+	 */
 	function isEmptySurname() {
 		return isEmptySurnameText($('#surname').val().trim());
 	}
 
+	/**
+	 * Implements the algorithm to check whether the last name text field is empty
+	 * 
+	 * @param str the contents of the last name text field
+	 * @return true if the last name text field is empty; false, otherwise
+	 */
 	function isEmptySurnameText(str) {
 		/* If the surname text field is left empty, an error message is displayed */
 		if (str == '') {
@@ -506,10 +555,21 @@ $(document).ready(function() {
 		return false;
 	}
 
+	/**
+	 * Checks whether the contact number text field is empty
+	 * 
+	 * @return true if the contact number text field is empty; false, otherwise
+	 */
 	function isEmptyContact() {
 		return isEmptyContactText($('#contact-number').val().trim());
 	}
 
+	/**
+	 * Implements the algorithm to check whether the contact number text field is empty
+	 * 
+	 * @param str the contents of the contact number text field
+	 * @return true if the contact number text field is empty; false, otherwise
+	 */
 	function isEmptyContactText(str) {
 		/* If the contact number text field is left empty, an error message is displayed */
 		if (str == '') {
@@ -526,10 +586,21 @@ $(document).ready(function() {
 		return false;
 	}
 
+	/**
+	 * Checks whether the region selection field is empty
+	 * 
+	 * @return true if the region selection field is empty; false, otherwise
+	 */
 	function isEmptyRegion() {
 		return isEmptyRegionText($('#region').find(':selected').text());
 	}
 
+	/**
+	 * Implements the algorithm to check whether the region selection field is empty
+	 * 
+	 * @param str the contents of the region selection field
+	 * @return true if the region selection field is empty; false, otherwise
+	 */
 	function isEmptyRegionText(str) {
 		/* If the region selection field is left empty, an error message is displayed */
 		if (str == '') {
@@ -546,12 +617,23 @@ $(document).ready(function() {
 		return false;
 	}
 
+	/**
+	 * Checks whether the province selection field is empty
+	 * 
+	 * @return true if the province selection field is empty; false, otherwise
+	 */
 	function isEmptyProvince() {
 		return isEmptyProvinceText($('#province').find(':selected').text());
 	}
 
+	/**
+	 * Implements the algorithm to check whether the province selection field is empty
+	 * 
+	 * @param str the contents of the province selection field
+	 * @return true if the province selection field is empty; false, otherwise
+	 */
 	function isEmptyProvinceText(str) {
-		/* If the region selection field is left empty, an error message is displayed */
+		/* If the province selection field is left empty, an error message is displayed */
 		if (str == '') {
 			$('#province-error').text('Required');
 			$('#province').css('border-color', '#FF0000');
@@ -566,10 +648,21 @@ $(document).ready(function() {
 		return false;
 	}
 
+	/**
+	 * Checks whether the city selection field is empty
+	 * 
+	 * @return true if the city selection field is empty; false, otherwise
+	 */
 	function isEmptyCity() {
 		return isEmptyCityText($('#city').find(':selected').text());
 	}
 
+	/**
+	 * Implements the algorithm to check whether the city selection field is empty
+	 * 
+	 * @param str the contents of the city selection field
+	 * @return true if the city selection field is empty; false, otherwise
+	 */
 	function isEmptyCityText(str) {
 		/* If the city selection field is left empty, an error message is displayed */
 		if (str == '') {
@@ -587,14 +680,20 @@ $(document).ready(function() {
 	}
 
 	/**
-	 * Checks if the user has placed any input on the field for barangay
+	 * Checks whether the barangay selection field is empty
 	 * 
-	 * @return true if the user has not placed any input on the field for barangay; false, otherwise
+	 * @return true if the barangay selection field is empty; false, otherwise
 	 */
 	function isEmptyBarangay() {
 		return isEmptyBarangayText($('#barangay').find(':selected').text());
 	}
 
+	/**
+	 * Implements the algorithm to check whether the barangay selection field is empty
+	 * 
+	 * @param str the contents of the barangay selection field
+	 * @return true if the barangay selection field is empty; false, otherwise
+	 */
 	function isEmptyBarangayText(str) {
 		/* If the barangay selection field is left empty, an error message is displayed */
 		if (str == '') {
@@ -611,11 +710,21 @@ $(document).ready(function() {
 		return false;
 	}
 
-	
+	/**
+	 * Checks whether the ZIP code text field is empty
+	 * 
+	 * @return true if the ZIP code text field is empty; false, otherwise
+	 */	
 	function isEmptyZipCode() {
 		return isEmptyZipCodeText($('#zip-code').val().trim());
 	}
 
+	/**
+	 * Implements the algorithm to check whether the ZIP code text field is empty
+	 * 
+	 * @param str the contents of the ZIP code text field
+	 * @return true if the ZIP code text field is empty; false, otherwise
+	 */
 	function isEmptyZipCodeText(str) {
 		/* If the ZIP code text field is left empty, an error message is displayed */
 		if (str == '') {
@@ -632,10 +741,21 @@ $(document).ready(function() {
 		return false;
 	}
 
+	/**
+	 * Checks whether the address text field is empty
+	 * 
+	 * @return true if the address text field is empty; false, otherwise
+	 */	
 	function isEmptyAddress() {
 		return isEmptyAddressText($('#address').val().trim());
 	}
 
+	/**
+	 * Implements the algorithm to check whether the address text field is empty
+	 * 
+	 * @param str the contents of the address text field
+	 * @return true if the address text field is empty; false, otherwise
+	 */
 	function isEmptyAddressText(str) {
 		/* If the address text field is left empty, an error message is displayed */
 		if (str == '') {
@@ -652,10 +772,21 @@ $(document).ready(function() {
 		return false;
 	}
 
+	/**
+	 * Checks whether the email text field is empty
+	 * 
+	 * @return true if the email text field is empty; false, otherwise
+	 */	
 	function isEmptyEmail() {
 		return isEmptyEmailText($('#create-email').val().trim());		
 	}
 
+	/**
+	 * Implements the algorithm to check whether the email text field is empty
+	 * 
+	 * @param str the contents of the email text field
+	 * @return true if the email text field is empty; false, otherwise
+	 */
 	function isEmptyEmailText(str) {
 		/* If the email text field is left empty, an error message is displayed */
 		if (str == '') {
@@ -672,10 +803,21 @@ $(document).ready(function() {
 		return false;
 	}
 
+	/**
+	 * Checks whether the username text field is empty
+	 * 
+	 * @return true if the username text field is empty; false, otherwise
+	 */	
 	function isEmptyUsername() {
 		return isEmptyUsernameText($('#create-username').val().trim());		
 	}
 
+	/**
+	 * Implements the algorithm to check whether the username text field is empty
+	 * 
+	 * @param str the contents of the username text field
+	 * @return true if the username text field is empty; false, otherwise
+	 */
 	function isEmptyUsernameText(str) {
 		/* If the username text field is left empty, an error message is displayed */
 		if (str == '') {
@@ -692,11 +834,22 @@ $(document).ready(function() {
 		return false;
 	}
 
+	/**
+	 * Checks whether the password text field is empty
+	 * 
+	 * @return true if the password text field is empty; false, otherwise
+	 */	
 	function isEmptyPassword() {
 		/* Do not trim the password */
 		return isEmptyPasswordText($('#create-password').val());
 	}
 
+	/**
+	 * Implements the algorithm to check whether the password text field is empty
+	 * 
+	 * @param str the contents of the password text field
+	 * @return true if the password text field is empty; false, otherwise
+	 */
 	function isEmptyPasswordText(str) {
 		/* If the password text field is left empty, an error message is displayed */
 		if (str == '') {
@@ -713,11 +866,22 @@ $(document).ready(function() {
 		return false;
 	}
 
+	/**
+	 * Checks whether the confirm password text field is empty
+	 * 
+	 * @return true if the confirm password text field is empty; false, otherwise
+	 */	
 	function isEmptyRepeatPassword() {
 		/* Do not trim the confirmatory password */
 		return isEmptyRepeatPasswordText($('#confirm-pass').val());
 	}
 
+	/**
+	 * Implements the algorithm to check whether the confirm password text field is empty
+	 * 
+	 * @param str the contents of the confirm password text field
+	 * @return true if the confirm password text field is empty; false, otherwise
+	 */
 	function isEmptyRepeatPasswordText(str) {
 		/* If the confirm password text field is left empty, an error message is displayed */
 		if (str == '') {

@@ -132,7 +132,7 @@ krafts.get('/setOrderAccepted/:id', orderTrackerController.getSetOrderAccepted);
 krafts.get('/setOrderEnRoute/:id', orderTrackerController.getSetOrderEnRoute);
 krafts.get('/setOrderDelivered/:id', orderTrackerController.getSetOrderDelivered);
 
-/* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
+/* For file upload */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
 krafts.get('/uploadsTest', uploadsTestController.displayPage);
 
@@ -141,7 +141,6 @@ if (process.env.NODE_ENV === 'test') {
 } else {
     krafts.post('/uploadLogo', db.connect().single('upload-test'), displayController.postEditLogo);
 }
-/* END -- REMOVE ON DEPLOYMENT */
 
 // FOR CLEANING
 /* TEMP Orders Nav Tabs*/ 

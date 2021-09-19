@@ -1,12 +1,14 @@
-$(document).ready(function() {
+/* JavaScript file for handling the front end functionalities concerning the tooltips, messages, and ratings */
 
+$(document).ready(function() {
+    /* Retrieve the elements that have tooltip functionalities */
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     });
 
 
-    // Temp Jquery, para makita lang kung pano dapat siya
+    /* Reformat the relevant elements when the upload file option is selected in the messaging feature */
     $('#write-message-upload-file').click(function(){
         $('#file-upload-row').removeClass('hidden');
         $('#message-uploaded-file').removeClass('hidden');
@@ -14,7 +16,9 @@ $(document).ready(function() {
     });
 
 
-    // JQuery for star sa leaving a review
+    /* Edit the front end of the rating representations (i.e., the five stars) depending on the rating 
+     * the user selects
+     */
     $('.rate1, .rate2, .rate3, .rate4, .rate5').each(function(){
         $(this).click(function(){
 
@@ -109,7 +113,7 @@ $(document).ready(function() {
         });
     });
 
-    //JQuery for picking a review rating for viewing the product
+    /* Alter the rating display depending on the selected rating that the user would like to see comments for */
     $('#show-1star, #show-2star, #show-3star, #show-4star, #show-5star').each(function(){
         $(this).click(function(){
 

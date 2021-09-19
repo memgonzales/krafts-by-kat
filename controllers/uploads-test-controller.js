@@ -1,4 +1,4 @@
-/* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
+/* For file upload */
 
 const db = require('../models/db.js');
 

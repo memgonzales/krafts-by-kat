@@ -27,6 +27,10 @@ $(document).ready(function() {
 		});
 	});
 
+	/**
+	 * Highlights the erroneous text field and resets the password text field when there is a log in error
+	 * concerning the guest's input
+	 */
 	function logInError() {
 		$('#error-text').css('color', '#C70039');
 		$('#password').val('');

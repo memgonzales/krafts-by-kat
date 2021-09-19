@@ -1,3 +1,5 @@
+/* JavaScript file for handling the front end of the edit product page elements */
+
 $(document).ready(function() {
     /* Show warning if navigating away from page */
     window.onbeforeunload = function() {
@@ -52,6 +54,10 @@ $(document).ready(function() {
 	 * Hides the remove buttons of all the product photos
 	 * 
 	 * Initially, all the remove buttons are hidden from view
+     * 
+     * @param pictures pictures whose remove buttons are to be hidden
+     * @param placeholder placeholder picture for when there are no pictures associated with the product
+     * @param maxNumPictures maximum number of pictures a product can have
 	 */
 	function hideRemoveImg(pictures, placeholder, maxNumPictures) {
         /* Handle the case if the only picture is the placeholder */
@@ -144,6 +150,9 @@ $(document).ready(function() {
 
     /**
      * Displays the product photos retrieved from the database on the front-end
+     * 
+     * @param pictures pictures to be displayed
+     * @param placeholder placeholder picture for when there are no pictures associated with the product
      */
     function displayPictures(pictures, placeholder) {
         /* Display pictures only if pictures have been uploaded */
@@ -248,6 +257,9 @@ $(document).ready(function() {
      * 
      * Precondition:
      * - All the indices must be single-digit numbers.
+     * 
+     * @param modifiedIndices new indices of the product photos
+     * @param maxNumPictures maximum number of pictures that can be associated with a product
      */
     function trackModifiedIndices(modifiedIndices, maxNumPictures) {
         /* Initialize to an empty string to prevent duplicates when editing is done repetitively */
@@ -300,6 +312,9 @@ $(document).ready(function() {
      * 
      * Precondition:
      * - All the indices must be single-digit numbers.
+     * 
+     * @param deletedIndices indices of the product photos that have been removed
+     * @param maxNumPictures maximum number of pictures that can be associated with a product
      */
     function trackDeletedIndices(deletedIndices, maxNumPictures) {
         /* Initialize to an empty string to prevent duplicates when editing is done repetitively */
