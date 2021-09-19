@@ -34,6 +34,7 @@ It also includes the following files:
 | --- | --- |
 | [<code>package-lock.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package-lock.json) and [<code>package.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package.json) | Store information on the project dependencies |
 | [<code>index.js</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/index.js) | Entry point of the web application |
+| [<code>Procfile</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/Procfile) | Specifies the commands that are run by the app on startup (Heroku)
 
 ## Entity Relationship Diagram
 
@@ -114,7 +115,7 @@ The software development team uses <a href = "https://code.visualstudio.com/">Vi
 ### Automated Testing
 Aside from manual integration testing, automated unit tests were also performed in light of the test-driven development methodology. The steps for running the automated unit tests are as follows:
 
-1. Ensure that the necessary development dependencies (enumerated in the **Dependencies** section) have been installed. Otherwise, run the following command to install them:
+1. Ensure that the necessary development dependencies *(enumerated in the next section)* have been installed. Otherwise, run the following command to install them:
    ```
    npm install --only=dev
    ```
@@ -128,7 +129,7 @@ Aside from manual integration testing, automated unit tests were also performed 
    ```
 
 ## Dependencies
-This project uses the following production dependencies, which can be installed via the <code>npm install</code> command:
+This project uses the following production dependencies:
 
 | Package | Version | Description | License |
 | --- | --- | --- | --- |
@@ -143,12 +144,26 @@ This project uses the following production dependencies, which can be installed 
 | [<code>gridfs-stream</code>](https://www.npmjs.com/package/gridfs-stream) | 1.1.1 | Package for streaming files to and from MongoDB GridFS | MIT License |
 | [<code>hbs</code>](https://www.npmjs.com/package/hbs) | 4.1.2 | Express view engine for Handlebars | MIT License |
 | [<code>jquery</code>](https://www.npmjs.com/package/jquery) | 3.6.0 | Fast, small, and feature-rich JavaScript library | MIT License
-| [<code>mongodb</code>](https://www.npmjs.com/package/mongodb) | 3.6.6 | Official MongoDB driver for Node.js | Apache License 2.0 |
-| [<code>mongoose</code>](https://www.npmjs.com/package/mongoose) | 5.6.13 | MongoDB object modeling tool designed to work in an asynchronous environment | MIT License |
+| [<code>mongodb</code>](https://www.npmjs.com/package/mongodb) | 3.7.1 | Official MongoDB driver for Node.js | Apache License 2.0 |
+| [<code>mongoose</code>](https://www.npmjs.com/package/mongoose) | 5.13.9 | MongoDB object modeling tool designed to work in an asynchronous environment | MIT License |
 | [<code>multer</code>](https://www.npmjs.com/package/multer) | 1.4.2 | Middleware for handling <code>multipart/form-data</code>, primarily used for file uploads | MIT License |
 | [<code>multer-gridfs-storage</code>](https://www.npmjs.com/package/multer-gridfs-storage) | 4.2.0 | GridFS storage engine for Multer to store uploaded files directly to MongoDB | MIT License |
 | [<code>no-cache</code>](https://www.npmjs.com/package/nocache) | 3.0.1 | Middleware for setting some HTTP response headers to try to disable client-side caching | MIT License
 | [<code>nodemailer</code>](https://www.npmjs.com/package/nodemailer) | 6.6.0 | Package for sending emails with Node.js | MIT License | 
+
+The following table lists the development dependencies:
+
+| Package | Version | Description | License |
+| --- | --- | --- | --- |
+| [<code>@types/jsdom</code>](https://www.npmjs.com/package/@types/jsdom) | 16.2.13 | Contains type definitions for JSDom | MIT License |
+| [<code>chai</code>](https://www.npmjs.com/package/chai) | 4.3.4 | Behavior- and test-driven development assertion library for Node.js | MIT License |
+| [<code>chai-http</code>](https://www.npmjs.com/package/chai-http) | 4.3.0 | HTTP integration testing with Chai assertions | MIT License |
+| [<code>chai-jquery</code>](https://www.npmjs.com/package/chai-jquery) | 2.1.0 | Extension to the chai assertion library that provides a set of jQuery-specific assertions | MIT License |
+| [<code>jsdom</code>](https://www.npmjs.com/package/jsdom) | 17.0.0 | Pure-JavaScript implementation of many web standards, notably the WHATWG DOM and HTML Standards, for use with Node.js |  MIT License |
+| [<code>mocha</code>](https://www.npmjs.com/package/mocha) | 9.1.1 | Simple and flexible JavaScript test framework for Node.js and the browser | MIT License  |
+| [<code>mocha-jsdom</code>](https://www.npmjs.com/package/mocha-jsdom) | 2.0.0 | Test frontend libraries in the console using Node.js, Mocha and JSDom. | MIT License  |
+| [<code>mockgoose</code>](https://www.npmjs.com/package/mockgoose) | 8.0.4 | Provides test database by spinning up `mongod` on the back when `mongoose.connect` call is made | MIT License |
+| [<code>nyc</code>](https://www.npmjs.com/package/nyc) | 15.1.0 | Istanbul's state of the art command line interface with support for applications that spawn subprocesses | ISC License |
 
 This project also imports the following design-related toolkits:
 
