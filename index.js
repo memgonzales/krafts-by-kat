@@ -17,7 +17,7 @@ const db = require('./models/db.js');
 const krafts = express();
 
 dotenv.config();
-port = process.env.PORT;
+port = process.env.PORT || 3000;
 hostname = process.env.HOSTNAME || 3000;
 url = process.env.DB_URL;
 
