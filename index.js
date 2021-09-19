@@ -18,7 +18,7 @@ const krafts = express();
 
 dotenv.config();
 port = process.env.PORT;
-hostname = process.env.HOSTNAME;
+hostname = process.env.HOSTNAME || 3000;
 url = process.env.DB_URL;
 
 db.connect();
