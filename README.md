@@ -8,6 +8,12 @@
 ![badge][badge-nodejs]
 ![badge][badge-mocha]
 
+This project is a software solution (web application) for **Krafts by Kat**, an online retail business founded in 2017 that provides customized corporate giveaways to clients. It is the major course output in an introduction to software engineering class. 
+
+The deployed website can be accessed through this link: http://krafts-by-kat.herokuapp.com.
+
+A detailed walkthrough of the features is provided in this [video](https://drive.google.com/file/d/1n9dvAOM72-JefUJLENNKtDjlLNEqZUGH/view?usp=sharing).
+
 ## Project Structure
 The project consists of the following folders:
 | Folder | Description |
@@ -28,14 +34,72 @@ It also includes the following files:
 | --- | --- |
 | [<code>package-lock.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package-lock.json) and [<code>package.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package.json) | Store information on the project dependencies |
 | [<code>index.js</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/index.js) | Entry point of the web application |
+| [<code>Procfile</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/Procfile) | Specifies the commands that are run by the app on startup (Heroku)
 
-The **entity relationship diagram** to illustrate the schemas can be viewed [here]().
+## Entity Relationship Diagram
+
+The entity relationship diagram to illustrate the schemas can be viewed [here](https://drive.google.com/file/d/1dkrmvvhiB5CKofxZo6iT1PgoxlP6JL0j/view?usp=sharing).
 
 ## Running the Application
 
 ### Running on the Web
 
+Open the following website: http://krafts-by-kat.herokuapp.com.
+
 ### Running Locally
+
+1. Before running the application locally, the following software have to be installed:
+
+   | Software | Description | Download Link | License |
+   | --- | --- | --- | --- |
+   | Node.js | JavaScript runtime built on Chrome's V8 JavaScript engine | https://nodejs.org/en/download/ | MIT License |
+   | git *(optional)* | Distributed version control system | https://git-scm.com/downloads | GNU General Public License v2.0 |
+
+2. Create a copy of this repository:
+   - If git is installed, type the following command on the terminal:
+   
+     ```
+     git clone https://github.com/memgonzales/krafts-by-kat
+     ```
+      
+   - If git is not installed, click the green `Code` button near the top right of the repository and choose `Download ZIP`. Once the zipped folder has been downloaded, extract its contents.
+
+3. On the main project directory, run the following command to **install the dependencies**: 
+
+   ```
+   npm install
+   ```
+
+   If the command is executed successfully, the dependencies will be installed into the folder <code>node_modules</code> following the dependency tree found in [<code>package-lock.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package-lock.json).
+
+###
+   ***The project uses a pre-populated remote database. DO STEPS 4 AND 6 ONLY AFTER A DATABASE RESET OR MIGRATION TO A LOCAL DATABASE.***
+
+4. Run the following commands to populate the database with the necessary collections:
+
+   ```
+   node misc/populate_display.js
+   node misc/populate_client.js
+   node misc/populate_business_owner.js
+   ```
+   
+5. Run the following command to **run the server**: 
+   ```
+   node index.js
+   ```
+   
+6. Upload the [logo](https://github.com/memgonzales/krafts-by-kat/blob/master/public/img/kbk-logo.png) of Krafts by Kat through the file input field found on the following page:
+   ```
+   http://localhost:3000/uploadsTest
+   ```
+
+7. Open the web application by accessing the following link on a browser:
+   ```
+   http://localhost:3000
+   ```
+   
+   <img src="https://github.com/memgonzales/krafts-by-kat/blob/master/public/img/screenshot.PNG?raw=True" alt="Homepage" width = 750> 
+
 
 ### Credentials (For Testing Only)
 To log in as an administrator, enter the following credentials:
@@ -54,7 +118,7 @@ The software development team uses <a href = "https://code.visualstudio.com/">Vi
 ### Automated Testing
 Aside from manual integration testing, automated unit tests were also performed in light of the test-driven development methodology. The steps for running the automated unit tests are as follows:
 
-1. Ensure that the necessary development dependencies (enumerated in the **Dependencies** section) have been installed. Otherwise, run the following command to install them:
+1. Ensure that the necessary development dependencies *(enumerated in the next section)* have been installed. Otherwise, run the following command to install them:
    ```
    npm install --only=dev
    ```
@@ -68,7 +132,7 @@ Aside from manual integration testing, automated unit tests were also performed 
    ```
 
 ## Dependencies
-This project uses the following production dependencies, which can be installed via the <code>npm install</code> command:
+This project uses the following production dependencies:
 
 | Package | Version | Description | License |
 | --- | --- | --- | --- |
@@ -83,12 +147,26 @@ This project uses the following production dependencies, which can be installed 
 | [<code>gridfs-stream</code>](https://www.npmjs.com/package/gridfs-stream) | 1.1.1 | Package for streaming files to and from MongoDB GridFS | MIT License |
 | [<code>hbs</code>](https://www.npmjs.com/package/hbs) | 4.1.2 | Express view engine for Handlebars | MIT License |
 | [<code>jquery</code>](https://www.npmjs.com/package/jquery) | 3.6.0 | Fast, small, and feature-rich JavaScript library | MIT License
-| [<code>mongodb</code>](https://www.npmjs.com/package/mongodb) | 3.6.6 | Official MongoDB driver for Node.js | Apache License 2.0 |
-| [<code>mongoose</code>](https://www.npmjs.com/package/mongoose) | 5.6.13 | MongoDB object modeling tool designed to work in an asynchronous environment | MIT License |
+| [<code>mongodb</code>](https://www.npmjs.com/package/mongodb) | 3.7.1 | Official MongoDB driver for Node.js | Apache License 2.0 |
+| [<code>mongoose</code>](https://www.npmjs.com/package/mongoose) | 5.13.9 | MongoDB object modeling tool designed to work in an asynchronous environment | MIT License |
 | [<code>multer</code>](https://www.npmjs.com/package/multer) | 1.4.2 | Middleware for handling <code>multipart/form-data</code>, primarily used for file uploads | MIT License |
 | [<code>multer-gridfs-storage</code>](https://www.npmjs.com/package/multer-gridfs-storage) | 4.2.0 | GridFS storage engine for Multer to store uploaded files directly to MongoDB | MIT License |
 | [<code>no-cache</code>](https://www.npmjs.com/package/nocache) | 3.0.1 | Middleware for setting some HTTP response headers to try to disable client-side caching | MIT License
 | [<code>nodemailer</code>](https://www.npmjs.com/package/nodemailer) | 6.6.0 | Package for sending emails with Node.js | MIT License | 
+
+The following table lists the development dependencies:
+
+| Package | Version | Description | License |
+| --- | --- | --- | --- |
+| [<code>@types/jsdom</code>](https://www.npmjs.com/package/@types/jsdom) | 16.2.13 | Contains type definitions for JSDom | MIT License |
+| [<code>chai</code>](https://www.npmjs.com/package/chai) | 4.3.4 | Behavior- and test-driven development assertion library for Node.js | MIT License |
+| [<code>chai-http</code>](https://www.npmjs.com/package/chai-http) | 4.3.0 | HTTP integration testing with Chai assertions | MIT License |
+| [<code>chai-jquery</code>](https://www.npmjs.com/package/chai-jquery) | 2.1.0 | Extension to the chai assertion library that provides a set of jQuery-specific assertions | MIT License |
+| [<code>jsdom</code>](https://www.npmjs.com/package/jsdom) | 17.0.0 | Pure-JavaScript implementation of many web standards, notably the WHATWG DOM and HTML Standards, for use with Node.js |  MIT License |
+| [<code>mocha</code>](https://www.npmjs.com/package/mocha) | 9.1.1 | Simple and flexible JavaScript test framework for Node.js and the browser | MIT License  |
+| [<code>mocha-jsdom</code>](https://www.npmjs.com/package/mocha-jsdom) | 2.0.0 | Test frontend libraries in the console using Node.js, Mocha and JSDom. | MIT License  |
+| [<code>mockgoose</code>](https://www.npmjs.com/package/mockgoose) | 8.0.4 | Provides test database by spinning up `mongod` on the back when `mongoose.connect` call is made | MIT License |
+| [<code>nyc</code>](https://www.npmjs.com/package/nyc) | 15.1.0 | Istanbul's state of the art command line interface with support for applications that spawn subprocesses | ISC License |
 
 This project also imports the following design-related toolkits:
 
@@ -108,7 +186,7 @@ Server-side validation is performed via [Express Validator](https://www.npmjs.co
 This web application is deployed on the cloud platform <a href = "https://dashboard.heroku.com/">Heroku</a>. Since Heroku has an ephemeral filesystem, <a href = "https://docs.mongodb.com/manual/core/gridfs/">GridFS</a> is used for the persistent storage of image and audio files.
    
 ## Contributing
-Kindly refer to this [page](https://github.com/memgonzales/krafts-by-kat/blob/master/CONTRIBUTING.md) for the reference documents and the guidelines on contributing to this repository.
+Kindly refer to this [page](https://github.com/memgonzales/krafts-by-kat/blob/master/CONTRIBUTING.md) for the documents and the guidelines on contributing to this repository.
 
 ## Software Development Team
 
