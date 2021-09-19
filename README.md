@@ -8,6 +8,10 @@
 ![badge][badge-nodejs]
 ![badge][badge-mocha]
 
+This project is a software solution (web application) for **Krafts by Kat**, an online retail business founded in 2017 that provides customized corporate giveaways to clients. It is the major course output in a software engineering class. 
+
+A detailed walkthrough of the features is provided in this [video](https://drive.google.com/file/d/1n9dvAOM72-JefUJLENNKtDjlLNEqZUGH/view?usp=sharing).
+
 ## Project Structure
 The project consists of the following folders:
 | Folder | Description |
