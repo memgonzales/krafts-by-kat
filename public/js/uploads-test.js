@@ -1,4 +1,4 @@
-/* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
+/* For file upload */
 
 $(document).ready(function() {
 	$('#upload-test-form').on('submit', function(e) {

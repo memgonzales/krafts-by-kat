@@ -1,11 +1,15 @@
+/* JavaScript file for handling the front end of the order item text fields on the get order page */
+
 $(document).ready(function() {
     const orderItemIdsStr = $('#order-item-id-list').text();
     const orderItemIds = getOrderItemIds(orderItemIdsStr)
 
+    /* Format the order item prices */
     $('.order-item-price').each(function() {
         $(this).text(formatNumber($(this).text()));
     });
 
+    /* Update the front end when an order item is removed */
     $('.remove-order-item').each(function() {
         $(this).on('click', function() {
             const orderItemId = getOrderItemId(this);
@@ -16,7 +20,7 @@ $(document).ready(function() {
         });
     });
 
-    /* Update the order item prices on page load. */
+    /* Update the order item prices on page load */
     $('.item-quantity').each(function() {
         const orderItemId = getOrderItemId(this);
         const unitPrice = $('#product-price-' + orderItemId).text();
@@ -26,7 +30,7 @@ $(document).ready(function() {
         $('#order-item-price-hidden-' + orderItemId).val(totalPrice);
     });
 
-    /* Update the order item prices when the quantity changes. */
+    /* Update the order item prices when the quantity changes */
     $('.item-quantity').each(function() {
         $(this).on('change', function() {
             const orderItemId = getOrderItemId(this);
@@ -51,11 +55,14 @@ $(document).ready(function() {
                 totalOrdered += parseInt($(this).val());
             });          
 
+            /* Handle the case where the user orders more than the available amount */
             if (totalOrdered > parseInt($(this).attr('max'))) {
                 const excess = totalOrdered - parseInt($(this).attr('max'));
                 const left = $(this).val() - excess
                 $(this).val(left);
                 $('#quantity-exceed-' + orderItemId).text('Only ' + left + ' more units are available');
+
+            /* Handle the case where the user orders less than one item */
             } else if (parseInt($(this).val()) < parseInt($(this).attr('min'))) {
                 $(this).val($(this).attr('min'));
                 $('#quantity-exceed-' + orderItemId).text('You have to order at least one item');
@@ -243,6 +250,12 @@ $(document).ready(function() {
         });
     });
 
+    /**
+	 * Retrieve the ObjectID of an order or order item
+	 * 
+	 * @param element element whose ObjectID is to be retrieved
+     * @return string representation of the ObjectID of the passed element
+	 */
     function getOrderItemId(element) {
         const id = element.id;
         const idTokens = id.split('-');
@@ -250,22 +263,49 @@ $(document).ready(function() {
         return idTokens[idTokens.length - 1];
     }
 
+    /**
+	 * Add commas to the order item price
+	 * 
+	 * @param price price to be formatted
+     * @return formatted version of the price with commas added 
+	 */
     function formatNumber(price) {
         return parseFloat(price).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
     }
 
+    /**
+	 * Remove commas from the order item price
+	 * 
+	 * @param price price to be unformatted
+     * @return unformatted version of the price with commas removed
+	 */
     function unformatNumber(price) {
         return price.replace(/,/g, '');;
     }
 
+    /**
+	 * Hide the front end elements of a removed order item
+	 * 
+	 * @param orderItemId ID of the order item that was removed
+	 */
     function hideProduct(orderItemId) {
         $('#accordion-item-' + orderItemId).hide();
     }
 
+    /**
+	 * Update the list of removed order items
+	 * 
+	 * @param orderItemId ID of the order item that was removed
+	 */
     function trackRemovedOrderItems(orderItemId) {
         $('#removed-order-items').val($('#removed-order-items').val() + ',' + orderItemId);
     }
 
+    /**
+	 * Update the quantities and subtotals of an order item and the total price
+	 * 
+	 * @param orderItemId ID of the order item whose details are to be updated
+	 */
     function updateOrderSummary(orderItemId) {
         $('#order-summary-item-quantity-' + orderItemId).text($('#quantity-' + orderItemId).val());
         $('#order-summary-item-price-' + orderItemId).text($('#order-item-price-' + orderItemId).text());
@@ -273,6 +313,11 @@ $(document).ready(function() {
         $('#order-total-price-display').text(formatNumber(getOrderTotalPrice()));
     }
 
+    /**
+	 * Retrieve the total price of the order
+	 * 
+	 * @return the total price of the order
+	 */
     function getOrderTotalPrice() {
         let total = 0;
         for (let orderItemId of orderItemIds) {
@@ -282,10 +327,21 @@ $(document).ready(function() {
         return total;
     }
 
+    /**
+	 * Retrieve the ObjectID of an order or order item
+	 * 
+	 * @param element element whose ObjectID is to be retrieved
+     * @return string representation of the ObjectID of the passed element
+	 */
     function getOrderItemIds(orderItemIdsStr) {
         return orderItemIdsStr.split(',');
     }
 
+    /**
+	 * Remove the front end elements of a removed order item from the order summary
+	 * 
+	 * @param orderItemId ID of the order item that was removed
+	 */
     function removeProductFromSummary(orderItemId) {
         const priceRemoved = parseFloat(unformatNumber($('#order-summary-item-price-' + orderItemId).text()));
         const total = parseFloat(unformatNumber($('#order-total-price-display').text()));

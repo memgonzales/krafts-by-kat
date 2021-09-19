@@ -1,3 +1,5 @@
+/* JavaScript file for handling the front end of the get order page */
+
 $(document).ready(function() {
     /* Show warning if navigating away from page */
 	window.onbeforeunload = function() {
@@ -28,19 +30,41 @@ $(document).ready(function() {
     const mostRecentOrderId = orderItemIds[orderItemIds.length - 1];
     $('#productId_collapse-' + mostRecentOrderId).addClass('show');
 
-
+    /**
+	 * Add commas to the order price
+	 * 
+	 * @param price price to be formatted
+     * @return formatted version of the price with commas added 
+	 */
     function formatNumber(price) {
         return parseFloat(price).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
     }
 
+    /**
+	 * Remove commas from the order price
+	 * 
+	 * @param price price to be unformatted
+     * @return unformatted version of the price with commas removed
+	 */
     function unformatNumber(price) {
         return price.replace(/,/g, '');;
     }
 
+    /**
+	 * Retrieve the ObjectID of an order or order item
+	 * 
+	 * @param element element whose ObjectID is to be retrieved
+     * @return string representation of the ObjectID of the passed element
+	 */
     function getOrderItemIds(orderItemIdsStr) {
         return orderItemIdsStr.split(',');
     }
 
+    /**
+	 * Update the quantities and subtotals of an order item
+	 * 
+	 * @param orderItemId ID of the order item whose details are to be updated
+	 */
     function updateOrderSummary(orderItemId) {
         $('#order-summary-item-quantity-' + orderItemId).text($('#quantity-' + orderItemId).val());
         $('#order-summary-item-price-' + orderItemId).text($('#order-item-price-' + orderItemId).text());
@@ -50,6 +74,7 @@ $(document).ready(function() {
         e.preventDefault();
 
 		$.ajax({
+            /* Save the order details when the return to item catalog button is selected */
 			url: '/postSaveOrder',
 			method: 'POST',
 			data: new FormData(document.getElementById('order-form')),
@@ -64,6 +89,7 @@ $(document).ready(function() {
 		});
     });
 
+    /* Set the value of the delivery mode depending on the radio button selected */
     $('#pickup').on('click', function() {
         $('#delivery-mode-value').val('pickup');
     });
@@ -87,6 +113,7 @@ $(document).ready(function() {
     $('#save-order').on('click', function(e) {
         e.preventDefault();
 
+        /* Prevent the saving of orders that do not have order names */
         if ($('#order-name').val().trim() == '') {
             alert('Please enter an order name');
             document.documentElement.scrollTop = 0;
@@ -110,6 +137,7 @@ $(document).ready(function() {
     $('#place-order').on('click', function(e) {
         e.preventDefault();
         
+        /* Prevent the placing of orders that do not have order names */
         if ($('#order-name').val().trim() == '') {
             alert('Please enter an order name');
             document.documentElement.scrollTop = 0;
@@ -178,13 +206,19 @@ $(document).ready(function() {
             break; 
     }
 
-
+    /* Redirect the user to the item catalog if they select the cancel option on the get order page */
     $('#cancel-order').on('click', function(e) {
         window.onbeforeunload = function() {
             return null;
         };
     });
 
+    /**
+	 * Format the preferred delivery date
+	 * 
+	 * @param date date to be formatted
+     * @return string representation of the selected date in YYYY-MM-DD format
+	 */
     function formatDate(date) {
         if (date.length > 0) {
             var d = new Date(date),
@@ -206,6 +240,11 @@ $(document).ready(function() {
         }
     }
 
+    /**
+	 * Reads the URL of the uploaded company logo to display it after uploading
+	 * 
+	 * @param input the file input field
+	 */
     function readURL(input) {
         /* Get the file extension using regex */
 		let extension = input.value.match(/\.([^\.]+)$/)[1];
@@ -231,6 +270,7 @@ $(document).ready(function() {
 	 * Prevents the uploading of non-image files on the client-side by displaying an alert
 	 * 
 	 * @param extension extension of the file uploaded (all letters in lowercase)
+     * @return true if the uploaded file is of a supported file type; false, otherwise
 	 */
 	function imgFilter(extension) {
 		switch(extension) {

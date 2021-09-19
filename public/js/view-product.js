@@ -1,3 +1,5 @@
+/* JavaScript file for handling the front end of the view product page */
+
 $(document).ready(function() {
     /* Hide add to order button if viewing using an admin account */
     hideAddToOrder();
@@ -7,7 +9,7 @@ $(document).ready(function() {
     formatNumber('#units-available');
     formatNumber('#product-price');
 
-    /* Use this placeholder image used when the user did not upload a photo */
+    /* Use this placeholder image if a product image was not uploaded */
     const placeholder = '/img/placeholder/no-image.png';
 
     /* Load the pictures onto the front-end */
@@ -27,6 +29,14 @@ $(document).ready(function() {
         $(id).text(formatNumberIDText(id, number));
     }
 
+    /**
+     * Implements the algorithim to format the number given the ID of its HTML container so that 
+     * commas are used to separate groups of three digits
+     * 
+     * @param id ID of the HTML element containing the number to be formatted
+     * @param number number to be formatted
+     * @return the formatted number
+     */
     function formatNumberIDText(id, number) {
         let formatted = '';
 
@@ -47,6 +57,9 @@ $(document).ready(function() {
         return formatted;
     }
 
+    /**
+     * Hides the add to order button if the page is being viewed using the admin account
+     */
     function hideAddToOrder() {
         const hide = $('#is-admin').text().trim();
 
@@ -67,6 +80,9 @@ $(document).ready(function() {
 
     /**
      * Displays the product photos retrieved from the database on the front-end
+     * 
+     * @param pictures images to be displayed
+     * @param placeholder placeholder used if a product image was not uploaded
      */
     function displayPictures(pictures, placeholder) {
         /* Refers to the maximum number of product photos that can be uploaded (and viewed) */
@@ -100,6 +116,9 @@ $(document).ready(function() {
     /**
      * Add border around the first image when the page is loaded since it is the largest picture
      * displayed in the gallery by default
+     * 
+     * @param pictures images to be displayed
+     * @param placeholder placeholder used if a product image was not uploaded
      */
     function emphasizeOnLoad(pictures, placeholder) {
         /* Do not place a border if no product photo was uploaded */
@@ -128,6 +147,13 @@ $(document).ready(function() {
         }
     }
 
+    /**
+     * Checks whether a product image is the placeholder image
+     * 
+     * @param pictures images to be displayed
+     * @param placeholder placeholder used if a product image was not uploaded
+     * @return true if the first image is the placeholder; false, otherwise
+     */
     function isPlaceholder(pictures, placeholder) {
         return pictures[0] == placeholder;
     }

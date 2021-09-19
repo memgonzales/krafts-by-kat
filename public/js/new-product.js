@@ -40,6 +40,8 @@ $(document).ready(function() {
 	 * Hides the remove buttons of all the product photos
 	 * 
 	 * Initially, all the remove buttons are hidden from view
+	 * 
+	 * @param maxNumPictures maximum number of pictures that can be associated with a product
 	 */
 	function hideRemoveImg(maxNumPictures) {
 		for (let i = 1; i <= maxNumPictures; i++) {
@@ -80,7 +82,7 @@ $(document).ready(function() {
 	}
 
 	/** 
-	 * Open the file explorer for uploading images when an image placeholder is clicked
+	 * Opens the file explorer for uploading images when an image placeholder is clicked
 	 */
 	function triggerUpload() {
 		for (let i = 1; i <= maxNumPictures; i++) {
@@ -95,7 +97,7 @@ $(document).ready(function() {
 	}
 
 	/** 
-	 * Change the display when the user uploads an image
+	 * Changes the display when the user uploads an image
 	 */
 	function changePicOnUpload() {
 		for (let i = 1; i <= maxNumPictures; i++) {
@@ -106,7 +108,7 @@ $(document).ready(function() {
 	}
 
 	/** 
-	 * Refresh the polaroid preview
+	 * Refreshes the polaroid preview
 	 */ 
 	function preview() {
 		$('#preview-polaroid').click(function() {
@@ -116,7 +118,11 @@ $(document).ready(function() {
 	}
 
 	/**
-	 * Display the uploaded images on the polaroid preview
+	 * Displays the uploaded images on the polaroid preview
+	 * 
+	 * @param imgTargetResultsOrig the set of uploaded product images
+	 * @param placeholder placeholder product image
+	 * @param maxNumPictures maximum number of pictures that can be associated with a product
 	 */
 	function previewPictures(imgTargetResultsOrig, placeholder, maxNumPictures) {
 		let imgTargetResults = [];
@@ -175,7 +181,7 @@ $(document).ready(function() {
 	}
 
 	/** 
-	 * Display the entered text on the polaroid preview
+	 * Displays the entered text on the polaroid preview
 	 */
 	function previewText() {
 
@@ -235,6 +241,7 @@ $(document).ready(function() {
 	 * Prevents the uploading of non-image files on the client-side by displaying an alert
 	 * 
 	 * @param extension extension of the file uploaded (all letters in lowercase)
+	 * @return true if the uploaded image is of a supported file type; false, otherwise
 	 */
 	function imgFilter(extension) {
 		switch(extension) {

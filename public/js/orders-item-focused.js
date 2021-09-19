@@ -1,3 +1,5 @@
+/* JavaScript file for handling the downloading of company logos uploaded by the clients */
+
 $(document).ready(function() {
     /* Check if the client uploaded a company logo */
     if ($('#company-logo-presence').text().trim().length == 0) {
@@ -5,6 +7,7 @@ $(document).ready(function() {
         $('#company-logo-photo').remove();
     }
 
+    /* Retrive the file details and construct a cleaner file name */
     const logo = $('#company-logo-photo').attr('src');
     const logoTokens = logo.split('.');
     const extension = logoTokens[logoTokens.length - 1];
