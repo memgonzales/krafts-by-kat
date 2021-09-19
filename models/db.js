@@ -21,6 +21,7 @@ const options = {
 /* Configure dotenv with the needed data */
 dotenv.config();
 const url = process.env.DB_URL;
+const urlTest = process.env.DB_URL_TEST;
 
 /* Specify database operations (i.e., connecting to the database, creating the GridFS storage, and the database 
  * CRUD operations)
@@ -36,12 +37,12 @@ const database = {
 
             mockgoose.prepareStorage()
                 .then(function() {
-                    mongoose.connect(url, options, function(error) {
+                    mongoose.connect(urlTest, options, function(error) {
                         if (error) throw error;
                         console.log('Connected to: ' + url);
                     });
                     
-                    var connection = mongoose.createConnection(url);
+                    var connection = mongoose.createConnection(urlTest);
                     
                     /* Initialize gfs */
                     var gfs;
@@ -54,7 +55,7 @@ const database = {
                     
                     /* Create storage engine */
                     const storage = new gridFsStorage({
-                        url: url,
+                        url: urlTest,
                         file: (req, file) => {
                             return new Promise((resolve, reject) => {
                                 crypto.randomBytes(16, (err, buf) => {
