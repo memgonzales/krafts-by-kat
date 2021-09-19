@@ -8,7 +8,9 @@
 ![badge][badge-nodejs]
 ![badge][badge-mocha]
 
-This project is a software solution (web application) for **Krafts by Kat**, an online retail business founded in 2017 that provides customized corporate giveaways to clients. It is the major course output in a software engineering class. 
+This project is a software solution (web application) for **Krafts by Kat**, an online retail business founded in 2017 that provides customized corporate giveaways to clients. It is the major course output in an introduction to software engineering class. 
+
+The deployed website can be accessed through this link: http://krafts-by-kat.herokuapp.com.
 
 A detailed walkthrough of the features is provided in this [video](https://drive.google.com/file/d/1n9dvAOM72-JefUJLENNKtDjlLNEqZUGH/view?usp=sharing).
 
@@ -41,7 +43,59 @@ The entity relationship diagram to illustrate the schemas can be viewed [here](h
 
 ### Running on the Web
 
+Open the following website: http://krafts-by-kat.herokuapp.com.
+
 ### Running Locally
+
+1. Before running the application locally, the following software have to be installed:
+
+   | Software | Description | Download Link | License |
+   | --- | --- | --- | --- |
+   | Node.js | JavaScript runtime built on Chrome's V8 JavaScript engine | https://nodejs.org/en/download/ | MIT License |
+   | git *(optional)* | Distributed version control system | https://git-scm.com/downloads | GNU General Public License v2.0 |
+
+2. Create a copy of this repository:
+   - If git is installed, type the following command on the terminal:
+   
+     ```
+     git clone https://github.com/memgonzales/krafts-by-kat
+     ```
+      
+   - If git is not installed, click the green `Code` button near the top right of the repository and choose `Download ZIP`. Once the zipped folder has been downloaded, extract its contents.
+
+3. On the main project directory, run the following command to **install the dependencies**: 
+
+   ```
+   npm install
+   ```
+
+   If the command is executed successfully, the dependencies will be installed into the folder <code>node_modules</code> following the dependency tree found in [<code>package-lock.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package-lock.json).
+
+###
+   ***The project uses a pre-populated remote database. DO STEPS 4 AND 6 ONLY AFTER A DATABASE RESET OR MIGRATION TO A LOCAL DATABASE.***
+
+4. Run the following commands to populate the database with the necessary collections:
+
+   ```
+   node misc/populate_display.js
+   node misc/populate_client.js
+   node misc/populate_business_owner.js
+   ```
+   
+5. Run the following command to **run the server**: 
+   ```
+   node index.js
+   ```
+   
+6. Upload the [logo](https://github.com/memgonzales/krafts-by-kat/blob/master/public/img/kbk-logo.png) of Krafts by Kat through the file input field found on the following page:
+   ```
+   http://localhost:3000/uploadsTest
+   ```
+
+7. Open the web application by accessing the following link on a browser:
+   ```
+   http://localhost:3000
+   ```
 
 ### Credentials (For Testing Only)
 To log in as an administrator, enter the following credentials:
