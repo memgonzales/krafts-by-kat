@@ -1,5 +1,8 @@
 /* Javascript file routing the redirect strings to their respective controllers */
 
+/* Dotenv file used to access constants */
+const dotenv = require('dotenv');
+
 /* Use the express web application framework*/
 const express = require('express');
 
@@ -17,9 +20,13 @@ const logOutController = require('../controllers/log-out-controller.js');
 const newProductController = require('../controllers/new-product-controller.js');
 const accountController = require('../controllers/account-controller.js');
 const productsManagerController = require('../controllers/products-manager-controller.js');
+const orderController = require('../controllers/order-controller.js');
+const orderTrackerController = require('../controllers/order-tracker-controller.js');
 
 /* Call the validation file */
 const validation = require('../helpers/validation.js');
+
+dotenv.config();
 
 /* For file uploads */
 krafts.get('/files/:filename', filesController.getFile);
@@ -46,7 +53,12 @@ const newProductFields = [{name: 'productImg1', maxCount: 1},
                           {name: 'productImg3', maxCount: 1},
                           {name: 'productImg4', maxCount: 1},
                           {name: 'productImg5', maxCount: 1}];
-krafts.post('/postNewProduct', db.connect().fields(newProductFields), newProductController.postNewProduct);
+
+if (process.env.NODE_ENV === 'test') {
+    krafts.post('/postNewProduct', newProductController.postNewProduct);
+} else {
+    krafts.post('/postNewProduct', db.connect().fields(newProductFields), newProductController.postNewProduct);
+}
 
 /* For account page */
 krafts.get('/account', accountController.getAccount);
@@ -67,76 +79,77 @@ const editProductFields = [{name: 'productImg1', maxCount: 1},
                            {name: 'productImg3', maxCount: 1},
                            {name: 'productImg4', maxCount: 1},
                            {name: 'productImg5', maxCount: 1}];
-krafts.post('/postEditItem/:id', db.connect().fields(editProductFields), productsManagerController.postEditItem);
+
+if (process.env.NODE_ENV === 'test') {
+    krafts.post('/postEditItem/:id', productsManagerController.postEditItem);
+} else {
+    krafts.post('/postEditItem/:id', db.connect().fields(editProductFields), productsManagerController.postEditItem);
+}
 
 /* For viewing product */
 krafts.get('/viewItem/:id', productsManagerController.getViewItem);
+krafts.post('/postViewItem', productsManagerController.postViewItem);
 
 /* For toggling visibility of product */
 krafts.get('/toggleVisibility/:id', productsManagerController.getToggleVisibility);
 
+/* For placing orders */
+krafts.get('/getOrder/:id', orderController.getOrder);
+if (process.env.NODE_ENV === 'test') {
+    krafts.post('/postSaveOrder', orderController.postSaveOrder);
+} else {
+    krafts.post('/postSaveOrder', db.connect().single('companyLogo'), orderController.postSaveOrder);
+}
+if (process.env.NODE_ENV === 'test') {
+    krafts.post('/postPlaceOrder', orderController.postPlaceOrder);
+} else {
+    krafts.post('/postPlaceOrder', db.connect().single('companyLogo'), orderController.postPlaceOrder);
+}
+
+/* For deleting orders */
+krafts.get('/deleteOrder/:id', orderController.getDeleteOrder);
+
+/* For viewing and keeping track of orders from the admin side */
+krafts.get('/account/admin/orders/pending', orderTrackerController.getAccountAdminOrdersPending);
+krafts.get('/account/admin/orders/accepted', orderTrackerController.getAccountAdminOrdersAccepted);
+krafts.get('/account/admin/orders/enRoute', orderTrackerController.getAccountAdminOrdersEnRoute);
+krafts.get('/account/admin/orders/delivered', orderTrackerController.getAccountAdminOrdersDelivered);
+
+/* For viewing and keeping track of orders from the user side */
+krafts.get('/account/myOrders/unsubmitted', orderTrackerController.getAccountOrdersUnsubmitted);
+krafts.get('/account/myOrders/pending', orderTrackerController.getAccountOrdersPending);
+krafts.get('/account/myOrders/accepted', orderTrackerController.getAccountOrdersAccepted);
+krafts.get('/account/myOrders/enRoute', orderTrackerController.getAccountOrdersEnRoute);
+krafts.get('/account/myOrders/delivered', orderTrackerController.getAccountOrdersDelivered);
+
+/* For viewing the details of a submitted order */
+krafts.get('/viewSubmittedOrder/:id', orderTrackerController.getViewSubmittedOrder);
+
+/* For updating the statuses of orders */
+krafts.get('/cancelOrder/:id', orderTrackerController.getCancelOrder);
+krafts.get('/setOrderPending/:id', orderTrackerController.getSetOrderPending);
+krafts.get('/setOrderAccepted/:id', orderTrackerController.getSetOrderAccepted);
+krafts.get('/setOrderEnRoute/:id', orderTrackerController.getSetOrderEnRoute);
+krafts.get('/setOrderDelivered/:id', orderTrackerController.getSetOrderDelivered);
+
 /* For file upload - FOR TESTING ONLY : REMOVE ON DEPLOYMENT */
 const uploadsTestController = require('../controllers/uploads-test-controller.js');
 krafts.get('/uploadsTest', uploadsTestController.displayPage);
-krafts.post('/uploadLogo', db.connect().single('upload-test'), displayController.postEditLogo);
+
+if (process.env.NODE_ENV === 'test') {
+    krafts.post('/uploadLogo', displayController.postEditLogo);
+} else {
+    krafts.post('/uploadLogo', db.connect().single('upload-test'), displayController.postEditLogo);
+}
 /* END -- REMOVE ON DEPLOYMENT */
 
 // FOR CLEANING
-
-/* TEMPORARY ROUTING FOR FRONT-END EASE */
-krafts.get('/partials-test', function(req,res){
-    var obj = {
-        style: 'order-product'
-    }
-    res.render('partials-test',obj);
-});
-
-
-krafts.get('/order', function(req,res){
-    var obj = {
-        style: 'order-product'
-    }
-    res.render('order-product', obj);
-});
-
-
 /* TEMP Orders Nav Tabs*/ 
-
-krafts.get('/account/admin/orders/pending', function(req,res){
+krafts.get('/account/contactMerchant', function(req,res){
     var obj = {
         style: 'account'
     }
-    res.render('admin-orders-pending',obj);
-});
-
-krafts.get('/account/admin/orders/accepted', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('admin-orders-accepted',obj);
-});
-
-krafts.get('/account/admin/orders/enRoute', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('admin-orders-en-route',obj);
-
-});
-
-krafts.get('/account/admin/orders/delivered', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('admin-orders-delivered',obj);
-
-});
-
-krafts.get('/account/admin/orders/view/orderID', function(req,res){
-    var obj = {
-        style: 'account'
-    }
-    res.render('admin-orders-item-focused',obj);
+    res.render('user-contact-merchant',obj);
 });
 
 /*END of TEMP Orders Nav Tabs*/ 

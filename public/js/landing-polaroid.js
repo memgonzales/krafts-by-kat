@@ -10,7 +10,7 @@ $(document).ready(function() {
 
     /* Use commas to separate groups of three digits in prices */
     $('.price').each(function() {
-        const commaPrice = parseFloat($(this).text()).toLocaleString('en-US', {maximumFractionDigits: 2});
+        const commaPrice = parseFloat($(this).text()).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
         $(this).text(commaPrice);
     })
 });

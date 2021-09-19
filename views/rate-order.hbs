@@ -1,0 +1,54 @@
+{{>navbar}}
+
+<div class="container-fluid bgc5 ps-4 py-3 f1">
+    
+    {{#if isAdmin}}
+        <a href="/account/admin/orders" class="back-order-anchor">
+
+            <div class="d-flex flex-row justify-content-start col-md-3 ">
+
+                <i class="fas fa-arrow-circle-left fa-2x fc3"></i>
+                <h5 class="cwhite ms-3 mt-1">Back to Orders</h5>
+            </div>
+        </a>
+    {{else}}
+        <a href="/account/myOrders" class="back-order-anchor">
+
+            <div class="d-flex flex-row justify-content-start col-md-3 ">
+
+                <i class="fas fa-arrow-circle-left fa-2x fc3"></i>
+                <h5 class="cwhite ms-3 mt-1">Back to Orders</h5>
+            </div>
+        </a>
+    {{/if}}
+</div>
+
+<span id="rate-header" class="f1 bold mt-5 ms-5">Rate your order</span>
+<div class="container bgc3 mb-5 p-5 f1" id="order-focused">
+    <h2>Order Name Here</h2>
+    <h6><span class="bold">Order ID:</span> <span>AgG3tzP</span></h6>
+    <h6><span class="bold">Invoice: </span>₱ <span>9,999,999</span></h6>
+    
+    
+    
+    <h5 class="mt-4 bold">Order Details</h5>
+    <div class="dropdown-divider"></div>
+
+    <div class="accordion" id="products-accordion">
+        
+        <form>
+            {{>orders-item-focused-details}}
+        
+        
+
+    </div>
+    
+    <div class="d-flex justify-content-center mt-5">
+        <button type="submit" class="btn bgc5 cwhite" id="submit-review">Submit Review</button>
+    </div>
+        
+        
+        
+
+
+</div>

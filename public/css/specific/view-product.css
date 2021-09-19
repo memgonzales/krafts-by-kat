@@ -1,9 +1,15 @@
-
-#product-focused, #product-reviews{
+#product-focused{
     width: 1200px;
     border-radius: 15px;
 }
 
+#product-reviews-card{
+    width:1200px;
+    min-height: 100px;
+    max-height: 500px;
+    border-radius:15px;
+
+}
 #product-images{
     border-radius: 15px 0px 0px 15px;
 }
@@ -15,6 +21,22 @@
 #focused-img{
     width: 300px; 
     height: 300px;
+}
+
+#reviews-container{
+    overflow-y: auto;   
+}
+
+#user-dp{
+    width:50px;
+    height:50px;
+    overflow:hidden;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.one-review{
+    border-radius: 15px;
 }
 
 /* Added by developers to handle display of images */
@@ -51,4 +73,42 @@
 
 #add-to-order{
     border-radius: 100px;
+}
+
+.br10{
+    border-radius: 10px;
+}
+
+#new-order{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.new-order{
+    margin-bottom: 1px;
+}
+
+#modal-order-list{
+    height: 320px;
+    overflow-y: auto;
+}
+
+
+#modal-order-list::-webkit-scrollbar{
+    width: 5px;
+    height: 5px;
+}
+#modal-order-list::-webkit-scrollbar-thumb{
+    background: #000000;
+    border-radius: 0px;
+}
+#modal-order-list::-webkit-scrollbar-thumb:hover{
+    background: #000000;
+}
+#modal-order-list::-webkit-scrollbar-track{
+    background: #E5D1B8;
+    border-radius: 0px;
+    box-shadow: inset 0px 0px 0px 0px #F0F0F0;
 }

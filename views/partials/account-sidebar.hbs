@@ -3,7 +3,6 @@
     <h2>Account Settings</h2>
 
     <ul class="nav d-flex flex-column justify-content-center cblack">
-
         {{#if accountTab}}
             <li class="nav-item account-sidebar-item">
                 <a class="nav-link account-sidebar-link cblack active" href="/account">My Account</a>
@@ -13,26 +12,40 @@
                 <a class="nav-link account-sidebar-link cblack" href="/account">My Account</a>
             </li>
         {{/if}}
+        
+        {{#unless isAdmin}}
+        
+            {{!-- {{#if purchaseHistoryTab}}
+                <li class="nav-item account-sidebar-item">
+                    <a class="nav-link account-sidebar-link cblack active" href="/account/purchaseHistory">Purchase History</a>
+                </li>
+            {{else}}
+                <li class="nav-item account-sidebar-item">
+                    <a class="nav-link account-sidebar-link cblack" href="/account/purchaseHistory">Purchase History</a>
+                </li>
+            {{/if}} --}}
 
-        {{#if purchaseHistoryTab}}
-            <li class="nav-item account-sidebar-item">
-                <a class="nav-link account-sidebar-link cblack active" href="/account/purchaseHistory">Purchase History</a>
-            </li>
-        {{else}}
-            <li class="nav-item account-sidebar-item">
-                <a class="nav-link account-sidebar-link cblack" href="/account/purchaseHistory">Purchase History</a>
-            </li>
-        {{/if}}
+            {{#if myOrdersTab}}
+                <li class="nav-item account-sidebar-item">
+                    <a class="nav-link account-sidebar-link cblack active" href="/account/myOrders">My Orders</a>
+                </li>
+            {{else}}
+                <li class="nav-item account-sidebar-item">
+                    <a class="nav-link account-sidebar-link cblack" href="/account/myOrders">My Orders</a>
+                </li>
+            {{/if}}
 
-        {{#if myOrdersTab}}
-            <li class="nav-item account-sidebar-item">
-                <a class="nav-link account-sidebar-link cblack active" href="/account/myOrders">My Orders</a>
-            </li>
-        {{else}}
-            <li class="nav-item account-sidebar-item">
-                <a class="nav-link account-sidebar-link cblack" href="/account/myOrders">My Orders</a>
-            </li>
-        {{/if}}
+            {{#if contactMerchantTab}}
+                <li class="nav-item account-sidebar-item"></li>
+                    <a class="nav-link account-sidebar-link cblack active" href="/account/contactMerchant">Contact Merchant</a>
+                </li>
+            {{else}}
+                <li class="nav-item account-sidebar-item"></li>
+                    <a class="nav-link account-sidebar-link cblack" href="/account/contactMerchant">Contact Merchant</a>
+                </li>
+            {{/if}}
+
+        {{/unless}}
     </ul>
 
     {{#if isAdmin}}

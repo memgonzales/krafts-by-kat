@@ -23,7 +23,7 @@ const logInController = {
     postLogIn: function(req, res) {
 
         /* Retrieve the username and password from the user input */
-        let username = req.body.username.trim();
+        let username = req.body.username.trim().toLowerCase();
         let password = req.body.password;
 		
         /* Use administrator account details for database queries */
@@ -58,16 +58,19 @@ const logInController = {
                             req.session.username = businessOwner.username;
                             req.session.isAdmin = true;
                             
-                            res.status(200).send();
+                            res.status(200).json(password);
+                            res.send();
                         /* If the entered password does not match, display an error message */
                         } else {
-                            res.status(403).send();
+                            res.status(401).json("Passwords do not match");
+                            res.send();
                         }
                     });
 
                 /* If the database retrieval is not successful, display an error message */
                 } else {
-                    res.status(403).send();
+                    res.status(401).json("Database retrival is not successful");
+                    res.send();
                 }
             });
 
@@ -98,13 +101,14 @@ const logInController = {
                     bcrypt.compare(password, result.password, function (err, equal) {
                         if (equal) {
                             req.session.username = client.username;
-                            req.session.isAdmin = false;
 
-                            res.status(200).send();
+                            res.status(200).json(password);
+                            res.send();
                         
                         /* If the entered password does not match, display an error message */   
                         } else {
-                            res.status(403).send();
+                            res.status(401).json("Passwords do not match");
+                            res.send();
                         }
                     });
                     
@@ -133,19 +137,21 @@ const logInController = {
                             bcrypt.compare(password, result.password, function (err, equal) {
                                 if (equal) {
                                     req.session.username = client.username;
-                                    req.session.isAdmin = false;
 
-                                    res.status(200).send();
+                                    res.status(200).json(password);
+                                    res.send();
 
                                 /* If the entered password does not match, display an error message */
                                 } else {
-                                    res.status(403).send();
+                                    res.status(401).json("Passwords do not match");
+                                    res.send();
                                 }
                             });
 
                         /* If both keys did not successfully retrieve the user data, display an error message */
                         } else {
-                            res.status(403).send();
+                            res.status(401).json("Invalid credentials");
+                            res.send();
                         }  
                     });
                 }

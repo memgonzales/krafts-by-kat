@@ -23,7 +23,8 @@ const displayController = {
 		
 		/* The web application logo is updated */
 		db.updateOne(Display, filter, update, function(err, result) {
-			res.status(200).send();
+			res.status(200).json(update);
+			res.send();
 		});
 	}
 }

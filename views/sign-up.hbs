@@ -6,7 +6,7 @@
 
 <div class="container-fluid d-flex flex-column justify-content-center p-5 f1 cwhite">
 
-        <h2 class="cblack ms-5 form-header" >Create an Account</h2>
+        <h2 class="cblack ms-5 form-header"  id = "firstname-label">Create an Account</h2>
         
         <form method = "POST" class = "p-1 d-flex flex-column justify-content-center align-self-center " id = "signup-form">
 
@@ -15,48 +15,55 @@
 
                 <label for = "firstname" class = "form-label">First Name</label>
                 <input type = "text" class = "form-control" id = "firstname" name = "firstName" required>
+                <div id = "firstname-error" class = "form-text error-text form-text fc3"></div>
 
-                <label for = "middlename" class="form-label">Middle Name</label>
+                <label for = "middlename" class="form-label" id = "surname-label">Middle Name</label>
                 <input type = "text" class = "form-control" id = "middlename" name = "middleName"
                 aria-describedby = "middle-name-help">
 
                 <div id = "middle-name-help" class = "form-text fc3">This field is not required</div>
 
-                <label for = "surname" class = "form-label">Surname</label>
+                <label for = "surname" class = "form-label" id = "contact-number-label">Surname</label>
                 <input type = "text" class = "form-control" id = "surname" name = "surname" required>
+                <div id = "surname-error" class = "form-text error-text form-text fc3"></div>
 
-                <label for="contact-number" class="form-label" id = "contact-number-label">Contact Number</label>
+
+                <label for="contact-number" class="form-label">Contact Number</label>
                 <input type = "number" class = "form-control" id = "contact-number" name = "contactNumber" required>
                 <div id = "contact-number-error" class = "form-text error-text form-text fc3"></div>
 
                     
-                <label for="region" class="form-label">Region</label>
+                <label for="region" class="form-label" id = "region-label">Region</label>
                 <select name = "region" class = "form-select" id = "region" required>
                     <option disabled selected value></option>
                 </select>
+                <div id = "region-error" class = "form-text error-text form-text fc3"></div>
                 
-                <label for="province" class="form-label">Province</label>
+                <label for="province" class="form-label" id = "province-label">Province</label>
                 <select name = "province" class = "form-select" id = "province" required>
                     <option disabled selected value></option>
                 </select>
+                <div id = "province-error" class = "form-text error-text form-text fc3"></div>
 
-                <label for="city" class="form-label">City/Municipality</label>
+                <label for="city" class="form-label" id = "city-label">City/Municipality</label>
                 <select name = "city" class = "form-select" id = "city" required>
                     <option disabled selected value></option>
                 </select>
+                <div id = "city-error" class = "form-text error-text form-text fc3"></div>
 
-                <label for="barangay" class="form-label">Barangay</label>
+                <label for="barangay" class="form-label" id = "barangay-label">Barangay</label>
                 <select name = "barangay" class = "form-select" id = "barangay" required>
                     <option disabled selected value></option>
                 </select>
+                <div id = "barangay-error" class = "form-text error-text form-text fc3"></div>
 
                 <label for="zip-code" class="form-label" id = "zip-code-label">ZIP code</label>
                 <input type = "number" class = "form-control" id = "zip-code" name = "zipCode" required>
                 <div id = "zip-code-error" class = "form-text fc3"></div>
 
-                <label for="address" class="form-label">Address</label>
+                <label for="address" class="form-label" id = "address-label">Address</label>
                 <input type = "text" class = "form-control" id = "address" name = "address" placeholder = "Enter Room/Floor/Unit No. Bldg Name, House Lot/ Block, Street, Subdivision" required>
-              
+                <div id = "address-error" class = "form-text error-text form-text fc3"></div>
                 
                 
             </div>
@@ -85,7 +92,7 @@
                     <label for = "create-password" class = "form-label" id = "create-password-label">Password</label>
                     <input type = "password" class = "form-control" id = "create-password"  name = "createPassword" aria-describedby = "password-help" required>
 
-                    <div id = "password-error" class = "form-text fc3 ">You'll need at least 8 characters and 1 number</div>
+                    <div id = "password-error" class = "form-text fc3 ">You'll need at least 8 characters, 1 number, and 1 letter</div>
 
                 </div>
 
@@ -101,7 +108,11 @@
 
             </div>
 
-            <button type = "submit" class = "btn bgc4 align-self-center mt-4" id = "signup-submit">Submit</button>
+            <div class="col-md-3 d-flex justify-content-between mt-4 align-self-center ">
+                <button type = "submit" class = "btn bgc5 cwhite" id = "signup-submit">Submit</button>
+                <button type="button" class="btn bgc4"data-bs-toggle="modal" data-bs-target="#cancel-signup-prompt">Cancel</button>
+            </div>
+         
 
         </form>
 </div>
@@ -115,3 +126,36 @@
 
 
 {{>success}}
+
+<div class = "container">
+    <!-- Modal -->
+    <div class = "modal fade" id="cancel-signup-prompt" tabindex = "-1" aria-hidden = "true">
+
+    <div class = "modal-dialog d-flex justify-content-center">
+
+        <div class = "modal-content d-flex flex-column align-items-center">
+
+            <div class = "col-md-6 bgc4 d-flex justify-content-center align-items-center" id = "success-upper">
+
+                <i class="fas fa-exclamation-triangle fa-7x"></i>
+            </div>
+
+            <div class = "col-md-6 bgc3 d-flex justify-content-center align-items-center flex-column f1 p-5" id = "success-lower">
+               
+                <span class = "text-center bold" id = "success-msg">Are you sure that you want to cancel signing up?</span>  
+
+               
+                <div class="col-md-7 p-2 d-flex justify-content-between align-self-center mt-5">
+                    <button type="button" class="btn bgc1 btn-anchor" id="cancel-signup">Yes</button>
+                    <button type="button" data-bs-dismiss="modal" class="btn bgc5 cwhite" id="cancel-no" >No</button>
+                </div>
+                
+
+            </div>
+        </div>
+
+    </div>
+    
+    </div>
+
+</div>

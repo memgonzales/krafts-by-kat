@@ -4,30 +4,29 @@ const exphbs = require('express-handlebars');
 const nocache = require("nocache");
 
 const bodyParser = require('body-parser');
-const fs = require('fs');
 const path = require('path');
 
-const routes = require('./routes/routes.js');
-const helper = require('./helpers/helpers.js');
-
-const db = require('./models/db.js');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const mongoStore = require('connect-mongo')(session);
+
+const routes = require('./routes/routes.js');
+const helper = require('./helpers/helpers.js');
+const db = require('./models/db.js');
 
 const krafts = express();
 
 dotenv.config();
 port = process.env.PORT;
-hostname = process.env.HOSTNAME;
+hostname = process.env.HOSTNAME || 3000;
 url = process.env.DB_URL;
 
 db.connect();
 
 krafts.set('view engine','hbs');
 krafts.use(express.static(path.join(__dirname, '/public')));
+krafts.use(express.json());
 krafts.use(express.urlencoded({extended:true}));
-krafts.use(bodyParser.urlencoded({extended:false}));
 krafts.engine('hbs',exphbs({
 	defaultLayout: 'main',
 	extname:'.hbs',
@@ -49,3 +48,6 @@ krafts.listen(port, hostname, function() {
 	console.log('Server is running at: ');
 	console.log('http://' + hostname + ':' + port);
 });
+
+/* For unit testing of REST API */
+module.exports = krafts;

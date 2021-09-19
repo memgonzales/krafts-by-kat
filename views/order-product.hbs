@@ -1,22 +1,40 @@
-{{>navbar}}
+{{>navbar userFlag = userFlag adminFlag = adminFlag username = username}}
 
 <span class = "f1 text-start ms-5 mt-5 form-header">Make an Order</span>
 
 <div class = "container-fluid d-flex justify-content-center align-items-center flex-column mb-5 ">
 
 
-    <form class = "container bgc5 p-5" id = "order-form">
+    <form method = "POST" class = "container bgc5 p-5" id = "order-form" enctype = "multipart/form-data">
 
+        <input type = "hidden" id = "removed-order-items" name = "removedOrderItemIds">
 
         <div class = "f1 d-flex p-5 justify-content-center cwhite flex-column m-5 bgc4" id = "order-header">
   
-            <input class = "cblack" type = "text" id = "order-name" placeholder = "Order Name">
-            <div id = "order-name-error" class = "form-text cblack fc3">Type why you're ordering, maybe an event perhaps.</div>
+            <input class = "cblack" type = "hidden" id = "order-id" name = "orderId" value = "{{orderId}}">
+
+            <input class = "cblack" type = "text" id = "order-name" name = "orderName" placeholder = "Order Name" value = "{{orderName}}" required>
+            <div id = "order-name-error" class = "form-text cblack fc3">Why you're ordering, maybe an event perhaps.</div>
 
             
             <label class = "mt-4 cblack bold" for = "company-name">Company Name</label>
-            <input class = "cblack" type = "text" id = "company-name">
+            <input class = "cblack" type = "text" id = "company-name" name = "companyName" value = "{{companyName}}">
             <div id = "company-name-error" class = "form text fc3"></div>
+
+            <br>
+
+            <div class="d-flex flex-column">
+                <label for="company-logo" class="form-label">
+                    <h7 class="bold cblack">
+                        Upload Company Logo (Recommended Size 512 x 800)
+                    </h7>
+                </label>
+                <img id = "company-logo-img" src = "{{companyLogo}}">
+                <input class="form-control" type="file" id="company-logo" name="companyLogo" accept="image/*">
+
+                <input type = "hidden" id = "is-company-logo-uploaded" name = "isCompanyLogoUploaded" value = {{isCompanyLogoUploaded}}>
+                <input type = "hidden" id = "orig-company-logo" name = "origCompanyLogo" value = {{companyLogo}}>
+            </div>
 
         </div>
 
@@ -26,8 +44,8 @@
 
                 <h2 class = "cblack bold">Order List</h2>
 
-                <button type = "button" class = "btn bgc3 mx-4 d-flex justify-content-center align-items-center mb-2 py-2 pe-3 " id = "add-cart" data-bs-toggle="modal" data-bs-target="#pick-product">
-                    <i class = "fas fa-cart-plus fa-lg my-2" data-bs-toggle = "tooltip" data-bs-placement = "right" title = "Add to Order List"></i>
+                <button type = "button" class = "btn bgc3 mx-4 d-flex justify-content-center align-items-center mb-2 py-2 pe-3 " id = "add-cart">
+                    <i class = "fas fa-cart-plus fa-lg my-2" data-bs-toggle = "tooltip" data-bs-placement = "right" title = "Return to item catalog"></i>
                 </button>
             
             </div>
@@ -36,54 +54,108 @@
             
             <div class = "accordion mt-2" id = "order-list">
 
-                {{>order-specific}}
+                {{#each orderItemIds}}
+                    {{>order-specific orderId = orderId
+                                      orderItemId = this 
+                                      productId = (lookup ../productIds @index)
+                                      quantity = (lookup ../quantities @index) 
+                                      packaging = (lookup ../packagingOptions @index) 
+                                      packagingColor = (lookup ../packagingColors @index)
+                                      packagingMessage = (lookup ../packagingMessages @index)
+                                      itemColor = (lookup ../itemColors @index)
+                                      itemText = (lookup ../itemTexts @index)
+                                      includeCompanyLogo = (lookup ../includeCompanyLogoOptions @index)
+                                      companyLogoLocation = (lookup ../companyLogoLocations @index)
+                                      additionalInstructions = (lookup ../additionalInstructionsPassages @index)
+                                      orderItemPrice = (lookup ../orderItemPrices @index)
+                                      productName = (lookup ../productNames @index)
+                                      productQuantity = (lookup ../productQuantities @index)
+                                      productPrice = (lookup ../productPrices @index)}}
+                {{/each}}
 
             </div>
          
         </div>
 
-         <div class="f1 d-flex p-5 justify-content-center flex-column mt-5 mx-5 bgc4" id="delivery-details">
+        <div class="f1 d-flex p-5 justify-content-center flex-column mt-5 mx-5 bgc4" id="delivery-details">
              <h2 class = "cblack bold">Delivery</h2>
-              <div class = "dropdown-divider"></div>
+                <div class = "dropdown-divider"></div>
 
-              <div class="container ps-4 mt-4">
+                <div class="container ps-4 pt-4">
+                    <h5>How will you get your order?</h5>
+                    <input type = "hidden" id = "delivery-mode-value" name = "deliveryModeFinal" value = {{deliveryMode}}>
+                    <div id = "delivery-mode-data" class = "hidden">{{deliveryMode}}</div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" class = "delivery-mode-radio" type="radio" name="deliveryType" id="pickup">
+                        <label class="form-check-label" for="pickup">
+                            Pick-up
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" class = "delivery-mode-radio" type="radio" name="deliveryType" id="delivery" checked>
+                        <label class="form-check-label" for="delivery">
+                            Delivery (We will deliver to the address binded to your account)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="container ps-4 mt-4">
+                    <div id = "pref_date" class = "hidden">{{preferredDeliveryDate}}</div>
                     <label for="orderID_prefDate"><h5>Preferred Delivery Date</h5></label>
-                    <input type="date" class="ms-3" id="orderID_prefDate">
+                    <input type="date" class="ms-3" id="orderID_prefDate" name = "preferredDeliveryDate">
                     <div class="form-text">We will send you an estimate after we've reviewed your order</div>
-              </div>
-
-                {{!-- Code Below is commented out kasi di pa magagamit --}}
-
-              {{!-- <div class="container ps-4 mt-4">
-                    <h5>Payment Type</h5>
-              </div>
-
-              <div class="container ps-4 mt-4">
-                    <h5>Delivery Address</h5>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="addressRadio" id="address-home" checked>
-                        <label class="form-check-label" for="address-home">
-                            Home 
-                        </label>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="addressRadio" id="address-company">
-                        <label class="form-check-label" for="address-company">
-                            Company
-                        </label>
-                    </div>
-              </div> --}}
-
+                </div>
 
            
         </div>
 
+        <div class = " f1 d-flex p-5 justify-content-center flex-column mt-5 mx-5 bgc4" id = "payment-details">
+
+          
+
+            <h2 class = "cblack bold">Payment</h2>
+            <div class = "dropdown-divider"></div>
+
+            <div class="mt-3 ms-4">
+                <label for="#payment-type"><h5>Payment Type</h5></label>
+                <div id = "payment-type-data" class = "hidden">{{paymentType}}</div>
+                <select class="form-select w-25" aria-label="Payment Type Select" id="payment-type" name = "paymentType">
+
+                    <option value="cash" selected>Cash or Check</option>
+                    <option value="gcash">GCash</option> 
+                    <option value="bank_transfer">Bank Transfer</option>
+            
+                </select>
+            </div>
+
+            <div id = "order-item-id-list" class = "invisible">{{orderItemIds}}</div>
+
+            <div class="mt-4 ms-4">
+                <h5 class="f1">Order Overview</h5>
+                
+                {{#each orderItemIds}}
+                    {{>order-product-summary-item orderId = orderId
+                                                  orderItemId = this
+                                                  productName = (lookup ../productNames @index)}}
+                {{/each}}
+
+                <div class="dropdown-divider"></div>
+                <div class="d-flex justify-content-between flex-row">
+                    <h7>Order Total: </h7>
+                    <h7>₱<span id = "order-total-price-display">{{price}}</span></h7>
+                
+                </div>
+            </div>
+
+            <input type = "hidden" id = "order-total-price" name = "orderTotalPrice">
+         
+        </div>
+
         <div class="d-flex justify-content-center mt-5">
-            <button type="button" class="btn bgc2 mx-3">Save Order</button>
-            <button type="submit" class="btn bgc3 mx-3">Place Order</button>
-            <button type="button" class="btn bgc4 mx-3" data-bs-toggle="modal" data-bs-target="#save-prompt">Cancel</button>
+            <button type="button" id = "save-order" class="btn bgc2 mx-3">Save Order</button>
+            <button type="button" id = "place-order" class="btn bgc3 mx-3" data-bs-toggle="modal" data-bs-target="#place-order-success-modal">Place Order</button>
+            <button type="button" id = "cancel-order" class="btn bgc4 mx-3" data-bs-toggle="modal" data-bs-target="#save-prompt">Cancel</button>
         </div>
 
     </form>
@@ -116,3 +188,32 @@
         </div>
     </div>
 </div>
+
+<div class = "modal fade" id = "place-order-success-modal" tabindex = "-1" aria-hidden="true">
+    <div class = "modal-dialog d-flex justify-content-center">
+        <div class = "modal-content d-flex flex-column align-items-center">
+            <div class = "col-md-6 bgc4 d-flex justify-content-center align-items-center" id = "save-upper">
+
+                <i class = "fas fa-check-circle fa-7x "></i>
+
+            </div>
+
+            <div class = "col-md-6 bgc3 d-flex justify-content-center align-items-center flex-column f1 p-5" id = "save-lower">
+               
+                <span class = "text-center delete-msg" id = "save-prompt">Order Placed! You will now be redirected for further instructions</span>  
+                
+                   
+                <div class = "container d-flex justify-content-center mt-4">
+                    <a class="btn cwhite bgc5 btn-anchor" href="/account/myOrders">Ok</a>
+                </div>
+
+                    
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src = "/js/order-product.js"></script>
+<script src = "/js/order-specific.js"></script>
+
+                 

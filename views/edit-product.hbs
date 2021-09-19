@@ -92,14 +92,14 @@
                     <span class = "mx-2"><span id="units-sold">{{numberSold}}</span> Sold</span>
                     <span class = "mx-2">|</span>
                     <span class = "mx-2">
-                        <input class="bgc3" type = "number" id="units-available" name = "quantity" value = "{{quantity}}"> <span class="ms-2">Units Available</span>
+                        <input class="bgc3" type = "number" id="units-available" name = "quantity" value = "{{quantity}}" min = "0"> <span class="ms-2">Units Available</span>
                     </span>
 
                 </div>
 
                 <div class="container mt-4 bgc4 p-2 price-details d-flex flex-row">
                     <span class="mx-2" id="peso-sign">₱</span>
-                    <input class="bgc4 bold" type="text" id = "product-price" name = "productPrice" value ="{{price}}">
+                    <input class="bgc4 bold" type="number" id = "product-price" name = "productPrice" value ="{{price}}" step = ".01" min = "0" >
                 </div>
 
                 <div class="container bgc4 mt-4 price-details p-3" id="price-desc-container">
@@ -123,7 +123,7 @@
 
         <div class="container mt-5 d-flex justify-content-center" id="edit-user-prompt">
             <button type = "submit" class="btn bgc3 mx-2" id="submit-changes">Save Changes</button>
-            <button type = "reset" class="btn bgc5 mx-2 cwhite" id="cancel-changes">Cancel</button>
+            <button type = "button" class="btn bgc5 mx-2 cwhite" id="cancel-changes">Cancel</button>
         </div>
 
     </form>

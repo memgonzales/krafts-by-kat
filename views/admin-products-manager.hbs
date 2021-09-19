@@ -1,8 +1,7 @@
 {{>navbar userFlag = userFlag adminFlag = adminFlag username = username}}
 
 <div class="container-fluid content d-flex flex-row f1" id="account-container" >
-    {{>account-sidebar isAdmin = isAdmin accountTab = false purchaseHistoryTab = false myOrdersTab = false
-                       ordersTab = false messagesTab = false productsManagerTab = true clientsManagerTab = false}}
+    {{>account-sidebar isAdmin = adminFlag productsManagerTab = true}}
 
     <div class="col-md-9 p-5" id="sidebar-content">
         
@@ -34,3 +33,4 @@
 </div>
 
 <script src = "/js/product.js"></script>
+<script src = "/js/admin-products-manager.js"></script>

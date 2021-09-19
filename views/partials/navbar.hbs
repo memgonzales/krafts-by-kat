@@ -8,6 +8,10 @@
 
                 {{#if adminFlag}} 
                     <a href = "/newProduct" class = "f1 pb-2" > <i class = "fas fa-plus-circle me-3"> </i>ADD PRODUCTS</a>
+                    {{else}}
+                        {{#if userFlag}}
+                            <a href="/account/myOrders" class="f1 pb-2">MY ORDERS</a>
+                        {{/if}}
                 {{/if}}
                 
 
@@ -31,7 +35,7 @@
                             <div class="dropdown">
                                 <button class="btn" type="button" id="notifs-btn" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="notif-icon"><i class="fas fa-bell"  data-bs-toggle="tooltip" data-bs-placement="top" title="notifications"></i></span>
-                                    {{!-- if notif count put 9+ --}}
+                                    {{!-- if notif count more than 9, put 9+ --}}
                                     <span class="notif-btn-badge">9+</span>
                                 </button>
 

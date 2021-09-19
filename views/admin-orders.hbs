@@ -1,32 +1,30 @@
-{{>navbar}}
+{{>navbar userFlag = userFlag adminFlag = adminFlag username = username}}
 
 <div class="container-fluid content d-flex flex-row f1" id="account-container" >
-    {{>account-sidebar isAdmin = isAdmin accountTab = false purchaseHistoryTab = false myOrdersTab = false
-                       ordersTab = true messagesTab = false productsManagerTab = false clientsManagerTab = false}}
+    {{>account-sidebar isAdmin = adminFlag ordersTab = true }}
 
     <div class="col-md-9">
-        {{>admin-orders-nav allOrdersTab = true pendingTab = false acceptedTab = false enRouteTab = false deliveredTab = false}}
+        {{>orders-nav isAdmin = adminFlag allOrdersTab = true}}
 
         <div class="container" id="orders-collection">
 
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
-            {{>admin-orders-item}}
+            {{#each orderIds}}
+                {{>orders-item isAdmin = ../adminFlag
+                               orderId = this 
+                               orderName = (lookup ../orderNames @index)
+                               orderUsername = (lookup ../orderUsernames @index)
+                               orderStatus = (lookup ../orderStatuses @index)
+                               preferredDeliveryDate = (lookup ../preferredDeliveryDates @index)
+                               orderPrice = (lookup ../orderPrices @index)
+                               pendingOrder = (lookup ../pendingOrders @index)
+                               acceptedOrder = (lookup ../acceptedOrders @index)
+                               enRouteOrder = (lookup ../enRouteOrders @index)
+                               deliveredOrder = (lookup ../deliveredOrders @index)}}
+            {{/each}}
 
         </div>
         
     </div>
 </div>
+
+<script src = "/js/order-item.js"></script>

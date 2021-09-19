@@ -1,0 +1,101 @@
+<div class="container bgc3 one-order p-3 d-flex flex-row mt-3"  id = "order-div-{{orderId}}">
+   
+    <div class="col-md-11">
+            <div class = "container">
+                <a id = "order-link-{{orderId}}"><h4 id = "order-name-{{orderId}}" class = "order-name">{{orderName}}</h4></a>            
+            </div>
+
+            <div class="container d-flex flex-row">
+                <span class="me-3">
+                    <span class="bold">Order ID:</span> 
+                    <span>{{orderId}}</span>
+                </span>
+
+
+                <span class="mx-3">
+                    <span class="bold">Status: </span> 
+                    <span id = "order-status-{{orderId}}">{{orderStatus}}</span>
+                </span>
+
+                <span class="mx-3">
+                    <span class="bold">Delivery Date: </span>
+                    <span>{{preferredDeliveryDate}}</span>
+                </span>
+
+                <span class="mx-3">
+                    <span class="bold">Invoice: </span>
+                    <span>₱{{orderPrice}}</span>
+                </span>
+
+                {{#if isAdmin}}
+                    <span class="mx-3">
+                        <span class="bold">Order by: </span>
+                        <span>{{orderUsername}}</span>
+                    </span>
+                {{/if}}
+
+            </div>
+        </a>     
+    </div>
+  
+    <div class="col-md-1 d-flex justify-content-end pe-2">
+       
+        <div class="dropdown">
+            <button class="btn" type="button" id="opt-order" data-bs-toggle="dropdown" aria-expanded="false">
+                 <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="opt-order">
+                {{#if isAdmin}}
+                    {{#if pendingOrder}}
+                        <li><a class="dropdown-item" href="/setOrderAccepted/{{orderId}}">Set Accepted</a></li>
+                        <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
+                        <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
+                    {{/if}}
+
+                    {{#if acceptedOrder}}
+                        <li><a class="dropdown-item" href="/setOrderEnRoute/{{orderId}}">Set En Route</a></li>
+                        <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
+                        <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
+                    {{/if}}
+
+                    {{#if enRouteOrder}}
+                        <li><a class="dropdown-item" href="/setOrderDelivered/{{orderId}}">Set Delivered</a></li>
+                        <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
+                        <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
+                    {{/if}}
+
+                    {{#if deliveredOrder}}
+                        <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
+                    {{/if}}
+
+                {{else}}
+                    {{#if unsubmittedOrder}}
+                        <li><a class="dropdown-item" href="/getOrder/{{orderId}}">View Order</a></li>
+                        <li><a class="dropdown-item" href="/setOrderPending/{{orderId}}">Place Order</a></li>
+                        <li><a class="dropdown-item" href="/deleteOrder/{{orderId}}">Delete Order</a></li>
+                    {{/if}}
+
+                    {{#if pendingOrder}}
+                        <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
+                        <li><a class="dropdown-item" href="/cancelOrder/{{orderId}}">Cancel Order</a></li>
+                    {{/if}}
+
+                    {{#if acceptedOrder}}
+                        <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
+                    {{/if}}
+
+                    {{#if enRouteOrder}}
+                        <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
+                        <li><a class="dropdown-item" href="/setOrderDelivered/{{orderId}}">Set Delivered</a></li>
+                    {{/if}}
+
+                    {{#if deliveredOrder}}
+                        <li><a class="dropdown-item" href="/viewSubmittedOrder/{{orderId}}">View Order</a></li>
+                    {{/if}}
+                {{/if}}
+                
+            </ul>
+        </div>
+    </div>
+    
+</div>

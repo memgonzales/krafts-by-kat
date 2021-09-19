@@ -1,5 +1,7 @@
 :root{
     --black: black;
+    --white: white;
+    --error: #C70039;
 }
 
 #order-form{
@@ -29,6 +31,18 @@
 
 }
 
+.addl-msg{
+    width: 400px;
+}
+
+.qty-exceed{
+    color: var(--error);
+}
+
+
+.qty-exceed{
+    color: var(--error);
+}
 
 input, textarea{
     border: none;
@@ -97,5 +111,9 @@ input, textarea{
     width: 350px;
     height: 250px;
     border-radius: 0px 0px 20px 20px;
+}
+
+.btn-anchor:hover{
+    color:var(--white);
 }
 /* END of Save Prompt Modal CSS*/
