@@ -22,12 +22,18 @@ const productsManagerController = {
 		/* Obtain the ID of the product to be deleted from the modal */
 		let id = req.body.modalDeleteProductId;
 
-		/* Delete the catalog item document with the corresponding ID */
-		let conditions = {_id: db.convertToObjectId(id)};
+		let filter = {_id: db.convertToObjectId(id)};
+						
+		/* Set the visibility of the catalog item document with the corresponding ID 
+		 * to 'Deleted'
+		 */
+		let update = {visible: 'Deleted'};
 
-		db.deleteOne(CatalogItem, conditions, function(err, result) {
+		console.log(filter);
+		console.log(update);
+		db.updateOne(CatalogItem, filter, update, function(error, result) {
 			/* If the deletion is successful, update the products manager page */
-			res.status(200).json(conditions);
+			res.status(200).json(update);
 			res.send();
 		});
 	},
@@ -420,10 +426,10 @@ const productsManagerController = {
 						
 						/* If the item is originally visible, set its visibility to false, and vice versa */
 						let update;
-						if (item.visible) {
-							update = {visible: false};
+						if (item.visible == 'Visible') {
+							update = {visible: 'Hidden'};
 						} else {
-							update = {visible: true};
+							update = {visible: 'Visible'};
 						}
 
 						db.updateOne(CatalogItem, filter, update, function(error, result) {

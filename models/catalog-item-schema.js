@@ -52,9 +52,9 @@ const catalogItemSchema = new mongoose.Schema({
         required: true
     },
 
-    /* Whether the item can be seen by customers and unregistered users */
+    /* Visibility of the item */
     visible: {
-        type: Boolean,
+        type: String,
         required: true
     }
 });

@@ -25,12 +25,15 @@ const indexController = {
 			if (result) {
 				/* Assign the result of the database retrieval to the variable appLogo */
 				let appLogo = result;
-				
+
+				/* Retrieve the catalog items that are visible to the regular and unregistered users */
+				let query = {visible: 'Visible'};
+
 				/* Assign the needed details of the item catalog documents to the variable projection */
 				let projection = '_id name quantity description price commentIds pictures ratings numberSold visible';
 
 				/* The needed details of all catalog items are retrieved to be displayed on the landing page */
-				db.findMany(CatalogItem, {}, projection, function(result) {
+				db.findMany(CatalogItem, query, projection, function(result) {
 					/* If the data retrieval is successful, the landing page is displayed */
 					if (result != null) {
 						
@@ -133,7 +136,7 @@ const indexController = {
 							 * has been made visible and is not depleted 
 							 */
 							for (let i = 0; i < items.length; i++) {
-								if (items[i].visible && items[i].quantity > 0) {
+								if (items[i].quantity > 0) {
 									ids.push(items[i]._id);
 									names.push(items[i].name);
 									quantities.push(items[i].quantity);
