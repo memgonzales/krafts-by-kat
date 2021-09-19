@@ -519,10 +519,11 @@ const orderTrackerController = {
 						db.findOne(Client, query, projection, function(result) {
 							let currentOrder = result.currentOrder;
 
-							/* Retrieve all the unsubmitted orders of the user */
+							/* Retrieve all the unsubmitted and cancelled orders of the user */
+							let unsubmittedStatuses = ['Unsubmitted', 'Cancelled'];
 							let orderQuery = {
 								user: req.session.username,
-								status: 'Unsubmitted'
+								status: {$in : unsubmittedStatuses}
 							};
 				
 							let orderProjection = '_id name user status preferredDeliveryDate price';
@@ -1378,7 +1379,7 @@ const orderTrackerController = {
 	},
 
     /**
-	 * Sets the status of an order to "Unsubmitted"
+	 * Sets the status of an order to "Cancelled"
 	 * 
 	 * @param req object that contains information on the HTTP request from the client
 	 * @param res object that contains information on the HTTP response from the server 
@@ -1388,9 +1389,9 @@ const orderTrackerController = {
         /* If the user is registered, cancel the selected order */
         if (req.session.username != undefined) {
 
-            /* Set the status of the order with the corresponding ObjectID to "Unsubmitted" */
+            /* Set the status of the order with the corresponding ObjectID to "Cancelled" */
             let filter = {_id: db.convertToObjectId(req.params.id)};
-            let update = {status: "Unsubmitted"};
+            let update = {status: "Cancelled"};
             
             db.updateOne(Order, filter, update, function(flag) {
                 

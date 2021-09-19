@@ -205,7 +205,7 @@ const accountController = {
 									orderStatuses[i] = result[i].status;
 
 									/* Assign the boolean values of the order status arrays depending on the retrieved order status */
-									if (orderStatuses[i] == "Unsubmitted") {
+									if (orderStatuses[i] == "Unsubmitted" || orderStatuses[i] == "Cancelled") {
 										unsubmittedOrders[i] = true;
 										pendingOrders[i] = false;
 										acceptedOrders[i] = false;

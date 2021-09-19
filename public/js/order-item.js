@@ -28,6 +28,9 @@ $(document).ready(function() {
             case 'Unsubmitted':
                 $('#order-link-' + id).attr('href', '/viewSubmittedOrder/' + id);
                 break;
+            case 'Cancelled':
+                $('#order-link-' + id).attr('href', '/viewSubmittedOrder/' + id);
+                break;
             case 'Current':
                 $('#order-link-' + id).attr('href', '/getOrder/' + id);
                 break;
