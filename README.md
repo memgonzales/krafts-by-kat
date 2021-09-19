@@ -33,7 +33,7 @@ It also includes the following files:
 | [<code>package-lock.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package-lock.json) and [<code>package.json</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/package.json) | Store information on the project dependencies |
 | [<code>index.js</code>](https://github.com/memgonzales/krafts-by-kat/blob/master/index.js) | Entry point of the web application |
 
-The **entity relationship diagram** to illustrate the schemas can be viewed [here]().
+The **entity relationship diagram** to illustrate the schemas can be viewed [here](https://drive.google.com/file/d/1dkrmvvhiB5CKofxZo6iT1PgoxlP6JL0j/view?usp=sharing).
 
 ## Running the Application
 
