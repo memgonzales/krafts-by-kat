@@ -213,6 +213,11 @@ $(document).ready(function() {
         };
     });
 
+    /* Remove the alert about leaving the page if the user selects the OK option on the place order success modal */
+    $('#place-order-success-modal').on('click', function(e) {
+        window.onbeforeunload = null;
+    });
+
     /**
 	 * Format the preferred delivery date
 	 * 
