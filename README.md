@@ -8,6 +8,8 @@
 ![badge][badge-nodejs]
 ![badge][badge-mocha]
 
+***--- THIS PROJECT IS A WORK IN PROGRESS ---***
+
 This project is a software solution (web application) for **Krafts by Kat**, an online retail business founded in 2017 that provides customized corporate giveaways to clients. It is the major course output in an introduction to software engineering class. 
 
 The deployed website can be accessed through this link: http://krafts-by-kat.herokuapp.com.
