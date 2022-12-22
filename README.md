@@ -1,13 +1,13 @@
 # Krafts by Kat
 ![badge][badge-html5]
 ![badge][badge-bootstrap]
+![badge][badge-handlebars]
 ![badge][badge-js]
 ![badge][badge-jquery]
 ![badge][badge-mongodb]
 ![badge][badge-express]
 ![badge][badge-nodejs]
 ![badge][badge-mocha]
-![badge][badge-heroku]
 
 ***--- THIS PROJECT IS A WORK IN PROGRESS ---***
 
@@ -203,6 +203,7 @@ Kindly refer to this [page](https://github.com/memgonzales/krafts-by-kat/blob/ma
 
 [badge-html5]: https://img.shields.io/badge/html5-%23E34F26.svg?style=flat&logo=html5&logoColor=white
 [badge-bootstrap]: https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=flat&logo=bootstrap&logoColor=white
+[badge-handlebars]: https://img.shields.io/badge/Handlebars.js-f0772b?style=flat&logo=handlebarsdotjs&logoColor=black
 [badge-js]: https://img.shields.io/badge/javascript-%23323330.svg?style=flate&logo=javascript&logoColor=%23F7DF1E
 [badge-jquery]: https://img.shields.io/badge/jquery-%230769AD.svg?style=flat&logo=jquery&logoColor=white
 [badge-mongodb]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=flat&logo=mongodb&logoColor=white
